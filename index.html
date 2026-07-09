@@ -148,7 +148,7 @@
 </div>
 </div>
 <!-- SIDEBAR (Hidden initially) -->
-<div class="sidebar" id="main-sidebar" style="display: none;">
+<div class="app-sidebar" id="main-sidebar" class="app-sidebar" style="display: none;">
 <h2>🏥 SuperClaim</h2>
 <a class="active" id="nav-dashboard" onclick="showScreen('dashboard')">🏠 Dashboard</a>
 <a id="nav-policies" onclick="showScreen('policies')">📋 My Policies</a>
@@ -167,8 +167,8 @@
 <a onclick="logout()" style="margin-top: 20px; border-top: 1px solid #2d3e5f; padding-top: 20px;">🚪 Logout</a>
 </div>
 <!-- MAIN CONTENT (Hidden initially) -->
-<div class="main" id="main-content" style="display: none;">
-<div class="topbar">
+<div class="app-main" id="main-content" style="display: none;">
+<div class="app-topbar">
 <div>
 <strong id="user-name">Welcome, Rahul Sharma</strong> | 
       <span id="user-type">Individual Member</span> | 
@@ -733,7 +733,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div> <!-- END MAIN -->
 <!-- MODALS -->
 <!-- EMERGENCY SOS MODAL -->
-<div class="modal" id="emergency-modal">
+<div class="modal-overlay" id="emergency-modal">
 <div class="modal-content" style="border-top: 5px solid #dc3545;">
 <div class="modal-header">
 <h2 style="color: #dc3545;">🚨 Emergency Assistance</h2>
@@ -756,7 +756,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
 </div>
 <!-- URGENT CASHLESS REQUEST -->
-<div class="modal" id="cashless-request-modal">
+<div class="modal-overlay" id="cashless-request-modal">
 <div class="modal-content">
 <div class="modal-header">
 <h2>🏥 Hospital Admission Request</h2>
@@ -778,7 +778,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
 </div>
 <!-- TRACK CLAIM & ESCALATE -->
-<div class="modal" id="track-claim-modal">
+<div class="modal-overlay" id="track-claim-modal">
 <div class="modal-content">
 <div class="modal-header">
 <h2>Track Claim Status</h2>
@@ -795,7 +795,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
 </div>
 <!-- SIMPLIFIED DOCUMENT UPLOAD -->
-<div class="modal" id="upload-document-modal">
+<div class="modal-overlay" id="upload-document-modal">
 <div class="modal-content">
 <div class="modal-header">
 <h2>Upload Medical Documents</h2>
@@ -817,7 +817,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
 </div>
 <!-- OTHER MODALS (Preserved) -->
-<div id="appeal-claim-modal" class="modal">
+<div id="appeal-claim-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('appeal-claim-modal')">&times;</button>
@@ -825,7 +825,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Appeal Claim</h2><textarea placeholder="Reason for appeal"></textarea><button class="btn">Submit</button>
   </div>
 </div>
-<div id="buy-plan-modal" class="modal">
+<div id="buy-plan-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('buy-plan-modal')">&times;</button>
@@ -833,7 +833,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Buy Plan</h2><button class="btn">Proceed to Payment</button>
   </div>
 </div>
-<div id="compare-plans-modal" class="modal">
+<div id="compare-plans-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('compare-plans-modal')">&times;</button>
@@ -841,7 +841,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Compare Plans</h2><p>Comparison matrix...</p>
   </div>
 </div>
-<div id="directions-modal" class="modal">
+<div id="directions-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('directions-modal')">&times;</button>
@@ -849,7 +849,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Directions</h2><p>Routing to hospital...</p>
   </div>
 </div>
-<div id="download-document-modal" class="modal">
+<div id="download-document-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('download-document-modal')">&times;</button>
@@ -857,7 +857,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Download Document</h2><button class="btn">Download</button>
   </div>
 </div>
-<div id="download-policy-modal" class="modal">
+<div id="download-policy-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('download-policy-modal')">&times;</button>
@@ -865,7 +865,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Download Policy</h2><button class="btn">Download PDF</button>
   </div>
 </div>
-<div id="edit-bank-details-modal" class="modal">
+<div id="edit-bank-details-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('edit-bank-details-modal')">&times;</button>
@@ -873,7 +873,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Edit Bank Details</h2><input type="text" placeholder="Account Number"><button class="btn">Save</button>
   </div>
 </div>
-<div id="export-claims-modal" class="modal">
+<div id="export-claims-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('export-claims-modal')">&times;</button>
@@ -881,7 +881,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Export Claims</h2><button class="btn">Export as CSV</button>
   </div>
 </div>
-<div id="filter-claims-modal" class="modal">
+<div id="filter-claims-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('filter-claims-modal')">&times;</button>
@@ -889,7 +889,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Filter Claims</h2><p>Claim filters...</p>
   </div>
 </div>
-<div id="filter-hospitals-modal" class="modal">
+<div id="filter-hospitals-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('filter-hospitals-modal')">&times;</button>
@@ -897,7 +897,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Filter Hospitals</h2><p>Filters...</p>
   </div>
 </div>
-<div id="filter-plans-modal" class="modal">
+<div id="filter-plans-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('filter-plans-modal')">&times;</button>
@@ -905,7 +905,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Filter Plans</h2><p>Filter options...</p>
   </div>
 </div>
-<div id="fix-document-error-modal" class="modal">
+<div id="fix-document-error-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('fix-document-error-modal')">&times;</button>
@@ -913,7 +913,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Fix Document Error</h2><p style="color:#dc3545; font-weight:bold;">Error: The uploaded bill is blurred.</p><p>Please re-upload a clear photo to proceed with discharge.</p>
   </div>
 </div>
-<div id="hospital-details-modal" class="modal">
+<div id="hospital-details-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('hospital-details-modal')">&times;</button>
@@ -921,7 +921,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Hospital Details</h2><p>Full hospital info...</p>
   </div>
 </div>
-<div id="make-payment-modal" class="modal">
+<div id="make-payment-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('make-payment-modal')">&times;</button>
@@ -929,7 +929,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Make Payment</h2><button class="btn">Pay via UPI / Card</button>
   </div>
 </div>
-<div id="map-view-modal" class="modal">
+<div id="map-view-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('map-view-modal')">&times;</button>
@@ -937,7 +937,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Map View</h2><div style="background:#ddd; height:200px; display:flex; align-items:center; justify-content:center;">[Interactive Map]</div>
   </div>
 </div>
-<div id="organize-documents-modal" class="modal">
+<div id="organize-documents-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('organize-documents-modal')">&times;</button>
@@ -945,7 +945,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Organize Documents</h2><p>Folder structure...</p>
   </div>
 </div>
-<div id="payment-details-modal" class="modal">
+<div id="payment-details-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('payment-details-modal')">&times;</button>
@@ -953,7 +953,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Payment Details</h2><p>Txn ID: 123456789</p>
   </div>
 </div>
-<div id="payment-history-modal" class="modal">
+<div id="payment-history-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('payment-history-modal')">&times;</button>
@@ -961,7 +961,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Payment History</h2><p>Txn logs...</p>
   </div>
 </div>
-<div id="plan-details-modal" class="modal">
+<div id="plan-details-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('plan-details-modal')">&times;</button>
@@ -969,7 +969,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Plan Details</h2><p>Full plan details...</p>
   </div>
 </div>
-<div id="policy-compare-modal" class="modal">
+<div id="policy-compare-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('policy-compare-modal')">&times;</button>
@@ -977,7 +977,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Compare Policies</h2><p>Detailed comparison table will go here.</p>
   </div>
 </div>
-<div id="policy-renew-modal" class="modal">
+<div id="policy-renew-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('policy-renew-modal')">&times;</button>
@@ -985,7 +985,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Renew Policy</h2><input type="text" value="₹18,500"><button class="btn">Pay Now</button>
   </div>
 </div>
-<div id="pre-auth-tracker-modal" class="modal">
+<div id="pre-auth-tracker-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('pre-auth-tracker-modal')">&times;</button>
@@ -1001,7 +1001,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
   </div>
 </div>
-<div id="replace-document-modal" class="modal">
+<div id="replace-document-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('replace-document-modal')">&times;</button>
@@ -1009,7 +1009,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Replace Document</h2><input type="file"><button class="btn">Upload New</button>
   </div>
 </div>
-<div id="scan-document-modal" class="modal">
+<div id="scan-document-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('scan-document-modal')">&times;</button>
@@ -1017,7 +1017,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Scan Document</h2><div style="background:#000; height:200px; color:white; display:flex; align-items:center; justify-content:center;">[Camera Viewfinder]</div><button class="btn" style="width:100%; margin-top:10px;">Capture</button>
   </div>
 </div>
-<div id="search-hospital-modal" class="modal">
+<div id="search-hospital-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('search-hospital-modal')">&times;</button>
@@ -1040,7 +1040,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
   </div>
 </div>
-<div id="share-document-modal" class="modal">
+<div id="share-document-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('share-document-modal')">&times;</button>
@@ -1048,7 +1048,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>Share Document</h2><input type="email" placeholder="Doctor's Email"><button class="btn">Send Securely</button>
   </div>
 </div>
-<div id="view-document-modal" class="modal">
+<div id="view-document-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('view-document-modal')">&times;</button>
@@ -1056,7 +1056,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <h2>View Document</h2><div style="background:#333; height:200px; color:white; display:flex; align-items:center; justify-content:center;">[Document Preview PDF/Image]</div>
   </div>
 </div>
-<div id="voice-input-modal" class="modal">
+<div id="voice-input-modal" class="modal-overlay">
   <div class="modal-content">
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('voice-input-modal')">&times;</button>
