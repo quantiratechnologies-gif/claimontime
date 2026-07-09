@@ -241,13 +241,13 @@
 </div>
 </div>
 <h3 style="margin-top:25px;"><i data-lucide="bar-chart" class="icon-sm"></i> Recent Activity</h3>
-<table>
+<table class="table">
 <tr><th>Date</th><th>Activity</th><th>Policy</th><th>Amount</th><th>Status</th></tr>
-<tr><td>08 Jul 2026</td><td>Claim #CLM-2026-0045 submitted</td><td>Star Health</td><td>₹45,000</td><td><span class="badge badge-yellow">Pending</span></td></tr>
-<tr><td>02 Jul 2026</td><td>Claim #CLM-2026-0044 approved</td><td>HDFC Ergo</td><td>₹25,000</td><td><span class="badge badge-green">Approved</span></td></tr>
-<tr><td>28 Jun 2026</td><td>Cashless at Apollo Hospital</td><td>Star Health</td><td>₹85,000</td><td><span class="badge badge-green">Approved</span></td></tr>
-<tr><td>15 Jun 2026</td><td>Policy renewal payment</td><td>Star Health</td><td>₹18,500</td><td><span class="badge badge-blue">Paid</span></td></tr>
-<tr><td>10 Jun 2026</td><td>Document uploaded</td><td>-</td><td>-</td><td><span class="badge badge-blue">Success</span></td></tr>
+<tr><td>08 Jul 2026</td><td>Claim #CLM-2026-0045 submitted</td><td>Star Health</td><td>₹45,000</td><td><span class="badge badge-warning">Pending</span></td></tr>
+<tr><td>02 Jul 2026</td><td>Claim #CLM-2026-0044 approved</td><td>HDFC Ergo</td><td>₹25,000</td><td><span class="badge badge-success">Approved</span></td></tr>
+<tr><td>28 Jun 2026</td><td>Cashless at Apollo Hospital</td><td>Star Health</td><td>₹85,000</td><td><span class="badge badge-success">Approved</span></td></tr>
+<tr><td>15 Jun 2026</td><td>Policy renewal payment</td><td>Star Health</td><td>₹18,500</td><td><span class="badge badge-primary">Paid</span></td></tr>
+<tr><td>10 Jun 2026</td><td>Document uploaded</td><td>-</td><td>-</td><td><span class="badge badge-primary">Success</span></td></tr>
 </table>
 </div>
 <div class="hidden" id="corporate-dashboard">
@@ -293,25 +293,25 @@
 <div>
 <h3>🎯 Corporate Benefits Summary</h3>
 <div class="card">
-<p><strong>Health Insurance</strong> <span class="badge badge-green">Active</span></p>
+<p><strong>Health Insurance</strong> <span class="badge badge-success">Active</span></p>
 <p style="font-size: 13px; color: #666;">₹8L coverage | 12% used</p>
 </div>
 <div class="card">
-<p><strong>Life Insurance</strong> <span class="badge badge-green">Active</span></p>
+<p><strong>Life Insurance</strong> <span class="badge badge-success">Active</span></p>
 <p style="font-size: 13px; color: #666;">₹20L coverage | HDFC Life</p>
 </div>
 <div class="card">
-<p><strong>Accident Cover</strong> <span class="badge badge-green">Active</span></p>
+<p><strong>Accident Cover</strong> <span class="badge badge-success">Active</span></p>
 <p style="font-size: 13px; color: #666;">₹10L coverage | Bajaj Allianz</p>
 </div>
 </div>
 <div>
 <h3><i data-lucide="bar-chart" class="icon-sm"></i> Recent Activity</h3>
-<table>
+<table class="table">
 <tr><th>Date</th><th>Activity</th><th>Status</th></tr>
-<tr><td>08 Jul 2026</td><td>Claim submitted</td><td><span class="badge badge-yellow">Pending</span></td></tr>
-<tr><td>02 Jul 2026</td><td>Claim approved</td><td><span class="badge badge-green">Approved</span></td></tr>
-<tr><td>28 Jun 2026</td><td>Cashless approved</td><td><span class="badge badge-green">Approved</span></td></tr>
+<tr><td>08 Jul 2026</td><td>Claim submitted</td><td><span class="badge badge-warning">Pending</span></td></tr>
+<tr><td>02 Jul 2026</td><td>Claim approved</td><td><span class="badge badge-success">Approved</span></td></tr>
+<tr><td>28 Jun 2026</td><td>Cashless approved</td><td><span class="badge badge-success">Approved</span></td></tr>
 </table>
 </div>
 </div>
@@ -425,7 +425,7 @@
 </div>
 <div class="tab-content active" id="claims-all">
 <div class="card">
-<h3>Claim #CLM-2026-0045 <span class="badge badge-yellow">Pending</span></h3>
+<h3>Claim #CLM-2026-0045 <span class="badge badge-warning">Pending</span></h3>
 <p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹45,000</p>
 <p><strong>Hospital:</strong> Apollo Hospital, Mumbai | <strong>Date:</strong> 05 Jul 2026</p>
 <p><strong>Policy:</strong> Star Health - Family Health Optima</p>
@@ -433,14 +433,14 @@
 <button class="btn btn-secondary" onclick="openModal('track-claim-modal')">Track Status</button>
 </div>
 <div class="card">
-<h3>Claim #CLM-2026-0044 <span class="badge badge-green">Approved</span></h3>
+<h3>Claim #CLM-2026-0044 <span class="badge badge-success">Approved</span></h3>
 <p><strong>Patient:</strong> Priya Sharma | <strong>Amount:</strong> ₹25,000 (Paid)</p>
 <p><strong>Hospital:</strong> Fortis Hospital | <strong>Date:</strong> 28 Jun 2026</p>
 <button class="btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
 <button class="btn btn-secondary" onclick="openModal('payment-details-modal')">View Payment</button>
 </div>
 <div class="card">
-<h3>Claim #CLM-2026-0039 <span class="badge badge-red">Rejected</span></h3>
+<h3>Claim #CLM-2026-0039 <span class="badge badge-danger">Rejected</span></h3>
 <p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹18,000</p>
 <p><strong>Reason:</strong> Pre-existing condition not disclosed</p>
 <button class="btn btn-danger" onclick="openModal('appeal-claim-modal')">Appeal</button>
@@ -506,17 +506,17 @@
 <p style="font-size: 12px; color: #666;">PDF, JPG, PNG (Max 10MB each)</p>
 </div>
 <div class="card">
-<strong>1. Final Hospital Bill</strong> <span class="badge badge-green"><i data-lucide="check" class="icon-sm"></i> Verified</span>
+<strong>1. Final Hospital Bill</strong> <span class="badge badge-success"><i data-lucide="check" class="icon-sm"></i> Verified</span>
 <p>hospital_bill.pdf (2.3 MB)</p>
 <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
 <button class="btn btn-secondary" onclick="openModal('replace-document-modal')">Replace</button>
 </div>
 <div class="card">
-<strong>2. Discharge Summary</strong> <span class="badge badge-green"><i data-lucide="check" class="icon-sm"></i> Verified</span>
+<strong>2. Discharge Summary</strong> <span class="badge badge-success"><i data-lucide="check" class="icon-sm"></i> Verified</span>
 <p>discharge.pdf (1.1 MB)</p>
 </div>
 <div class="card">
-<strong>3. Payment Receipt</strong> <span class="badge badge-yellow"><i data-lucide="alert-triangle" class="icon-sm"></i> Amount mismatch</span>
+<strong>3. Payment Receipt</strong> <span class="badge badge-warning"><i data-lucide="alert-triangle" class="icon-sm"></i> Amount mismatch</span>
 <p>receipt.pdf (0.8 MB)</p>
 <button class="btn btn-secondary" onclick="openModal('fix-document-error-modal')">Fix Error</button>
 </div>
@@ -552,7 +552,7 @@
 <button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
 <button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>
 <div class="insurance-card">
-<h3>Apollo Hospital, Mumbai <span class="badge badge-green">Network</span></h3>
+<h3>Apollo Hospital, Mumbai <span class="badge badge-success">Network</span></h3>
 <p><i data-lucide="map-pin" class="icon-sm"></i> Andheri West, Mumbai | ⭐ 4.5/5 | <i data-lucide="phone" class="icon-sm"></i> 022-12345678</p>
 <p>Specialties: Cardiology, Orthopedics, General Medicine</p>
 <p><strong>Distance:</strong> 2.3 km | <strong>Insurers Accepted:</strong> Star Health, HDFC Ergo, ICICI Lombard</p>
@@ -561,7 +561,7 @@
 <button class="btn btn-secondary" onclick="openModal('directions-modal')">🧭 Directions</button>
 </div>
 <div class="insurance-card">
-<h3>Fortis Hospital, Mumbai <span class="badge badge-green">Network</span></h3>
+<h3>Fortis Hospital, Mumbai <span class="badge badge-success">Network</span></h3>
 <p><i data-lucide="map-pin" class="icon-sm"></i> Mulund, Mumbai | ⭐ 4.3/5 | <i data-lucide="phone" class="icon-sm"></i> 022-87654321</p>
 <p>Specialties: Neurology, Oncology, Pediatrics</p>
 <p><strong>Distance:</strong> 4.1 km</p>
@@ -600,7 +600,7 @@
 <button class="btn btn-secondary" onclick="openModal('organize-documents-modal')">📂 Organize</button>
 <h3 style="margin-top:20px;"><i data-lucide="hospital" class="icon-sm"></i> Medical Records</h3>
 <div class="card">
-<p><i data-lucide="file-text" class="icon-sm"></i> discharge_summary_apollo_jul2026.pdf <span class="badge badge-blue">Auto-tagged</span></p>
+<p><i data-lucide="file-text" class="icon-sm"></i> discharge_summary_apollo_jul2026.pdf <span class="badge badge-primary">Auto-tagged</span></p>
 <p><small>Uploaded: 08 Jul 2026 | Size: 1.1 MB</small></p>
 <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
 <button class="btn btn-secondary" onclick="openModal('share-document-modal')">Share</button>
@@ -626,34 +626,34 @@
 <button class="btn btn-secondary" onclick="openModal('payment-history-modal')">View History</button>
 <div class="card">
 <h3>Upcoming Payments</h3>
-<table>
+<table class="table">
 <tr><th>Due Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Action</th></tr>
 <tr>
 <td>15 Aug 2026</td>
 <td>Star Health Policy Renewal</td>
 <td>₹18,500</td>
-<td><span class="badge badge-yellow">Due Soon</span></td>
+<td><span class="badge badge-warning">Due Soon</span></td>
 <td><button class="btn" onclick="openModal('make-payment-modal')">Pay Now</button></td>
 </tr>
 </table>
 </div>
 <div class="card">
 <h3>Recent Payments</h3>
-<table>
+<table class="table">
 <tr><th>Date</th><th>Description</th><th>Amount</th><th>Method</th><th>Status</th></tr>
 <tr>
 <td>15 Jun 2026</td>
 <td>Star Health Premium</td>
 <td>₹18,500</td>
 <td>HDFC ****4521</td>
-<td><span class="badge badge-green">Paid</span></td>
+<td><span class="badge badge-success">Paid</span></td>
 </tr>
 <tr>
 <td>02 Jul 2026</td>
 <td>Claim Reimbursement</td>
 <td>₹25,000</td>
 <td>HDFC ****4521</td>
-<td><span class="badge badge-green">Received</span></td>
+<td><span class="badge badge-success">Received</span></td>
 </tr>
 </table>
 </div>
@@ -694,8 +694,8 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
 <div class="card">
 <h3>KYC &amp; Verification</h3>
-<p>Aadhaar: XXXX-XXXX-1234 <span class="badge badge-green">Verified</span></p>
-<p>PAN: ABCXXXXX1Z <span class="badge badge-green">Verified</span></p>
+<p>Aadhaar: XXXX-XXXX-1234 <span class="badge badge-success">Verified</span></p>
+<p>PAN: ABCXXXXX1Z <span class="badge badge-success">Verified</span></p>
 <button class="btn btn-secondary">Update KYC</button>
 </div>
 </div>
@@ -725,9 +725,9 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 <div class="screen" id="screen-support">
 <h2><i data-lucide="ticket" class="icon-sm"></i> Support Tickets</h2>
 <button class="btn">+ Raise New Ticket</button>
-<table style="margin-top:20px;">
+<table class="table" style="margin-top:20px;">
 <tr><th>Ticket ID</th><th>Issue</th><th>Status</th></tr>
-<tr><td>TKT-001</td><td>Name correction in policy</td><td><span class="badge badge-yellow">Open</span></td></tr>
+<tr><td>TKT-001</td><td>Name correction in policy</td><td><span class="badge badge-warning">Open</span></td></tr>
 </table>
 </div>
 </div> <!-- END MAIN -->
