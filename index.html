@@ -535,7 +535,7 @@
   <div class="antd-flex antd-gap-4 antd-items-center">
     <div class="search-container" style="position: relative; flex: 1;">
       <i data-lucide="search" class="icon-sm" style="position: absolute; left: 12px; top: 8px; color: var(--antd-text-tertiary);"></i>
-      <input class="form-control" placeholder="Search by insurer name, plan type, or city..." style="width: 100%; padding: 8px 8px 8px 36px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);" type="text"/>
+      <input class="antd-input" placeholder="Search by insurer name, plan type, or city..." style="width: 100%; padding: 8px 8px 8px 36px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);" type="text"/>
     </div>
     <div class="antd-flex antd-gap-2">
       <button class="antd-btn" onclick="openModal('filter-plans-modal')">Filter</button>
@@ -725,20 +725,20 @@
 
 <div id="claim-step-1" class="antd-card">
   <h3 class="antd-card-title">Select Patient</h3>
-  <select class="form-control antd-mb-4" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);">
+  <select class="antd-input antd-mb-4" >
     <option>Rahul Sharma (Self)</option>
     <option>Priya Sharma (Spouse)</option>
     <option>Aarav Sharma (Son)</option>
   </select>
   
   <h3 class="antd-card-title">Select Policy</h3>
-  <select class="form-control antd-mb-4" id="claim-policy-select" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);">
+  <select class="antd-input antd-mb-4" id="claim-policy-select" >
     <option>Star Health - Family Health Optima (₹5L)</option>
     <option>HDFC Ergo - Optima Restore (₹5L)</option>
   </select>
   
   <h3 class="antd-card-title">Claim Type</h3>
-  <select class="form-control" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);">
+  <select class="antd-input" >
     <option>Reimbursement</option>
     <option>Pre-authorization</option>
   </select>
@@ -751,25 +751,25 @@
 <div class="hidden" id="claim-step-2">
   <div class="antd-card">
     <h3 class="antd-card-title">Hospital Details</h3>
-    <input class="form-control antd-mb-4" placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    <input class="antd-input antd-mb-4" placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai" />
     <button class="antd-btn antd-mb-6" onclick="openModal('search-hospital-modal')">Search Hospital</button>
     
     <h3 class="antd-card-title">Treatment Details</h3>
-    <input class="form-control antd-mb-4" placeholder="Diagnosis" type="text" value="Viral Fever" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    <input class="antd-input antd-mb-4" placeholder="Diagnosis" type="text" value="Viral Fever" />
     
     <div class="antd-grid-2 antd-mb-4">
       <div>
         <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Admission Date</label>
-        <input class="form-control" type="date" value="2026-07-05" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+        <input class="antd-input" type="date" value="2026-07-05" />
       </div>
       <div>
         <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Discharge Date</label>
-        <input class="form-control" type="date" value="2026-07-08" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+        <input class="antd-input" type="date" value="2026-07-08" />
       </div>
     </div>
     
     <h3 class="antd-card-title">Claim Amount</h3>
-    <input class="form-control" placeholder="₹" type="number" value="45000" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    <input class="antd-input" placeholder="₹" type="number" value="45000" />
     
     <div class="antd-flex antd-gap-2 antd-mt-6">
       <button class="antd-btn" onclick="claimNext(1)">Back</button>
@@ -879,7 +879,7 @@
 <div class="antd-card antd-mb-6" style="padding: 16px;">
   <div class="search-container" style="position: relative; max-width: 100%;">
     <i data-lucide="search" class="icon-sm" style="position: absolute; left: 12px; top: 8px; color: var(--antd-text-tertiary);"></i>
-    <input class="form-control" id="hospital-search" placeholder="Search hospital by name, city, or specialty..." style="width: 100%; padding: 8px 8px 8px 36px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);" type="text"/>
+    <input class="antd-input" id="hospital-search" placeholder="Search hospital by name, city, or specialty..." style="width: 100%; padding: 8px 8px 8px 36px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);" type="text"/>
   </div>
 </div>
 
@@ -1209,15 +1209,15 @@
     <h3 class="antd-card-title">Personal Details</h3>
     <div class="antd-mb-4">
       <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Full Name</label>
-      <input class="form-control" type="text" value="Rahul Sharma" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+      <input class="antd-input" type="text" value="Rahul Sharma" />
     </div>
     <div class="antd-mb-4">
       <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Date of Birth</label>
-      <input class="form-control" type="date" value="1988-05-12" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+      <input class="antd-input" type="date" value="1988-05-12" />
     </div>
     <div class="antd-mb-4">
       <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Phone</label>
-      <input class="form-control" type="tel" value="+91 9876543210" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+      <input class="antd-input" type="tel" value="+91 9876543210" />
     </div>
     <button class="antd-btn antd-btn-primary">Update Details</button>
   </div>
