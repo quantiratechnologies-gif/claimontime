@@ -147,24 +147,26 @@
     </div>
   </div>
 </div>
-<!-- SIDEBAR (Hidden initially) -->
-<div class="app-sidebar" id="main-sidebar" class="app-sidebar" style="display: none;">
+<!-- APP CONTAINER (Hidden initially) -->
+<div class="app-container" id="app-container" style="display: none;">
+<!-- SIDEBAR -->
+<div class="app-sidebar" id="main-sidebar" class="app-sidebar" >
 <h2><i data-lucide="hospital" class="icon-sm"></i> SuperClaim</h2>
-<a class="active" id="nav-dashboard" onclick="showScreen('dashboard')">🏠 Dashboard</a>
-<a id="nav-policies" onclick="showScreen('policies')">📋 My Policies</a>
-<a id="nav-insurance-market" onclick="showScreen('insurance-market')">🛒 Insurance Marketplace</a>
-<a id="nav-claims" onclick="showScreen('claims')"><i data-lucide="coins" class="icon-sm"></i> Claims</a>
-<a id="nav-cashless" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Cashless</a>
-<a id="nav-ai" onclick="showScreen('ai')"><i data-lucide="bot" class="icon-sm"></i> AI Assistant</a>
-<a id="nav-documents" onclick="showScreen('documents')"><i data-lucide="folder" class="icon-lg"></i> Documents</a>
-<a id="nav-payments" onclick="showScreen('payments')">💳 Payments</a>
-<a id="nav-corporate-benefits" onclick="showScreen('corporate-benefits')" style="display: none;"><i data-lucide="briefcase" class="icon-sm"></i> Corporate Benefits <span class="badge-corp">CORP</span></a>
-<a id="nav-notifications" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm"></i> Notifications</a>
-<a id="nav-profile" onclick="showScreen('profile')"><i data-lucide="user" class="icon-sm"></i> Profile</a>
-<a id="nav-settings" onclick="showScreen('settings')"><i data-lucide="settings" class="icon-sm"></i> Settings</a>
-<a id="nav-help" onclick="showScreen('help')"><i data-lucide="help-circle" class="icon-sm"></i> Help Center</a>
-<a id="nav-support" onclick="showScreen('support')"><i data-lucide="ticket" class="icon-sm"></i> Support</a>
-<a onclick="logout()" style="margin-top: 20px; border-top: 1px solid #2d3e5f; padding-top: 20px;">🚪 Logout</a>
+<a class="app-nav-link" class="active" id="nav-dashboard" onclick="showScreen('dashboard')"><i data-lucide="home" class="icon-sm"></i> Dashboard</a>
+<a class="app-nav-link" id="nav-policies" onclick="showScreen('policies')"><i data-lucide="clipboard-list" class="icon-sm"></i> My Policies</a>
+<a class="app-nav-link" id="nav-insurance-market" onclick="showScreen('insurance-market')"><i data-lucide="shopping-cart" class="icon-sm"></i> Insurance Marketplace</a>
+<a class="app-nav-link" id="nav-claims" onclick="showScreen('claims')"><i data-lucide="coins" class="icon-sm"></i> Claims</a>
+<a class="app-nav-link" id="nav-cashless" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Cashless</a>
+<a class="app-nav-link" id="nav-ai" onclick="showScreen('ai')"><i data-lucide="bot" class="icon-sm"></i> AI Assistant</a>
+<a class="app-nav-link" id="nav-documents" onclick="showScreen('documents')"><i data-lucide="folder" class="icon-lg"></i> Documents</a>
+<a class="app-nav-link" id="nav-payments" onclick="showScreen('payments')"><i data-lucide="credit-card" class="icon-sm"></i> Payments</a>
+<a class="app-nav-link" id="nav-corporate-benefits" onclick="showScreen('corporate-benefits')" ><i data-lucide="briefcase" class="icon-sm"></i> Corporate Benefits <span class="badge-corp">CORP</span></a>
+<a class="app-nav-link" id="nav-notifications" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm"></i> Notifications</a>
+<a class="app-nav-link" id="nav-profile" onclick="showScreen('profile')"><i data-lucide="user" class="icon-sm"></i> Profile</a>
+<a class="app-nav-link" id="nav-settings" onclick="showScreen('settings')"><i data-lucide="settings" class="icon-sm"></i> Settings</a>
+<a class="app-nav-link" id="nav-help" onclick="showScreen('help')"><i data-lucide="help-circle" class="icon-sm"></i> Help Center</a>
+<a class="app-nav-link" id="nav-support" onclick="showScreen('support')"><i data-lucide="ticket" class="icon-sm"></i> Support</a>
+<a class="app-nav-link" onclick="logout()" style="margin-top: 20px; border-top: 1px solid #2d3e5f; padding-top: 20px;"><i data-lucide="log-out" class="icon-sm"></i> Logout</a>
 </div>
 <!-- MAIN CONTENT (Hidden initially) -->
 <div class="app-main" id="main-content" style="display: none;">
@@ -182,7 +184,7 @@
 </div>
 <!-- DASHBOARD -->
 <div class="screen active" id="screen-dashboard">
-<h2>🏠 Dashboard</h2>
+<h2><i data-lucide="home" class="icon-sm"></i> Dashboard</h2>
 <div id="individual-dashboard">
 <div class="grid-4">
 <div class="stat-card">
@@ -211,7 +213,7 @@
 <button class="btn" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
 <button class="btn" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Find Hospital</button>
 <button class="btn" onclick="showScreen('ai')"><i data-lucide="bot" class="icon-sm"></i> Ask AI</button>
-<button class="btn btn-secondary" onclick="showScreen('insurance-market')">🛒 Buy Policy</button>
+<button class="btn btn-secondary" onclick="showScreen('insurance-market')"><i data-lucide="shopping-cart" class="icon-sm"></i> Buy Policy</button>
 </div>
 <div class="grid-2" style="margin-top: 25px;">
 <div>
@@ -291,7 +293,7 @@
 </div>
 <div class="grid-2" style="margin-top: 25px;">
 <div>
-<h3>🎯 Corporate Benefits Summary</h3>
+<h3><i data-lucide="target" class="icon-sm"></i> Corporate Benefits Summary</h3>
 <div class="card">
 <p><strong>Health Insurance</strong> <span class="badge badge-success">Active</span></p>
 <p style="font-size: 13px; color: #666;">₹8L coverage | 12% used</p>
@@ -731,6 +733,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </table>
 </div>
 </div> <!-- END MAIN -->
+</div> <!-- END APP CONTAINER -->
 <!-- MODALS -->
 <!-- EMERGENCY SOS MODAL -->
 <div class="modal-overlay" id="emergency-modal">

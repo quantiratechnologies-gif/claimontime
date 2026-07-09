@@ -49,8 +49,8 @@ function selectAccountType(type) {
 
   function verifyOTP() {
     document.getElementById('login-fullscreen').style.display = 'none';
-    document.getElementById('main-sidebar').style.display = 'block';
-    document.getElementById('main-content').style.display = 'block';
+    
+    document.getElementById('app-container').style.display = 'flex';
     
     if(window.selectedAccountType === 'corporate') {
       document.getElementById('user-name').innerHTML = 'Welcome, Rahul Sharma (EMP001234)';
@@ -78,8 +78,8 @@ function selectAccountType(type) {
   
   function logout() {
     document.getElementById('login-fullscreen').style.display = 'flex';
-    document.getElementById('main-sidebar').style.display = 'none';
-    document.getElementById('main-content').style.display = 'none';
+    
+    document.getElementById('app-container').style.display = 'none';
     document.getElementById('login-step-0').classList.remove('hidden');
     document.getElementById('login-step-1').classList.add('hidden');
     document.getElementById('login-step-2').classList.add('hidden');
