@@ -107,22 +107,22 @@
 
       <!-- Login Method Selectors -->
       <div class="antd-flex antd-gap-2 antd-mb-6" id="individual-login-methods">
-        <button class="antd-btn login-method-btn active" id="method-phone" onclick="selectLoginMethod('phone')" style="flex: 1; height: 40px;"><i data-lucide="smartphone" class="icon-sm"></i> Phone OTP</button>
-        <button class="antd-btn login-method-btn" id="method-aadhaar" onclick="selectLoginMethod('aadhaar')" style="flex: 1; height: 40px;"><i data-lucide="fingerprint" class="icon-sm"></i> Aadhaar</button>
-        <button class="antd-btn login-method-btn" id="method-email" onclick="selectLoginMethod('email')" style="flex: 1; height: 40px;"><i data-lucide="mail" class="icon-sm"></i> Email</button>
+        <button class="antd-btn login-method-btn active" id="method-phone" onclick="selectLoginMethod('phone')" style="flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px;"><i data-lucide="smartphone" class="icon-sm"></i> <span style="white-space: nowrap;">Phone OTP</span></button>
+        <button class="antd-btn login-method-btn" id="method-aadhaar" onclick="selectLoginMethod('aadhaar')" style="flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px;"><i data-lucide="fingerprint" class="icon-sm"></i> <span style="white-space: nowrap;">Aadhaar</span></button>
+        <button class="antd-btn login-method-btn" id="method-email" onclick="selectLoginMethod('email')" style="flex: 1; height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 8px;"><i data-lucide="mail" class="icon-sm"></i> <span style="white-space: nowrap;">Email</span></button>
       </div>
 
       <!-- Corporate-specific: Employee ID option -->
       <div id="corporate-login-options" class="hidden antd-mb-6">
-        <button class="antd-btn login-method-btn active" id="method-employee-id" onclick="selectLoginMethod('employee-id')" style="width: 100%; height: 40px;"><i data-lucide="briefcase" class="icon-sm"></i> Single Sign-On (Company SSO)</button>
+        <button class="antd-btn login-method-btn active" id="method-employee-id" onclick="selectLoginMethod('employee-id')" style="width: 100%; height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px;"><i data-lucide="briefcase" class="icon-sm"></i> Single Sign-On (Company SSO)</button>
       </div>
 
       <!-- Phone Login Form -->
       <div id="login-phone" class="login-form">
         <label class="antd-text-strong" style="display:block; margin-bottom:8px; font-size: 13px;">Mobile Number</label>
-        <div style="position: relative; margin-bottom: 24px;">
-          <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--antd-text-secondary); font-weight: 500;">+91</span>
-          <input type="tel" id="phone-input" class="antd-input" placeholder="98765 43210" maxlength="10" style="padding-left: 48px; height: 44px; font-size: 15px;">
+        <div style="display: flex; gap: 0; margin-bottom: 24px; border-radius: 6px; overflow: hidden; border: 1px solid var(--antd-border);">
+          <div style="width: 60px; height: 44px; display: flex; align-items: center; justify-content: center; background: #f5f5f5; color: var(--antd-text-secondary); font-weight: 500; border-right: 1px solid var(--antd-border);">+91</div>
+          <input type="tel" id="phone-input" placeholder="98765 43210" maxlength="10" style="flex: 1; height: 44px; font-size: 15px; border: none; padding: 0 16px; outline: none;">
         </div>
         <button class="antd-btn antd-btn-primary" onclick="sendOTP('phone')" style="width: 100%; height: 44px; font-size: 15px; border-radius: 6px;">Send OTP</button>
       </div>
@@ -181,12 +181,12 @@
       </p>
       
       <div class="antd-flex antd-gap-3 antd-justify-between antd-mb-6">
-        <input type="text" class="antd-input otp-box" id="otp-1" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-2')" onkeydown="handleOTPBackspace(event, this, null)" style="text-align:center; padding: 0; font-size: 24px; font-weight: 600; height: 56px; margin: 0; border-radius: 8px;">
-        <input type="text" class="antd-input otp-box" id="otp-2" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-3')" onkeydown="handleOTPBackspace(event, this, 'otp-1')" style="text-align:center; padding: 0; font-size: 24px; font-weight: 600; height: 56px; margin: 0; border-radius: 8px;">
-        <input type="text" class="antd-input otp-box" id="otp-3" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-4')" onkeydown="handleOTPBackspace(event, this, 'otp-2')" style="text-align:center; padding: 0; font-size: 24px; font-weight: 600; height: 56px; margin: 0; border-radius: 8px;">
-        <input type="text" class="antd-input otp-box" id="otp-4" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-5')" onkeydown="handleOTPBackspace(event, this, 'otp-3')" style="text-align:center; padding: 0; font-size: 24px; font-weight: 600; height: 56px; margin: 0; border-radius: 8px;">
-        <input type="text" class="antd-input otp-box" id="otp-5" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-6')" onkeydown="handleOTPBackspace(event, this, 'otp-4')" style="text-align:center; padding: 0; font-size: 24px; font-weight: 600; height: 56px; margin: 0; border-radius: 8px;">
-        <input type="text" class="antd-input otp-box" id="otp-6" maxlength="1" onkeyup="moveToNextOTP(this, null)" onkeydown="handleOTPBackspace(event, this, 'otp-5')" style="text-align:center; padding: 0; font-size: 24px; font-weight: 600; height: 56px; margin: 0; border-radius: 8px;">
+        <input type="text" class="antd-input otp-box" id="otp-1" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-2')" onkeydown="handleOTPBackspace(event, this, null)" style="width: 50px; height: 56px; text-align: center; font-size: 24px; font-weight: 600; padding: 0; margin: 0; border-radius: 8px;">
+        <input type="text" class="antd-input otp-box" id="otp-2" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-3')" onkeydown="handleOTPBackspace(event, this, 'otp-1')" style="width: 50px; height: 56px; text-align: center; font-size: 24px; font-weight: 600; padding: 0; margin: 0; border-radius: 8px;">
+        <input type="text" class="antd-input otp-box" id="otp-3" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-4')" onkeydown="handleOTPBackspace(event, this, 'otp-2')" style="width: 50px; height: 56px; text-align: center; font-size: 24px; font-weight: 600; padding: 0; margin: 0; border-radius: 8px;">
+        <input type="text" class="antd-input otp-box" id="otp-4" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-5')" onkeydown="handleOTPBackspace(event, this, 'otp-3')" style="width: 50px; height: 56px; text-align: center; font-size: 24px; font-weight: 600; padding: 0; margin: 0; border-radius: 8px;">
+        <input type="text" class="antd-input otp-box" id="otp-5" maxlength="1" onkeyup="moveToNextOTP(this, 'otp-6')" onkeydown="handleOTPBackspace(event, this, 'otp-4')" style="width: 50px; height: 56px; text-align: center; font-size: 24px; font-weight: 600; padding: 0; margin: 0; border-radius: 8px;">
+        <input type="text" class="antd-input otp-box" id="otp-6" maxlength="1" onkeyup="moveToNextOTP(this, null)" onkeydown="handleOTPBackspace(event, this, 'otp-5')" style="width: 50px; height: 56px; text-align: center; font-size: 24px; font-weight: 600; padding: 0; margin: 0; border-radius: 8px;">
       </div>
       
       <button class="antd-btn antd-btn-primary" onclick="verifyOTP()" style="width: 100%; height: 44px; font-size: 15px; border-radius: 6px;">Verify &amp; Proceed</button>
