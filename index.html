@@ -720,7 +720,7 @@
   <div class="step active" id="step1" style="flex: 1; text-align: center; color: var(--antd-primary); font-weight: 600;">1. Patient &amp; Policy</div>
   <div class="step" id="step2" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">2. Treatment</div>
   <div class="step" id="step3" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">3. Documents</div>
-  <div class="step" id="step4" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">4. Review</div>
+  <div class="step" id="step4" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">4. AI Validation</div>
 </div>
 
 <div id="claim-step-1" class="antd-card">
@@ -830,38 +830,75 @@
 </div>
 
 <div class="hidden" id="claim-step-4">
-  <div class="antd-card">
-    <h3 class="antd-card-title">Review &amp; Submit</h3>
+  <div class="antd-card" style="border-top: 4px solid var(--antd-primary);">
+    <div class="antd-flex antd-items-center antd-gap-2 antd-mb-4">
+      <i data-lucide="sparkles" class="icon-sm" style="color: var(--antd-primary);"></i>
+      <h3 class="antd-card-title" style="margin: 0;">AI Claim Prediction & Validation</h3>
+    </div>
     
-    <div class="antd-card antd-mb-4" style="background: #fafafa; border: none;">
-      <div class="antd-grid-2">
-        <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">Rahul Sharma</p></div>
-        <div><p class="antd-text-secondary" style="margin: 0;">Policy</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">Star Health - Family Health Optima</p></div>
-        <div><p class="antd-text-secondary" style="margin: 0;">Hospital</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">Apollo Hospital, Mumbai</p></div>
-        <div><p class="antd-text-secondary" style="margin: 0;">Diagnosis</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">Viral Fever</p></div>
-        <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">₹45,000</p></div>
-        <div><p class="antd-text-secondary" style="margin: 0;">Documents</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">4 uploaded</p></div>
+    <!-- AI Financial Predictor -->
+    <div class="antd-grid-2 antd-mb-6">
+      <div class="antd-card" style="background: #fafafa; border: 1px solid var(--antd-border);">
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;">Total Billed Amount</p>
+        <p class="antd-text-large" style="margin: 0; color: var(--antd-text);">₹45,000</p>
+        <p class="antd-text-secondary" style="margin: 4px 0 0 0; font-size: 12px;">Based on final hospital bill.</p>
       </div>
-      
-      <div class="antd-flex antd-justify-between antd-items-center" style="border-top: 1px solid var(--antd-border); padding-top: 16px; margin-top: 8px;">
-        <div>
-          <p class="antd-text-secondary" style="margin: 0;">Bank Account</p>
-          <p class="antd-text-strong" style="margin: 0;">HDFC ****4521</p>
-        </div>
-        <button class="antd-btn" onclick="openModal('edit-bank-details-modal')">Edit Bank Details</button>
+      <div class="antd-card" style="background: var(--antd-primary-bg); border: 1px solid var(--antd-primary-border);">
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0; color: var(--antd-primary);">AI Predicted Approval</p>
+        <p class="antd-text-large" style="margin: 0; color: var(--antd-primary);">₹38,500</p>
+        <p class="antd-text-secondary" style="margin: 4px 0 0 0; font-size: 12px; color: var(--antd-primary);">Predicted payout in 3-5 days.</p>
       </div>
     </div>
     
-    <div class="antd-card antd-mb-6" style="background-color: var(--antd-info-bg); border-color: var(--antd-info-border) !important;">
-      <p style="margin: 0; color: var(--antd-info);">
-        <strong>System Verification Complete</strong><br/>
-        All documents are submitted properly. Your claim is ready.
-      </p>
+    <!-- AI Deduction Breakdown -->
+    <h4 class="antd-text-strong antd-mb-2">AI Deduction Breakdown</h4>
+    <div class="antd-mb-6" style="border: 1px solid var(--antd-border); border-radius: var(--antd-radius);">
+      <table class="antd-table" style="margin: 0;">
+        <thead>
+          <tr>
+            <th style="padding: 12px; font-size: 13px;">Reason</th>
+            <th style="padding: 12px; font-size: 13px; text-align: right;">Amount Deducted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 12px; font-size: 13px;">Non-payable consumables (Surgical gloves, masks)</td>
+            <td style="padding: 12px; font-size: 13px; text-align: right; color: var(--antd-error);">-₹1,500</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; font-size: 13px;">Room Rent Capping Exceeded (₹5,000 limit)</td>
+            <td style="padding: 12px; font-size: 13px; text-align: right; color: var(--antd-error);">-₹5,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AI Validation Warnings -->
+    <h4 class="antd-text-strong antd-mb-2">Document Validation</h4>
+    <div class="antd-card antd-mb-4" style="background-color: var(--antd-warning-bg); border-color: var(--antd-warning-border) !important;">
+      <div class="antd-flex antd-gap-2">
+        <i data-lucide="alert-triangle" class="icon-sm" style="color: var(--antd-warning); margin-top: 2px;"></i>
+        <div>
+          <p style="margin: 0; color: var(--antd-warning);">
+            <strong>Missing Original Discharge Summary</strong><br/>
+            The uploaded bill is missing the hospital discharge summary. There is a 90% chance of TPA rejection without this document.
+          </p>
+          <button class="antd-btn" style="margin-top: 12px; background: white; color: var(--antd-warning); border-color: var(--antd-warning);">Upload Missing Summary Now</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-6" style="border-top: 1px solid var(--antd-border); padding-top: 16px;">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0;">Bank Account for Payout</p>
+        <p class="antd-text-strong" style="margin: 0;">HDFC ****4521</p>
+      </div>
+      <button class="antd-btn" onclick="openModal('edit-bank-details-modal')">Edit Bank Details</button>
     </div>
     
     <div class="antd-flex antd-gap-2">
       <button class="antd-btn" onclick="claimNext(3)">Back</button>
-      <button class="antd-btn antd-btn-primary" onclick="submitClaim()">Submit Claim</button>
+      <button class="antd-btn antd-btn-primary" onclick="submitClaim()" style="flex: 1;">Acknowledge Prediction & Submit Claim</button>
     </div>
   </div>
 </div>
