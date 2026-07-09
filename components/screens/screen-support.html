@@ -1,8 +1,25 @@
 <div class="screen" id="screen-support">
-<h2><i data-lucide="ticket" class="icon-sm"></i> Support Tickets</h2>
-<button class="btn">+ Raise New Ticket</button>
-<table class="table" style="margin-top:20px;">
-<tr><th>Ticket ID</th><th>Issue</th><th>Status</th></tr>
-<tr><td>TKT-001</td><td>Name correction in policy</td><td><span class="badge badge-warning">Open</span></td></tr>
-</table>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="ticket" class="icon-sm"></i> Support Tickets</h2>
+  <button class="antd-btn antd-btn-primary">+ Raise New Ticket</button>
+</div>
+
+<div class="antd-card antd-p-0" style="overflow-x: auto;">
+  <table class="antd-table">
+    <thead>
+      <tr>
+        <th>Ticket ID</th>
+        <th>Issue</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="antd-text-strong">TKT-001</span></td>
+        <td>Name correction in policy</td>
+        <td><span class="antd-tag antd-tag-warning">Open</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>

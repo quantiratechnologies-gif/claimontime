@@ -1,21 +1,21 @@
 <div class="modal-overlay" id="cashless-request-modal">
-<div class="modal-content">
-<div class="modal-header">
+<div class="antd-modal-content">
+<div class="antd-modal-header">
 <h2><i data-lucide="hospital" class="icon-sm"></i> Hospital Admission Request</h2>
 <button class="modal-close" onclick="closeModal('cashless-request-modal')">×</button>
 </div>
 <p style="font-size:13px; color:#666; margin-bottom:15px;">Fill only the mandatory details to alert the hospital and TPA immediately.</p>
 <label>Patient Name *</label>
-<select class="form-control"><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
+<select class="antd-input"><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
 <label>Admission Type *</label>
-<select class="form-control">
+<select class="antd-input">
 <option value="emergency"><i data-lucide="alert-circle" class="icon-sm"></i> Emergency (Currently in ER)</option>
 <option value="planned"><i data-lucide="calendar" class="icon-sm"></i> Planned Surgery (Within 48 hours)</option>
 </select>
 <label>Hospital Name *</label>
-<input class="form-control" placeholder="e.g. Apollo Hospital, Andheri" required="" type="text"/>
+<input class="antd-input" placeholder="e.g. Apollo Hospital, Andheri" required="" type="text"/>
 <label>Primary Complaint / Diagnosis (If known)</label>
-<input class="form-control" placeholder="e.g. Chest Pain, Accident" type="text"/>
-<button class="btn" onclick="showToast('Request sent to hospital cashless desk!', 'success'); closeModal('cashless-request-modal');" style="width:100%; margin-top:15px; height:50px; font-size:16px;">Send Urgent Request</button>
+<input class="antd-input" placeholder="e.g. Chest Pain, Accident" type="text"/>
+<button class="antd-btn antd-btn-primary" onclick="showToast('Request sent to hospital cashless desk!', 'success'); closeModal('cashless-request-modal');" style="width:100%; margin-top:15px; height:50px; font-size:16px;">Send Urgent Request</button>
 </div>
 </div>

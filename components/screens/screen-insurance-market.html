@@ -1,46 +1,104 @@
 <div class="screen" id="screen-insurance-market">
-<h2><i data-lucide="shopping-cart" class="icon-sm"></i> Health Insurance Marketplace</h2>
-<p style="color: #666; margin-bottom: 20px;">Compare and buy from India's top insurers</p>
-<div style="margin-bottom: 20px; display: flex; gap: var(--space-2); align-items: center;">
-<div class="search-container" style="position: relative; max-width: 600px; flex: 1;">
-  <i data-lucide="search" class="icon-sm" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);"></i>
-  <input class="form-control" placeholder="Search by insurer name, plan type, or city..." style="width: 100%; padding-left: 36px;" type="text"/>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <div>
+    <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="shopping-cart" class="icon-sm"></i> Health Insurance Marketplace</h2>
+    <p class="antd-text-secondary" style="margin: 4px 0 0 0;">Compare and buy from India's top insurers</p>
+  </div>
 </div>
-<button class="btn btn-secondary" onclick="openModal('filter-plans-modal')">Filter</button>
-<button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
+
+<div class="antd-card antd-mb-6" style="padding: 16px;">
+  <div class="antd-flex antd-gap-4 antd-items-center">
+    <div class="search-container" style="position: relative; flex: 1;">
+      <i data-lucide="search" class="icon-sm" style="position: absolute; left: 12px; top: 8px; color: var(--antd-text-tertiary);"></i>
+      <input class="form-control" placeholder="Search by insurer name, plan type, or city..." style="width: 100%; padding: 8px 8px 8px 36px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);" type="text"/>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="openModal('filter-plans-modal')">Filter</button>
+      <button class="antd-btn antd-btn-primary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
+    </div>
+  </div>
 </div>
-<h3>🏆 Recommended For You</h3>
-<div class="insurance-card">
-<div class="insurance-logo maxbupa">Max Bupa</div>
-<h3>Heartbeat Plan</h3>
-<p><strong>Insurer:</strong> Niva Bupa Health Insurance (formerly Max Bupa)</p>
-<p><strong>Coverage:</strong> ₹5L - ₹6 Cr | <strong>Premium:</strong> From ₹8,500/year</p>
-<p><strong>Features:</strong> <i data-lucide="check" class="icon-sm"></i> No room rent cap <i data-lucide="check" class="icon-sm"></i> 100% restoration <i data-lucide="check" class="icon-sm"></i> Free health checkup</p>
-<p><strong>Claim Settlement Ratio:</strong> 98.2% | <strong>Network:</strong> 11,000+ hospitals</p>
-<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-<button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare</button>
-</div>
-<div class="insurance-card">
-<div class="insurance-logo aditya">Aditya Birla</div>
-<h3>Activ Health Platinum</h3>
-<p><strong>Insurer:</strong> Aditya Birla Health Insurance</p>
-<p><strong>Coverage:</strong> ₹5L - ₹1 Cr | <strong>Premium:</strong> From ₹9,200/year</p>
-<p><strong>Features:</strong> <i data-lucide="check" class="icon-sm"></i> Wellness rewards <i data-lucide="check" class="icon-sm"></i> OPD cover <i data-lucide="check" class="icon-sm"></i> Cumulative bonus</p>
-<p><strong>Claim Settlement Ratio:</strong> 97.8% | <strong>Network:</strong> 9,500+ hospitals</p>
-<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-<button class="btn btn-secondary">Compare</button>
-</div>
-<div class="insurance-card">
-<div class="insurance-logo care">Care Health</div>
-<h3>Care Supreme</h3>
-<p><strong>Insurer:</strong> Care Health Insurance (formerly Religare)</p>
-<p><strong>Coverage:</strong> ₹3L - ₹50L | <strong>Premium:</strong> From ₹7,800/year</p>
-<p><strong>Features:</strong> <i data-lucide="check" class="icon-sm"></i> Unlimited restoration <i data-lucide="check" class="icon-sm"></i> Alternative treatment cover</p>
-<p><strong>Claim Settlement Ratio:</strong> 96.5% | <strong>Network:</strong> 13,000+ hospitals</p>
-<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-<button class="btn btn-secondary">Compare</button>
+
+<h3 class="antd-card-title antd-mb-4">🏆 Recommended For You</h3>
+
+<div class="antd-flex antd-flex-col antd-gap-4">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo maxbupa" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #e6f4ff; color: var(--antd-primary); font-weight: bold; font-size: 10px; text-align: center;">Max Bupa</div>
+        <h3 class="antd-card-title" style="margin: 0;">Heartbeat Plan</h3>
+      </div>
+      <span class="antd-tag antd-tag-success">Recommended</span>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Insurer:</strong> Niva Bupa Health Insurance</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Coverage:</strong> ₹5L - ₹6 Cr</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Premium:</strong> From ₹8,500/year</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Features:</strong> <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> No room rent cap <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> 100% restoration <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Free health checkup</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Claim Settlement Ratio:</strong> 98.2%</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Network:</strong> 11,000+ hospitals</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="antd-btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="antd-btn" onclick="openModal('compare-plans-modal')">Compare</button>
+    </div>
+  </div>
+
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo aditya" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #fff2f0; color: var(--antd-error); font-weight: bold; font-size: 10px; text-align: center;">Aditya Birla</div>
+        <h3 class="antd-card-title" style="margin: 0;">Activ Health Platinum</h3>
+      </div>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Insurer:</strong> Aditya Birla Health Insurance</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Coverage:</strong> ₹5L - ₹1 Cr</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Premium:</strong> From ₹9,200/year</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Features:</strong> <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Wellness rewards <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> OPD cover <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Cumulative bonus</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Claim Settlement Ratio:</strong> 97.8%</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Network:</strong> 9,500+ hospitals</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="antd-btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="antd-btn">Compare</button>
+    </div>
+  </div>
+
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo care" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #e6f4ff; color: var(--antd-info); font-weight: bold; font-size: 10px; text-align: center;">Care Health</div>
+        <h3 class="antd-card-title" style="margin: 0;">Care Supreme</h3>
+      </div>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Insurer:</strong> Care Health Insurance</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Coverage:</strong> ₹3L - ₹50L</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Premium:</strong> From ₹7,800/year</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Features:</strong> <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Unlimited restoration <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Alternative treatment cover</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Claim Settlement Ratio:</strong> 96.5%</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Network:</strong> 13,000+ hospitals</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="antd-btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="antd-btn">Compare</button>
+    </div>
+  </div>
 </div>
 </div>

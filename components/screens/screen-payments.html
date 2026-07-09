@@ -1,38 +1,70 @@
 <div class="screen" id="screen-payments">
-<h2><i data-lucide="credit-card" class="icon-sm"></i> Payments &amp; Billing</h2>
-<button class="btn" onclick="openModal('make-payment-modal')">+ Make Payment</button>
-<button class="btn btn-secondary" onclick="openModal('payment-history-modal')">View History</button>
-<div class="card">
-<h3>Upcoming Payments</h3>
-<table class="table">
-<tr><th>Due Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Action</th></tr>
-<tr>
-<td>15 Aug 2026</td>
-<td>Star Health Policy Renewal</td>
-<td>₹18,500</td>
-<td><span class="badge badge-warning">Due Soon</span></td>
-<td><button class="btn" onclick="openModal('make-payment-modal')">Pay Now</button></td>
-</tr>
-</table>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="credit-card" class="icon-sm"></i> Payments &amp; Billing</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('payment-history-modal')">View History</button>
+    <button class="antd-btn antd-btn-primary" onclick="openModal('make-payment-modal')">+ Make Payment</button>
+  </div>
 </div>
-<div class="card">
-<h3>Recent Payments</h3>
-<table class="table">
-<tr><th>Date</th><th>Description</th><th>Amount</th><th>Method</th><th>Status</th></tr>
-<tr>
-<td>15 Jun 2026</td>
-<td>Star Health Premium</td>
-<td>₹18,500</td>
-<td>HDFC ****4521</td>
-<td><span class="badge badge-success">Paid</span></td>
-</tr>
-<tr>
-<td>02 Jul 2026</td>
-<td>Claim Reimbursement</td>
-<td>₹25,000</td>
-<td>HDFC ****4521</td>
-<td><span class="badge badge-success">Received</span></td>
-</tr>
-</table>
+
+<div class="antd-flex antd-flex-col antd-gap-4">
+  <div class="antd-card antd-p-0" style="overflow-x: auto;">
+    <div class="antd-flex antd-items-center antd-justify-between" style="padding: 16px 24px; border-bottom: 1px solid var(--antd-border);">
+      <h3 class="antd-card-title" style="margin: 0;">Upcoming Payments</h3>
+    </div>
+    <table class="antd-table">
+      <thead>
+        <tr>
+          <th>Due Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>15 Aug 2026</td>
+          <td>Star Health Policy Renewal</td>
+          <td><span class="antd-text-strong">₹18,500</span></td>
+          <td><span class="antd-tag antd-tag-warning">Due Soon</span></td>
+          <td><button class="antd-btn antd-btn-primary" onclick="openModal('make-payment-modal')">Pay Now</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="antd-card antd-p-0" style="overflow-x: auto;">
+    <div class="antd-flex antd-items-center antd-justify-between" style="padding: 16px 24px; border-bottom: 1px solid var(--antd-border);">
+      <h3 class="antd-card-title" style="margin: 0;">Recent Payments</h3>
+    </div>
+    <table class="antd-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Method</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>15 Jun 2026</td>
+          <td>Star Health Premium</td>
+          <td><span class="antd-text-strong" style="color: var(--antd-error);">-₹18,500</span></td>
+          <td>HDFC ****4521</td>
+          <td><span class="antd-tag antd-tag-success">Paid</span></td>
+        </tr>
+        <tr>
+          <td>02 Jul 2026</td>
+          <td>Claim Reimbursement</td>
+          <td><span class="antd-text-strong" style="color: var(--antd-success);">+₹25,000</span></td>
+          <td>HDFC ****4521</td>
+          <td><span class="antd-tag antd-tag-success">Received</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </div>

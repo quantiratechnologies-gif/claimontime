@@ -1,38 +1,76 @@
 <div class="screen" id="screen-claims">
-<h2><i data-lucide="coins" class="icon-sm"></i> Claims</h2>
-<button class="btn" onclick="startNewClaim()">+ New Claim</button>
-<button class="btn btn-secondary" onclick="openModal('filter-claims-modal')">Filter</button>
-<button class="btn btn-secondary" onclick="openModal('export-claims-modal')">Export</button>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="coins" class="icon-sm"></i> Claims</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('filter-claims-modal')">Filter</button>
+    <button class="antd-btn" onclick="openModal('export-claims-modal')">Export</button>
+    <button class="antd-btn antd-btn-primary" onclick="startNewClaim()">+ New Claim</button>
+  </div>
+</div>
+
 <div class="tab-container">
-<div class="tab-buttons">
-<button class="tab-btn active" onclick="switchTab('claims', 'all')">All Claims</button>
-<button class="tab-btn" onclick="switchTab('claims', 'pending')">Pending</button>
-<button class="tab-btn" onclick="switchTab('claims', 'approved')">Approved</button>
-<button class="tab-btn" onclick="switchTab('claims', 'rejected')">Rejected</button>
-</div>
-<div class="tab-content active" id="claims-all">
-<div class="card">
-<h3>Claim #CLM-2026-0045 <span class="badge badge-warning">Pending</span></h3>
-<p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹45,000</p>
-<p><strong>Hospital:</strong> Apollo Hospital, Mumbai | <strong>Date:</strong> 05 Jul 2026</p>
-<p><strong>Policy:</strong> Star Health - Family Health Optima</p>
-<button class="btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('track-claim-modal')">Track Status</button>
-</div>
-<div class="card">
-<h3>Claim #CLM-2026-0044 <span class="badge badge-success">Approved</span></h3>
-<p><strong>Patient:</strong> Priya Sharma | <strong>Amount:</strong> ₹25,000 (Paid)</p>
-<p><strong>Hospital:</strong> Fortis Hospital | <strong>Date:</strong> 28 Jun 2026</p>
-<button class="btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('payment-details-modal')">View Payment</button>
-</div>
-<div class="card">
-<h3>Claim #CLM-2026-0039 <span class="badge badge-danger">Rejected</span></h3>
-<p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹18,000</p>
-<p><strong>Reason:</strong> Pre-existing condition not disclosed</p>
-<button class="btn btn-danger" onclick="openModal('appeal-claim-modal')">Appeal</button>
-<button class="btn btn-secondary" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
-</div>
-</div>
+  <div class="tab-buttons" style="border-bottom: 1px solid var(--antd-border); margin-bottom: 24px;">
+    <button class="tab-btn active" onclick="switchTab('claims', 'all')" style="padding: 12px 24px; border: none; border-bottom: 2px solid var(--antd-primary); background: none; color: var(--antd-primary); font-weight: 500; cursor: pointer;">All Claims</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'pending')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Pending</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'approved')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Approved</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'rejected')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Rejected</button>
+  </div>
+
+  <div class="tab-content active" id="claims-all">
+    <div class="antd-flex antd-flex-col antd-gap-4">
+      
+      <div class="antd-card">
+        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0045</h3>
+          <span class="antd-tag antd-tag-warning">Pending</span>
+        </div>
+        <div class="antd-grid-2 antd-mb-4">
+          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Rahul Sharma</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹45,000</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Hospital</p><p class="antd-text-strong" style="margin: 0;">Apollo Hospital, Mumbai</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Date</p><p class="antd-text-strong" style="margin: 0;">05 Jul 2026</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Policy</p><p class="antd-text-strong" style="margin: 0;">Star Health - Family Health Optima</p></div>
+        </div>
+        <div class="antd-flex antd-gap-2">
+          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
+          <button class="antd-btn" onclick="openModal('track-claim-modal')">Track Status</button>
+        </div>
+      </div>
+
+      <div class="antd-card">
+        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0044</h3>
+          <span class="antd-tag antd-tag-success">Approved</span>
+        </div>
+        <div class="antd-grid-2 antd-mb-4">
+          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Priya Sharma</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹25,000 (Paid)</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Hospital</p><p class="antd-text-strong" style="margin: 0;">Fortis Hospital</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Date</p><p class="antd-text-strong" style="margin: 0;">28 Jun 2026</p></div>
+        </div>
+        <div class="antd-flex antd-gap-2">
+          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
+          <button class="antd-btn" onclick="openModal('payment-details-modal')">View Payment</button>
+        </div>
+      </div>
+
+      <div class="antd-card">
+        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0039</h3>
+          <span class="antd-tag antd-tag-error">Rejected</span>
+        </div>
+        <div class="antd-grid-2 antd-mb-4">
+          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Rahul Sharma</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹18,000</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Reason</p><p class="antd-text-strong" style="margin: 0; color: var(--antd-error);">Pre-existing condition not disclosed</p></div>
+        </div>
+        <div class="antd-flex antd-gap-2">
+          <button class="antd-btn antd-btn-primary" style="background-color: var(--antd-error) !important; border-color: var(--antd-error) !important;" onclick="openModal('appeal-claim-modal')">Appeal</button>
+          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 </div>

@@ -1,48 +1,115 @@
 <div class="screen" id="screen-policies">
-<h2><i data-lucide="clipboard-list" class="icon-sm"></i> My Policies</h2>
-<button class="btn" onclick="showScreen('insurance-market')">+ Buy New Policy</button>
-<button class="btn btn-secondary" onclick="openModal('policy-compare-modal')">Compare Policies</button>
-<div id="individual-policies">
-<div class="insurance-card">
-<div class="insurance-logo star-health">⭐ Star Health</div>
-<div class="corp-tag">Individual Policy</div>
-<h3>Family Health Optima Plus</h3>
-<p><strong>Policy No:</strong> STAR/FHO/2025/1234567 | <strong>Insurer:</strong> Star Health &amp; Allied Insurance</p>
-<p><strong>Sum Insured:</strong> ₹5,00,000 | <strong>Used:</strong> ₹1,75,000 (35%)</p>
-<div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
-<p><strong>Members:</strong> Rahul (Self), Priya (Spouse), Aarav (Son)</p>
-<p><strong>Premium:</strong> ₹18,500/year | <strong>Valid Till:</strong> 15 Aug 2026</p>
-<p><strong>Key Features:</strong> Room rent uncapped, Pre/Post hospitalization 60/90 days, No claim bonus</p>
-<button class="btn" onclick="openPolicyDetail('STAR')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('download-policy-modal')"><i data-lucide="file-text" class="icon-sm"></i> Download</button>
-<button class="btn btn-secondary" onclick="openModal('policy-renew-modal')">🔄 Renew</button>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="clipboard-list" class="icon-sm"></i> My Policies</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('policy-compare-modal')">Compare Policies</button>
+    <button class="antd-btn antd-btn-primary" onclick="showScreen('insurance-market')">+ Buy New Policy</button>
+  </div>
 </div>
-<div class="insurance-card">
-<div class="insurance-logo hdfc">HDFC ERGO</div>
-<div class="corp-tag">Individual Policy</div>
-<h3>Optima Restore</h3>
-<p><strong>Policy No:</strong> HDFC/OR/2025/9876543 | <strong>Insurer:</strong> HDFC ERGO General Insurance</p>
-<p><strong>Sum Insured:</strong> ₹5,00,000 (with restoration benefit)</p>
-<div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
-<p><strong>Premium:</strong> ₹12,800/year | <strong>Valid Till:</strong> 30 Nov 2026</p>
-<p><strong>Key Features:</strong> Unlimited restoration, No claim bonus up to 100%, Global coverage</p>
-<button class="btn" onclick="openPolicyDetail('HDFC')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('download-policy-modal')"><i data-lucide="file-text" class="icon-sm"></i> Download</button>
+
+<div id="individual-policies" class="antd-flex antd-flex-col antd-gap-6">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo star-health" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #fffbe6; color: var(--antd-warning); font-weight: bold; font-size: 10px; text-align: center;">Star Health</div>
+        <div>
+          <h3 class="antd-card-title" style="margin: 0;">Family Health Optima Plus</h3>
+          <p class="antd-text-secondary" style="margin: 4px 0 0 0;">Star Health &amp; Allied Insurance</p>
+        </div>
+      </div>
+      <span class="antd-tag antd-tag-info">Individual Policy</span>
+    </div>
+    
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Policy No:</strong> STAR/FHO/2025/1234567</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Members:</strong> Rahul (Self), Priya (Spouse), Aarav (Son)</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Premium:</strong> ₹18,500/year | <strong>Valid Till:</strong> 15 Aug 2026</p>
+      </div>
+      <div>
+        <div class="antd-flex antd-justify-between antd-items-center" style="margin-bottom: 4px;">
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Sum Insured:</strong> ₹5,00,000</p>
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Used:</strong> ₹1,75,000 (35%)</p>
+        </div>
+        <div style="background-color: var(--antd-border); border-radius: 4px; height: 8px; margin: 8px 0;"><div style="width: 35%; background-color: var(--antd-primary); border-radius: 4px; height: 100%;"></div></div>
+        <p class="antd-text-tertiary" style="margin: 0;"><strong>Key Features:</strong> Room rent uncapped, Pre/Post hospitalization 60/90 days, No claim bonus</p>
+      </div>
+    </div>
+    
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openPolicyDetail('STAR')">View Details</button>
+      <button class="antd-btn" onclick="openModal('download-policy-modal')"><i data-lucide="download" class="icon-sm"></i> Download</button>
+      <button class="antd-btn" onclick="openModal('policy-renew-modal')"><i data-lucide="refresh-cw" class="icon-sm"></i> Renew</button>
+    </div>
+  </div>
+
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo hdfc" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #fff2f0; color: var(--antd-error); font-weight: bold; font-size: 10px; text-align: center;">HDFC ERGO</div>
+        <div>
+          <h3 class="antd-card-title" style="margin: 0;">Optima Restore</h3>
+          <p class="antd-text-secondary" style="margin: 4px 0 0 0;">HDFC ERGO General Insurance</p>
+        </div>
+      </div>
+      <span class="antd-tag antd-tag-info">Individual Policy</span>
+    </div>
+    
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Policy No:</strong> HDFC/OR/2025/9876543</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Premium:</strong> ₹12,800/year | <strong>Valid Till:</strong> 30 Nov 2026</p>
+      </div>
+      <div>
+        <div class="antd-flex antd-justify-between antd-items-center" style="margin-bottom: 4px;">
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Sum Insured:</strong> ₹5,00,000</p>
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Used:</strong> ₹75,000 (15%)</p>
+        </div>
+        <div style="background-color: var(--antd-border); border-radius: 4px; height: 8px; margin: 8px 0;"><div style="width: 15%; background-color: var(--antd-primary); border-radius: 4px; height: 100%;"></div></div>
+        <p class="antd-text-tertiary" style="margin: 0;"><strong>Key Features:</strong> Unlimited restoration, No claim bonus up to 100%, Global coverage</p>
+      </div>
+    </div>
+    
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openPolicyDetail('HDFC')">View Details</button>
+      <button class="antd-btn" onclick="openModal('download-policy-modal')"><i data-lucide="download" class="icon-sm"></i> Download</button>
+    </div>
+  </div>
 </div>
-</div>
+
 <div class="hidden" id="corporate-policies">
-<div class="insurance-card" style="border-color: #ffd700; background: linear-gradient(135deg, #fff9e6, #ffffff);">
-<div class="insurance-logo" style="color: #1a2b4a;"><i data-lucide="building" class="icon-sm"></i> TCS Group Insurance</div>
-<div class="corp-tag">Corporate Group Policy</div>
-<h3>TCS Employee Group Health Cover</h3>
-<p><strong>Policy No:</strong> TCS/GHI/2026/EMP001234 | <strong>Insurer:</strong> ICICI Lombard General Insurance</p>
-<p><strong>Base Coverage:</strong> ₹5,00,000 | <strong>Super Top-up:</strong> ₹3,00,000 | <strong>Total:</strong> ₹8,00,000</p>
-<div class="coverage-bar"><div class="coverage-fill" style="width: 12%"></div></div>
-<p><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
-<p><strong>Premium:</strong> ₹0 (100% employer paid) | <strong>Valid Till:</strong> 31 Mar 2027</p>
-<p><strong>Key Features:</strong> Cashless at 8,500+ hospitals, Maternity cover ₹50,000, Annual health checkup</p>
-<button class="btn btn-corp" onclick="openPolicyDetail('TCS')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('download-policy-modal')"><i data-lucide="file-text" class="icon-sm"></i> Download</button>
-</div>
+  <div class="antd-card" style="border-color: var(--antd-warning-border) !important; background: #fffbe6;">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #001529; color: #ffffff; font-weight: bold; font-size: 10px; text-align: center;"><i data-lucide="building" class="icon-sm"></i> TCS</div>
+        <div>
+          <h3 class="antd-card-title" style="margin: 0;">TCS Employee Group Health Cover</h3>
+          <p class="antd-text-secondary" style="margin: 4px 0 0 0;">ICICI Lombard General Insurance</p>
+        </div>
+      </div>
+      <span class="antd-tag antd-tag-warning">Corporate Group Policy</span>
+    </div>
+    
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Policy No:</strong> TCS/GHI/2026/EMP001234</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Premium:</strong> ₹0 (100% employer paid) | <strong>Valid Till:</strong> 31 Mar 2027</p>
+      </div>
+      <div>
+        <div class="antd-flex antd-justify-between antd-items-center" style="margin-bottom: 4px;">
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Total Coverage:</strong> ₹8,00,000</p>
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Used:</strong> 12%</p>
+        </div>
+        <div style="background-color: var(--antd-border); border-radius: 4px; height: 8px; margin: 8px 0;"><div style="width: 12%; background-color: var(--antd-warning); border-radius: 4px; height: 100%;"></div></div>
+        <p class="antd-text-tertiary" style="margin: 0;"><strong>Key Features:</strong> Cashless at 8,500+ hospitals, Maternity cover ₹50,000, Annual health checkup</p>
+      </div>
+    </div>
+    
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" style="background-color: var(--antd-warning) !important; border-color: var(--antd-warning) !important;" onclick="openPolicyDetail('TCS')">View Details</button>
+      <button class="antd-btn" onclick="openModal('download-policy-modal')"><i data-lucide="download" class="icon-sm"></i> Download</button>
+    </div>
+  </div>
 </div>
 </div>

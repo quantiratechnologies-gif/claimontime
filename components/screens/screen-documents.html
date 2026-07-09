@@ -1,26 +1,69 @@
 <div class="screen" id="screen-documents">
-<h2><i data-lucide="folder" class="icon-lg"></i> Document Vault</h2>
-<button class="btn" onclick="openModal('upload-document-modal')">+ Upload Document</button>
-<button class="btn btn-secondary" onclick="openModal('scan-document-modal')"><i data-lucide="camera" class="icon-sm"></i> Scan</button>
-<button class="btn btn-secondary" onclick="openModal('organize-documents-modal')">📂 Organize</button>
-<h3 style="margin-top:20px;"><i data-lucide="hospital" class="icon-sm"></i> Medical Records</h3>
-<div class="card">
-<p><i data-lucide="file-text" class="icon-sm"></i> discharge_summary_apollo_jul2026.pdf <span class="badge badge-primary">Auto-tagged</span></p>
-<p><small>Uploaded: 08 Jul 2026 | Size: 1.1 MB</small></p>
-<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
-<button class="btn btn-secondary" onclick="openModal('share-document-modal')">Share</button>
-<button class="btn btn-secondary" onclick="openModal('download-document-modal')">Download</button>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="folder" class="icon-sm"></i> Document Vault</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('organize-documents-modal')"><i data-lucide="folder-tree" class="icon-sm"></i> Organize</button>
+    <button class="antd-btn" onclick="openModal('scan-document-modal')"><i data-lucide="camera" class="icon-sm"></i> Scan</button>
+    <button class="antd-btn antd-btn-primary" onclick="openModal('upload-document-modal')">+ Upload Document</button>
+  </div>
 </div>
-<h3 style="margin-top:20px;"><i data-lucide="coins" class="icon-sm"></i> Bills &amp; Receipts</h3>
-<div class="card">
-<p><i data-lucide="file-text" class="icon-sm"></i> hospital_bill_apollo.pdf</p>
-<p><small>Uploaded: 08 Jul 2026 | Size: 2.3 MB</small></p>
-<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+
+<h3 class="antd-card-title antd-mb-4"><i data-lucide="hospital" class="icon-sm"></i> Medical Records</h3>
+<div class="antd-grid-4 antd-mb-6">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-2">
+        <i data-lucide="file-text" class="icon-lg" style="color: var(--antd-primary);"></i>
+        <div>
+          <p class="antd-text-strong" style="margin: 0;">discharge_summary_apollo_jul2026.pdf</p>
+          <span class="antd-tag antd-tag-info" style="margin-top: 4px;">Auto-tagged</span>
+        </div>
+      </div>
+    </div>
+    <p class="antd-text-tertiary" style="margin: 0 0 16px 0;">Uploaded: 08 Jul 2026 | Size: 1.1 MB</p>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="openModal('view-document-modal')">View</button>
+      <button class="antd-btn" onclick="openModal('share-document-modal')">Share</button>
+      <button class="antd-btn" onclick="openModal('download-document-modal')"><i data-lucide="download" class="icon-sm"></i></button>
+    </div>
+  </div>
 </div>
-<h3 style="margin-top:20px;"><i data-lucide="clipboard-list" class="icon-sm"></i> Policy Documents</h3>
-<div class="card">
-<p><i data-lucide="file-text" class="icon-sm"></i> policy_STAR_2025.pdf</p>
-<p><small>Auto-synced from Star Health</small></p>
-<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+
+<h3 class="antd-card-title antd-mb-4"><i data-lucide="coins" class="icon-sm"></i> Bills &amp; Receipts</h3>
+<div class="antd-grid-4 antd-mb-6">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-2">
+        <i data-lucide="file-text" class="icon-lg" style="color: var(--antd-warning);"></i>
+        <div>
+          <p class="antd-text-strong" style="margin: 0;">hospital_bill_apollo.pdf</p>
+        </div>
+      </div>
+    </div>
+    <p class="antd-text-tertiary" style="margin: 0 0 16px 0;">Uploaded: 08 Jul 2026 | Size: 2.3 MB</p>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="openModal('view-document-modal')">View</button>
+      <button class="antd-btn" onclick="openModal('download-document-modal')"><i data-lucide="download" class="icon-sm"></i></button>
+    </div>
+  </div>
+</div>
+
+<h3 class="antd-card-title antd-mb-4"><i data-lucide="clipboard-list" class="icon-sm"></i> Policy Documents</h3>
+<div class="antd-grid-4 antd-mb-6">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-2">
+        <i data-lucide="shield" class="icon-lg" style="color: var(--antd-success);"></i>
+        <div>
+          <p class="antd-text-strong" style="margin: 0;">policy_STAR_2025.pdf</p>
+        </div>
+      </div>
+    </div>
+    <p class="antd-text-tertiary" style="margin: 0 0 16px 0;">Auto-synced from Star Health</p>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="openModal('view-document-modal')">View</button>
+      <button class="antd-btn" onclick="openModal('download-document-modal')"><i data-lucide="download" class="icon-sm"></i></button>
+    </div>
+  </div>
 </div>
 </div>

@@ -1,15 +1,25 @@
 <div class="screen" id="screen-notifications">
-<h2><i data-lucide="bell" class="icon-sm"></i> Notifications</h2>
-<div class="notification-item urgent" style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-4); border-bottom: 1px solid var(--border-color); background-color: var(--primary-50); border-left: 4px solid var(--primary-500);">
-    <div>
-        <strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
-    </div>
-    <button class="btn btn-secondary" style="white-space: nowrap;" onclick="openModal('upload-document-modal')">Upload Now</button>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="bell" class="icon-sm"></i> Notifications</h2>
 </div>
-<div class="notification-item unread" style="padding: var(--space-4); border-bottom: 1px solid var(--border-color); background-color: var(--primary-50); border-left: 4px solid var(--primary-500);">
-    <strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
-</div>
-<div class="notification-item" style="padding: var(--space-4); border-bottom: 1px solid var(--border-color);">
-    <strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
+
+<div class="antd-flex antd-flex-col antd-gap-4">
+  <div class="antd-card antd-flex antd-justify-between antd-items-center" style="border-left: 4px solid var(--antd-primary) !important; background-color: var(--antd-info-bg);">
+      <div>
+          <p class="antd-text-strong" style="margin: 0 0 4px 0;">Action Required</p>
+          <p class="antd-text-secondary" style="margin: 0;">Please upload missing documents for Claim #CLM-2026-0045.</p>
+      </div>
+      <button class="antd-btn antd-btn-primary" style="white-space: nowrap;" onclick="openModal('upload-document-modal')">Upload Now</button>
+  </div>
+  
+  <div class="antd-card" style="border-left: 4px solid var(--antd-primary) !important; background-color: var(--antd-info-bg);">
+      <p class="antd-text-strong" style="margin: 0 0 4px 0;">Policy Update</p>
+      <p class="antd-text-secondary" style="margin: 0;">Your Star Health policy has been successfully renewed.</p>
+  </div>
+  
+  <div class="antd-card">
+      <p class="antd-text-strong" style="margin: 0 0 4px 0;">Claim Settled</p>
+      <p class="antd-text-secondary" style="margin: 0;">Claim #CLM-2026-0044 amount ₹25,000 has been credited.</p>
+  </div>
 </div>
 </div>

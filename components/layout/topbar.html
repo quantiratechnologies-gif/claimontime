@@ -1,12 +1,20 @@
-<div class="app-topbar">
-<div>
-<strong id="user-name">Welcome, Rahul Sharma</strong> | 
-      <span id="user-type">Individual Member</span> | 
-      Member ID: <span id="member-id">SC-2026-8842</span>
+<div class="app-topbar antd-flex antd-justify-between antd-items-center" style="padding: 0 24px;">
+<div class="antd-text-secondary">
+  <strong id="user-name" class="antd-text-strong" style="color: var(--antd-text);">Welcome, Rahul Sharma</strong> 
+  <span style="margin: 0 8px;">|</span>
+  <span id="user-type">Individual Member</span> 
+  <span style="margin: 0 8px;">|</span>
+  Member ID: <span id="member-id" class="antd-text-strong" style="color: var(--antd-text);">SC-2026-8842</span>
 </div>
-<div>
-<button class="btn" onclick="openModal('emergency-modal')" style="background:#dc3545; font-weight:bold; animation: pulse 2s infinite;"><i data-lucide="alert-circle" class="icon-sm"></i> EMERGENCY / SOS</button>
-<button class="btn btn-secondary" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm"></i> <span id="notif-count">5</span></button>
-<button class="btn btn-secondary" onclick="showScreen('profile')"><i data-lucide="user" class="icon-sm"></i> Profile</button>
+<div class="antd-flex antd-gap-4 antd-items-center">
+  <button class="antd-btn antd-btn-primary" onclick="openModal('emergency-modal')" style="background-color: var(--antd-error) !important; border-color: var(--antd-error) !important; animation: pulse 2s infinite;">
+    <i data-lucide="alert-circle" class="icon-sm"></i> EMERGENCY / SOS
+  </button>
+  <button class="antd-btn" onclick="showScreen('notifications')">
+    <i data-lucide="bell" class="icon-sm"></i> <span class="antd-tag antd-tag-error" style="margin-left: 4px; border-radius: 10px;" id="notif-count">5</span>
+  </button>
+  <div style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--antd-primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="showScreen('profile')">
+    <i data-lucide="user" class="icon-sm"></i>
+  </div>
 </div>
 </div>

@@ -1,18 +1,37 @@
-<div class="app-sidebar" id="main-sidebar" >
-<h2><i data-lucide="hospital" class="icon-sm"></i> SuperClaim</h2>
-<a class="app-nav-link active" id="nav-dashboard" onclick="showScreen('dashboard')"><i data-lucide="home" class="icon-sm"></i> Dashboard</a>
-<a class="app-nav-link" id="nav-policies" onclick="showScreen('policies')"><i data-lucide="clipboard-list" class="icon-sm"></i> My Policies</a>
-<a class="app-nav-link" id="nav-insurance-market" onclick="showScreen('insurance-market')"><i data-lucide="shopping-cart" class="icon-sm"></i> Insurance Marketplace</a>
-<a class="app-nav-link" id="nav-claims" onclick="showScreen('claims')"><i data-lucide="coins" class="icon-sm"></i> Claims</a>
-<a class="app-nav-link" id="nav-cashless" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Cashless</a>
+<div class="app-sidebar" id="main-sidebar" style="display: flex; flex-direction: column; height: 100vh;">
+<div class="sidebar-logo-container" style="height: 64px; flex-shrink: 0; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+  <h2 class="sidebar-logo" style="margin: 0; font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: #ffffff !important;">
+    <i data-lucide="hospital" class="icon-sm" style="color: var(--antd-primary);"></i> SuperClaim
+  </h2>
+</div>
 
-<a class="app-nav-link" id="nav-documents" onclick="showScreen('documents')"><i data-lucide="folder" class="icon-sm"></i> Documents</a>
-<a class="app-nav-link" id="nav-payments" onclick="showScreen('payments')"><i data-lucide="credit-card" class="icon-sm"></i> Payments</a>
-<a class="app-nav-link" id="nav-corporate-benefits" onclick="showScreen('corporate-benefits')" ><i data-lucide="briefcase" class="icon-sm"></i> Corporate Benefits <span class="badge-corp">CORP</span></a>
-<a class="app-nav-link" id="nav-notifications" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm"></i> Notifications</a>
-<a class="app-nav-link" id="nav-profile" onclick="showScreen('profile')"><i data-lucide="user" class="icon-sm"></i> Profile</a>
-<a class="app-nav-link" id="nav-settings" onclick="showScreen('settings')"><i data-lucide="settings" class="icon-sm"></i> Settings</a>
-<a class="app-nav-link" id="nav-help" onclick="showScreen('help')"><i data-lucide="help-circle" class="icon-sm"></i> Help Center</a>
-<a class="app-nav-link" id="nav-support" onclick="showScreen('support')"><i data-lucide="ticket" class="icon-sm"></i> Support</a>
-<a class="app-nav-link" onclick="logout()" style="margin-top: 20px; border-top: 1px solid #2d3e5f; padding-top: 20px;"><i data-lucide="log-out" class="icon-sm"></i> Logout</a>
+<div style="flex: 1; overflow-y: auto; padding-top: 16px;">
+  <!-- MAIN NAVIGATION -->
+  <p style="color: rgba(255,255,255,0.45); font-size: 12px; margin: 0 24px 8px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Main</p>
+  <a class="app-nav-link active" id="nav-dashboard" onclick="showScreen('dashboard')"><i data-lucide="home" class="icon-sm" style="margin-right: 8px;"></i> Dashboard</a>
+  <a class="app-nav-link" id="nav-notifications" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm" style="margin-right: 8px;"></i> Notifications</a>
+
+  <!-- INSURANCE SERVICES -->
+  <p style="color: rgba(255,255,255,0.45); font-size: 12px; margin: 24px 24px 8px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Insurance Services</p>
+  <a class="app-nav-link" id="nav-policies" onclick="showScreen('policies')"><i data-lucide="clipboard-list" class="icon-sm" style="margin-right: 8px;"></i> My Policies</a>
+  <a class="app-nav-link" id="nav-claims" onclick="showScreen('claims')"><i data-lucide="coins" class="icon-sm" style="margin-right: 8px;"></i> Claims</a>
+  <a class="app-nav-link" id="nav-cashless" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm" style="margin-right: 8px;"></i> Cashless</a>
+  <a class="app-nav-link" id="nav-insurance-market" onclick="showScreen('insurance-market')"><i data-lucide="shopping-cart" class="icon-sm" style="margin-right: 8px;"></i> Marketplace</a>
+
+  <!-- RECORDS & FINANCE -->
+  <p style="color: rgba(255,255,255,0.45); font-size: 12px; margin: 24px 24px 8px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Records &amp; Finance</p>
+  <a class="app-nav-link" id="nav-documents" onclick="showScreen('documents')"><i data-lucide="folder" class="icon-sm" style="margin-right: 8px;"></i> Documents</a>
+  <a class="app-nav-link" id="nav-payments" onclick="showScreen('payments')"><i data-lucide="credit-card" class="icon-sm" style="margin-right: 8px;"></i> Payments</a>
+
+  <!-- SUPPORT -->
+  <p style="color: rgba(255,255,255,0.45); font-size: 12px; margin: 24px 24px 8px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Support</p>
+  <a class="app-nav-link" id="nav-help" onclick="showScreen('help')"><i data-lucide="help-circle" class="icon-sm" style="margin-right: 8px;"></i> Help Center</a>
+  <a class="app-nav-link" id="nav-support" onclick="showScreen('support')"><i data-lucide="ticket" class="icon-sm" style="margin-right: 8px;"></i> Tickets</a>
+</div>
+
+<!-- BOTTOM ACTIONS -->
+<div style="flex-shrink: 0; padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.05); background-color: rgba(0,0,0,0.1);">
+  <a class="app-nav-link" id="nav-settings" onclick="showScreen('settings')"><i data-lucide="settings" class="icon-sm" style="margin-right: 8px;"></i> Settings</a>
+  <a class="app-nav-link" onclick="logout()" style="color: var(--antd-error) !important;"><i data-lucide="log-out" class="icon-sm" style="margin-right: 8px;"></i> Logout</a>
+</div>
 </div>

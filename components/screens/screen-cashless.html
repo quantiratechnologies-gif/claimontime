@@ -1,27 +1,62 @@
 <div class="screen" id="screen-cashless">
-<h2><i data-lucide="hospital" class="icon-sm"></i> Cashless / Network Hospitals</h2>
-<div class="search-container" style="position: relative; max-width: 100%;">
-  <i data-lucide="search" class="icon-sm" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);"></i>
-  <input class="form-control" id="hospital-search" placeholder="Search hospital by name, city, or specialty..." style="width: 100%; padding-left: 36px;" type="text"/>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="hospital" class="icon-sm"></i> Network Hospitals</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('filter-hospitals-modal')">Filter</button>
+    <button class="antd-btn" onclick="openModal('map-view-modal')"><i data-lucide="map" class="icon-sm"></i> Map View</button>
+  </div>
 </div>
-<br/><br/>
-<button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
-<button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>
-<div class="insurance-card">
-<h3>Apollo Hospital, Mumbai <span class="badge badge-success">Network</span></h3>
-<p><i data-lucide="map-pin" class="icon-sm"></i> Andheri West, Mumbai | ⭐ 4.5/5 | <i data-lucide="phone" class="icon-sm"></i> 022-12345678</p>
-<p>Specialties: Cardiology, Orthopedics, General Medicine</p>
-<p><strong>Distance:</strong> 2.3 km | <strong>Insurers Accepted:</strong> Star Health, HDFC Ergo, ICICI Lombard</p>
-<button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
-<button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('directions-modal')">🧭 Directions</button>
+
+<div class="antd-card antd-mb-6" style="padding: 16px;">
+  <div class="search-container" style="position: relative; max-width: 100%;">
+    <i data-lucide="search" class="icon-sm" style="position: absolute; left: 12px; top: 8px; color: var(--antd-text-tertiary);"></i>
+    <input class="form-control" id="hospital-search" placeholder="Search hospital by name, city, or specialty..." style="width: 100%; padding: 8px 8px 8px 36px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);" type="text"/>
+  </div>
 </div>
-<div class="insurance-card">
-<h3>Fortis Hospital, Mumbai <span class="badge badge-success">Network</span></h3>
-<p><i data-lucide="map-pin" class="icon-sm"></i> Mulund, Mumbai | ⭐ 4.3/5 | <i data-lucide="phone" class="icon-sm"></i> 022-87654321</p>
-<p>Specialties: Neurology, Oncology, Pediatrics</p>
-<p><strong>Distance:</strong> 4.1 km</p>
-<button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
-<button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
+
+<div class="antd-flex antd-flex-col antd-gap-4">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <h3 class="antd-card-title" style="margin: 0;">Apollo Hospital, Mumbai</h3>
+      <span class="antd-tag antd-tag-success">Network</span>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><i data-lucide="map-pin" class="icon-sm"></i> Andheri West, Mumbai</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;">⭐ 4.5/5 | <i data-lucide="phone" class="icon-sm"></i> 022-12345678</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Distance:</strong> 2.3 km</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Specialties:</strong> Cardiology, Orthopedics, General Medicine</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Insurers Accepted:</strong> Star Health, HDFC Ergo, ICICI Lombard</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('cashless-request-modal')">Request Cashless</button>
+      <button class="antd-btn" onclick="openModal('hospital-details-modal')">View Details</button>
+      <button class="antd-btn" onclick="openModal('directions-modal')"><i data-lucide="navigation" class="icon-sm"></i> Directions</button>
+    </div>
+  </div>
+
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <h3 class="antd-card-title" style="margin: 0;">Fortis Hospital, Mumbai</h3>
+      <span class="antd-tag antd-tag-success">Network</span>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><i data-lucide="map-pin" class="icon-sm"></i> Mulund, Mumbai</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;">⭐ 4.3/5 | <i data-lucide="phone" class="icon-sm"></i> 022-87654321</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Distance:</strong> 4.1 km</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Specialties:</strong> Neurology, Oncology, Pediatrics</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('cashless-request-modal')">Request Cashless</button>
+      <button class="antd-btn" onclick="openModal('hospital-details-modal')">View Details</button>
+    </div>
+  </div>
 </div>
 </div>

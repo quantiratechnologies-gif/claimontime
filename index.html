@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <title>SuperClaim - Member Portal</title>
-<link href="assets/css/style.css?v=12.0" rel="stylesheet"/>
-<link href="assets/css/atlassian.css?v=2.0" rel="stylesheet"/>
+<link href="assets/css/style.css?v=13.1" rel="stylesheet"/>
+<link href="assets/css/antd.css?v=3.0" rel="stylesheet"/>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -151,96 +151,123 @@
 <!-- APP CONTAINER (Hidden initially) -->
 <div class="app-container" id="app-container" style="display: none;">
 <!-- SIDEBAR -->
-<div class="app-sidebar" id="main-sidebar" >
-<h2><i data-lucide="hospital" class="icon-sm"></i> SuperClaim</h2>
-<a class="app-nav-link active" id="nav-dashboard" onclick="showScreen('dashboard')"><i data-lucide="home" class="icon-sm"></i> Dashboard</a>
-<a class="app-nav-link" id="nav-policies" onclick="showScreen('policies')"><i data-lucide="clipboard-list" class="icon-sm"></i> My Policies</a>
-<a class="app-nav-link" id="nav-insurance-market" onclick="showScreen('insurance-market')"><i data-lucide="shopping-cart" class="icon-sm"></i> Insurance Marketplace</a>
-<a class="app-nav-link" id="nav-claims" onclick="showScreen('claims')"><i data-lucide="coins" class="icon-sm"></i> Claims</a>
-<a class="app-nav-link" id="nav-cashless" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Cashless</a>
+<div class="app-sidebar" id="main-sidebar" style="display: flex; flex-direction: column; height: 100vh;">
+<div class="sidebar-logo-container" style="height: 64px; flex-shrink: 0; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+  <h2 class="sidebar-logo" style="margin: 0; font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: #ffffff !important;">
+    <i data-lucide="hospital" class="icon-sm" style="color: var(--antd-primary);"></i> SuperClaim
+  </h2>
+</div>
 
-<a class="app-nav-link" id="nav-documents" onclick="showScreen('documents')"><i data-lucide="folder" class="icon-sm"></i> Documents</a>
-<a class="app-nav-link" id="nav-payments" onclick="showScreen('payments')"><i data-lucide="credit-card" class="icon-sm"></i> Payments</a>
-<a class="app-nav-link" id="nav-corporate-benefits" onclick="showScreen('corporate-benefits')" ><i data-lucide="briefcase" class="icon-sm"></i> Corporate Benefits <span class="badge-corp">CORP</span></a>
-<a class="app-nav-link" id="nav-notifications" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm"></i> Notifications</a>
-<a class="app-nav-link" id="nav-profile" onclick="showScreen('profile')"><i data-lucide="user" class="icon-sm"></i> Profile</a>
-<a class="app-nav-link" id="nav-settings" onclick="showScreen('settings')"><i data-lucide="settings" class="icon-sm"></i> Settings</a>
-<a class="app-nav-link" id="nav-help" onclick="showScreen('help')"><i data-lucide="help-circle" class="icon-sm"></i> Help Center</a>
-<a class="app-nav-link" id="nav-support" onclick="showScreen('support')"><i data-lucide="ticket" class="icon-sm"></i> Support</a>
-<a class="app-nav-link" onclick="logout()" style="margin-top: 20px; border-top: 1px solid #2d3e5f; padding-top: 20px;"><i data-lucide="log-out" class="icon-sm"></i> Logout</a>
+<div style="flex: 1; overflow-y: auto; padding-top: 16px;">
+  <!-- MAIN NAVIGATION -->
+  <p style="color: rgba(255,255,255,0.45); font-size: 12px; margin: 0 24px 8px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Main</p>
+  <a class="app-nav-link active" id="nav-dashboard" onclick="showScreen('dashboard')"><i data-lucide="home" class="icon-sm" style="margin-right: 8px;"></i> Dashboard</a>
+  <a class="app-nav-link" id="nav-notifications" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm" style="margin-right: 8px;"></i> Notifications</a>
+
+  <!-- INSURANCE SERVICES -->
+  <p style="color: rgba(255,255,255,0.45); font-size: 12px; margin: 24px 24px 8px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Insurance Services</p>
+  <a class="app-nav-link" id="nav-policies" onclick="showScreen('policies')"><i data-lucide="clipboard-list" class="icon-sm" style="margin-right: 8px;"></i> My Policies</a>
+  <a class="app-nav-link" id="nav-claims" onclick="showScreen('claims')"><i data-lucide="coins" class="icon-sm" style="margin-right: 8px;"></i> Claims</a>
+  <a class="app-nav-link" id="nav-cashless" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm" style="margin-right: 8px;"></i> Cashless</a>
+  <a class="app-nav-link" id="nav-insurance-market" onclick="showScreen('insurance-market')"><i data-lucide="shopping-cart" class="icon-sm" style="margin-right: 8px;"></i> Marketplace</a>
+
+  <!-- RECORDS & FINANCE -->
+  <p style="color: rgba(255,255,255,0.45); font-size: 12px; margin: 24px 24px 8px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Records &amp; Finance</p>
+  <a class="app-nav-link" id="nav-documents" onclick="showScreen('documents')"><i data-lucide="folder" class="icon-sm" style="margin-right: 8px;"></i> Documents</a>
+  <a class="app-nav-link" id="nav-payments" onclick="showScreen('payments')"><i data-lucide="credit-card" class="icon-sm" style="margin-right: 8px;"></i> Payments</a>
+
+  <!-- SUPPORT -->
+  <p style="color: rgba(255,255,255,0.45); font-size: 12px; margin: 24px 24px 8px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Support</p>
+  <a class="app-nav-link" id="nav-help" onclick="showScreen('help')"><i data-lucide="help-circle" class="icon-sm" style="margin-right: 8px;"></i> Help Center</a>
+  <a class="app-nav-link" id="nav-support" onclick="showScreen('support')"><i data-lucide="ticket" class="icon-sm" style="margin-right: 8px;"></i> Tickets</a>
+</div>
+
+<!-- BOTTOM ACTIONS -->
+<div style="flex-shrink: 0; padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.05); background-color: rgba(0,0,0,0.1);">
+  <a class="app-nav-link" id="nav-settings" onclick="showScreen('settings')"><i data-lucide="settings" class="icon-sm" style="margin-right: 8px;"></i> Settings</a>
+  <a class="app-nav-link" onclick="logout()" style="color: var(--antd-error) !important;"><i data-lucide="log-out" class="icon-sm" style="margin-right: 8px;"></i> Logout</a>
+</div>
 </div>
 <!-- MAIN CONTENT (Hidden initially) -->
 <div class="app-main" id="main-content">
-<div class="app-topbar">
-<div>
-<strong id="user-name">Welcome, Rahul Sharma</strong> | 
-      <span id="user-type">Individual Member</span> | 
-      Member ID: <span id="member-id">SC-2026-8842</span>
+<div class="app-topbar antd-flex antd-justify-between antd-items-center" style="padding: 0 24px;">
+<div class="antd-text-secondary">
+  <strong id="user-name" class="antd-text-strong" style="color: var(--antd-text);">Welcome, Rahul Sharma</strong> 
+  <span style="margin: 0 8px;">|</span>
+  <span id="user-type">Individual Member</span> 
+  <span style="margin: 0 8px;">|</span>
+  Member ID: <span id="member-id" class="antd-text-strong" style="color: var(--antd-text);">SC-2026-8842</span>
 </div>
-<div>
-<button class="btn" onclick="openModal('emergency-modal')" style="background:#dc3545; font-weight:bold; animation: pulse 2s infinite;"><i data-lucide="alert-circle" class="icon-sm"></i> EMERGENCY / SOS</button>
-<button class="btn btn-secondary" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm"></i> <span id="notif-count">5</span></button>
-<button class="btn btn-secondary" onclick="showScreen('profile')"><i data-lucide="user" class="icon-sm"></i> Profile</button>
+<div class="antd-flex antd-gap-4 antd-items-center">
+  <button class="antd-btn antd-btn-primary" onclick="openModal('emergency-modal')" style="background-color: var(--antd-error) !important; border-color: var(--antd-error) !important; animation: pulse 2s infinite;">
+    <i data-lucide="alert-circle" class="icon-sm"></i> EMERGENCY / SOS
+  </button>
+  <button class="antd-btn" onclick="showScreen('notifications')">
+    <i data-lucide="bell" class="icon-sm"></i> <span class="antd-tag antd-tag-error" style="margin-left: 4px; border-radius: 10px;" id="notif-count">5</span>
+  </button>
+  <div style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--antd-primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="showScreen('profile')">
+    <i data-lucide="user" class="icon-sm"></i>
+  </div>
 </div>
 </div>
 <div class="app-content">
 <!-- DASHBOARD -->
 <div class="screen active" id="screen-dashboard">
-<div class="ads-flex ads-items-center ads-mb-6">
-  <h2 class="ads-text-large" style="margin: 0;">Dashboard</h2>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;">Dashboard</h2>
 </div>
 
 <div id="individual-dashboard">
   
-  <div class="ads-grid-4 ads-mb-6">
-    <div class="ads-card ads-flex ads-flex-col ads-justify-between">
-      <h3 class="ads-text-subtle ads-mb-2" style="margin-top: 0;">Active Policies</h3>
-      <div class="ads-text-large ads-mb-2">2</div>
-      <div class="ads-lozenge ads-lozenge-success" style="align-self: flex-start;">Star Health + HDFC Ergo</div>
+  <div class="antd-grid-4 antd-mb-6">
+    <div class="antd-card antd-flex antd-flex-col antd-justify-between">
+      <h3 class="antd-card-title" style="margin-top: 0; margin-bottom: 8px;">Active Policies</h3>
+      <div class="antd-text-large">2</div>
+      <div class="antd-tag antd-tag-success" style="align-self: flex-start; margin-top: 8px;">Star Health + HDFC Ergo</div>
     </div>
-    <div class="ads-card ads-flex ads-flex-col ads-justify-between">
-      <h3 class="ads-text-subtle ads-mb-2" style="margin-top: 0;">Pending Claims</h3>
-      <div class="ads-text-large ads-mb-2">1</div>
-      <div class="ads-lozenge ads-lozenge-warning" style="align-self: flex-start;">₹45,000 under review</div>
+    <div class="antd-card antd-flex antd-flex-col antd-justify-between">
+      <h3 class="antd-card-title" style="margin-top: 0; margin-bottom: 8px;">Pending Claims</h3>
+      <div class="antd-text-large">1</div>
+      <div class="antd-tag antd-tag-warning" style="align-self: flex-start; margin-top: 8px;">₹45,000 under review</div>
     </div>
-    <div class="ads-card ads-flex ads-flex-col ads-justify-between">
-      <h3 class="ads-text-subtle ads-mb-2" style="margin-top: 0;">Total Coverage</h3>
-      <div class="ads-text-large ads-mb-2">₹10L</div>
-      <div class="ads-lozenge ads-lozenge-success" style="align-self: flex-start;">Across all policies</div>
+    <div class="antd-card antd-flex antd-flex-col antd-justify-between">
+      <h3 class="antd-card-title" style="margin-top: 0; margin-bottom: 8px;">Total Coverage</h3>
+      <div class="antd-text-large">₹10L</div>
+      <div class="antd-tag antd-tag-info" style="align-self: flex-start; margin-top: 8px;">Across all policies</div>
     </div>
-    <div class="ads-card ads-flex ads-flex-col ads-justify-between">
-      <h3 class="ads-text-subtle ads-mb-2" style="margin-top: 0;">Coverage Used</h3>
-      <div class="ads-text-large ads-mb-2">28%</div>
-      <div class="ads-text-subtle">₹2.8L of ₹10L</div>
+    <div class="antd-card antd-flex antd-flex-col antd-justify-between">
+      <h3 class="antd-card-title" style="margin-top: 0; margin-bottom: 8px;">Coverage Used</h3>
+      <div class="antd-text-large">28%</div>
+      <div class="antd-text-secondary" style="margin-top: 8px;">₹2.8L of ₹10L</div>
     </div>
   </div>
 
-  <h3 class="ads-text-h400 ads-mt-6 ads-mb-4">Quick Actions</h3>
-  <div class="ads-grid-4 ads-mb-6">
-    <button class="ads-btn ads-btn-primary" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
-    <button class="ads-btn" onclick="showScreen('cashless')">Find Hospital</button>
-    <button class="ads-btn" onclick="showScreen('insurance-market')">Buy Policy</button>
+  <h3 class="antd-card-title antd-mt-6 antd-mb-4">Quick Actions</h3>
+  <div class="antd-grid-4 antd-mb-6">
+    <button class="antd-btn antd-btn-primary" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
+    <button class="antd-btn" onclick="showScreen('cashless')">Find Hospital</button>
+    <button class="antd-btn" onclick="showScreen('insurance-market')">Buy Policy</button>
   </div>
 
-  <div class="ads-grid-2 ads-mt-6">
-    <div class="ads-flex ads-flex-col ads-gap-2">
-      <h3 class="ads-text-h400">Coverage Utilization</h3>
-      <div class="ads-card ads-flex ads-flex-col ads-gap-2">
-        <p class="ads-text-h400" style="margin: 0;">Star Health - Family Health Optima</p>
-        <div class="coverage-bar w-full" style="background-color: var(--ads-border); border-radius: 4px; height: 8px;"><div class="coverage-fill" style="width: 35%; background-color: var(--ads-blue); border-radius: 4px; height: 100%;"></div></div>
-        <p class="ads-text-subtle" style="margin: 0;">₹1,75,000 / ₹5,00,000 used</p>
+  <div class="antd-grid-2 antd-mt-6">
+    <div class="antd-flex antd-flex-col antd-gap-4">
+      <h3 class="antd-card-title" style="margin: 0;">Coverage Utilization</h3>
+      <div class="antd-card antd-flex antd-flex-col antd-gap-2">
+        <p class="antd-text-strong" style="margin: 0;">Star Health - Family Health Optima</p>
+        <div class="coverage-bar w-full" style="background-color: var(--antd-border); border-radius: 4px; height: 8px; margin: 4px 0;"><div class="coverage-fill" style="width: 35%; background-color: var(--antd-primary); border-radius: 4px; height: 100%;"></div></div>
+        <p class="antd-text-secondary" style="margin: 0;">₹1,75,000 / ₹5,00,000 used</p>
       </div>
-      <div class="ads-card ads-flex ads-flex-col ads-gap-2">
-        <p class="ads-text-h400" style="margin: 0;">HDFC Ergo - Optima Restore</p>
-        <div class="coverage-bar w-full" style="background-color: var(--ads-border); border-radius: 4px; height: 8px;"><div class="coverage-fill" style="width: 15%; background-color: var(--ads-blue); border-radius: 4px; height: 100%;"></div></div>
-        <p class="ads-text-subtle" style="margin: 0;">₹75,000 / ₹5,00,000 used</p>
+      <div class="antd-card antd-flex antd-flex-col antd-gap-2">
+        <p class="antd-text-strong" style="margin: 0;">HDFC Ergo - Optima Restore</p>
+        <div class="coverage-bar w-full" style="background-color: var(--antd-border); border-radius: 4px; height: 8px; margin: 4px 0;"><div class="coverage-fill" style="width: 15%; background-color: var(--antd-primary); border-radius: 4px; height: 100%;"></div></div>
+        <p class="antd-text-secondary" style="margin: 0;">₹75,000 / ₹5,00,000 used</p>
       </div>
     </div>
     
-    <div class="ads-flex ads-flex-col ads-gap-2">
-      <h3 class="ads-text-h400">Recent Activity</h3>
-      <div class="ads-card ads-p-0" style="overflow-x: auto;">
-        <table class="ads-table">
+    <div class="antd-flex antd-flex-col antd-gap-4">
+      <h3 class="antd-card-title" style="margin: 0;">Recent Activity</h3>
+      <div class="antd-card antd-p-0" style="overflow-x: auto; border: 1px solid var(--antd-border); border-radius: var(--antd-radius);">
+        <table class="antd-table">
           <thead>
             <tr>
               <th>Date</th>
@@ -252,22 +279,22 @@
             <tr>
               <td>08 Jul 2026</td>
               <td>Claim #CLM-2026-0045 submitted</td>
-              <td><span class="ads-lozenge ads-lozenge-warning">Pending</span></td>
+              <td><span class="antd-tag antd-tag-warning">Pending</span></td>
             </tr>
             <tr>
               <td>02 Jul 2026</td>
               <td>Claim #CLM-2026-0044 approved</td>
-              <td><span class="ads-lozenge ads-lozenge-success">Approved</span></td>
+              <td><span class="antd-tag antd-tag-success">Approved</span></td>
             </tr>
             <tr>
               <td>28 Jun 2026</td>
               <td>Cashless at Apollo Hospital</td>
-              <td><span class="ads-lozenge ads-lozenge-success">Approved</span></td>
+              <td><span class="antd-tag antd-tag-success">Approved</span></td>
             </tr>
             <tr>
               <td>15 Jun 2026</td>
               <td>Policy renewal payment</td>
-              <td><span class="ads-lozenge ads-lozenge-info">Paid</span></td>
+              <td><span class="antd-tag antd-tag-info">Paid</span></td>
             </tr>
           </tbody>
         </table>
@@ -277,80 +304,80 @@
 </div>
 
 <div class="hidden" id="corporate-dashboard">
-  <div class="ads-card ads-mb-6" style="background-color: #E3FCEF; border-left: 4px solid #006644 !important;">
-    <p style="margin: 0; color: #006644;"><strong>Corporate Fast-Track Active:</strong> Your claims are processed 3x faster with pre-verification. Average processing time: 24 hours.</p>
+  <div class="antd-card antd-mb-6" style="background-color: var(--antd-success-bg); border-color: var(--antd-success-border) !important;">
+    <p style="margin: 0; color: var(--antd-success);"><strong>Corporate Fast-Track Active:</strong> Your claims are processed 3x faster with pre-verification. Average processing time: 24 hours.</p>
   </div>
 
-  <div class="ads-card ads-mb-6 ads-flex ads-flex-col ads-gap-2" style="border-top: 4px solid var(--ads-blue) !important;">
-    <h3 class="ads-text-large" style="margin: 0;">TCS Group Health Insurance</h3>
-    <div class="ads-text-subtle">
-      <p style="margin: 2px 0;"><strong>Employee ID:</strong> EMP001234 &nbsp;|&nbsp; <strong>Department:</strong> IT Services &nbsp;|&nbsp; <strong>Grade:</strong> Digital</p>
-      <p style="margin: 2px 0;"><strong>Coverage:</strong> ₹5,00,000 (Base) + ₹3,00,000 (Super Top-up)</p>
-      <p style="margin: 2px 0;"><strong>Employer Contribution:</strong> 100% &nbsp;|&nbsp; <strong>Your Contribution:</strong> ₹0</p>
-      <p style="margin: 2px 0;"><strong>Dependents Covered:</strong> Spouse, 2 Children, Parents</p>
-    </div>
-  </div>
-
-  <div class="ads-grid-4 ads-mb-6">
-    <div class="ads-card ads-flex ads-flex-col ads-justify-between">
-      <h3 class="ads-text-subtle ads-mb-2" style="margin-top: 0;">Family Coverage</h3>
-      <div class="ads-text-large ads-mb-2">₹8L</div>
-      <div class="ads-lozenge ads-lozenge-info" style="align-self: flex-start;">Base + Top-up</div>
-    </div>
-    <div class="ads-card ads-flex ads-flex-col ads-justify-between">
-      <h3 class="ads-text-subtle ads-mb-2" style="margin-top: 0;">Claims This Year</h3>
-      <div class="ads-text-large ads-mb-2">2</div>
-      <div class="ads-text-subtle">₹65,000 utilized</div>
-    </div>
-    <div class="ads-card ads-flex ads-flex-col ads-justify-between">
-      <h3 class="ads-text-subtle ads-mb-2" style="margin-top: 0;">Wellness Points</h3>
-      <div class="ads-text-large ads-mb-2">2,450</div>
-      <div class="ads-lozenge ads-lozenge-success" style="align-self: flex-start;">Redeem for rewards</div>
-    </div>
-    <div class="ads-card ads-flex ads-flex-col ads-justify-between">
-      <h3 class="ads-text-subtle ads-mb-2" style="margin-top: 0;">Preventive Checkups</h3>
-      <div class="ads-text-large ads-mb-2">4/5</div>
-      <div class="ads-text-subtle">Remaining this year</div>
+  <div class="antd-card antd-mb-6 antd-flex antd-flex-col antd-gap-2">
+    <h3 class="antd-text-large" style="margin: 0;">TCS Group Health Insurance</h3>
+    <div class="antd-text-secondary">
+      <p style="margin: 4px 0;"><strong>Employee ID:</strong> EMP001234 &nbsp;|&nbsp; <strong>Department:</strong> IT Services &nbsp;|&nbsp; <strong>Grade:</strong> Digital</p>
+      <p style="margin: 4px 0;"><strong>Coverage:</strong> ₹5,00,000 (Base) + ₹3,00,000 (Super Top-up)</p>
+      <p style="margin: 4px 0;"><strong>Employer Contribution:</strong> 100% &nbsp;|&nbsp; <strong>Your Contribution:</strong> ₹0</p>
+      <p style="margin: 4px 0;"><strong>Dependents Covered:</strong> Spouse, 2 Children, Parents</p>
     </div>
   </div>
 
-  <h3 class="ads-text-h400 ads-mt-6 ads-mb-4">Quick Actions</h3>
-  <div class="ads-grid-4 ads-mb-6">
-    <button class="ads-btn ads-btn-primary" onclick="showScreen('claims'); startNewClaim()">+ File Claim (Fast-Track)</button>
-    <button class="ads-btn" onclick="showScreen('cashless')">Cashless Hospital</button>
-    <button class="ads-btn" onclick="showScreen('corporate-benefits')">View All Benefits</button>
+  <div class="antd-grid-4 antd-mb-6">
+    <div class="antd-card antd-flex antd-flex-col antd-justify-between">
+      <h3 class="antd-card-title" style="margin-top: 0; margin-bottom: 8px;">Family Coverage</h3>
+      <div class="antd-text-large">₹8L</div>
+      <div class="antd-tag antd-tag-info" style="align-self: flex-start; margin-top: 8px;">Base + Top-up</div>
+    </div>
+    <div class="antd-card antd-flex antd-flex-col antd-justify-between">
+      <h3 class="antd-card-title" style="margin-top: 0; margin-bottom: 8px;">Claims This Year</h3>
+      <div class="antd-text-large">2</div>
+      <div class="antd-text-secondary" style="margin-top: 8px;">₹65,000 utilized</div>
+    </div>
+    <div class="antd-card antd-flex antd-flex-col antd-justify-between">
+      <h3 class="antd-card-title" style="margin-top: 0; margin-bottom: 8px;">Wellness Points</h3>
+      <div class="antd-text-large">2,450</div>
+      <div class="antd-tag antd-tag-success" style="align-self: flex-start; margin-top: 8px;">Redeem for rewards</div>
+    </div>
+    <div class="antd-card antd-flex antd-flex-col antd-justify-between">
+      <h3 class="antd-card-title" style="margin-top: 0; margin-bottom: 8px;">Preventive Checkups</h3>
+      <div class="antd-text-large">4/5</div>
+      <div class="antd-text-secondary" style="margin-top: 8px;">Remaining this year</div>
+    </div>
   </div>
 
-  <div class="ads-grid-2 ads-mt-6">
-    <div class="ads-flex ads-flex-col ads-gap-2">
-      <h3 class="ads-text-h400">Corporate Benefits Summary</h3>
-      <div class="ads-card ads-flex ads-flex-col ads-gap-2 ads-justify-between">
-        <div class="ads-flex ads-justify-between ads-items-center">
-          <span class="ads-text-h400" style="margin: 0;">Health Insurance</span>
-          <span class="ads-lozenge ads-lozenge-success">Active</span>
+  <h3 class="antd-card-title antd-mt-6 antd-mb-4">Quick Actions</h3>
+  <div class="antd-grid-4 antd-mb-6">
+    <button class="antd-btn antd-btn-primary" onclick="showScreen('claims'); startNewClaim()">+ File Claim (Fast-Track)</button>
+    <button class="antd-btn" onclick="showScreen('cashless')">Cashless Hospital</button>
+    <button class="antd-btn" onclick="showScreen('corporate-benefits')">View All Benefits</button>
+  </div>
+
+  <div class="antd-grid-2 antd-mt-6">
+    <div class="antd-flex antd-flex-col antd-gap-4">
+      <h3 class="antd-card-title" style="margin: 0;">Corporate Benefits Summary</h3>
+      <div class="antd-card antd-flex antd-flex-col antd-gap-2 antd-justify-between">
+        <div class="antd-flex antd-justify-between antd-items-center">
+          <span class="antd-text-strong" style="margin: 0;">Health Insurance</span>
+          <span class="antd-tag antd-tag-success">Active</span>
         </div>
-        <p class="ads-text-subtle" style="margin: 0;">₹8L coverage | 12% used</p>
+        <p class="antd-text-secondary" style="margin: 0;">₹8L coverage | 12% used</p>
       </div>
-      <div class="ads-card ads-flex ads-flex-col ads-gap-2 ads-justify-between">
-        <div class="ads-flex ads-justify-between ads-items-center">
-          <span class="ads-text-h400" style="margin: 0;">Life Insurance</span>
-          <span class="ads-lozenge ads-lozenge-success">Active</span>
+      <div class="antd-card antd-flex antd-flex-col antd-gap-2 antd-justify-between">
+        <div class="antd-flex antd-justify-between antd-items-center">
+          <span class="antd-text-strong" style="margin: 0;">Life Insurance</span>
+          <span class="antd-tag antd-tag-success">Active</span>
         </div>
-        <p class="ads-text-subtle" style="margin: 0;">₹20L coverage | HDFC Life</p>
+        <p class="antd-text-secondary" style="margin: 0;">₹20L coverage | HDFC Life</p>
       </div>
-      <div class="ads-card ads-flex ads-flex-col ads-gap-2 ads-justify-between">
-        <div class="ads-flex ads-justify-between ads-items-center">
-          <span class="ads-text-h400" style="margin: 0;">Accident Cover</span>
-          <span class="ads-lozenge ads-lozenge-success">Active</span>
+      <div class="antd-card antd-flex antd-flex-col antd-gap-2 antd-justify-between">
+        <div class="antd-flex antd-justify-between antd-items-center">
+          <span class="antd-text-strong" style="margin: 0;">Accident Cover</span>
+          <span class="antd-tag antd-tag-success">Active</span>
         </div>
-        <p class="ads-text-subtle" style="margin: 0;">₹10L coverage | Bajaj Allianz</p>
+        <p class="antd-text-secondary" style="margin: 0;">₹10L coverage | Bajaj Allianz</p>
       </div>
     </div>
     
-    <div class="ads-flex ads-flex-col ads-gap-2">
-      <h3 class="ads-text-h400">Recent Activity</h3>
-      <div class="ads-card ads-p-0" style="overflow-x: auto;">
-        <table class="ads-table">
+    <div class="antd-flex antd-flex-col antd-gap-4">
+      <h3 class="antd-card-title" style="margin: 0;">Recent Activity</h3>
+      <div class="antd-card antd-p-0" style="overflow-x: auto; border: 1px solid var(--antd-border); border-radius: var(--antd-radius);">
+        <table class="antd-table">
           <thead>
             <tr>
               <th>Date</th>
@@ -362,17 +389,17 @@
             <tr>
               <td>08 Jul 2026</td>
               <td>Claim submitted</td>
-              <td><span class="ads-lozenge ads-lozenge-warning">Pending</span></td>
+              <td><span class="antd-tag antd-tag-warning">Pending</span></td>
             </tr>
             <tr>
               <td>02 Jul 2026</td>
               <td>Claim approved</td>
-              <td><span class="ads-lozenge ads-lozenge-success">Approved</span></td>
+              <td><span class="antd-tag antd-tag-success">Approved</span></td>
             </tr>
             <tr>
               <td>28 Jun 2026</td>
               <td>Cashless approved</td>
-              <td><span class="ads-lozenge ads-lozenge-success">Approved</span></td>
+              <td><span class="antd-tag antd-tag-success">Approved</span></td>
             </tr>
           </tbody>
         </table>
@@ -383,401 +410,831 @@
 </div>
 <!-- POLICIES -->
 <div class="screen" id="screen-policies">
-<h2><i data-lucide="clipboard-list" class="icon-sm"></i> My Policies</h2>
-<button class="btn" onclick="showScreen('insurance-market')">+ Buy New Policy</button>
-<button class="btn btn-secondary" onclick="openModal('policy-compare-modal')">Compare Policies</button>
-<div id="individual-policies">
-<div class="insurance-card">
-<div class="insurance-logo star-health">⭐ Star Health</div>
-<div class="corp-tag">Individual Policy</div>
-<h3>Family Health Optima Plus</h3>
-<p><strong>Policy No:</strong> STAR/FHO/2025/1234567 | <strong>Insurer:</strong> Star Health &amp; Allied Insurance</p>
-<p><strong>Sum Insured:</strong> ₹5,00,000 | <strong>Used:</strong> ₹1,75,000 (35%)</p>
-<div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
-<p><strong>Members:</strong> Rahul (Self), Priya (Spouse), Aarav (Son)</p>
-<p><strong>Premium:</strong> ₹18,500/year | <strong>Valid Till:</strong> 15 Aug 2026</p>
-<p><strong>Key Features:</strong> Room rent uncapped, Pre/Post hospitalization 60/90 days, No claim bonus</p>
-<button class="btn" onclick="openPolicyDetail('STAR')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('download-policy-modal')"><i data-lucide="file-text" class="icon-sm"></i> Download</button>
-<button class="btn btn-secondary" onclick="openModal('policy-renew-modal')">🔄 Renew</button>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="clipboard-list" class="icon-sm"></i> My Policies</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('policy-compare-modal')">Compare Policies</button>
+    <button class="antd-btn antd-btn-primary" onclick="showScreen('insurance-market')">+ Buy New Policy</button>
+  </div>
 </div>
-<div class="insurance-card">
-<div class="insurance-logo hdfc">HDFC ERGO</div>
-<div class="corp-tag">Individual Policy</div>
-<h3>Optima Restore</h3>
-<p><strong>Policy No:</strong> HDFC/OR/2025/9876543 | <strong>Insurer:</strong> HDFC ERGO General Insurance</p>
-<p><strong>Sum Insured:</strong> ₹5,00,000 (with restoration benefit)</p>
-<div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
-<p><strong>Premium:</strong> ₹12,800/year | <strong>Valid Till:</strong> 30 Nov 2026</p>
-<p><strong>Key Features:</strong> Unlimited restoration, No claim bonus up to 100%, Global coverage</p>
-<button class="btn" onclick="openPolicyDetail('HDFC')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('download-policy-modal')"><i data-lucide="file-text" class="icon-sm"></i> Download</button>
+
+<div id="individual-policies" class="antd-flex antd-flex-col antd-gap-6">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo star-health" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #fffbe6; color: var(--antd-warning); font-weight: bold; font-size: 10px; text-align: center;">Star Health</div>
+        <div>
+          <h3 class="antd-card-title" style="margin: 0;">Family Health Optima Plus</h3>
+          <p class="antd-text-secondary" style="margin: 4px 0 0 0;">Star Health &amp; Allied Insurance</p>
+        </div>
+      </div>
+      <span class="antd-tag antd-tag-info">Individual Policy</span>
+    </div>
+    
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Policy No:</strong> STAR/FHO/2025/1234567</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Members:</strong> Rahul (Self), Priya (Spouse), Aarav (Son)</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Premium:</strong> ₹18,500/year | <strong>Valid Till:</strong> 15 Aug 2026</p>
+      </div>
+      <div>
+        <div class="antd-flex antd-justify-between antd-items-center" style="margin-bottom: 4px;">
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Sum Insured:</strong> ₹5,00,000</p>
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Used:</strong> ₹1,75,000 (35%)</p>
+        </div>
+        <div style="background-color: var(--antd-border); border-radius: 4px; height: 8px; margin: 8px 0;"><div style="width: 35%; background-color: var(--antd-primary); border-radius: 4px; height: 100%;"></div></div>
+        <p class="antd-text-tertiary" style="margin: 0;"><strong>Key Features:</strong> Room rent uncapped, Pre/Post hospitalization 60/90 days, No claim bonus</p>
+      </div>
+    </div>
+    
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openPolicyDetail('STAR')">View Details</button>
+      <button class="antd-btn" onclick="openModal('download-policy-modal')"><i data-lucide="download" class="icon-sm"></i> Download</button>
+      <button class="antd-btn" onclick="openModal('policy-renew-modal')"><i data-lucide="refresh-cw" class="icon-sm"></i> Renew</button>
+    </div>
+  </div>
+
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo hdfc" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #fff2f0; color: var(--antd-error); font-weight: bold; font-size: 10px; text-align: center;">HDFC ERGO</div>
+        <div>
+          <h3 class="antd-card-title" style="margin: 0;">Optima Restore</h3>
+          <p class="antd-text-secondary" style="margin: 4px 0 0 0;">HDFC ERGO General Insurance</p>
+        </div>
+      </div>
+      <span class="antd-tag antd-tag-info">Individual Policy</span>
+    </div>
+    
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Policy No:</strong> HDFC/OR/2025/9876543</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Premium:</strong> ₹12,800/year | <strong>Valid Till:</strong> 30 Nov 2026</p>
+      </div>
+      <div>
+        <div class="antd-flex antd-justify-between antd-items-center" style="margin-bottom: 4px;">
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Sum Insured:</strong> ₹5,00,000</p>
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Used:</strong> ₹75,000 (15%)</p>
+        </div>
+        <div style="background-color: var(--antd-border); border-radius: 4px; height: 8px; margin: 8px 0;"><div style="width: 15%; background-color: var(--antd-primary); border-radius: 4px; height: 100%;"></div></div>
+        <p class="antd-text-tertiary" style="margin: 0;"><strong>Key Features:</strong> Unlimited restoration, No claim bonus up to 100%, Global coverage</p>
+      </div>
+    </div>
+    
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openPolicyDetail('HDFC')">View Details</button>
+      <button class="antd-btn" onclick="openModal('download-policy-modal')"><i data-lucide="download" class="icon-sm"></i> Download</button>
+    </div>
+  </div>
 </div>
-</div>
+
 <div class="hidden" id="corporate-policies">
-<div class="insurance-card" style="border-color: #ffd700; background: linear-gradient(135deg, #fff9e6, #ffffff);">
-<div class="insurance-logo" style="color: #1a2b4a;"><i data-lucide="building" class="icon-sm"></i> TCS Group Insurance</div>
-<div class="corp-tag">Corporate Group Policy</div>
-<h3>TCS Employee Group Health Cover</h3>
-<p><strong>Policy No:</strong> TCS/GHI/2026/EMP001234 | <strong>Insurer:</strong> ICICI Lombard General Insurance</p>
-<p><strong>Base Coverage:</strong> ₹5,00,000 | <strong>Super Top-up:</strong> ₹3,00,000 | <strong>Total:</strong> ₹8,00,000</p>
-<div class="coverage-bar"><div class="coverage-fill" style="width: 12%"></div></div>
-<p><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
-<p><strong>Premium:</strong> ₹0 (100% employer paid) | <strong>Valid Till:</strong> 31 Mar 2027</p>
-<p><strong>Key Features:</strong> Cashless at 8,500+ hospitals, Maternity cover ₹50,000, Annual health checkup</p>
-<button class="btn btn-corp" onclick="openPolicyDetail('TCS')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('download-policy-modal')"><i data-lucide="file-text" class="icon-sm"></i> Download</button>
-</div>
+  <div class="antd-card" style="border-color: var(--antd-warning-border) !important; background: #fffbe6;">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #001529; color: #ffffff; font-weight: bold; font-size: 10px; text-align: center;"><i data-lucide="building" class="icon-sm"></i> TCS</div>
+        <div>
+          <h3 class="antd-card-title" style="margin: 0;">TCS Employee Group Health Cover</h3>
+          <p class="antd-text-secondary" style="margin: 4px 0 0 0;">ICICI Lombard General Insurance</p>
+        </div>
+      </div>
+      <span class="antd-tag antd-tag-warning">Corporate Group Policy</span>
+    </div>
+    
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Policy No:</strong> TCS/GHI/2026/EMP001234</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Premium:</strong> ₹0 (100% employer paid) | <strong>Valid Till:</strong> 31 Mar 2027</p>
+      </div>
+      <div>
+        <div class="antd-flex antd-justify-between antd-items-center" style="margin-bottom: 4px;">
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Total Coverage:</strong> ₹8,00,000</p>
+          <p class="antd-text-secondary" style="margin: 0;"><strong>Used:</strong> 12%</p>
+        </div>
+        <div style="background-color: var(--antd-border); border-radius: 4px; height: 8px; margin: 8px 0;"><div style="width: 12%; background-color: var(--antd-warning); border-radius: 4px; height: 100%;"></div></div>
+        <p class="antd-text-tertiary" style="margin: 0;"><strong>Key Features:</strong> Cashless at 8,500+ hospitals, Maternity cover ₹50,000, Annual health checkup</p>
+      </div>
+    </div>
+    
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" style="background-color: var(--antd-warning) !important; border-color: var(--antd-warning) !important;" onclick="openPolicyDetail('TCS')">View Details</button>
+      <button class="antd-btn" onclick="openModal('download-policy-modal')"><i data-lucide="download" class="icon-sm"></i> Download</button>
+    </div>
+  </div>
 </div>
 </div>
 <!-- INSURANCE MARKETPLACE -->
 <div class="screen" id="screen-insurance-market">
-<h2><i data-lucide="shopping-cart" class="icon-sm"></i> Health Insurance Marketplace</h2>
-<p style="color: #666; margin-bottom: 20px;">Compare and buy from India's top insurers</p>
-<div style="margin-bottom: 20px; display: flex; gap: var(--space-2); align-items: center;">
-<div class="search-container" style="position: relative; max-width: 600px; flex: 1;">
-  <i data-lucide="search" class="icon-sm" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);"></i>
-  <input class="form-control" placeholder="Search by insurer name, plan type, or city..." style="width: 100%; padding-left: 36px;" type="text"/>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <div>
+    <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="shopping-cart" class="icon-sm"></i> Health Insurance Marketplace</h2>
+    <p class="antd-text-secondary" style="margin: 4px 0 0 0;">Compare and buy from India's top insurers</p>
+  </div>
 </div>
-<button class="btn btn-secondary" onclick="openModal('filter-plans-modal')">Filter</button>
-<button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
+
+<div class="antd-card antd-mb-6" style="padding: 16px;">
+  <div class="antd-flex antd-gap-4 antd-items-center">
+    <div class="search-container" style="position: relative; flex: 1;">
+      <i data-lucide="search" class="icon-sm" style="position: absolute; left: 12px; top: 8px; color: var(--antd-text-tertiary);"></i>
+      <input class="form-control" placeholder="Search by insurer name, plan type, or city..." style="width: 100%; padding: 8px 8px 8px 36px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);" type="text"/>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="openModal('filter-plans-modal')">Filter</button>
+      <button class="antd-btn antd-btn-primary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
+    </div>
+  </div>
 </div>
-<h3>🏆 Recommended For You</h3>
-<div class="insurance-card">
-<div class="insurance-logo maxbupa">Max Bupa</div>
-<h3>Heartbeat Plan</h3>
-<p><strong>Insurer:</strong> Niva Bupa Health Insurance (formerly Max Bupa)</p>
-<p><strong>Coverage:</strong> ₹5L - ₹6 Cr | <strong>Premium:</strong> From ₹8,500/year</p>
-<p><strong>Features:</strong> <i data-lucide="check" class="icon-sm"></i> No room rent cap <i data-lucide="check" class="icon-sm"></i> 100% restoration <i data-lucide="check" class="icon-sm"></i> Free health checkup</p>
-<p><strong>Claim Settlement Ratio:</strong> 98.2% | <strong>Network:</strong> 11,000+ hospitals</p>
-<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-<button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare</button>
-</div>
-<div class="insurance-card">
-<div class="insurance-logo aditya">Aditya Birla</div>
-<h3>Activ Health Platinum</h3>
-<p><strong>Insurer:</strong> Aditya Birla Health Insurance</p>
-<p><strong>Coverage:</strong> ₹5L - ₹1 Cr | <strong>Premium:</strong> From ₹9,200/year</p>
-<p><strong>Features:</strong> <i data-lucide="check" class="icon-sm"></i> Wellness rewards <i data-lucide="check" class="icon-sm"></i> OPD cover <i data-lucide="check" class="icon-sm"></i> Cumulative bonus</p>
-<p><strong>Claim Settlement Ratio:</strong> 97.8% | <strong>Network:</strong> 9,500+ hospitals</p>
-<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-<button class="btn btn-secondary">Compare</button>
-</div>
-<div class="insurance-card">
-<div class="insurance-logo care">Care Health</div>
-<h3>Care Supreme</h3>
-<p><strong>Insurer:</strong> Care Health Insurance (formerly Religare)</p>
-<p><strong>Coverage:</strong> ₹3L - ₹50L | <strong>Premium:</strong> From ₹7,800/year</p>
-<p><strong>Features:</strong> <i data-lucide="check" class="icon-sm"></i> Unlimited restoration <i data-lucide="check" class="icon-sm"></i> Alternative treatment cover</p>
-<p><strong>Claim Settlement Ratio:</strong> 96.5% | <strong>Network:</strong> 13,000+ hospitals</p>
-<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-<button class="btn btn-secondary">Compare</button>
+
+<h3 class="antd-card-title antd-mb-4">🏆 Recommended For You</h3>
+
+<div class="antd-flex antd-flex-col antd-gap-4">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo maxbupa" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #e6f4ff; color: var(--antd-primary); font-weight: bold; font-size: 10px; text-align: center;">Max Bupa</div>
+        <h3 class="antd-card-title" style="margin: 0;">Heartbeat Plan</h3>
+      </div>
+      <span class="antd-tag antd-tag-success">Recommended</span>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Insurer:</strong> Niva Bupa Health Insurance</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Coverage:</strong> ₹5L - ₹6 Cr</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Premium:</strong> From ₹8,500/year</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Features:</strong> <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> No room rent cap <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> 100% restoration <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Free health checkup</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Claim Settlement Ratio:</strong> 98.2%</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Network:</strong> 11,000+ hospitals</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="antd-btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="antd-btn" onclick="openModal('compare-plans-modal')">Compare</button>
+    </div>
+  </div>
+
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo aditya" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #fff2f0; color: var(--antd-error); font-weight: bold; font-size: 10px; text-align: center;">Aditya Birla</div>
+        <h3 class="antd-card-title" style="margin: 0;">Activ Health Platinum</h3>
+      </div>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Insurer:</strong> Aditya Birla Health Insurance</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Coverage:</strong> ₹5L - ₹1 Cr</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Premium:</strong> From ₹9,200/year</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Features:</strong> <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Wellness rewards <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> OPD cover <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Cumulative bonus</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Claim Settlement Ratio:</strong> 97.8%</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Network:</strong> 9,500+ hospitals</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="antd-btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="antd-btn">Compare</button>
+    </div>
+  </div>
+
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <div class="antd-flex antd-gap-4 antd-items-center">
+        <div class="insurance-logo care" style="width: 48px; height: 48px; border-radius: var(--antd-radius-sm); display: flex; align-items: center; justify-content: center; background: #e6f4ff; color: var(--antd-info); font-weight: bold; font-size: 10px; text-align: center;">Care Health</div>
+        <h3 class="antd-card-title" style="margin: 0;">Care Supreme</h3>
+      </div>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Insurer:</strong> Care Health Insurance</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Coverage:</strong> ₹3L - ₹50L</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Premium:</strong> From ₹7,800/year</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Features:</strong> <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Unlimited restoration <i data-lucide="check" class="icon-sm" style="color: var(--antd-success);"></i> Alternative treatment cover</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Claim Settlement Ratio:</strong> 96.5%</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Network:</strong> 13,000+ hospitals</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="antd-btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="antd-btn">Compare</button>
+    </div>
+  </div>
 </div>
 </div>
 <!-- CLAIMS -->
 <div class="screen" id="screen-claims">
-<h2><i data-lucide="coins" class="icon-sm"></i> Claims</h2>
-<button class="btn" onclick="startNewClaim()">+ New Claim</button>
-<button class="btn btn-secondary" onclick="openModal('filter-claims-modal')">Filter</button>
-<button class="btn btn-secondary" onclick="openModal('export-claims-modal')">Export</button>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="coins" class="icon-sm"></i> Claims</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('filter-claims-modal')">Filter</button>
+    <button class="antd-btn" onclick="openModal('export-claims-modal')">Export</button>
+    <button class="antd-btn antd-btn-primary" onclick="startNewClaim()">+ New Claim</button>
+  </div>
+</div>
+
 <div class="tab-container">
-<div class="tab-buttons">
-<button class="tab-btn active" onclick="switchTab('claims', 'all')">All Claims</button>
-<button class="tab-btn" onclick="switchTab('claims', 'pending')">Pending</button>
-<button class="tab-btn" onclick="switchTab('claims', 'approved')">Approved</button>
-<button class="tab-btn" onclick="switchTab('claims', 'rejected')">Rejected</button>
-</div>
-<div class="tab-content active" id="claims-all">
-<div class="card">
-<h3>Claim #CLM-2026-0045 <span class="badge badge-warning">Pending</span></h3>
-<p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹45,000</p>
-<p><strong>Hospital:</strong> Apollo Hospital, Mumbai | <strong>Date:</strong> 05 Jul 2026</p>
-<p><strong>Policy:</strong> Star Health - Family Health Optima</p>
-<button class="btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('track-claim-modal')">Track Status</button>
-</div>
-<div class="card">
-<h3>Claim #CLM-2026-0044 <span class="badge badge-success">Approved</span></h3>
-<p><strong>Patient:</strong> Priya Sharma | <strong>Amount:</strong> ₹25,000 (Paid)</p>
-<p><strong>Hospital:</strong> Fortis Hospital | <strong>Date:</strong> 28 Jun 2026</p>
-<button class="btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('payment-details-modal')">View Payment</button>
-</div>
-<div class="card">
-<h3>Claim #CLM-2026-0039 <span class="badge badge-danger">Rejected</span></h3>
-<p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹18,000</p>
-<p><strong>Reason:</strong> Pre-existing condition not disclosed</p>
-<button class="btn btn-danger" onclick="openModal('appeal-claim-modal')">Appeal</button>
-<button class="btn btn-secondary" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
-</div>
-</div>
+  <div class="tab-buttons" style="border-bottom: 1px solid var(--antd-border); margin-bottom: 24px;">
+    <button class="tab-btn active" onclick="switchTab('claims', 'all')" style="padding: 12px 24px; border: none; border-bottom: 2px solid var(--antd-primary); background: none; color: var(--antd-primary); font-weight: 500; cursor: pointer;">All Claims</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'pending')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Pending</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'approved')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Approved</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'rejected')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Rejected</button>
+  </div>
+
+  <div class="tab-content active" id="claims-all">
+    <div class="antd-flex antd-flex-col antd-gap-4">
+      
+      <div class="antd-card">
+        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0045</h3>
+          <span class="antd-tag antd-tag-warning">Pending</span>
+        </div>
+        <div class="antd-grid-2 antd-mb-4">
+          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Rahul Sharma</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹45,000</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Hospital</p><p class="antd-text-strong" style="margin: 0;">Apollo Hospital, Mumbai</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Date</p><p class="antd-text-strong" style="margin: 0;">05 Jul 2026</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Policy</p><p class="antd-text-strong" style="margin: 0;">Star Health - Family Health Optima</p></div>
+        </div>
+        <div class="antd-flex antd-gap-2">
+          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
+          <button class="antd-btn" onclick="openModal('track-claim-modal')">Track Status</button>
+        </div>
+      </div>
+
+      <div class="antd-card">
+        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0044</h3>
+          <span class="antd-tag antd-tag-success">Approved</span>
+        </div>
+        <div class="antd-grid-2 antd-mb-4">
+          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Priya Sharma</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹25,000 (Paid)</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Hospital</p><p class="antd-text-strong" style="margin: 0;">Fortis Hospital</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Date</p><p class="antd-text-strong" style="margin: 0;">28 Jun 2026</p></div>
+        </div>
+        <div class="antd-flex antd-gap-2">
+          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
+          <button class="antd-btn" onclick="openModal('payment-details-modal')">View Payment</button>
+        </div>
+      </div>
+
+      <div class="antd-card">
+        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0039</h3>
+          <span class="antd-tag antd-tag-error">Rejected</span>
+        </div>
+        <div class="antd-grid-2 antd-mb-4">
+          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Rahul Sharma</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹18,000</p></div>
+          <div><p class="antd-text-secondary" style="margin: 0;">Reason</p><p class="antd-text-strong" style="margin: 0; color: var(--antd-error);">Pre-existing condition not disclosed</p></div>
+        </div>
+        <div class="antd-flex antd-gap-2">
+          <button class="antd-btn antd-btn-primary" style="background-color: var(--antd-error) !important; border-color: var(--antd-error) !important;" onclick="openModal('appeal-claim-modal')">Appeal</button>
+          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 </div>
 <!-- NEW CLAIM WIZARD -->
 <div class="screen" id="screen-new-claim">
-<h2><i data-lucide="coins" class="icon-sm"></i> Create New Claim</h2>
-<div class="alert alert-success hidden" id="corporate-fast-track">
-      <i data-lucide="zap" class="icon-sm"></i> <strong>Corporate Fast-Track:</strong> Your claim will be processed within 24 hours (vs 3-5 days for regular claims).
-    </div>
-<div class="stepper">
-<div class="step active" id="step1">1. Patient &amp; Policy</div>
-<div class="step" id="step2">2. Treatment Details</div>
-<div class="step" id="step3">3. Documents</div>
-<div class="step" id="step4">4. Review</div>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="coins" class="icon-sm"></i> Create New Claim</h2>
 </div>
-<div id="claim-step-1">
-<h3>Select Patient</h3>
-<select class="form-control">
-<option>Rahul Sharma (Self)</option>
-<option>Priya Sharma (Spouse)</option>
-<option>Aarav Sharma (Son)</option>
-</select>
-<h3>Select Policy</h3>
-<select class="form-control" id="claim-policy-select">
-<option>Star Health - Family Health Optima (₹5L)</option>
-<option>HDFC Ergo - Optima Restore (₹5L)</option>
-</select>
-<h3>Claim Type</h3>
-<select class="form-control">
-<option>Reimbursement</option>
-<option>Pre-authorization</option>
-</select>
-<br/><br/>
-<button class="btn" onclick="claimNext(2)">Next <i data-lucide="arrow-right" class="icon-sm"></i></button>
+
+<div class="antd-card antd-mb-6" style="background-color: var(--antd-success-bg); border-color: var(--antd-success-border) !important;" id="corporate-fast-track">
+  <p style="margin: 0; color: var(--antd-success);">
+    <i data-lucide="zap" class="icon-sm"></i> <strong>Corporate Fast-Track:</strong> Your claim will be processed within 24 hours (vs 3-5 days for regular claims).
+  </p>
 </div>
+
+<div class="stepper antd-flex antd-mb-6" style="border-bottom: 1px solid var(--antd-border); padding-bottom: 16px;">
+  <div class="step active" id="step1" style="flex: 1; text-align: center; color: var(--antd-primary); font-weight: 600;">1. Patient &amp; Policy</div>
+  <div class="step" id="step2" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">2. Treatment</div>
+  <div class="step" id="step3" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">3. Documents</div>
+  <div class="step" id="step4" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">4. Review</div>
+</div>
+
+<div id="claim-step-1" class="antd-card">
+  <h3 class="antd-card-title">Select Patient</h3>
+  <select class="form-control antd-mb-4" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);">
+    <option>Rahul Sharma (Self)</option>
+    <option>Priya Sharma (Spouse)</option>
+    <option>Aarav Sharma (Son)</option>
+  </select>
+  
+  <h3 class="antd-card-title">Select Policy</h3>
+  <select class="form-control antd-mb-4" id="claim-policy-select" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);">
+    <option>Star Health - Family Health Optima (₹5L)</option>
+    <option>HDFC Ergo - Optima Restore (₹5L)</option>
+  </select>
+  
+  <h3 class="antd-card-title">Claim Type</h3>
+  <select class="form-control" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);">
+    <option>Reimbursement</option>
+    <option>Pre-authorization</option>
+  </select>
+  
+  <div class="antd-mt-6">
+    <button class="antd-btn antd-btn-primary" onclick="claimNext(2)">Next</button>
+  </div>
+</div>
+
 <div class="hidden" id="claim-step-2">
-<h3>Hospital Details</h3>
-<input class="form-control" placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai"/>
-<button class="btn btn-secondary" onclick="openModal('search-hospital-modal')"><i data-lucide="search" class="icon-sm"></i> Search Hospital</button>
-<h3>Treatment Details</h3>
-<input class="form-control" placeholder="Diagnosis" type="text" value="Viral Fever"/>
-<label>Admission Date</label>
-<input class="form-control" type="date" value="2026-07-05"/>
-<label>Discharge Date</label>
-<input class="form-control" type="date" value="2026-07-08"/>
-<h3>Claim Amount</h3>
-<input class="form-control" placeholder="₹" type="number" value="45000"/>
-<br/><br/>
-<button class="btn btn-secondary" onclick="claimNext(1)"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
-<button class="btn" onclick="claimNext(3)">Next <i data-lucide="arrow-right" class="icon-sm"></i></button>
-</div>
-<div class="hidden" id="claim-step-3">
-<h3>Upload Documents</h3>
-<p><i data-lucide="bot" class="icon-sm"></i> AI will auto-verify these documents before submission.</p>
-<div class="file-upload-area" onclick="openModal('upload-document-modal')">
-<p style="font-size: 48px;"><i data-lucide="folder" class="icon-lg"></i></p>
-<p><strong>Click to upload or drag and drop</strong></p>
-<p style="font-size: 12px; color: #666;">PDF, JPG, PNG (Max 10MB each)</p>
-</div>
-<div class="card">
-<strong>1. Final Hospital Bill</strong> <span class="badge badge-success"><i data-lucide="check" class="icon-sm"></i> Verified</span>
-<p>hospital_bill.pdf (2.3 MB)</p>
-<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
-<button class="btn btn-secondary" onclick="openModal('replace-document-modal')">Replace</button>
-</div>
-<div class="card">
-<strong>2. Discharge Summary</strong> <span class="badge badge-success"><i data-lucide="check" class="icon-sm"></i> Verified</span>
-<p>discharge.pdf (1.1 MB)</p>
-</div>
-<div class="card">
-<strong>3. Payment Receipt</strong> <span class="badge badge-warning"><i data-lucide="alert-triangle" class="icon-sm"></i> Amount mismatch</span>
-<p>receipt.pdf (0.8 MB)</p>
-<button class="btn btn-secondary" onclick="openModal('fix-document-error-modal')">Fix Error</button>
-</div>
-<br/><br/>
-<button class="btn btn-secondary" onclick="claimNext(2)"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
-<button class="btn" onclick="claimNext(4)">Next <i data-lucide="arrow-right" class="icon-sm"></i></button>
-</div>
-<div class="hidden" id="claim-step-4">
-<h3>Review &amp; Submit</h3>
-<div class="card">
-<p><strong>Patient:</strong> Rahul Sharma</p>
-<p><strong>Policy:</strong> Star Health - Family Health Optima</p>
-<p><strong>Hospital:</strong> Apollo Hospital, Mumbai</p>
-<p><strong>Diagnosis:</strong> Viral Fever</p>
-<p><strong>Amount:</strong> ₹45,000</p>
-<p><strong>Documents:</strong> 4 uploaded</p>
-<p><strong>Bank:</strong> HDFC ****4521</p>
-<button class="btn btn-secondary" onclick="openModal('edit-bank-details-modal')">Edit Bank Details</button>
-</div>
-<div class="card" style="background:#e8f5e9;">
-        <i data-lucide="bot" class="icon-sm"></i> <strong>AI Confidence Score: 92%</strong><br/>
-        All documents verified. Claim is likely to be approved.
+  <div class="antd-card">
+    <h3 class="antd-card-title">Hospital Details</h3>
+    <input class="form-control antd-mb-4" placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    <button class="antd-btn antd-mb-6" onclick="openModal('search-hospital-modal')">Search Hospital</button>
+    
+    <h3 class="antd-card-title">Treatment Details</h3>
+    <input class="form-control antd-mb-4" placeholder="Diagnosis" type="text" value="Viral Fever" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Admission Date</label>
+        <input class="form-control" type="date" value="2026-07-05" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
       </div>
-<button class="btn btn-secondary" onclick="claimNext(3)"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
-<button class="btn" onclick="submitClaim()"><i data-lucide="check" class="icon-sm"></i> Submit Claim</button>
+      <div>
+        <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Discharge Date</label>
+        <input class="form-control" type="date" value="2026-07-08" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+      </div>
+    </div>
+    
+    <h3 class="antd-card-title">Claim Amount</h3>
+    <input class="form-control" placeholder="₹" type="number" value="45000" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    
+    <div class="antd-flex antd-gap-2 antd-mt-6">
+      <button class="antd-btn" onclick="claimNext(1)">Back</button>
+      <button class="antd-btn antd-btn-primary" onclick="claimNext(3)">Next</button>
+    </div>
+  </div>
+</div>
+
+<div class="hidden" id="claim-step-3">
+  <div class="antd-card">
+    <h3 class="antd-card-title">Upload Documents</h3>
+    
+    <div class="file-upload-area antd-mb-6" onclick="openModal('upload-document-modal')" style="border: 1px dashed var(--antd-border); border-radius: var(--antd-radius); padding: 32px; text-align: center; background: #fafafa; cursor: pointer;">
+      <p style="font-size: 32px; color: var(--antd-primary); margin-bottom: 16px;"><i data-lucide="cloud-upload" class="icon-lg"></i></p>
+      <p class="antd-text-large" style="margin-bottom: 8px;">Click or drag file to this area to upload</p>
+      <p class="antd-text-secondary">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+    </div>
+    
+    <div class="antd-flex antd-flex-col antd-gap-4">
+      <div class="antd-card" style="padding: 16px;">
+        <div class="antd-flex antd-justify-between antd-items-center">
+          <div>
+            <p class="antd-text-strong" style="margin: 0;">1. Final Hospital Bill <span class="antd-tag antd-tag-success">Verified</span></p>
+            <p class="antd-text-secondary" style="margin: 4px 0 0 0;">hospital_bill.pdf (2.3 MB)</p>
+          </div>
+          <div class="antd-flex antd-gap-2">
+            <button class="antd-btn" onclick="openModal('view-document-modal')">View</button>
+            <button class="antd-btn" onclick="openModal('replace-document-modal')">Replace</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="antd-card" style="padding: 16px;">
+        <div class="antd-flex antd-justify-between antd-items-center">
+          <div>
+            <p class="antd-text-strong" style="margin: 0;">2. Discharge Summary <span class="antd-tag antd-tag-success">Verified</span></p>
+            <p class="antd-text-secondary" style="margin: 4px 0 0 0;">discharge.pdf (1.1 MB)</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="antd-card" style="padding: 16px; border-color: var(--antd-warning-border) !important;">
+        <div class="antd-flex antd-justify-between antd-items-center">
+          <div>
+            <p class="antd-text-strong" style="margin: 0;">3. Payment Receipt <span class="antd-tag antd-tag-warning">Amount mismatch</span></p>
+            <p class="antd-text-secondary" style="margin: 4px 0 0 0;">receipt.pdf (0.8 MB)</p>
+          </div>
+          <button class="antd-btn" onclick="openModal('fix-document-error-modal')">Fix Error</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="antd-flex antd-gap-2 antd-mt-6">
+      <button class="antd-btn" onclick="claimNext(2)">Back</button>
+      <button class="antd-btn antd-btn-primary" onclick="claimNext(4)">Next</button>
+    </div>
+  </div>
+</div>
+
+<div class="hidden" id="claim-step-4">
+  <div class="antd-card">
+    <h3 class="antd-card-title">Review &amp; Submit</h3>
+    
+    <div class="antd-card antd-mb-4" style="background: #fafafa; border: none;">
+      <div class="antd-grid-2">
+        <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">Rahul Sharma</p></div>
+        <div><p class="antd-text-secondary" style="margin: 0;">Policy</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">Star Health - Family Health Optima</p></div>
+        <div><p class="antd-text-secondary" style="margin: 0;">Hospital</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">Apollo Hospital, Mumbai</p></div>
+        <div><p class="antd-text-secondary" style="margin: 0;">Diagnosis</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">Viral Fever</p></div>
+        <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">₹45,000</p></div>
+        <div><p class="antd-text-secondary" style="margin: 0;">Documents</p><p class="antd-text-strong" style="margin: 0 0 16px 0;">4 uploaded</p></div>
+      </div>
+      
+      <div class="antd-flex antd-justify-between antd-items-center" style="border-top: 1px solid var(--antd-border); padding-top: 16px; margin-top: 8px;">
+        <div>
+          <p class="antd-text-secondary" style="margin: 0;">Bank Account</p>
+          <p class="antd-text-strong" style="margin: 0;">HDFC ****4521</p>
+        </div>
+        <button class="antd-btn" onclick="openModal('edit-bank-details-modal')">Edit Bank Details</button>
+      </div>
+    </div>
+    
+    <div class="antd-card antd-mb-6" style="background-color: var(--antd-info-bg); border-color: var(--antd-info-border) !important;">
+      <p style="margin: 0; color: var(--antd-info);">
+        <strong>System Verification Complete</strong><br/>
+        All documents are submitted properly. Your claim is ready.
+      </p>
+    </div>
+    
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="claimNext(3)">Back</button>
+      <button class="antd-btn antd-btn-primary" onclick="submitClaim()">Submit Claim</button>
+    </div>
+  </div>
 </div>
 </div>
 <!-- CASHLESS -->
 <div class="screen" id="screen-cashless">
-<h2><i data-lucide="hospital" class="icon-sm"></i> Cashless / Network Hospitals</h2>
-<div class="search-container" style="position: relative; max-width: 100%;">
-  <i data-lucide="search" class="icon-sm" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);"></i>
-  <input class="form-control" id="hospital-search" placeholder="Search hospital by name, city, or specialty..." style="width: 100%; padding-left: 36px;" type="text"/>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="hospital" class="icon-sm"></i> Network Hospitals</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('filter-hospitals-modal')">Filter</button>
+    <button class="antd-btn" onclick="openModal('map-view-modal')"><i data-lucide="map" class="icon-sm"></i> Map View</button>
+  </div>
 </div>
-<br/><br/>
-<button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
-<button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>
-<div class="insurance-card">
-<h3>Apollo Hospital, Mumbai <span class="badge badge-success">Network</span></h3>
-<p><i data-lucide="map-pin" class="icon-sm"></i> Andheri West, Mumbai | ⭐ 4.5/5 | <i data-lucide="phone" class="icon-sm"></i> 022-12345678</p>
-<p>Specialties: Cardiology, Orthopedics, General Medicine</p>
-<p><strong>Distance:</strong> 2.3 km | <strong>Insurers Accepted:</strong> Star Health, HDFC Ergo, ICICI Lombard</p>
-<button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
-<button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
-<button class="btn btn-secondary" onclick="openModal('directions-modal')">🧭 Directions</button>
+
+<div class="antd-card antd-mb-6" style="padding: 16px;">
+  <div class="search-container" style="position: relative; max-width: 100%;">
+    <i data-lucide="search" class="icon-sm" style="position: absolute; left: 12px; top: 8px; color: var(--antd-text-tertiary);"></i>
+    <input class="form-control" id="hospital-search" placeholder="Search hospital by name, city, or specialty..." style="width: 100%; padding: 8px 8px 8px 36px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);" type="text"/>
+  </div>
 </div>
-<div class="insurance-card">
-<h3>Fortis Hospital, Mumbai <span class="badge badge-success">Network</span></h3>
-<p><i data-lucide="map-pin" class="icon-sm"></i> Mulund, Mumbai | ⭐ 4.3/5 | <i data-lucide="phone" class="icon-sm"></i> 022-87654321</p>
-<p>Specialties: Neurology, Oncology, Pediatrics</p>
-<p><strong>Distance:</strong> 4.1 km</p>
-<button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
-<button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
+
+<div class="antd-flex antd-flex-col antd-gap-4">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <h3 class="antd-card-title" style="margin: 0;">Apollo Hospital, Mumbai</h3>
+      <span class="antd-tag antd-tag-success">Network</span>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><i data-lucide="map-pin" class="icon-sm"></i> Andheri West, Mumbai</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;">⭐ 4.5/5 | <i data-lucide="phone" class="icon-sm"></i> 022-12345678</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Distance:</strong> 2.3 km</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Specialties:</strong> Cardiology, Orthopedics, General Medicine</p>
+        <p class="antd-text-secondary" style="margin: 0;"><strong>Insurers Accepted:</strong> Star Health, HDFC Ergo, ICICI Lombard</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('cashless-request-modal')">Request Cashless</button>
+      <button class="antd-btn" onclick="openModal('hospital-details-modal')">View Details</button>
+      <button class="antd-btn" onclick="openModal('directions-modal')"><i data-lucide="navigation" class="icon-sm"></i> Directions</button>
+    </div>
+  </div>
+
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+      <h3 class="antd-card-title" style="margin: 0;">Fortis Hospital, Mumbai</h3>
+      <span class="antd-tag antd-tag-success">Network</span>
+    </div>
+    <div class="antd-grid-2 antd-mb-4">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><i data-lucide="map-pin" class="icon-sm"></i> Mulund, Mumbai</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;">⭐ 4.3/5 | <i data-lucide="phone" class="icon-sm"></i> 022-87654321</p>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Distance:</strong> 4.1 km</p>
+      </div>
+      <div>
+        <p class="antd-text-secondary" style="margin: 0 0 4px 0;"><strong>Specialties:</strong> Neurology, Oncology, Pediatrics</p>
+      </div>
+    </div>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn antd-btn-primary" onclick="openModal('cashless-request-modal')">Request Cashless</button>
+      <button class="antd-btn" onclick="openModal('hospital-details-modal')">View Details</button>
+    </div>
+  </div>
 </div>
 </div>
 <!-- AI ASSISTANT REMOVED -->
 <!-- DOCUMENTS -->
 <div class="screen" id="screen-documents">
-<h2><i data-lucide="folder" class="icon-lg"></i> Document Vault</h2>
-<button class="btn" onclick="openModal('upload-document-modal')">+ Upload Document</button>
-<button class="btn btn-secondary" onclick="openModal('scan-document-modal')"><i data-lucide="camera" class="icon-sm"></i> Scan</button>
-<button class="btn btn-secondary" onclick="openModal('organize-documents-modal')">📂 Organize</button>
-<h3 style="margin-top:20px;"><i data-lucide="hospital" class="icon-sm"></i> Medical Records</h3>
-<div class="card">
-<p><i data-lucide="file-text" class="icon-sm"></i> discharge_summary_apollo_jul2026.pdf <span class="badge badge-primary">Auto-tagged</span></p>
-<p><small>Uploaded: 08 Jul 2026 | Size: 1.1 MB</small></p>
-<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
-<button class="btn btn-secondary" onclick="openModal('share-document-modal')">Share</button>
-<button class="btn btn-secondary" onclick="openModal('download-document-modal')">Download</button>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="folder" class="icon-sm"></i> Document Vault</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('organize-documents-modal')"><i data-lucide="folder-tree" class="icon-sm"></i> Organize</button>
+    <button class="antd-btn" onclick="openModal('scan-document-modal')"><i data-lucide="camera" class="icon-sm"></i> Scan</button>
+    <button class="antd-btn antd-btn-primary" onclick="openModal('upload-document-modal')">+ Upload Document</button>
+  </div>
 </div>
-<h3 style="margin-top:20px;"><i data-lucide="coins" class="icon-sm"></i> Bills &amp; Receipts</h3>
-<div class="card">
-<p><i data-lucide="file-text" class="icon-sm"></i> hospital_bill_apollo.pdf</p>
-<p><small>Uploaded: 08 Jul 2026 | Size: 2.3 MB</small></p>
-<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+
+<h3 class="antd-card-title antd-mb-4"><i data-lucide="hospital" class="icon-sm"></i> Medical Records</h3>
+<div class="antd-grid-4 antd-mb-6">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-2">
+        <i data-lucide="file-text" class="icon-lg" style="color: var(--antd-primary);"></i>
+        <div>
+          <p class="antd-text-strong" style="margin: 0;">discharge_summary_apollo_jul2026.pdf</p>
+          <span class="antd-tag antd-tag-info" style="margin-top: 4px;">Auto-tagged</span>
+        </div>
+      </div>
+    </div>
+    <p class="antd-text-tertiary" style="margin: 0 0 16px 0;">Uploaded: 08 Jul 2026 | Size: 1.1 MB</p>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="openModal('view-document-modal')">View</button>
+      <button class="antd-btn" onclick="openModal('share-document-modal')">Share</button>
+      <button class="antd-btn" onclick="openModal('download-document-modal')"><i data-lucide="download" class="icon-sm"></i></button>
+    </div>
+  </div>
 </div>
-<h3 style="margin-top:20px;"><i data-lucide="clipboard-list" class="icon-sm"></i> Policy Documents</h3>
-<div class="card">
-<p><i data-lucide="file-text" class="icon-sm"></i> policy_STAR_2025.pdf</p>
-<p><small>Auto-synced from Star Health</small></p>
-<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+
+<h3 class="antd-card-title antd-mb-4"><i data-lucide="coins" class="icon-sm"></i> Bills &amp; Receipts</h3>
+<div class="antd-grid-4 antd-mb-6">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-2">
+        <i data-lucide="file-text" class="icon-lg" style="color: var(--antd-warning);"></i>
+        <div>
+          <p class="antd-text-strong" style="margin: 0;">hospital_bill_apollo.pdf</p>
+        </div>
+      </div>
+    </div>
+    <p class="antd-text-tertiary" style="margin: 0 0 16px 0;">Uploaded: 08 Jul 2026 | Size: 2.3 MB</p>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="openModal('view-document-modal')">View</button>
+      <button class="antd-btn" onclick="openModal('download-document-modal')"><i data-lucide="download" class="icon-sm"></i></button>
+    </div>
+  </div>
+</div>
+
+<h3 class="antd-card-title antd-mb-4"><i data-lucide="clipboard-list" class="icon-sm"></i> Policy Documents</h3>
+<div class="antd-grid-4 antd-mb-6">
+  <div class="antd-card">
+    <div class="antd-flex antd-justify-between antd-items-start antd-mb-4">
+      <div class="antd-flex antd-gap-2">
+        <i data-lucide="shield" class="icon-lg" style="color: var(--antd-success);"></i>
+        <div>
+          <p class="antd-text-strong" style="margin: 0;">policy_STAR_2025.pdf</p>
+        </div>
+      </div>
+    </div>
+    <p class="antd-text-tertiary" style="margin: 0 0 16px 0;">Auto-synced from Star Health</p>
+    <div class="antd-flex antd-gap-2">
+      <button class="antd-btn" onclick="openModal('view-document-modal')">View</button>
+      <button class="antd-btn" onclick="openModal('download-document-modal')"><i data-lucide="download" class="icon-sm"></i></button>
+    </div>
+  </div>
 </div>
 </div>
 <!-- PAYMENTS -->
 <div class="screen" id="screen-payments">
-<h2><i data-lucide="credit-card" class="icon-sm"></i> Payments &amp; Billing</h2>
-<button class="btn" onclick="openModal('make-payment-modal')">+ Make Payment</button>
-<button class="btn btn-secondary" onclick="openModal('payment-history-modal')">View History</button>
-<div class="card">
-<h3>Upcoming Payments</h3>
-<table class="table">
-<tr><th>Due Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Action</th></tr>
-<tr>
-<td>15 Aug 2026</td>
-<td>Star Health Policy Renewal</td>
-<td>₹18,500</td>
-<td><span class="badge badge-warning">Due Soon</span></td>
-<td><button class="btn" onclick="openModal('make-payment-modal')">Pay Now</button></td>
-</tr>
-</table>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="credit-card" class="icon-sm"></i> Payments &amp; Billing</h2>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('payment-history-modal')">View History</button>
+    <button class="antd-btn antd-btn-primary" onclick="openModal('make-payment-modal')">+ Make Payment</button>
+  </div>
 </div>
-<div class="card">
-<h3>Recent Payments</h3>
-<table class="table">
-<tr><th>Date</th><th>Description</th><th>Amount</th><th>Method</th><th>Status</th></tr>
-<tr>
-<td>15 Jun 2026</td>
-<td>Star Health Premium</td>
-<td>₹18,500</td>
-<td>HDFC ****4521</td>
-<td><span class="badge badge-success">Paid</span></td>
-</tr>
-<tr>
-<td>02 Jul 2026</td>
-<td>Claim Reimbursement</td>
-<td>₹25,000</td>
-<td>HDFC ****4521</td>
-<td><span class="badge badge-success">Received</span></td>
-</tr>
-</table>
+
+<div class="antd-flex antd-flex-col antd-gap-4">
+  <div class="antd-card antd-p-0" style="overflow-x: auto;">
+    <div class="antd-flex antd-items-center antd-justify-between" style="padding: 16px 24px; border-bottom: 1px solid var(--antd-border);">
+      <h3 class="antd-card-title" style="margin: 0;">Upcoming Payments</h3>
+    </div>
+    <table class="antd-table">
+      <thead>
+        <tr>
+          <th>Due Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>15 Aug 2026</td>
+          <td>Star Health Policy Renewal</td>
+          <td><span class="antd-text-strong">₹18,500</span></td>
+          <td><span class="antd-tag antd-tag-warning">Due Soon</span></td>
+          <td><button class="antd-btn antd-btn-primary" onclick="openModal('make-payment-modal')">Pay Now</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="antd-card antd-p-0" style="overflow-x: auto;">
+    <div class="antd-flex antd-items-center antd-justify-between" style="padding: 16px 24px; border-bottom: 1px solid var(--antd-border);">
+      <h3 class="antd-card-title" style="margin: 0;">Recent Payments</h3>
+    </div>
+    <table class="antd-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Method</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>15 Jun 2026</td>
+          <td>Star Health Premium</td>
+          <td><span class="antd-text-strong" style="color: var(--antd-error);">-₹18,500</span></td>
+          <td>HDFC ****4521</td>
+          <td><span class="antd-tag antd-tag-success">Paid</span></td>
+        </tr>
+        <tr>
+          <td>02 Jul 2026</td>
+          <td>Claim Reimbursement</td>
+          <td><span class="antd-text-strong" style="color: var(--antd-success);">+₹25,000</span></td>
+          <td>HDFC ****4521</td>
+          <td><span class="antd-tag antd-tag-success">Received</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </div>
 <!-- CORPORATE BENEFITS -->
 <div class="screen" id="screen-corporate-benefits">
-<h2><i data-lucide="briefcase" class="icon-sm"></i> Corporate Benefits <span class="badge-corp">TCS</span></h2>
-<div class="alert alert-info">Detailed corporate benefits will appear here.</div>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="briefcase" class="icon-sm"></i> Corporate Benefits <span class="antd-tag antd-tag-warning">TCS</span></h2>
+</div>
+<div class="antd-card" style="background-color: var(--antd-info-bg); border-color: var(--antd-info-border) !important;">
+  <p style="margin: 0; color: var(--antd-info);">Detailed corporate benefits will appear here.</p>
+</div>
 </div>
 
 
 
   <!-- NOTIFICATIONS -->
 <div class="screen" id="screen-notifications">
-<h2><i data-lucide="bell" class="icon-sm"></i> Notifications</h2>
-<div class="notification-item urgent" style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-4); border-bottom: 1px solid var(--border-color); background-color: var(--primary-50); border-left: 4px solid var(--primary-500);">
-    <div>
-        <strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
-    </div>
-    <button class="btn btn-secondary" style="white-space: nowrap;" onclick="openModal('upload-document-modal')">Upload Now</button>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="bell" class="icon-sm"></i> Notifications</h2>
 </div>
-<div class="notification-item unread" style="padding: var(--space-4); border-bottom: 1px solid var(--border-color); background-color: var(--primary-50); border-left: 4px solid var(--primary-500);">
-    <strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
-</div>
-<div class="notification-item" style="padding: var(--space-4); border-bottom: 1px solid var(--border-color);">
-    <strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
+
+<div class="antd-flex antd-flex-col antd-gap-4">
+  <div class="antd-card antd-flex antd-justify-between antd-items-center" style="border-left: 4px solid var(--antd-primary) !important; background-color: var(--antd-info-bg);">
+      <div>
+          <p class="antd-text-strong" style="margin: 0 0 4px 0;">Action Required</p>
+          <p class="antd-text-secondary" style="margin: 0;">Please upload missing documents for Claim #CLM-2026-0045.</p>
+      </div>
+      <button class="antd-btn antd-btn-primary" style="white-space: nowrap;" onclick="openModal('upload-document-modal')">Upload Now</button>
+  </div>
+  
+  <div class="antd-card" style="border-left: 4px solid var(--antd-primary) !important; background-color: var(--antd-info-bg);">
+      <p class="antd-text-strong" style="margin: 0 0 4px 0;">Policy Update</p>
+      <p class="antd-text-secondary" style="margin: 0;">Your Star Health policy has been successfully renewed.</p>
+  </div>
+  
+  <div class="antd-card">
+      <p class="antd-text-strong" style="margin: 0 0 4px 0;">Claim Settled</p>
+      <p class="antd-text-secondary" style="margin: 0;">Claim #CLM-2026-0044 amount ₹25,000 has been credited.</p>
+  </div>
 </div>
 </div>
 <!-- PROFILE -->
 <div class="screen" id="screen-profile">
-<h2><i data-lucide="user" class="icon-sm"></i> User Profile</h2>
-<div class="grid-2">
-<div class="card">
-<h3>Personal Details</h3>
-<label>Full Name</label><input class="form-control" type="text" value="Rahul Sharma"/>
-<label>Date of Birth</label><input class="form-control" type="date" value="1988-05-12"/>
-<label>Phone</label><input class="form-control" type="tel" value="+91 9876543210"/>
-<button class="btn">Update Details</button>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="user" class="icon-sm"></i> User Profile</h2>
 </div>
-<div class="card">
-<h3>KYC &amp; Verification</h3>
-<p>Aadhaar: XXXX-XXXX-1234 <span class="badge badge-success">Verified</span></p>
-<p>PAN: ABCXXXXX1Z <span class="badge badge-success">Verified</span></p>
-<button class="btn btn-secondary">Update KYC</button>
-</div>
+<div class="antd-grid-2">
+  <div class="antd-card">
+    <h3 class="antd-card-title">Personal Details</h3>
+    <div class="antd-mb-4">
+      <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Full Name</label>
+      <input class="form-control" type="text" value="Rahul Sharma" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    </div>
+    <div class="antd-mb-4">
+      <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Date of Birth</label>
+      <input class="form-control" type="date" value="1988-05-12" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    </div>
+    <div class="antd-mb-4">
+      <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Phone</label>
+      <input class="form-control" type="tel" value="+91 9876543210" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    </div>
+    <button class="antd-btn antd-btn-primary">Update Details</button>
+  </div>
+  <div class="antd-card">
+    <h3 class="antd-card-title">KYC &amp; Verification</h3>
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4" style="padding-bottom: 16px; border-bottom: 1px solid var(--antd-border);">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0;">Aadhaar</p>
+        <p class="antd-text-strong" style="margin: 0;">XXXX-XXXX-1234</p>
+      </div>
+      <span class="antd-tag antd-tag-success">Verified</span>
+    </div>
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-6">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0;">PAN</p>
+        <p class="antd-text-strong" style="margin: 0;">ABCXXXXX1Z</p>
+      </div>
+      <span class="antd-tag antd-tag-success">Verified</span>
+    </div>
+    <button class="antd-btn">Update KYC</button>
+  </div>
 </div>
 </div>
 <!-- SETTINGS -->
 <div class="screen" id="screen-settings">
-<h2><i data-lucide="settings" class="icon-sm"></i> Settings</h2>
-<div class="card">
-<div class="form-group"><input class="form-control" checked="" type="checkbox"/> Receive SMS Alerts</div>
-<div class="form-group"><input class="form-control" checked="" type="checkbox"/> Receive Email Alerts</div>
-<div class="form-group"><input class="form-control" type="checkbox"/> Enable Auto-Pay for Renewals</div>
-<button class="btn">Save Preferences</button>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="settings" class="icon-sm"></i> Settings</h2>
+</div>
+<div class="antd-card" style="max-width: 600px;">
+  <h3 class="antd-card-title">Notification Preferences</h3>
+  <div class="antd-flex antd-items-center antd-justify-between antd-mb-4">
+    <div>
+      <p class="antd-text-strong" style="margin: 0;">Receive SMS Alerts</p>
+      <p class="antd-text-secondary" style="margin: 0;">Get claim updates on your phone</p>
+    </div>
+    <input type="checkbox" checked="" style="width: 16px; height: 16px; cursor: pointer;"/>
+  </div>
+  <div class="antd-flex antd-items-center antd-justify-between antd-mb-4">
+    <div>
+      <p class="antd-text-strong" style="margin: 0;">Receive Email Alerts</p>
+      <p class="antd-text-secondary" style="margin: 0;">Monthly statements and policy documents</p>
+    </div>
+    <input type="checkbox" checked="" style="width: 16px; height: 16px; cursor: pointer;"/>
+  </div>
+  
+  <h3 class="antd-card-title antd-mt-6">Billing Settings</h3>
+  <div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+    <div>
+      <p class="antd-text-strong" style="margin: 0;">Enable Auto-Pay for Renewals</p>
+      <p class="antd-text-secondary" style="margin: 0;">Automatically charge your saved card</p>
+    </div>
+    <input type="checkbox" style="width: 16px; height: 16px; cursor: pointer;"/>
+  </div>
+  
+  <button class="antd-btn antd-btn-primary">Save Preferences</button>
 </div>
 </div>
 <!-- HELP & SUPPORT -->
 <div class="screen" id="screen-help">
-<h2><i data-lucide="help-circle" class="icon-sm"></i> Help Center</h2>
-<div class="accordion">
-<div class="accordion-header">How to file a claim?</div>
-<div class="accordion-content">Go to the Claims section and click on + New Claim.</div>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="help-circle" class="icon-sm"></i> Help Center</h2>
 </div>
-<div class="accordion">
-<div class="accordion-header">What is Cashless network?</div>
-<div class="accordion-content">These are hospitals where you don't need to pay out of pocket.</div>
+
+<div class="antd-card" style="max-width: 800px; padding: 0;">
+  <div style="padding: 16px; border-bottom: 1px solid var(--antd-border); cursor: pointer;" class="antd-flex antd-justify-between antd-items-center">
+    <p class="antd-text-strong" style="margin: 0;">How to file a claim?</p>
+    <i data-lucide="chevron-down" class="icon-sm"></i>
+  </div>
+  <div style="padding: 16px; background-color: #fafafa; border-bottom: 1px solid var(--antd-border);">
+    <p class="antd-text-secondary" style="margin: 0;">Go to the Claims section and click on + New Claim. You will need your hospital bills, discharge summary, and payment receipts.</p>
+  </div>
+  
+  <div style="padding: 16px; border-bottom: 1px solid var(--antd-border); cursor: pointer;" class="antd-flex antd-justify-between antd-items-center">
+    <p class="antd-text-strong" style="margin: 0;">What is Cashless network?</p>
+    <i data-lucide="chevron-down" class="icon-sm"></i>
+  </div>
+  <div style="padding: 16px; background-color: #fafafa; border-bottom: 1px solid var(--antd-border);">
+    <p class="antd-text-secondary" style="margin: 0;">These are hospitals where you don't need to pay out of pocket. The insurance company settles the bill directly with the hospital.</p>
+  </div>
 </div>
 </div>
 <div class="screen" id="screen-support">
-<h2><i data-lucide="ticket" class="icon-sm"></i> Support Tickets</h2>
-<button class="btn">+ Raise New Ticket</button>
-<table class="table" style="margin-top:20px;">
-<tr><th>Ticket ID</th><th>Issue</th><th>Status</th></tr>
-<tr><td>TKT-001</td><td>Name correction in policy</td><td><span class="badge badge-warning">Open</span></td></tr>
-</table>
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="ticket" class="icon-sm"></i> Support Tickets</h2>
+  <button class="antd-btn antd-btn-primary">+ Raise New Ticket</button>
+</div>
+
+<div class="antd-card antd-p-0" style="overflow-x: auto;">
+  <table class="antd-table">
+    <thead>
+      <tr>
+        <th>Ticket ID</th>
+        <th>Issue</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="antd-text-strong">TKT-001</span></td>
+        <td>Name correction in policy</td>
+        <td><span class="antd-tag antd-tag-warning">Open</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>
 </div> <!-- END APP CONTENT -->
 </div> <!-- END MAIN -->
@@ -785,8 +1242,8 @@
 <!-- MODALS -->
 <!-- EMERGENCY SOS MODAL -->
 <div class="modal-overlay" id="emergency-modal">
-<div class="modal-content" style="border-top: 5px solid #dc3545;">
-<div class="modal-header">
+<div class="antd-modal-content" style="border-top: 5px solid #dc3545;">
+<div class="antd-modal-header">
 <h2 style="color: #dc3545;"><i data-lucide="alert-circle" class="icon-sm"></i> Emergency Assistance</h2>
 <button class="modal-close" onclick="closeModal('emergency-modal')">×</button>
 </div>
@@ -800,38 +1257,38 @@
 </div>
 </div>
 <div class="grid-2">
-<button class="btn" style="background:#dc3545; height:60px; font-size:16px;"><i data-lucide="phone" class="icon-sm"></i> Call 24/7 TPA Helpline</button>
-<button class="btn btn-secondary" onclick="openModal('cashless-request-modal'); closeModal('emergency-modal');" style="height:60px; font-size:16px;">Start Emergency Admission</button>
+<button class="antd-btn antd-btn-primary" style="background:#dc3545; height:60px; font-size:16px;"><i data-lucide="phone" class="icon-sm"></i> Call 24/7 TPA Helpline</button>
+<button class="antd-btn" onclick="openModal('cashless-request-modal'); closeModal('emergency-modal');" style="height:60px; font-size:16px;">Start Emergency Admission</button>
 </div>
 <p style="font-size: 12px; color: #666; margin-top: 15px; text-align: center;">In case of severe medical emergency, please call 108 for ambulance services.</p>
 </div>
 </div>
 <!-- URGENT CASHLESS REQUEST -->
 <div class="modal-overlay" id="cashless-request-modal">
-<div class="modal-content">
-<div class="modal-header">
+<div class="antd-modal-content">
+<div class="antd-modal-header">
 <h2><i data-lucide="hospital" class="icon-sm"></i> Hospital Admission Request</h2>
 <button class="modal-close" onclick="closeModal('cashless-request-modal')">×</button>
 </div>
 <p style="font-size:13px; color:#666; margin-bottom:15px;">Fill only the mandatory details to alert the hospital and TPA immediately.</p>
 <label>Patient Name *</label>
-<select class="form-control"><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
+<select class="antd-input"><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
 <label>Admission Type *</label>
-<select class="form-control">
+<select class="antd-input">
 <option value="emergency"><i data-lucide="alert-circle" class="icon-sm"></i> Emergency (Currently in ER)</option>
 <option value="planned"><i data-lucide="calendar" class="icon-sm"></i> Planned Surgery (Within 48 hours)</option>
 </select>
 <label>Hospital Name *</label>
-<input class="form-control" placeholder="e.g. Apollo Hospital, Andheri" required="" type="text"/>
+<input class="antd-input" placeholder="e.g. Apollo Hospital, Andheri" required="" type="text"/>
 <label>Primary Complaint / Diagnosis (If known)</label>
-<input class="form-control" placeholder="e.g. Chest Pain, Accident" type="text"/>
-<button class="btn" onclick="showToast('Request sent to hospital cashless desk!', 'success'); closeModal('cashless-request-modal');" style="width:100%; margin-top:15px; height:50px; font-size:16px;">Send Urgent Request</button>
+<input class="antd-input" placeholder="e.g. Chest Pain, Accident" type="text"/>
+<button class="antd-btn antd-btn-primary" onclick="showToast('Request sent to hospital cashless desk!', 'success'); closeModal('cashless-request-modal');" style="width:100%; margin-top:15px; height:50px; font-size:16px;">Send Urgent Request</button>
 </div>
 </div>
 <!-- TRACK CLAIM & ESCALATE -->
 <div class="modal-overlay" id="track-claim-modal">
-<div class="modal-content">
-<div class="modal-header">
+<div class="antd-modal-content">
+<div class="antd-modal-header">
 <h2>Track Claim Status</h2>
 <button class="modal-close" onclick="closeModal('track-claim-modal')">×</button>
 </div>
@@ -841,20 +1298,20 @@
 <div style="background:#fff3cd; padding:15px; border-radius:6px; margin-bottom:15px; border-left:4px solid #ffc107;">
 <strong>Is the patient waiting for discharge?</strong><br/>
 <span style="font-size:12px;">If you are stuck at the hospital waiting for final bill approval, escalate this claim.</span>
-<button class="btn" onclick="showToast('Claim Escalated to Priority Queue!', 'success');" style="background:#dc3545; display:block; margin-top:10px;">Escalate to Priority Desk</button>
+<button class="antd-btn antd-btn-primary" onclick="showToast('Claim Escalated to Priority Queue!', 'success');" style="background:#dc3545; display:block; margin-top:10px;">Escalate to Priority Desk</button>
 </div>
 </div>
 </div>
 <!-- SIMPLIFIED DOCUMENT UPLOAD -->
 <div class="modal-overlay" id="upload-document-modal">
-<div class="modal-content">
-<div class="modal-header">
+<div class="antd-modal-content">
+<div class="antd-modal-header">
 <h2>Upload Medical Documents</h2>
 <button class="modal-close" onclick="closeModal('upload-document-modal')">×</button>
 </div>
 <p style="font-size:13px; color:#666; margin-bottom:15px;">To speed up your claim, please upload clear photos or PDFs.</p>
 <label>Document Type *</label>
-<select class="form-control">
+<select class="antd-input">
 <option>Final Hospital Bill (Required for Discharge)</option>
 <option>Discharge Summary (Required for Discharge)</option>
 <option>Investigation/Lab Reports</option>
@@ -864,181 +1321,181 @@
 <p style="font-size: 32px; margin:0;"><i data-lucide="camera" class="icon-sm"></i> / <i data-lucide="file-text" class="icon-sm"></i></p>
 <p style="margin:5px 0;">Tap to Take Photo or Browse</p>
 </div>
-<button class="btn" onclick="closeModal('upload-document-modal')" style="width:100%; height:45px;">Upload File</button>
+<button class="antd-btn antd-btn-primary" onclick="closeModal('upload-document-modal')" style="width:100%; height:45px;">Upload File</button>
 </div>
 </div>
 <!-- OTHER MODALS (Preserved) -->
 <div id="appeal-claim-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('appeal-claim-modal')">&times;</button>
     </div>
-    <h2>Appeal Claim</h2><textarea class="form-control" placeholder="Reason for appeal"></textarea><button class="btn">Submit</button>
+    <h2>Appeal Claim</h2><textarea class="antd-input" placeholder="Reason for appeal"></textarea><button class="antd-btn antd-btn-primary">Submit</button>
   </div>
 </div>
 <div id="buy-plan-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('buy-plan-modal')">&times;</button>
     </div>
-    <h2>Buy Plan</h2><button class="btn">Proceed to Payment</button>
+    <h2>Buy Plan</h2><button class="antd-btn antd-btn-primary">Proceed to Payment</button>
   </div>
 </div>
 <div id="compare-plans-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('compare-plans-modal')">&times;</button>
     </div>
     <h2>Compare Plans</h2><p>Comparison matrix...</p>
   </div>
 </div>
 <div id="directions-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('directions-modal')">&times;</button>
     </div>
     <h2>Directions</h2><p>Routing to hospital...</p>
   </div>
 </div>
 <div id="download-document-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('download-document-modal')">&times;</button>
     </div>
-    <h2>Download Document</h2><button class="btn">Download</button>
+    <h2>Download Document</h2><button class="antd-btn antd-btn-primary">Download</button>
   </div>
 </div>
 <div id="download-policy-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('download-policy-modal')">&times;</button>
     </div>
-    <h2>Download Policy</h2><button class="btn">Download PDF</button>
+    <h2>Download Policy</h2><button class="antd-btn antd-btn-primary">Download PDF</button>
   </div>
 </div>
 <div id="edit-bank-details-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('edit-bank-details-modal')">&times;</button>
     </div>
-    <h2>Edit Bank Details</h2><input class="form-control" type="text" placeholder="Account Number"><button class="btn">Save</button>
+    <h2>Edit Bank Details</h2><input class="antd-input" type="text" placeholder="Account Number"><button class="antd-btn antd-btn-primary">Save</button>
   </div>
 </div>
 <div id="export-claims-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('export-claims-modal')">&times;</button>
     </div>
-    <h2>Export Claims</h2><button class="btn">Export as CSV</button>
+    <h2>Export Claims</h2><button class="antd-btn antd-btn-primary">Export as CSV</button>
   </div>
 </div>
 <div id="filter-claims-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('filter-claims-modal')">&times;</button>
     </div>
     <h2>Filter Claims</h2><p>Claim filters...</p>
   </div>
 </div>
 <div id="filter-hospitals-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('filter-hospitals-modal')">&times;</button>
     </div>
     <h2>Filter Hospitals</h2><p>Filters...</p>
   </div>
 </div>
 <div id="filter-plans-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('filter-plans-modal')">&times;</button>
     </div>
     <h2>Filter Plans</h2><p>Filter options...</p>
   </div>
 </div>
 <div id="fix-document-error-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('fix-document-error-modal')">&times;</button>
     </div>
     <h2>Fix Document Error</h2><p style="color:#dc3545; font-weight:bold;">Error: The uploaded bill is blurred.</p><p>Please re-upload a clear photo to proceed with discharge.</p>
   </div>
 </div>
 <div id="hospital-details-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('hospital-details-modal')">&times;</button>
     </div>
     <h2>Hospital Details</h2><p>Full hospital info...</p>
   </div>
 </div>
 <div id="make-payment-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('make-payment-modal')">&times;</button>
     </div>
-    <h2>Make Payment</h2><button class="btn">Pay via UPI / Card</button>
+    <h2>Make Payment</h2><button class="antd-btn antd-btn-primary">Pay via UPI / Card</button>
   </div>
 </div>
 <div id="map-view-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('map-view-modal')">&times;</button>
     </div>
     <h2>Map View</h2><div style="background:#ddd; height:200px; display:flex; align-items:center; justify-content:center;">[Interactive Map]</div>
   </div>
 </div>
 <div id="organize-documents-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('organize-documents-modal')">&times;</button>
     </div>
     <h2>Organize Documents</h2><p>Folder structure...</p>
   </div>
 </div>
 <div id="payment-details-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('payment-details-modal')">&times;</button>
     </div>
     <h2>Payment Details</h2><p>Txn ID: 123456789</p>
   </div>
 </div>
 <div id="payment-history-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('payment-history-modal')">&times;</button>
     </div>
     <h2>Payment History</h2><p>Txn logs...</p>
   </div>
 </div>
 <div id="plan-details-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('plan-details-modal')">&times;</button>
     </div>
     <h2>Plan Details</h2><p>Full plan details...</p>
   </div>
 </div>
 <div id="policy-compare-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('policy-compare-modal')">&times;</button>
     </div>
     <h2>Compare Policies</h2><p>Detailed comparison table will go here.</p>
   </div>
 </div>
 <div id="policy-renew-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('policy-renew-modal')">&times;</button>
     </div>
-    <h2>Renew Policy</h2><input class="form-control" type="text" value="₹18,500"><button class="btn">Pay Now</button>
+    <h2>Renew Policy</h2><input class="antd-input" type="text" value="₹18,500"><button class="antd-btn antd-btn-primary">Pay Now</button>
   </div>
 </div>
 <div id="pre-auth-tracker-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('pre-auth-tracker-modal')">&times;</button>
     </div>
     <h2><i data-lucide="hospital" class="icon-sm"></i> Pre-Auth Approval Status</h2>
@@ -1048,29 +1505,29 @@
 <div style="background:#fff3cd; padding:15px; border-radius:6px; margin-bottom:15px; border-left:4px solid #ffc107;">
   <strong>Patient waiting in ER?</strong><br>
   <span style="font-size:12px;">Pre-auth requests for Emergency Admissions are fast-tracked.</span>
-  <button class="btn" style="background:#dc3545; display:block; margin-top:10px;" onclick="showToast('Priority alert sent to TPA Desk.', 'success');">Call TPA Desk Directly</button>
+  <button class="antd-btn antd-btn-primary" style="background:#dc3545; display:block; margin-top:10px;" onclick="showToast('Priority alert sent to TPA Desk.', 'success');">Call TPA Desk Directly</button>
 </div>
   </div>
 </div>
 <div id="replace-document-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('replace-document-modal')">&times;</button>
     </div>
-    <h2>Replace Document</h2><input class="form-control" type="file"><button class="btn">Upload New</button>
+    <h2>Replace Document</h2><input class="antd-input" type="file"><button class="antd-btn antd-btn-primary">Upload New</button>
   </div>
 </div>
 <div id="scan-document-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('scan-document-modal')">&times;</button>
     </div>
-    <h2>Scan Document</h2><div style="background:#000; height:200px; color:white; display:flex; align-items:center; justify-content:center;">[Camera Viewfinder]</div><button class="btn" style="width:100%; margin-top:10px;">Capture</button>
+    <h2>Scan Document</h2><div style="background:#000; height:200px; color:white; display:flex; align-items:center; justify-content:center;">[Camera Viewfinder]</div><button class="antd-btn antd-btn-primary" style="width:100%; margin-top:10px;">Capture</button>
   </div>
 </div>
 <div id="search-hospital-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('search-hospital-modal')">&times;</button>
     </div>
     <h2><i data-lucide="alert-circle" class="icon-sm"></i> Find Urgent Network Hospital</h2>
@@ -1080,39 +1537,39 @@
   <h3 style="margin:0;">Apollo Hospitals</h3>
   <p style="margin:5px 0 0; color:#28a745; font-weight:bold;">✅ Cashless Network</p>
   <p style="margin:0; font-size:12px; color:#666;">Distance: 2.1 km | <i data-lucide="activity" class="icon-sm"></i> ER Wait Time: ~5 mins</p>
-  <button class="btn" style="margin-top:10px; padding:5px 10px; font-size:12px;" onclick="openModal('directions-modal')">Get Directions</button>
-  <button class="btn btn-secondary" style="margin-top:10px; padding:5px 10px; font-size:12px;" onclick="openModal('cashless-request-modal')">Alert Hospital</button>
+  <button class="antd-btn antd-btn-primary" style="margin-top:10px; padding:5px 10px; font-size:12px;" onclick="openModal('directions-modal')">Get Directions</button>
+  <button class="antd-btn" style="margin-top:10px; padding:5px 10px; font-size:12px;" onclick="openModal('cashless-request-modal')">Alert Hospital</button>
 </div>
 <div class="card" style="border-left:4px solid #28a745;">
   <h3 style="margin:0;">SevenHills Hospital</h3>
   <p style="margin:5px 0 0; color:#28a745; font-weight:bold;">✅ Cashless Network</p>
   <p style="margin:0; font-size:12px; color:#666;">Distance: 3.5 km | <i data-lucide="activity" class="icon-sm"></i> ER Wait Time: ~12 mins</p>
-  <button class="btn" style="margin-top:10px; padding:5px 10px; font-size:12px;" onclick="openModal('directions-modal')">Get Directions</button>
+  <button class="antd-btn antd-btn-primary" style="margin-top:10px; padding:5px 10px; font-size:12px;" onclick="openModal('directions-modal')">Get Directions</button>
 </div>
   </div>
 </div>
 <div id="share-document-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('share-document-modal')">&times;</button>
     </div>
-    <h2>Share Document</h2><input class="form-control" type="email" placeholder="Doctor's Email"><button class="btn">Send Securely</button>
+    <h2>Share Document</h2><input class="antd-input" type="email" placeholder="Doctor's Email"><button class="antd-btn antd-btn-primary">Send Securely</button>
   </div>
 </div>
 <div id="view-document-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('view-document-modal')">&times;</button>
     </div>
     <h2>View Document</h2><div style="background:#333; height:200px; color:white; display:flex; align-items:center; justify-content:center;">[Document Preview PDF/Image]</div>
   </div>
 </div>
 <div id="voice-input-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
+  <div class="antd-modal-content">
+    <div class="antd-modal-header">
       <button class="modal-close" onclick="closeModal('voice-input-modal')">&times;</button>
     </div>
-    <h2>Voice Input</h2><button class="btn" style="background:#1a73e8; border-radius:50%; width:80px; height:80px; font-size:30px;"><i data-lucide="mic" class="icon-sm"></i></button><p style="text-align:center; margin-top:10px;">Listening...</p>
+    <h2>Voice Input</h2><button class="antd-btn antd-btn-primary" style="background:#1a73e8; border-radius:50%; width:80px; height:80px; font-size:30px;"><i data-lucide="mic" class="icon-sm"></i></button><p style="text-align:center; margin-top:10px;">Listening...</p>
   </div>
 </div>
 

@@ -1,18 +1,41 @@
 <div class="screen" id="screen-profile">
-<h2><i data-lucide="user" class="icon-sm"></i> User Profile</h2>
-<div class="grid-2">
-<div class="card">
-<h3>Personal Details</h3>
-<label>Full Name</label><input class="form-control" type="text" value="Rahul Sharma"/>
-<label>Date of Birth</label><input class="form-control" type="date" value="1988-05-12"/>
-<label>Phone</label><input class="form-control" type="tel" value="+91 9876543210"/>
-<button class="btn">Update Details</button>
+<div class="antd-flex antd-items-center antd-mb-6">
+  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="user" class="icon-sm"></i> User Profile</h2>
 </div>
-<div class="card">
-<h3>KYC &amp; Verification</h3>
-<p>Aadhaar: XXXX-XXXX-1234 <span class="badge badge-success">Verified</span></p>
-<p>PAN: ABCXXXXX1Z <span class="badge badge-success">Verified</span></p>
-<button class="btn btn-secondary">Update KYC</button>
-</div>
+<div class="antd-grid-2">
+  <div class="antd-card">
+    <h3 class="antd-card-title">Personal Details</h3>
+    <div class="antd-mb-4">
+      <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Full Name</label>
+      <input class="form-control" type="text" value="Rahul Sharma" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    </div>
+    <div class="antd-mb-4">
+      <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Date of Birth</label>
+      <input class="form-control" type="date" value="1988-05-12" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    </div>
+    <div class="antd-mb-4">
+      <label class="antd-text-secondary" style="display: block; margin-bottom: 8px;">Phone</label>
+      <input class="form-control" type="tel" value="+91 9876543210" style="width: 100%; padding: 8px; border: 1px solid var(--antd-border); border-radius: var(--antd-radius-sm);"/>
+    </div>
+    <button class="antd-btn antd-btn-primary">Update Details</button>
+  </div>
+  <div class="antd-card">
+    <h3 class="antd-card-title">KYC &amp; Verification</h3>
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-4" style="padding-bottom: 16px; border-bottom: 1px solid var(--antd-border);">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0;">Aadhaar</p>
+        <p class="antd-text-strong" style="margin: 0;">XXXX-XXXX-1234</p>
+      </div>
+      <span class="antd-tag antd-tag-success">Verified</span>
+    </div>
+    <div class="antd-flex antd-justify-between antd-items-center antd-mb-6">
+      <div>
+        <p class="antd-text-secondary" style="margin: 0;">PAN</p>
+        <p class="antd-text-strong" style="margin: 0;">ABCXXXXX1Z</p>
+      </div>
+      <span class="antd-tag antd-tag-success">Verified</span>
+    </div>
+    <button class="antd-btn">Update KYC</button>
+  </div>
 </div>
 </div>
