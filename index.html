@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SuperClaim - Member Portal (Advanced)</title>
+<title>SuperClaim - Member Portal</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
   body { display: flex; min-height: 100vh; background: #f5f5f5; }
-  .sidebar { width: 240px; background: #1a2b4a; color: white; padding: 20px 0; position: fixed; height: 100vh; overflow-y: auto; z-index: 100; }
+  .sidebar { width: 240px; background: #1a2b4a; color: white; padding: 20px 0; position: fixed; height: 100vh; overflow-y: auto; }
   .sidebar h2 { padding: 0 20px 20px; border-bottom: 1px solid #2d3e5f; font-size: 22px; }
   .sidebar .badge-corp { background: #ffd700; color: #1a2b4a; padding: 2px 8px; border-radius: 4px; font-size: 10px; margin-left: 8px; }
   .sidebar a { display: block; padding: 12px 20px; color: white; text-decoration: none; cursor: pointer; border-left: 3px solid transparent; }
@@ -22,7 +22,9 @@
   .btn-secondary { background: #6c757d; }
   .btn-secondary:hover { background: #545b62; }
   .btn-success { background: #28a745; }
+  .btn-success:hover { background: #1e7e34; }
   .btn-danger { background: #dc3545; }
+  .btn-danger:hover { background: #c82333; }
   .btn-warning { background: #ffc107; color: #000; }
   .btn-corp { background: #ffd700; color: #1a2b4a; font-weight: bold; }
   .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
@@ -30,26 +32,37 @@
   .badge-yellow { background: #fff3cd; color: #856404; }
   .badge-red { background: #f8d7da; color: #721c24; }
   .badge-blue { background: #d1ecf1; color: #0c5460; }
-  
-  input, select, textarea { padding: 10px; margin: 6px 0; border: 1px solid #ccc; border-radius: 6px; width: 100%; max-width: 100%; font-size: 14px; }
+  .badge-purple { background: #e2d4f0; color: #5a3d7a; }
+  input, select, textarea { padding: 10px; margin: 6px 0; border: 1px solid #ccc; border-radius: 6px; width: 100%; max-width: 450px; font-size: 14px; }
   table { width: 100%; border-collapse: collapse; margin: 15px 0; background: white; }
   th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
   th { background: #f8f9fa; font-weight: 600; }
-  
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-  
+  .chat-box { border: 1px solid #ddd; height: 450px; display: flex; flex-direction: column; border-radius: 8px; }
+  .chat-messages { flex: 1; padding: 15px; overflow-y: auto; background: #f8f9fa; }
+  .chat-input { display: flex; padding: 15px; border-top: 1px solid #ddd; background: white; }
+  .msg { margin: 8px 0; padding: 10px 14px; border-radius: 12px; max-width: 75%; line-height: 1.4; }
+  .msg-user { background: #1a73e8; color: white; margin-left: auto; }
+  .msg-ai { background: #e8eaed; }
   .stepper { display: flex; margin-bottom: 25px; background: #f8f9fa; border-radius: 8px; overflow: hidden; }
-  .step { flex: 1; padding: 15px; text-align: center; background: #e9ecef; font-size: 13px; cursor: pointer; border-right: 1px solid #ddd; }
+  .step { flex: 1; padding: 15px; text-align: center; background: #e9ecef; font-size: 13px; }
   .step.active { background: #1a73e8; color: white; font-weight: 600; }
   .step.done { background: #28a745; color: white; }
-  
-  .hidden { display: none !important; }
+  .hidden { display: none; }
+  .timeline-item { padding: 12px; border-left: 4px solid #1a73e8; margin: 10px 0 10px 15px; background: #f8f9fa; border-radius: 0 6px 6px 0; }
   .insurance-card { border: 2px solid #e0e0e0; padding: 20px; margin: 12px 0; border-radius: 10px; background: white; transition: all 0.3s; }
   .insurance-card:hover { border-color: #1a73e8; box-shadow: 0 4px 12px rgba(26,115,232,0.15); transform: translateY(-2px); }
   .insurance-logo { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+  .star-health { color: #e31e24; }
+  .hdfc { color: #004b87; }
+  .icici { color: #e21836; }
+  .maxbupa { color: #00a651; }
+  .aditya { color: #003366; }
+  .care { color: #ed1b24; }
+  .corp-tag { background: linear-gradient(135deg, #ffd700, #ffed4e); color: #1a2b4a; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; display: inline-block; margin: 5px 0; }
   .coverage-bar { height: 20px; background: #e0e0e0; border-radius: 10px; overflow: hidden; margin: 10px 0; }
   .coverage-fill { height: 100%; background: linear-gradient(90deg, #28a745, #20c997); border-radius: 10px; }
   .alert { padding: 15px; border-radius: 6px; margin: 10px 0; }
@@ -57,64 +70,87 @@
   .alert-success { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
   .alert-warning { background: #fff3cd; color: #856404; border-left: 4px solid #ffc107; }
   .alert-danger { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
-  
+  .login-fullscreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+  .login-box { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; }
+  .login-box h1 { color: #1a2b4a; margin-bottom: 10px; }
+  .login-box .subtitle { color: #666; margin-bottom: 30px; }
+  .account-type-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; }
+  .account-type-option { padding: 30px 20px; border: 3px solid #e0e0e0; border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.3s; background: white; }
+  .account-type-option:hover { border-color: #1a73e8; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(26,115,232,0.2); }
+  .account-type-option.selected { border-color: #1a73e8; background: #e3f2fd; }
+  .account-type-option .icon { font-size: 48px; margin-bottom: 15px; }
+  .account-type-option h3 { margin: 10px 0; color: #1a2b4a; }
+  .account-type-option p { font-size: 13px; color: #666; margin: 5px 0; }
+  .login-method { display: flex; gap: 10px; margin: 20px 0; }
+  .login-method-btn { flex: 1; padding: 15px; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; text-align: center; transition: all 0.3s; background: white; }
+  .login-method-btn:hover { border-color: #1a73e8; background: #f0f7ff; }
+  .login-method-btn.active { border-color: #1a73e8; background: #e3f2fd; }
+  .login-method-btn .icon { font-size: 32px; margin-bottom: 8px; }
+  .otp-input-group { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+  .otp-input { width: 50px; height: 60px; text-align: center; font-size: 24px; font-weight: bold; border: 2px solid #ddd; border-radius: 8px; }
+  .otp-input:focus { border-color: #1a73e8; outline: none; }
+  .benefit-tag { display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 12px; font-size: 11px; margin: 3px; }
+  .benefit-tag-corp { background: #fff3cd; color: #856404; }
   .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center; }
   .modal.active { display: flex; }
-  .modal-content { background: white; padding: 30px; border-radius: 12px; max-width: 800px; width: 90%; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+  .modal-content { background: white; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; max-height: 85vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
   .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
   .modal-close { background: none; border: none; font-size: 28px; cursor: pointer; color: #666; }
-  
-  .file-upload-area { border: 2px dashed #ccc; padding: 40px; text-align: center; border-radius: 8px; margin: 15px 0; cursor: pointer; transition: all 0.3s; background: #fafafa; }
+  .modal-close:hover { color: #000; }
+  .file-upload-area { border: 2px dashed #ccc; padding: 40px; text-align: center; border-radius: 8px; margin: 15px 0; cursor: pointer; transition: all 0.3s; }
   .file-upload-area:hover { border-color: #1a73e8; background: #f0f7ff; }
-  
+  .progress-bar { height: 8px; background: #e0e0e0; border-radius: 4px; overflow: hidden; margin: 10px 0; }
+  .progress-fill { height: 100%; background: #1a73e8; transition: width 0.3s; }
   .tab-container { margin: 20px 0; }
   .tab-buttons { display: flex; border-bottom: 2px solid #ddd; margin-bottom: 20px; }
   .tab-btn { padding: 12px 24px; background: none; border: none; cursor: pointer; font-size: 14px; color: #666; border-bottom: 3px solid transparent; margin-bottom: -2px; }
   .tab-btn.active { color: #1a73e8; border-bottom-color: #1a73e8; font-weight: 600; }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
-  
   .stat-card { background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #1a73e8; }
   .stat-card h3 { font-size: 14px; color: #666; margin-bottom: 8px; }
   .stat-card .value { font-size: 32px; font-weight: bold; color: #1a2b4a; }
-
-  /* Login Screen Specific Styles */
-  .login-fullscreen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; z-index: 9999; }
-  .login-box { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; }
-  .account-type-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; }
-  .account-type-option { padding: 30px 20px; border: 3px solid #e0e0e0; border-radius: 12px; cursor: pointer; text-align: center; transition: all 0.3s; background: white; }
-  .account-type-option:hover { border-color: #1a73e8; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(26,115,232,0.2); }
-  .account-type-option.selected { border-color: #1a73e8; background: #e3f2fd; }
-  .login-method { display: flex; gap: 10px; margin: 20px 0; }
-  .login-method-btn { flex: 1; padding: 15px; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; text-align: center; transition: all 0.3s; background: white; }
-  .login-method-btn.active { border-color: #1a73e8; background: #e3f2fd; }
-  .otp-input-group { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
-  .otp-input { width: 50px; height: 60px; text-align: center; font-size: 24px; font-weight: bold; border: 2px solid #ddd; border-radius: 8px; }
-  
-  /* Chat Box Styles */
-  .chat-box { border: 1px solid #ddd; height: 450px; display: flex; flex-direction: column; border-radius: 8px; }
-  .chat-messages { flex: 1; padding: 15px; overflow-y: auto; background: #f8f9fa; }
-  .chat-input { display: flex; padding: 15px; border-top: 1px solid #ddd; background: white; }
-  .msg { margin: 8px 0; padding: 10px 14px; border-radius: 12px; max-width: 75%; line-height: 1.4; }
-  .msg-user { background: #1a73e8; color: white; margin-left: auto; }
-  .msg-ai { background: #e8eaed; }
-  
-  /* Advanced Form Styling added to meet requirements */
-  fieldset { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; background: #fff; }
-  legend { font-weight: bold; font-size: 16px; color: #1a73e8; padding: 0 10px; background: #fff; border-radius: 4px; border: 1px solid #ddd; }
-  .form-group { margin-bottom: 15px; }
-  .form-group label { font-weight: bold; display: block; margin-bottom: 5px; color: #333; }
-  .inline-checkbox { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
-  .inline-checkbox input { width: auto; margin: 0; }
-  .info-text { font-size: 12px; color: #666; display: block; margin-top: 4px; }
-  .complex-table th { background: #1a2b4a; color: white; font-size: 13px; }
-  .complex-table td { font-size: 13px; vertical-align: middle; }
+  .stat-card .change { font-size: 12px; margin-top: 5px; }
+  .stat-card .change.positive { color: #28a745; }
+  .stat-card .change.negative { color: #dc3545; }
+  .search-box { position: relative; }
+  .search-box input { padding-left: 40px; }
+  .search-box::before { content: "🔍"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%); }
+  .accordion { border: 1px solid #ddd; border-radius: 6px; margin: 10px 0; }
+  .accordion-header { padding: 15px; background: #f8f9fa; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+  .accordion-header:hover { background: #e9ecef; }
+  .accordion-content { padding: 15px; display: none; border-top: 1px solid #ddd; }
+  .accordion-content.active { display: block; }
+  .tooltip { position: relative; display: inline-block; }
+  .tooltip .tooltip-text { visibility: hidden; width: 200px; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -100px; opacity: 0; transition: opacity 0.3s; font-size: 12px; }
+  .tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+  .notification-item { padding: 15px; border-left: 4px solid #1a73e8; margin: 10px 0; background: #f8f9fa; border-radius: 0 6px 6px 0; }
+  .notification-item.unread { background: #e3f2fd; }
+  .notification-item.urgent { border-left-color: #dc3545; }
+  .chip { display: inline-block; padding: 6px 12px; background: #e0e0e0; border-radius: 16px; font-size: 12px; margin: 3px; cursor: pointer; }
+  .chip:hover { background: #ccc; }
+  .chip.selected { background: #1a73e8; color: white; }
+  .divider { height: 1px; background: #e0e0e0; margin: 20px 0; }
+  .empty-state { text-align: center; padding: 60px 20px; color: #999; }
+  .empty-state .icon { font-size: 64px; margin-bottom: 20px; }
+  .loading-spinner { border: 3px solid #f3f3f3; border-top: 3px solid #1a73e8; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .toast { position: fixed; bottom: 30px; right: 30px; background: #333; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 10001; display: none; }
+  .toast.show { display: block; animation: slideIn 0.3s; }
+  @keyframes slideIn { from { transform: translateX(400px); } to { transform: translateX(0); } }
+  .breadcrumb { padding: 10px 0; font-size: 13px; color: #666; }
+  .breadcrumb a { color: #1a73e8; text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .status-indicator { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
+  .status-online { background: #28a745; }
+  .status-offline { background: #dc3545; }
+  .status-pending { background: #ffc107; }
 </style>
 </head>
 <body>
 
 <!-- FULLSCREEN LOGIN -->
-<div class="login-fullscreen" id="login-fullscreen" style="display: none;">
+<div class="login-fullscreen" id="login-fullscreen">
   <div class="login-box">
     <h1>🏥 SuperClaim</h1>
     <p class="subtitle">Your AI-Powered Health Insurance Assistant</p>
@@ -122,515 +158,708 @@
     <!-- Step 1: Choose Account Type -->
     <div id="login-step-0">
       <h3 style="margin-bottom: 15px;">Welcome! What type of account do you have?</h3>
+      <p style="color: #666; margin-bottom: 20px; font-size: 14px;">This helps us customize your experience and provide faster service.</p>
+      
       <div class="account-type-selector">
-        <div class="account-type-option selected" onclick="selectAccountType('individual')" id="type-individual">
+        <div class="account-type-option" onclick="selectAccountType('individual')" id="type-individual">
           <div class="icon">👤</div>
           <h3>Individual / Family</h3>
           <p>Personal health insurance policies</p>
+          <p style="font-size: 12px; color: #999; margin-top: 10px;">
+            <span class="benefit-tag">Self-purchased</span>
+            <span class="benefit-tag">Family coverage</span>
+          </p>
         </div>
         <div class="account-type-option" onclick="selectAccountType('corporate')" id="type-corporate">
           <div class="icon">🏢</div>
           <h3>Corporate Employee</h3>
           <p>Employer-sponsored group insurance</p>
+          <p style="font-size: 12px; color: #999; margin-top: 10px;">
+            <span class="benefit-tag benefit-tag-corp">⚡ Faster claims</span>
+            <span class="benefit-tag benefit-tag-corp">✓ Pre-verified</span>
+          </p>
         </div>
       </div>
-      <button class="btn" onclick="document.getElementById('login-fullscreen').style.display='none'" style="width: 100%;">Continue →</button>
+
+      <button class="btn" onclick="proceedToLoginMethod()" style="width: 100%; margin-top: 20px;" id="btn-proceed" disabled>Continue →</button>
+    </div>
+
+    <!-- Step 2: Choose Login Method -->
+    <div id="login-step-1" class="hidden">
+      <button class="btn btn-secondary" onclick="backToStep(0)" style="margin-bottom: 15px;">← Back</button>
+      <h3 style="margin-bottom: 15px;">How would you like to login?</h3>
+      <p style="color: #666; margin-bottom: 20px; font-size: 14px;" id="account-type-display"></p>
+      
+      <div class="login-method">
+        <div class="login-method-btn active" onclick="selectLoginMethod('phone')" id="method-phone">
+          <div class="icon">📱</div>
+          <div><strong>Phone</strong></div>
+          <div style="font-size: 12px; color: #666;">OTP via SMS</div>
+        </div>
+        <div class="login-method-btn" onclick="selectLoginMethod('aadhaar')" id="method-aadhaar">
+          <div class="icon">🆔</div>
+          <div><strong>Aadhaar</strong></div>
+          <div style="font-size: 12px; color: #666;">Quick & Secure</div>
+        </div>
+        <div class="login-method-btn" onclick="selectLoginMethod('email')" id="method-email">
+          <div class="icon">📧</div>
+          <div><strong>Email</strong></div>
+          <div style="font-size: 12px; color: #666;">Password login</div>
+        </div>
+      </div>
+
+      <!-- Corporate-specific: Employee ID option -->
+      <div id="corporate-login-options" class="hidden">
+        <div class="login-method" style="margin-top: 10px;">
+          <div class="login-method-btn" onclick="selectLoginMethod('employee-id')" id="method-employee-id" style="flex: 1;">
+            <div class="icon">🏢</div>
+            <div><strong>Employee ID</strong></div>
+            <div style="font-size: 12px; color: #666;">Company credentials</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Login -->
+      <div id="login-phone" class="login-form">
+        <label>Mobile Number</label>
+        <input type="tel" id="phone-input" placeholder="+91 98765 43210" maxlength="10">
+        <br><br>
+        <button class="btn" onclick="sendOTP('phone')" style="width: 100%;">Send OTP</button>
+      </div>
+
+      <!-- Aadhaar Login -->
+      <div id="login-aadhaar" class="login-form hidden">
+        <label>Aadhaar Number</label>
+        <input type="text" id="aadhaar-input" placeholder="XXXX XXXX XXXX" maxlength="14">
+        <p style="font-size: 12px; color: #666; margin-top: 5px;">🔒 Your Aadhaar is encrypted and secure</p>
+        <br>
+        <button class="btn" onclick="sendOTP('aadhaar')" style="width: 100%;">Send OTP</button>
+      </div>
+
+      <!-- Email Login -->
+      <div id="login-email" class="login-form hidden">
+        <label>Email Address</label>
+        <input type="email" id="email-input" placeholder="rahul@example.com">
+        <label>Password</label>
+        <input type="password" id="password-input" placeholder="••••••••">
+        <br>
+        <button class="btn" onclick="loginWithEmail()" style="width: 100%;">Login</button>
+      </div>
+
+      <!-- Employee ID Login (Corporate only) -->
+      <div id="login-employee-id" class="login-form hidden">
+        <label>Company Name</label>
+        <select id="company-select">
+          <option value="">Select your company</option>
+          <option value="TCS">Tata Consultancy Services (TCS)</option>
+          <option value="INFY">Infosys</option>
+          <option value="WIPRO">Wipro</option>
+          <option value="HCL">HCL Technologies</option>
+          <option value="TECHM">Tech Mahindra</option>
+          <option value="OTHER">Other</option>
+        </select>
+        <label>Employee ID</label>
+        <input type="text" id="employee-id-input" placeholder="e.g., EMP001234">
+        <label>Corporate Email</label>
+        <input type="email" id="corp-email-input" placeholder="rahul.sharma@tcs.com">
+        <br>
+        <button class="btn" onclick="sendOTP('employee-id')" style="width: 100%;">Send OTP</button>
+      </div>
+
+      <div style="margin-top: 30px; padding: 15px; background: #f0f7ff; border-radius: 8px; font-size: 12px;">
+        <strong>💡 Demo Credentials:</strong><br>
+        <strong>Individual:</strong><br>
+        • Phone: 9876543210<br>
+        • Aadhaar: 1234 5678 9012<br>
+        • Email: rahul@gmail.com / password123<br><br>
+        <strong>Corporate (TCS):</strong><br>
+        • Phone: 9876543211<br>
+        • Employee ID: EMP001234 (Company: TCS)<br>
+        • Email: rahul@tcs.com / password123
+      </div>
+    </div>
+
+    <!-- Step 3: OTP Verification -->
+    <div id="login-step-2" class="hidden">
+      <button class="btn btn-secondary" onclick="backToStep(1)" style="margin-bottom: 15px;">← Back</button>
+      <h3 style="margin-bottom: 15px;">Verify OTP</h3>
+      <p style="color: #666; margin-bottom: 20px;">
+        Enter the 6-digit code sent to <strong id="otp-destination">+91 98765 43210</strong>
+      </p>
+      
+      <div class="otp-input-group">
+        <input type="text" class="otp-input" maxlength="1" id="otp-1" oninput="moveToNext(1)">
+        <input type="text" class="otp-input" maxlength="1" id="otp-2" oninput="moveToNext(2)">
+        <input type="text" class="otp-input" maxlength="1" id="otp-3" oninput="moveToNext(3)">
+        <input type="text" class="otp-input" maxlength="1" id="otp-4" oninput="moveToNext(4)">
+        <input type="text" class="otp-input" maxlength="1" id="otp-5" oninput="moveToNext(5)">
+        <input type="text" class="otp-input" maxlength="1" id="otp-6" oninput="moveToNext(6)">
+      </div>
+
+      <button class="btn" onclick="verifyOTP()" style="width: 100%; margin-top: 20px;">Verify & Continue</button>
+      
+      <p style="text-align: center; margin-top: 20px; font-size: 13px;">
+        Didn't receive code? <a href="#" onclick="alert('OTP resent'); return false;">Resend OTP</a>
+      </p>
     </div>
   </div>
 </div>
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="main-sidebar">
+<!-- SIDEBAR (Hidden initially) -->
+<div class="sidebar" id="main-sidebar" style="display: none;">
   <h2>🏥 SuperClaim</h2>
   <a onclick="showScreen('dashboard')" id="nav-dashboard" class="active">🏠 Dashboard</a>
   <a onclick="showScreen('policies')" id="nav-policies">📋 My Policies</a>
-  <a onclick="showScreen('insurance-market')" id="nav-insurance-market">🛒 Insurance Market</a>
+  <a onclick="showScreen('insurance-market')" id="nav-insurance-market">🛒 Insurance Marketplace</a>
   <a onclick="showScreen('claims')" id="nav-claims">💰 Claims</a>
-  <a onclick="showScreen('cashless')" id="nav-cashless">🏥 Cashless Network</a>
+  <a onclick="showScreen('cashless')" id="nav-cashless">🏥 Cashless</a>
   <a onclick="showScreen('ai')" id="nav-ai">🤖 AI Assistant</a>
-  <a onclick="showScreen('documents')" id="nav-documents">📁 Document Vault</a>
+  <a onclick="showScreen('documents')" id="nav-documents">📁 Documents</a>
   <a onclick="showScreen('payments')" id="nav-payments">💳 Payments</a>
-  <a onclick="showScreen('corporate-benefits')" id="nav-corporate-benefits">💼 Corporate Benefits <span class="badge-corp">CORP</span></a>
+  <a onclick="showScreen('corporate-benefits')" id="nav-corporate-benefits" style="display: none;">💼 Corporate Benefits <span class="badge-corp">CORP</span></a>
+  <a onclick="showScreen('notifications')" id="nav-notifications">🔔 Notifications</a>
+  <a onclick="showScreen('profile')" id="nav-profile">👤 Profile</a>
+  <a onclick="showScreen('settings')" id="nav-settings">⚙️ Settings</a>
+  <a onclick="showScreen('help')" id="nav-help">❓ Help Center</a>
+  <a onclick="showScreen('support')" id="nav-support">🎫 Support</a>
+  <a onclick="logout()" style="margin-top: 20px; border-top: 1px solid #2d3e5f; padding-top: 20px;">🚪 Logout</a>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="main" id="main-content">
+<!-- MAIN CONTENT (Hidden initially) -->
+<div class="main" id="main-content" style="display: none;">
   <div class="topbar">
     <div>
-      <strong id="user-name">Welcome, Rahul Sharma (EMP001234)</strong> | 
-      <span id="user-type">Corporate Member - TCS</span> | 
+      <strong id="user-name">Welcome, Rahul Sharma</strong> | 
+      <span id="user-type">Individual Member</span> | 
       Member ID: <span id="member-id">SC-2026-8842</span>
     </div>
     <div>
-      <button class="btn btn-secondary">🔔 <span id="notif-count">5</span></button>
-      <button class="btn btn-secondary">👤 Profile</button>
+      <button class="btn btn-secondary" onclick="showScreen('notifications')">🔔 <span id="notif-count">5</span></button>
+      <button class="btn btn-secondary" onclick="showScreen('profile')">👤 Profile</button>
     </div>
   </div>
 
-  <!-- DASHBOARD SCREEN -->
+  <!-- DASHBOARD -->
   <div class="screen active" id="screen-dashboard">
-    <h2>🏠 Overview Dashboard</h2>
-    <div class="alert alert-success">
-      ⚡ <strong>Corporate Fast-Track Active:</strong> Your claims are processed 3x faster with pre-verification.
-    </div>
-    <div class="grid-4">
-      <div class="stat-card">
-        <h3>Family Coverage Limit</h3>
-        <div class="value">₹8,00,000</div>
-        <div style="font-size:12px; color:green;">Base: 5L + Super Top-up: 3L</div>
-      </div>
-      <div class="stat-card">
-        <h3>Coverage Used YTD</h3>
-        <div class="value">₹1,45,000</div>
-        <div class="coverage-bar" style="height:5px; margin-top:10px;"><div class="coverage-fill" style="width: 18%"></div></div>
-      </div>
-      <div class="stat-card">
-        <h3>Pending Claim Value</h3>
-        <div class="value">₹45,000</div>
-        <div style="font-size:12px; color:orange;">1 Claim Under Review</div>
-      </div>
-      <div class="stat-card">
-        <h3>Pre-Auth Status</h3>
-        <div class="value">Approved</div>
-        <div style="font-size:12px;">Valid till 25 Aug 2026</div>
-      </div>
-    </div>
-    <br>
-    <button class="btn" onclick="showScreen('new-claim')">+ Initiate Complex Claim</button>
-    <button class="btn btn-secondary" onclick="openModal('pre-auth-modal')">Submit Pre-Authorization</button>
+    <h2>🏠 Dashboard</h2>
     
-    <div class="grid-2" style="margin-top: 25px;">
-      <div>
-        <h3>🤖 AI Insights</h3>
-        <div class="alert alert-warning">💡 <strong>Tip:</strong> Your Star Health policy renews in 28 days. Auto-renewal is enabled.</div>
-        <div class="alert alert-info">⚠️ <strong>Action Required:</strong> Claim #CLM-2026-X9872 needs additional documents.</div>
+    <div id="individual-dashboard">
+      <div class="grid-4">
+        <div class="stat-card">
+          <h3>Active Policies</h3>
+          <div class="value">2</div>
+          <div class="change positive">↑ Star Health + HDFC Ergo</div>
+        </div>
+        <div class="stat-card">
+          <h3>Pending Claims</h3>
+          <div class="value">1</div>
+          <div class="change">₹45,000 under review</div>
+        </div>
+        <div class="stat-card">
+          <h3>Total Coverage</h3>
+          <div class="value">₹10L</div>
+          <div class="change positive">Across all policies</div>
+        </div>
+        <div class="stat-card">
+          <h3>Coverage Used</h3>
+          <div class="value">28%</div>
+          <div class="change">₹2.8L of ₹10L</div>
+        </div>
       </div>
-      <div>
-        <h3>📊 Recent Activity</h3>
-        <table style="font-size: 13px;">
-          <tr><th>Date</th><th>Activity</th><th>Status</th></tr>
-          <tr><td>08 Jul 2026</td><td>Claim submitted</td><td><span class="badge badge-yellow">Pending</span></td></tr>
-          <tr><td>15 Jun 2026</td><td>Claim settled</td><td><span class="badge badge-green">Approved</span></td></tr>
-        </table>
+
+      <h3 style="margin-top:25px;">⚡ Quick Actions</h3>
+      <div class="grid-4">
+        <button class="btn" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
+        <button class="btn" onclick="showScreen('cashless')">🏥 Find Hospital</button>
+        <button class="btn" onclick="showScreen('ai')">🤖 Ask AI</button>
+        <button class="btn btn-secondary" onclick="showScreen('insurance-market')">🛒 Buy Policy</button>
+      </div>
+
+      <div class="grid-2" style="margin-top: 25px;">
+        <div>
+          <h3>🤖 AI Insights</h3>
+          <div class="alert alert-warning">
+            💡 <strong>Tip:</strong> Your Star Health policy renews in 28 days. Auto-renewal is enabled.
+          </div>
+          <div class="alert alert-info">
+            ⚠️ <strong>Action Required:</strong> Claim #CLM-2026-0045 needs additional documents.
+          </div>
+          <div class="alert alert-success">
+            ✅ <strong>Good News:</strong> You've saved ₹12,500 this year through wellness rewards!
+          </div>
+        </div>
+        <div>
+          <h3>📊 Coverage Utilization</h3>
+          <div class="card">
+            <p><strong>Star Health - Family Health Optima</strong></p>
+            <div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
+            <p style="font-size: 13px; color: #666;">₹1,75,000 / ₹5,00,000 used</p>
+          </div>
+          <div class="card">
+            <p><strong>HDFC Ergo - Optima Restore</strong></p>
+            <div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
+            <p style="font-size: 13px; color: #666;">₹75,000 / ₹5,00,000 used</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:25px;">📊 Recent Activity</h3>
+      <table>
+        <tr><th>Date</th><th>Activity</th><th>Policy</th><th>Amount</th><th>Status</th></tr>
+        <tr><td>08 Jul 2026</td><td>Claim #CLM-2026-0045 submitted</td><td>Star Health</td><td>₹45,000</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+        <tr><td>02 Jul 2026</td><td>Claim #CLM-2026-0044 approved</td><td>HDFC Ergo</td><td>₹25,000</td><td><span class="badge badge-green">Approved</span></td></tr>
+        <tr><td>28 Jun 2026</td><td>Cashless at Apollo Hospital</td><td>Star Health</td><td>₹85,000</td><td><span class="badge badge-green">Approved</span></td></tr>
+        <tr><td>15 Jun 2026</td><td>Policy renewal payment</td><td>Star Health</td><td>₹18,500</td><td><span class="badge badge-blue">Paid</span></td></tr>
+        <tr><td>10 Jun 2026</td><td>Document uploaded</td><td>-</td><td>-</td><td><span class="badge badge-blue">Success</span></td></tr>
+      </table>
+    </div>
+
+    <div id="corporate-dashboard" class="hidden">
+      <div class="alert alert-success">
+        ⚡ <strong>Corporate Fast-Track Active:</strong> Your claims are processed 3x faster with pre-verification. Average processing time: 24 hours.
+      </div>
+      
+      <div class="card card-highlight">
+        <h3>🏢 TCS Group Health Insurance</h3>
+        <p><strong>Employee ID:</strong> EMP001234 | <strong>Department:</strong> IT Services | <strong>Grade:</strong> Digital</        <p><strong>Coverage:</strong> ₹5,00,000 (Base) + ₹3,00,000 (Super Top-up)</p>
+        <p><strong>Employer Contribution:</strong> 100% | <strong>Your Contribution:</strong> ₹0</p>
+        <p><strong>Dependents Covered:</strong> Spouse, 2 Children, Parents</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="stat-card">
+          <h3>Family Coverage</h3>
+          <div class="value">₹8L</div>
+          <div class="change positive">Base + Top-up</div>
+        </div>
+        <div class="stat-card">
+          <h3>Claims This Year</h3>
+          <div class="value">2</div>
+          <div class="change">₹65,000 utilized</div>
+        </div>
+        <div class="stat-card">
+          <h3>Wellness Points</h3>
+          <div class="value">2,450</div>
+          <div class="change positive">Redeem for rewards</div>
+        </div>
+        <div class="stat-card">
+          <h3>Preventive Checkups</h3>
+          <div class="value">4/5</div>
+          <div class="change">Remaining this year</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:25px;">⚡ Quick Actions</h3>
+      <div class="grid-4">
+        <button class="btn btn-corp" onclick="showScreen('claims'); startNewClaim()">+ File Claim (Fast-Track)</button>
+        <button class="btn" onclick="showScreen('cashless')">🏥 Cashless Hospital</button>
+        <button class="btn" onclick="showScreen('corporate-benefits')">💼 View All Benefits</button>
+        <button class="btn btn-secondary" onclick="showScreen('ai')">🤖 Ask AI</button>
+      </div>
+
+      <div class="grid-2" style="margin-top: 25px;">
+        <div>
+          <h3>🎯 Corporate Benefits Summary</h3>
+          <div class="card">
+            <p><strong>Health Insurance</strong> <span class="badge badge-green">Active</span></p>
+            <p style="font-size: 13px; color: #666;">₹8L coverage | 12% used</p>
+          </div>
+          <div class="card">
+            <p><strong>Life Insurance</strong> <span class="badge badge-green">Active</span></p>
+            <p style="font-size: 13px; color: #666;">₹20L coverage | HDFC Life</p>
+          </div>
+          <div class="card">
+            <p><strong>Accident Cover</strong> <span class="badge badge-green">Active</span></p>
+            <p style="font-size: 13px; color: #666;">₹10L coverage | Bajaj Allianz</p>
+          </div>
+        </div>
+        <div>
+          <h3>📊 Recent Activity</h3>
+          <table>
+            <tr><th>Date</th><th>Activity</th><th>Status</th></tr>
+            <tr><td>08 Jul 2026</td><td>Claim submitted</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+            <tr><td>02 Jul 2026</td><td>Claim approved</td><td><span class="badge badge-green">Approved</span></td></tr>
+            <tr><td>28 Jun 2026</td><td>Cashless approved</td><td><span class="badge badge-green">Approved</span></td></tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- POLICIES SCREEN -->
+  <!-- POLICIES -->
   <div class="screen" id="screen-policies">
     <h2>📋 My Policies</h2>
     <button class="btn" onclick="showScreen('insurance-market')">+ Buy New Policy</button>
-    <button class="btn btn-secondary">Compare Policies</button>
+    <button class="btn btn-secondary" onclick="openModal('policy-compare-modal')">Compare Policies</button>
     
-    <div class="insurance-card" style="border-color: #ffd700; background: linear-gradient(135deg, #fff9e6, #ffffff);">
-      <div class="insurance-logo" style="color: #1a2b4a;">🏢 TCS Group Insurance</div>
-      <div class="corp-tag">Corporate Group Policy</div>
-      <h3>TCS Employee Group Health Cover</h3>
-      <p><strong>Policy No:</strong> TCS/GHI/2026/EMP001234 | <strong>Insurer:</strong> ICICI Lombard</p>
-      <p><strong>Base Coverage:</strong> ₹5,00,000 | <strong>Super Top-up:</strong> ₹3,00,000 | <strong>Total:</strong> ₹8,00,000</p>
-      <div class="coverage-bar"><div class="coverage-fill" style="width: 12%"></div></div>
-      <p><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
-      <button class="btn btn-corp">View Details</button>
-      <button class="btn btn-secondary">📄 Download</button>
+    <div id="individual-policies">
+      <div class="insurance-card">
+        <div class="insurance-logo star-health">⭐ Star Health</div>
+        <div class="corp-tag">Individual Policy</div>
+        <h3>Family Health Optima Plus</h3>
+        <p><strong>Policy No:</strong> STAR/FHO/2025/1234567 | <strong>Insurer:</strong> Star Health & Allied Insurance</p>
+        <p><strong>Sum Insured:</strong> ₹5,00,000 | <strong>Used:</strong> ₹1,75,000 (35%)</p>
+        <div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
+        <p><strong>Members:</strong> Rahul (Self), Priya (Spouse), Aarav (Son)</p>
+        <p><strong>Premium:</strong> ₹18,500/year | <strong>Valid Till:</strong> 15 Aug 2026</p>
+        <p><strong>Key Features:</strong> Room rent uncapped, Pre/Post hospitalization 60/90 days, No claim bonus</p>
+        <button class="btn" onclick="openPolicyDetail('STAR')">View Details</button>
+        <button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+        <button class="btn btn-secondary" onclick="openModal('policy-renew-modal')">🔄 Renew</button>
+      </div>
+
+      <div class="insurance-card">
+        <div class="insurance-logo hdfc">HDFC ERGO</div>
+        <div class="corp-tag">Individual Policy</div>
+        <h3>Optima Restore</h3>
+        <p><strong>Policy No:</strong> HDFC/OR/2025/9876543 | <strong>Insurer:</strong> HDFC ERGO General Insurance</p>
+        <p><strong>Sum Insured:</strong> ₹5,00,000 (with restoration benefit)</p>
+        <div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
+        <p><strong>Premium:</strong> ₹12,800/year | <strong>Valid Till:</strong> 30 Nov 2026</p>
+        <p><strong>Key Features:</strong> Unlimited restoration, No claim bonus up to 100%, Global coverage</p>
+        <button class="btn" onclick="openPolicyDetail('HDFC')">View Details</button>
+        <button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+      </div>
+    </div>
+
+    <div id="corporate-policies" class="hidden">
+      <div class="insurance-card" style="border-color: #ffd700; background: linear-gradient(135deg, #fff9e6, #ffffff);">
+        <div class="insurance-logo" style="color: #1a2b4a;">🏢 TCS Group Insurance</div>
+        <div class="corp-tag">Corporate Group Policy</div>
+        <h3>TCS Employee Group Health Cover</h3>
+        <p><strong>Policy No:</strong> TCS/GHI/2026/EMP001234 | <strong>Insurer:</strong> ICICI Lombard General Insurance</p>
+        <p><strong>Base Coverage:</strong> ₹5,00,000 | <strong>Super Top-up:</strong> ₹3,00,000 | <strong>Total:</strong> ₹8,00,000</p>
+        <div class="coverage-bar"><div class="coverage-fill" style="width: 12%"></div></div>
+        <p><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
+        <p><strong>Premium:</strong> ₹0 (100% employer paid) | <strong>Valid Till:</strong> 31 Mar 2027</p>
+        <p><strong>Key Features:</strong> Cashless at 8,500+ hospitals, Maternity cover ₹50,000, Annual health checkup</p>
+        <button class="btn btn-corp" onclick="openPolicyDetail('TCS')">View Details</button>
+        <button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSURANCE MARKETPLACE -->
+  <div class="screen" id="screen-insurance-market">
+    <h2>🛒 Health Insurance Marketplace</h2>
+    <p style="color: #666; margin-bottom: 20px;">Compare and buy from India's top insurers</p>
+    
+    <div style="margin-bottom: 20px;">
+      <input type="text" placeholder="🔍 Search by insurer name, plan type, or city..." style="max-width: 600px;">
+      <button class="btn btn-secondary" onclick="openModal('filter-plans-modal')">Filter</button>
+      <button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
+    </div>
+
+    <h3>🏆 Recommended For You</h3>
+    
+    <div class="insurance-card">
+      <div class="insurance-logo maxbupa">Max Bupa</div>
+      <h3>Heartbeat Plan</h3>
+      <p><strong>Insurer:</strong> Niva Bupa Health Insurance (formerly Max Bupa)</p>
+      <p><strong>Coverage:</strong> ₹5L - ₹6 Cr | <strong>Premium:</strong> From ₹8,500/year</p>
+      <p><strong>Features:</strong> ✓ No room rent cap ✓ 100% restoration ✓ Free health checkup</p>
+      <p><strong>Claim Settlement Ratio:</strong> 98.2% | <strong>Network:</strong> 11,000+ hospitals</p>
+      <button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare</button>
     </div>
 
     <div class="insurance-card">
-      <div class="insurance-logo" style="color: #e31e24;">⭐ Star Health</div>
-      <div class="corp-tag" style="background:#e0e0e0;">Individual Policy</div>
-      <h3>Family Health Optima Plus</h3>
-      <p><strong>Policy No:</strong> STAR/FHO/2025/1234567 | <strong>Insurer:</strong> Star Health</p>
-      <p><strong>Sum Insured:</strong> ₹5,00,000</p>
-      <div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
-      <button class="btn">View Details</button>
+      <div class="insurance-logo aditya">Aditya Birla</div>
+      <h3>Activ Health Platinum</h3>
+      <p><strong>Insurer:</strong> Aditya Birla Health Insurance</p>
+      <p><strong>Coverage:</strong> ₹5L - ₹1 Cr | <strong>Premium:</strong> From ₹9,200/year</p>
+      <p><strong>Features:</strong> ✓ Wellness rewards ✓ OPD cover ✓ Cumulative bonus</p>
+      <p><strong>Claim Settlement Ratio:</strong> 97.8% | <strong>Network:</strong> 9,500+ hospitals</p>
+      <button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="btn btn-secondary">Compare</button>
+    </div>
+
+    <div class="insurance-card">
+      <div class="insurance-logo care">Care Health</div>
+      <h3>Care Supreme</h3>
+      <p><strong>Insurer:</strong> Care Health Insurance (formerly Religare)</p>
+      <p><strong>Coverage:</strong> ₹3L - ₹50L | <strong>Premium:</strong> From ₹7,800/year</p>
+      <p><strong>Features:</strong> ✓ Unlimited restoration ✓ Alternative treatment cover</p>
+      <p><strong>Claim Settlement Ratio:</strong> 96.5% | <strong>Network:</strong> 13,000+ hospitals</p>
+      <button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
+      <button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+      <button class="btn btn-secondary">Compare</button>
     </div>
   </div>
 
-  <!-- INSURANCE MARKETPLACE SCREEN -->
-  <div class="screen" id="screen-insurance-market">
-    <h2>🛒 Health Insurance Marketplace</h2>
-    <input type="text" placeholder="🔍 Search by insurer name, plan type, or city..." style="max-width: 600px;">
-    
-    <div class="grid-3" style="margin-top: 20px;">
-      <div class="insurance-card">
-        <h3 style="color: #00a651;">Max Bupa Heartbeat Plan</h3>
-        <p><strong>Coverage:</strong> ₹5L - ₹6 Cr | <strong>Premium:</strong> From ₹8,500/year</p>
-        <button class="btn">Buy Now</button>
-      </div>
-      <div class="insurance-card">
-        <h3 style="color: #003366;">Aditya Birla Activ Health</h3>
-        <p><strong>Coverage:</strong> ₹5L - ₹1 Cr | <strong>Premium:</strong> From ₹9,200/year</p>
-        <button class="btn">Buy Now</button>
-      </div>
-      <div class="insurance-card">
-        <h3 style="color: #ed1b24;">Care Supreme</h3>
-        <p><strong>Coverage:</strong> ₹3L - ₹50L | <strong>Premium:</strong> From ₹7,800/year</p>
-        <button class="btn">Buy Now</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ADVANCED CLAIMS SCREEN -->
+  <!-- CLAIMS -->
   <div class="screen" id="screen-claims">
-    <h2>💰 Advanced Claims Management</h2>
-    <div class="grid-2">
-      <button class="btn" onclick="showScreen('new-claim')">+ Start New Claim Wizard</button>
-      <button class="btn btn-secondary">🔍 Deep Search & Export</button>
-    </div>
+    <h2>💰 Claims</h2>
+    <button class="btn" onclick="startNewClaim()">+ New Claim</button>
+    <button class="btn btn-secondary" onclick="openModal('filter-claims-modal')">Filter</button>
+    <button class="btn btn-secondary" onclick="openModal('export-claims-modal')">Export</button>
     
     <div class="tab-container">
       <div class="tab-buttons">
-        <button class="tab-btn active">All Tracked Claims</button>
-        <button class="tab-btn">Awaiting User Action (1)</button>
-        <button class="tab-btn">Under TPA Review (2)</button>
+        <button class="tab-btn active" onclick="switchTab('claims', 'all')">All Claims</button>
+        <button class="tab-btn" onclick="switchTab('claims', 'pending')">Pending</button>
+        <button class="tab-btn" onclick="switchTab('claims', 'approved')">Approved</button>
+        <button class="tab-btn" onclick="switchTab('claims', 'rejected')">Rejected</button>
       </div>
-      
-      <div class="tab-content active">
-        <table class="complex-table">
-          <thead>
-            <tr>
-              <th>Claim Ref #</th>
-              <th>Patient</th>
-              <th>Diagnosis (ICD-10)</th>
-              <th>Hospital</th>
-              <th>Billed Amt</th>
-              <th>Approved Amt</th>
-              <th>Deduction</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>CLM-2026-X9872</strong><br><span style="font-size:10px; color:#666;">Submitted: 08-Jul-26</span></td>
-              <td>Priya Sharma<br><span class="badge badge-blue">Spouse</span></td>
-              <td>M54.5 (Low Back Pain)<br>Procedure: MRI Lumbar</td>
-              <td>Apollo Hospital, Mumbai<br>Pin: 400058</td>
-              <td>₹45,000</td>
-              <td>-</td>
-              <td>-</td>
-              <td><span class="badge badge-yellow">Pending Medical Review</span></td>
-              <td>
-                <button class="btn btn-secondary" style="padding: 5px 10px; font-size:12px;">Track</button>
-              </td>
-            </tr>
-            <tr style="background: #f8fff8;">
-              <td><strong>CLM-2026-X9001</strong><br><span style="font-size:10px; color:#666;">Submitted: 15-Jun-26</span></td>
-              <td>Rahul Sharma<br><span class="badge badge-green">Self</span></td>
-              <td>A09 (Gastroenteritis)<br>Procedure: IPD Medical Mgmt</td>
-              <td>Fortis, Mulund<br>Pin: 400078</td>
-              <td>₹85,000</td>
-              <td>₹72,500</td>
-              <td>₹12,500 <i title="Non-medical consumables deduction">ℹ️</i></td>
-              <td><span class="badge badge-green">Settled to Bank (HDFC)</span></td>
-              <td>
-                <button class="btn btn-danger" style="padding: 5px 10px; font-size:12px;" onclick="openModal('appeal-modal')">Appeal Deduction</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+      <div class="tab-content active" id="claims-all">
+        <div class="card">
+          <h3>Claim #CLM-2026-0045 <span class="badge badge-yellow">Pending</span></h3>
+          <p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹45,000</p>
+          <p><strong>Hospital:</strong> Apollo Hospital, Mumbai | <strong>Date:</strong> 05 Jul 2026</p>
+          <p><strong>Policy:</strong> Star Health - Family Health Optima</p>
+          <button class="btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
+          <button class="btn btn-secondary" onclick="openModal('track-claim-modal')">Track Status</button>
+        </div>
+        <div class="card">
+          <h3>Claim #CLM-2026-0044 <span class="badge badge-green">Approved</span></h3>
+          <p><strong>Patient:</strong> Priya Sharma | <strong>Amount:</strong> ₹25,000 (Paid)</p>
+          <p><strong>Hospital:</strong> Fortis Hospital | <strong>Date:</strong> 28 Jun 2026</p>
+          <button class="btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
+          <button class="btn btn-secondary" onclick="openModal('payment-details-modal')">View Payment</button>
+        </div>
+        <div class="card">
+          <h3>Claim #CLM-2026-0039 <span class="badge badge-red">Rejected</span></h3>
+          <p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹18,000</p>
+          <p><strong>Reason:</strong> Pre-existing condition not disclosed</p>
+          <button class="btn btn-danger" onclick="openModal('appeal-claim-modal')">Appeal</button>
+          <button class="btn btn-secondary" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- NEW CLAIM WIZARD (COMPLICATED) -->
+  <!-- NEW CLAIM WIZARD -->
   <div class="screen" id="screen-new-claim">
-    <h2>💰 Comprehensive Claim Filing Wizard</h2>
-    <div class="alert alert-info">
-      <strong>Instructions:</strong> Ensure you have your final hospital bill with line-item breakdown, discharge summary, and all investigation reports ready. Max upload size per file is 25MB.
+    <h2>💰 Create New Claim</h2>
+    <div id="corporate-fast-track" class="alert alert-success hidden">
+      ⚡ <strong>Corporate Fast-Track:</strong> Your claim will be processed within 24 hours (vs 3-5 days for regular claims).
     </div>
-
     <div class="stepper">
-      <div class="step active" id="step1" onclick="goToStep(1)">1. Policy & Patient</div>
-      <div class="step" id="step2" onclick="goToStep(2)">2. Clinical Info</div>
-      <div class="step" id="step3" onclick="goToStep(3)">3. Line Item Billing</div>
-      <div class="step" id="step4" onclick="goToStep(4)">4. Mandatory Docs</div>
-      <div class="step" id="step5" onclick="goToStep(5)">5. Declarations</div>
+      <div class="step active" id="step1">1. Patient & Policy</div>
+      <div class="step" id="step2">2. Treatment Details</div>
+      <div class="step" id="step3">3. Documents</div>
+      <div class="step" id="step4">4. Review</div>
     </div>
 
-    <!-- Step 1 -->
     <div id="claim-step-1">
-      <fieldset>
-        <legend>Policy Information</legend>
-        <div class="grid-2">
-          <div class="form-group">
-            <label>Select Active Policy *</label>
-            <select>
-              <option>TCS Corporate Group Health - POL-2026-EMP1234 (Bal: ₹6,55,000)</option>
-              <option>Retail Super Top-up (HDFC Ergo) - POL-55644 (Bal: ₹5,00,000)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Claim Category *</label>
-            <select>
-              <option>Main In-Patient Hospitalization (>24 hrs)</option>
-              <option>Pre-Hospitalization Expenses (up to 60 days)</option>
-              <option>Post-Hospitalization Expenses (up to 90 days)</option>
-            </select>
-          </div>
-        </div>
-      </fieldset>
-      
-      <fieldset>
-        <legend>Patient Identification & Demographics</legend>
-        <div class="grid-3">
-          <div class="form-group">
-            <label>Patient Name (Beneficiary) *</label>
-            <select><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
-          </div>
-          <div class="form-group">
-            <label>Patient Aadhaar / Govt ID *</label>
-            <input type="text" placeholder="XXXX-XXXX-XXXX">
-          </div>
-          <div class="form-group">
-            <label>Primary Contact Number *</label>
-            <input type="tel" value="+91 9876543210">
-          </div>
-        </div>
-      </fieldset>
-      <button class="btn" onclick="goToStep(2)" style="width:100%; padding: 15px;">Proceed to Clinical Information →</button>
+      <h3>Select Patient</h3>
+      <select>
+        <option>Rahul Sharma (Self)</option>
+        <option>Priya Sharma (Spouse)</option>
+        <option>Aarav Sharma (Son)</option>
+      </select>
+      <h3>Select Policy</h3>
+      <select id="claim-policy-select">
+        <option>Star Health - Family Health Optima (₹5L)</option>
+        <option>HDFC Ergo - Optima Restore (₹5L)</option>
+      </select>
+      <h3>Claim Type</h3>
+      <select>
+        <option>Reimbursement</option>
+        <option>Pre-authorization</option>
+      </select>
+      <br><br>
+      <button class="btn" onclick="claimNext(2)">Next →</button>
     </div>
 
-    <!-- Step 2 -->
     <div id="claim-step-2" class="hidden">
-      <fieldset>
-        <legend>Provider (Hospital/Clinic) Details</legend>
-        <div class="grid-3">
-          <div class="form-group">
-            <label>Hospital Search / Selection *</label>
-            <input type="text" placeholder="Type hospital name..." value="Apollo Hospitals">
-          </div>
-          <div class="form-group">
-            <label>Hospital Registration / Rohini ID</label>
-            <input type="text" value="ROH-MH-12004">
-          </div>
-          <div class="form-group">
-            <label>Hospital Pincode</label>
-            <input type="text" value="400058">
-          </div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Admission & Clinical Diagnosis</legend>
-        <div class="grid-3">
-          <div class="form-group">
-            <label>Date of Admission *</label>
-            <input type="datetime-local">
-          </div>
-          <div class="form-group">
-            <label>Date of Discharge *</label>
-            <input type="datetime-local">
-          </div>
-          <div class="form-group">
-            <label>Primary Diagnosis *</label>
-            <input type="text" placeholder="e.g. Viral Fever">
-          </div>
-        </div>
-      </fieldset>
-
-      <div style="display:flex; justify-content: space-between;">
-        <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
-        <button class="btn" onclick="goToStep(3)">Proceed to Billing Breakdown →</button>
-      </div>
+      <h3>Hospital Details</h3>
+      <input type="text" placeholder="Hospital Name" value="Apollo Hospital, Mumbai">
+      <button class="btn btn-secondary" onclick="openModal('search-hospital-modal')">🔍 Search Hospital</button>
+      <h3>Treatment Details</h3>
+      <input type="text" placeholder="Diagnosis" value="Viral Fever">
+      <label>Admission Date</label>
+      <input type="date" value="2026-07-05">
+      <label>Discharge Date</label>
+      <input type="date" value="2026-07-08">
+      <h3>Claim Amount</h3>
+      <input type="number" placeholder="₹" value="45000">
+      <br><br>
+      <button class="btn btn-secondary" onclick="claimNext(1)">← Back</button>
+      <button class="btn" onclick="claimNext(3)">Next →</button>
     </div>
 
-    <!-- Step 3 -->
     <div id="claim-step-3" class="hidden">
-      <fieldset>
-        <legend>Itemized Billing / Bill Mapping</legend>
-        <table class="complex-table" id="billing-table">
-          <thead>
-            <tr>
-              <th width="40%">Expense Head / Category</th>
-              <th width="30%">Bill Ref #</th>
-              <th width="30%">Amount (₹)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><select><option>1. Room Rent & Nursing Charges</option><option>2. Pharmacy</option></select></td>
-              <td><input type="text" placeholder="INV-1001"></td>
-              <td><input type="number" placeholder="0.00"></td>
-            </tr>
-          </tbody>
-        </table>
-      </fieldset>
-      <div style="display:flex; justify-content: space-between;">
-        <button class="btn btn-secondary" onclick="goToStep(2)">← Back</button>
-        <button class="btn" onclick="goToStep(4)">Proceed to Document Uploads →</button>
+      <h3>Upload Documents</h3>
+      <p>🤖 AI will auto-verify these documents before submission.</p>
+      <div class="file-upload-area" onclick="openModal('upload-document-modal')">
+        <p style="font-size: 48px;">📁</p>
+        <p><strong>Click to upload or drag and drop</strong></p>
+        <p style="font-size: 12px; color: #666;">PDF, JPG, PNG (Max 10MB each)</p>
       </div>
+      <div class="card">
+        <strong>1. Final Hospital Bill</strong> <span class="badge badge-green">✓ Verified</span>
+        <p>hospital_bill.pdf (2.3 MB)</p>
+        <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+        <button class="btn btn-secondary" onclick="openModal('replace-document-modal')">Replace</button>
+      </div>
+      <div class="card">
+        <strong>2. Discharge Summary</strong> <span class="badge badge-green">✓ Verified</span>
+        <p>discharge.pdf (1.1 MB)</p>
+      </div>
+      <div class="card">
+        <strong>3. Payment Receipt</strong> <span class="badge badge-yellow">⚠ Amount mismatch</span>
+        <p>receipt.pdf (0.8 MB)</p>
+        <button class="btn btn-secondary" onclick="openModal('fix-document-error-modal')">Fix Error</button>
+      </div>
+      <br><br>
+      <button class="btn btn-secondary" onclick="claimNext(2)">← Back</button>
+      <button class="btn" onclick="claimNext(4)">Next →</button>
     </div>
 
-    <!-- Step 4 -->
     <div id="claim-step-4" class="hidden">
-      <fieldset>
-        <legend>Mandatory Document Verification System</legend>
-        <div class="grid-2">
-          <div class="card" style="margin:0;"><label>1. Final Hospital Bill *</label><input type="file" multiple></div>
-          <div class="card" style="margin:0;"><label>2. Discharge Summary *</label><input type="file" multiple></div>
-          <div class="card" style="margin:0;"><label>3. Payment Receipts *</label><input type="file" multiple></div>
-          <div class="card" style="margin:0;"><label>4. Investigation Reports *</label><input type="file" multiple></div>
-        </div>
-      </fieldset>
-      <div style="display:flex; justify-content: space-between;">
-        <button class="btn btn-secondary" onclick="goToStep(3)">← Back</button>
-        <button class="btn" onclick="goToStep(5)">Proceed to Final Declarations →</button>
+      <h3>Review & Submit</h3>
+      <div class="card">
+        <p><strong>Patient:</strong> Rahul Sharma</p>
+        <p><strong>Policy:</strong> Star Health - Family Health Optima</p>
+        <p><strong>Hospital:</strong> Apollo Hospital, Mumbai</p>
+        <p><strong>Diagnosis:</strong> Viral Fever</p>
+        <p><strong>Amount:</strong> ₹45,000</p>
+        <p><strong>Documents:</strong> 4 uploaded</p>
+        <p><strong>Bank:</strong> HDFC ****4521</p>
+        <button class="btn btn-secondary" onclick="openModal('edit-bank-details-modal')">Edit Bank Details</button>
       </div>
-    </div>
-
-    <!-- Step 5 -->
-    <div id="claim-step-5" class="hidden">
-      <fieldset>
-        <legend>Statutory Declarations & Consent</legend>
-        <div class="inline-checkbox"><input type="checkbox"> <label>I hereby declare that the information is true.</label></div>
-        <div class="inline-checkbox"><input type="checkbox"> <label>I authorize the TPA to seek medical records.</label></div>
-        <div class="form-group" style="margin-top:20px;">
-          <label>Digital Signature</label>
-          <input type="text" placeholder="Type Full Name" required>
-        </div>
-      </fieldset>
-      <div style="display:flex; justify-content: space-between;">
-        <button class="btn btn-secondary" onclick="goToStep(4)">← Back</button>
-        <button class="btn" style="background:#28a745; font-size:16px; padding:15px 30px;" onclick="showScreen('dashboard')">Finalize & Submit Claim</button>
+      <div class="card" style="background:#e8f5e9;">
+        🤖 <strong>AI Confidence Score: 92%</strong><br>
+        All documents verified. Claim is likely to be approved.
       </div>
+      <button class="btn btn-secondary" onclick="claimNext(3)">← Back</button>
+      <button class="btn" onclick="submitClaim()">✓ Submit Claim</button>
     </div>
   </div>
 
-  <!-- CASHLESS NETWORK SCREEN -->
+  <!-- CASHLESS -->
   <div class="screen" id="screen-cashless">
     <h2>🏥 Cashless / Network Hospitals</h2>
-    <input type="text" placeholder="🔍 Search hospital by name, city..." style="max-width:100%;" id="hospital-search">
-    <button class="btn btn-secondary" style="margin-top: 10px;">Filter</button>
+    <input type="text" placeholder="🔍 Search hospital by name, city, or specialty..." style="max-width:100%;" id="hospital-search">
+    <br><br>
+    <button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
+    <button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>
     
     <div class="insurance-card">
       <h3>Apollo Hospital, Mumbai <span class="badge badge-green">Network</span></h3>
-      <p>📍 Andheri West, Mumbai | ⭐ 4.5/5</p>
-      <p><strong>Distance:</strong> 2.3 km | <strong>Insurers Accepted:</strong> Star Health, HDFC Ergo</p>
-      <button class="btn" onclick="openModal('pre-auth-modal')">Request Cashless Pre-Auth</button>
-      <button class="btn btn-secondary">🧭 Directions</button>
+      <p>📍 Andheri West, Mumbai | ⭐ 4.5/5 | 📞 022-12345678</p>
+      <p>Specialties: Cardiology, Orthopedics, General Medicine</p>
+      <p><strong>Distance:</strong> 2.3 km | <strong>Insurers Accepted:</strong> Star Health, HDFC Ergo, ICICI Lombard</p>
+      <button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
+      <button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
+      <button class="btn btn-secondary" onclick="openModal('directions-modal')">🧭 Directions</button>
+    </div>
+    <div class="insurance-card">
+      <h3>Fortis Hospital, Mumbai <span class="badge badge-green">Network</span></h3>
+      <p>📍 Mulund, Mumbai | ⭐ 4.3/5 | 📞 022-87654321</p>
+      <p>Specialties: Neurology, Oncology, Pediatrics</p>
+      <p><strong>Distance:</strong> 4.1 km</p>
+      <button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
+      <button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
     </div>
   </div>
 
-  <!-- AI ASSISTANT SCREEN -->
+  <!-- AI ASSISTANT -->
   <div class="screen" id="screen-ai">
     <h2>🤖 Super AI Assistant</h2>
+    <p style="margin-bottom:10px;">Ask anything about your policy, claims, or hospitals.</p>
+    
+    <div class="card" style="background:#f5f5f5;">
+      <strong>Suggested Questions:</strong><br>
+      <button class="btn btn-secondary" onclick="askAI('Is my knee surgery covered?')">Is my knee surgery covered?</button>
+      <button class="btn btn-secondary" onclick="askAI('What is my remaining coverage?')">What is my remaining coverage?</button>
+      <button class="btn btn-secondary" onclick="askAI('Find a cardiologist near me')">Find a cardiologist near me</button>
+      <button class="btn btn-secondary" onclick="askAI('Why was my claim rejected?')">Why was my claim rejected?</button>
+      <button class="btn btn-secondary" onclick="askAI('How to file a claim?')">How to file a claim?</button>
+    </div>
+
     <div class="chat-box">
       <div class="chat-messages" id="chat-messages">
         <div class="msg msg-ai">👋 Hi Rahul! I'm your SuperClaim AI. How can I help you today?</div>
       </div>
       <div class="chat-input">
-        <input type="text" placeholder="Type your question...">
-        <button class="btn">Send</button>
+        <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="if(event.key==='Enter') sendChat()">
+        <button class="btn" onclick="sendChat()">Send</button>
+        <button class="btn btn-secondary" onclick="openModal('voice-input-modal')">🎤</button>
       </div>
     </div>
   </div>
 
-  <!-- DOCUMENTS SCREEN -->
+  <!-- DOCUMENTS -->
   <div class="screen" id="screen-documents">
     <h2>📁 Document Vault</h2>
-    <button class="btn">+ Upload Document</button>
+    <button class="btn" onclick="openModal('upload-document-modal')">+ Upload Document</button>
+    <button class="btn btn-secondary" onclick="openModal('scan-document-modal')">📷 Scan</button>
+    <button class="btn btn-secondary" onclick="openModal('organize-documents-modal')">📂 Organize</button>
+
+    <h3 style="margin-top:20px;">🏥 Medical Records</h3>
     <div class="card">
       <p>📄 discharge_summary_apollo_jul2026.pdf <span class="badge badge-blue">Auto-tagged</span></p>
       <p><small>Uploaded: 08 Jul 2026 | Size: 1.1 MB</small></p>
-      <button class="btn btn-secondary">View</button>
+      <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+      <button class="btn btn-secondary" onclick="openModal('share-document-modal')">Share</button>
+      <button class="btn btn-secondary" onclick="openModal('download-document-modal')">Download</button>
+    </div>
+
+    <h3 style="margin-top:20px;">💰 Bills & Receipts</h3>
+    <div class="card">
+      <p>📄 hospital_bill_apollo.pdf</p>
+      <p><small>Uploaded: 08 Jul 2026 | Size: 2.3 MB</small></p>
+      <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+    </div>
+
+    <h3 style="margin-top:20px;">📋 Policy Documents</h3>
+    <div class="card">
+      <p>📄 policy_STAR_2025.pdf</p>
+      <p><small>Auto-synced from Star Health</small></p>
+      <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
     </div>
   </div>
 
-  <!-- PAYMENTS SCREEN -->
+  <!-- PAYMENTS -->
   <div class="screen" id="screen-payments">
     <h2>💳 Payments & Billing</h2>
+    <button class="btn" onclick="openModal('make-payment-modal')">+ Make Payment</button>
+    <button class="btn btn-secondary" onclick="openModal('payment-history-modal')">View History</button>
+    
     <div class="card">
       <h3>Upcoming Payments</h3>
-      <p>15 Aug 2026 - Star Health Renewal - <strong>₹18,500</strong></p>
-      <button class="btn">Pay Now</button>
+      <table>
+        <tr><th>Due Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Action</th></tr>
+        <tr>
+          <td>15 Aug 2026</td>
+          <td>Star Health Policy Renewal</td>
+          <td>₹18,500</td>
+          <td><span class="badge badge-yellow">Due Soon</span></td>
+          <td><button class="btn" onclick="openModal('make-payment-modal')">Pay Now</button></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Recent Payments</h3>
+      <table>
+        <tr><th>Date</th><th>Description</th><th>Amount</th><th>Method</th><th>Status</th></tr>
+        <tr>
+          <td>15 Jun 2026</td>
+          <td>Star Health Premium</td>
+          <td>₹18,500</td>
+          <td>HDFC ****4521</td>
+          <td><span class="badge badge-green">Paid</span></td>
+        </tr>
+        <tr>
+          <td>02 Jul 2026</td>
+          <td>Claim Reimbursement</td>
+          <td>₹25,000</td>
+          <td>HDFC ****4521</td>
+          <td><span class="badge badge-green">Received</span></td>
+        </tr>
+      </table>
     </div>
   </div>
 
-  <!-- CORPORATE BENEFITS SCREEN -->
+  <!-- CORPORATE BENEFITS -->
   <div class="screen" id="screen-corporate-benefits">
-    <h2>💼 Corporate Benefits <span class="badge-corp">TCS</span></h2>
-    <div class="card card-highlight">
-      <h3>Your Exclusive Perks</h3>
-      <ul>
-        <li>Free Annual Health Checkup (Worth ₹3000)</li>
-        <li>Discounted Gym Memberships (Cult.fit)</li>
-        <li>Free Tele-consultations (Unlimited)</li>
-      </ul>
-    </div>
-  </div>
+    <h2>💼 Corporate Benefits <span class="badge-corp">TCS<
+<truncated 30003 bytes>
 
-</div> <!-- END MAIN -->
-
-<!-- ADVANCED MODALS -->
-
-<!-- Modal: Appeal Deduction -->
-<div id="appeal-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>File Grievance / Appeal (Claim #CLM-2026-X9001)</h2>
-      <button class="modal-close" onclick="closeModal('appeal-modal')">&times;</button>
-    </div>
-    <form>
-      <div class="form-group">
-        <label>Appeal Category *</label>
-        <select><option>Contesting Non-Medical Consumables</option></select>
-      </div>
-      <div class="form-group">
-        <label>Detailed Medical Justification *</label>
-        <textarea rows="4"></textarea>
-      </div>
-      <button type="button" class="btn" style="width:100%;" onclick="closeModal('appeal-modal')">Submit Appeal</button>
-    </form>
-  </div>
-</div>
-
-<!-- Modal: Pre-Auth Request -->
-<div id="pre-auth-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Planned Hospitalization (Pre-Auth)</h2>
-      <button class="modal-close" onclick="closeModal('pre-auth-modal')">&times;</button>
-    </div>
-    <form>
-      <div class="grid-2">
-        <div class="form-group"><label>Expected Date</label><input type="date"></div>
-        <div class="form-group"><label>Hospital</label><input type="text"></div>
-      </div>
-      <button type="button" class="btn" style="width:100%;" onclick="closeModal('pre-auth-modal')">Submit Pre-Auth to TPA</button>
-    </form>
-  </div>
-</div>
-
-<!-- Scripts -->
-<script>
-  function showScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-    
-    const targetScreen = document.getElementById('screen-' + screenId);
-    if(targetScreen) {
-      targetScreen.classList.add('active');
-    }
-    const targetNav = document.getElementById('nav-' + screenId);
-    if(targetNav) {
-      targetNav.classList.add('active');
-    }
-  }
-
-  function goToStep(stepNum) {
-    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('[id^="claim-step-"]').forEach(s => s.classList.add('hidden'));
-    
-    document.getElementById('step' + stepNum).classList.add('active');
-    document.getElementById('claim-step-' + stepNum).classList.remove('hidden');
-    
-    for(let i=1; i<stepNum; i++) {
-      document.getElementById('step' + i).classList.add('done');
-    }
-  }
-
-  function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-  function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-</script>
-</body>
-</html>
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.
