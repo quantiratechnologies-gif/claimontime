@@ -859,7 +859,261 @@
 
   <!-- CORPORATE BENEFITS -->
   <div class="screen" id="screen-corporate-benefits">
-    <h2>💼 Corporate Benefits <span class="badge-corp">TCS<
-<truncated 30003 bytes>
+    <h2>💼 Corporate Benefits <span class="badge-corp">TCS</span></h2>
+    <div class="alert alert-info">Detailed corporate benefits will appear here.</div>
+  </div>
+
+
 
 NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.
+  <!-- NOTIFICATIONS -->
+  <div class="screen" id="screen-notifications">
+    <h2>🔔 Notifications</h2>
+    <div class="notification-item urgent">
+      <strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
+      <button class="btn btn-secondary" onclick="openModal('upload-document-modal')">Upload Now</button>
+    </div>
+    <div class="notification-item unread">
+      <strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
+    </div>
+    <div class="notification-item">
+      <strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="screen" id="screen-profile">
+    <h2>👤 User Profile</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Personal Details</h3>
+        <label>Full Name</label><input type="text" value="Rahul Sharma">
+        <label>Date of Birth</label><input type="date" value="1988-05-12">
+        <label>Phone</label><input type="tel" value="+91 9876543210">
+        <button class="btn">Update Details</button>
+      </div>
+      <div class="card">
+        <h3>KYC & Verification</h3>
+        <p>Aadhaar: XXXX-XXXX-1234 <span class="badge badge-green">Verified</span></p>
+        <p>PAN: ABCXXXXX1Z <span class="badge badge-green">Verified</span></p>
+        <button class="btn btn-secondary">Update KYC</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="screen" id="screen-settings">
+    <h2>⚙️ Settings</h2>
+    <div class="card">
+      <div class="form-group"><input type="checkbox" checked> Receive SMS Alerts</div>
+      <div class="form-group"><input type="checkbox" checked> Receive Email Alerts</div>
+      <div class="form-group"><input type="checkbox"> Enable Auto-Pay for Renewals</div>
+      <button class="btn">Save Preferences</button>
+    </div>
+  </div>
+
+  <!-- HELP & SUPPORT -->
+  <div class="screen" id="screen-help">
+    <h2>❓ Help Center</h2>
+    <div class="accordion">
+      <div class="accordion-header">How to file a claim?</div>
+      <div class="accordion-content">Go to the Claims section and click on + New Claim.</div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header">What is Cashless network?</div>
+      <div class="accordion-content">These are hospitals where you don't need to pay out of pocket.</div>
+    </div>
+  </div>
+
+  <div class="screen" id="screen-support">
+    <h2>🎫 Support Tickets</h2>
+    <button class="btn">+ Raise New Ticket</button>
+    <table style="margin-top:20px;">
+      <tr><th>Ticket ID</th><th>Issue</th><th>Status</th></tr>
+      <tr><td>TKT-001</td><td>Name correction in policy</td><td><span class="badge badge-yellow">Open</span></td></tr>
+    </table>
+  </div>
+</div> <!-- END MAIN -->
+
+<!-- MODALS -->
+<div id="policy-compare-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Compare Policies</h2><button class="modal-close" onclick="closeModal('policy-compare-modal')">&times;</button></div><p>Detailed comparison table will go here.</p></div></div>
+<div id="download-policy-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Download Policy</h2><button class="modal-close" onclick="closeModal('download-policy-modal')">&times;</button></div><button class="btn">Download PDF</button></div></div>
+<div id="policy-renew-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Renew Policy</h2><button class="modal-close" onclick="closeModal('policy-renew-modal')">&times;</button></div><input type="text" value="₹18,500"><button class="btn">Pay Now</button></div></div>
+<div id="filter-plans-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Filter Plans</h2><button class="modal-close" onclick="closeModal('filter-plans-modal')">&times;</button></div><p>Filter options...</p></div></div>
+<div id="compare-plans-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Compare Plans</h2><button class="modal-close" onclick="closeModal('compare-plans-modal')">&times;</button></div><p>Comparison matrix...</p></div></div>
+<div id="plan-details-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Plan Details</h2><button class="modal-close" onclick="closeModal('plan-details-modal')">&times;</button></div><p>Full plan details...</p></div></div>
+<div id="buy-plan-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Buy Plan</h2><button class="modal-close" onclick="closeModal('buy-plan-modal')">&times;</button></div><button class="btn">Proceed to Payment</button></div></div>
+<div id="filter-claims-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Filter Claims</h2><button class="modal-close" onclick="closeModal('filter-claims-modal')">&times;</button></div><p>Claim filters...</p></div></div>
+<div id="export-claims-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Export Claims</h2><button class="modal-close" onclick="closeModal('export-claims-modal')">&times;</button></div><button class="btn">Export as CSV</button></div></div>
+<div id="track-claim-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Track Claim</h2><button class="modal-close" onclick="closeModal('track-claim-modal')">&times;</button></div><div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div><p>Step 2 of 4: Medical Review</p></div></div>
+<div id="payment-details-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Payment Details</h2><button class="modal-close" onclick="closeModal('payment-details-modal')">&times;</button></div><p>Txn ID: 123456789</p></div></div>
+<div id="appeal-claim-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Appeal Claim</h2><button class="modal-close" onclick="closeModal('appeal-claim-modal')">&times;</button></div><textarea placeholder="Reason for appeal"></textarea><button class="btn">Submit</button></div></div>
+<div id="search-hospital-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Search Hospital</h2><button class="modal-close" onclick="closeModal('search-hospital-modal')">&times;</button></div><input type="text" placeholder="Hospital name..."><button class="btn">Search</button></div></div>
+<div id="upload-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Upload Document</h2><button class="modal-close" onclick="closeModal('upload-document-modal')">&times;</button></div><input type="file"><button class="btn">Upload</button></div></div>
+<div id="view-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>View Document</h2><button class="modal-close" onclick="closeModal('view-document-modal')">&times;</button></div><p>[Document Preview]</p></div></div>
+<div id="replace-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Replace Document</h2><button class="modal-close" onclick="closeModal('replace-document-modal')">&times;</button></div><input type="file"><button class="btn">Upload New</button></div></div>
+<div id="fix-document-error-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Fix Document Error</h2><button class="modal-close" onclick="closeModal('fix-document-error-modal')">&times;</button></div><p>Please re-upload clearly.</p></div></div>
+<div id="edit-bank-details-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Edit Bank Details</h2><button class="modal-close" onclick="closeModal('edit-bank-details-modal')">&times;</button></div><input type="text" placeholder="Account Number"><button class="btn">Save</button></div></div>
+<div id="filter-hospitals-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Filter Hospitals</h2><button class="modal-close" onclick="closeModal('filter-hospitals-modal')">&times;</button></div><p>Filters...</p></div></div>
+<div id="map-view-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Map View</h2><button class="modal-close" onclick="closeModal('map-view-modal')">&times;</button></div><p>[Google Map Embed]</p></div></div>
+<div id="cashless-request-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Request Cashless</h2><button class="modal-close" onclick="closeModal('cashless-request-modal')">&times;</button></div><input type="date"><button class="btn">Request</button></div></div>
+<div id="hospital-details-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Hospital Details</h2><button class="modal-close" onclick="closeModal('hospital-details-modal')">&times;</button></div><p>Full info...</p></div></div>
+<div id="directions-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Directions</h2><button class="modal-close" onclick="closeModal('directions-modal')">&times;</button></div><p>Routing...</p></div></div>
+<div id="voice-input-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Voice Input</h2><button class="modal-close" onclick="closeModal('voice-input-modal')">&times;</button></div><button class="btn">🎤 Start Recording</button></div></div>
+<div id="scan-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Scan Document</h2><button class="modal-close" onclick="closeModal('scan-document-modal')">&times;</button></div><button class="btn">📷 Open Camera</button></div></div>
+<div id="organize-documents-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Organize Documents</h2><button class="modal-close" onclick="closeModal('organize-documents-modal')">&times;</button></div><p>Folder structure...</p></div></div>
+<div id="share-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Share Document</h2><button class="modal-close" onclick="closeModal('share-document-modal')">&times;</button></div><input type="email" placeholder="Email"><button class="btn">Send</button></div></div>
+<div id="download-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Download Document</h2><button class="modal-close" onclick="closeModal('download-document-modal')">&times;</button></div><button class="btn">Download</button></div></div>
+<div id="make-payment-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Make Payment</h2><button class="modal-close" onclick="closeModal('make-payment-modal')">&times;</button></div><button class="btn">Pay</button></div></div>
+<div id="payment-history-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Payment History</h2><button class="modal-close" onclick="closeModal('payment-history-modal')">&times;</button></div><p>Txn logs...</p></div></div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+  function selectAccountType(type) {
+    document.querySelectorAll('.account-type-option').forEach(el => el.classList.remove('selected'));
+    document.getElementById('type-' + type).classList.add('selected');
+    document.getElementById('btn-proceed').disabled = false;
+    window.selectedAccountType = type;
+  }
+  
+  function proceedToLoginMethod() {
+    document.getElementById('login-step-0').classList.add('hidden');
+    document.getElementById('login-step-1').classList.remove('hidden');
+    
+    if(window.selectedAccountType === 'corporate') {
+      document.getElementById('account-type-display').innerHTML = 'Corporate Employee Account';
+      document.getElementById('corporate-login-options').classList.remove('hidden');
+    } else {
+      document.getElementById('account-type-display').innerHTML = 'Individual Account';
+      document.getElementById('corporate-login-options').classList.add('hidden');
+    }
+    selectLoginMethod('phone');
+  }
+
+  function backToStep(step) {
+    document.getElementById('login-step-1').classList.add('hidden');
+    document.getElementById('login-step-2').classList.add('hidden');
+    document.getElementById('login-step-' + step).classList.remove('hidden');
+  }
+
+  function selectLoginMethod(method) {
+    document.querySelectorAll('.login-method-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('method-' + method).classList.add('active');
+    
+    document.querySelectorAll('.login-form').forEach(el => el.classList.add('hidden'));
+    document.getElementById('login-' + method).classList.remove('hidden');
+  }
+
+  function sendOTP(method) {
+    document.getElementById('login-step-1').classList.add('hidden');
+    document.getElementById('login-step-2').classList.remove('hidden');
+    if(method === 'phone') document.getElementById('otp-destination').innerHTML = document.getElementById('phone-input').value || '+91 9876543210';
+    if(method === 'aadhaar') document.getElementById('otp-destination').innerHTML = 'Aadhaar linked number';
+    if(method === 'employee-id') document.getElementById('otp-destination').innerHTML = document.getElementById('corp-email-input').value || 'Corporate Email';
+  }
+
+  function moveToNext(current) {
+    if(document.getElementById('otp-'+current).value.length === 1 && current < 6) {
+      document.getElementById('otp-'+(current+1)).focus();
+    }
+  }
+
+  function verifyOTP() {
+    document.getElementById('login-fullscreen').style.display = 'none';
+    document.getElementById('main-sidebar').style.display = 'block';
+    document.getElementById('main-content').style.display = 'block';
+    
+    if(window.selectedAccountType === 'corporate') {
+      document.getElementById('user-name').innerHTML = 'Welcome, Rahul Sharma (EMP001234)';
+      document.getElementById('user-type').innerHTML = 'Corporate Member - TCS';
+      document.getElementById('nav-corporate-benefits').style.display = 'block';
+      document.getElementById('individual-dashboard').classList.add('hidden');
+      document.getElementById('corporate-dashboard').classList.remove('hidden');
+      document.getElementById('individual-policies').classList.add('hidden');
+      document.getElementById('corporate-policies').classList.remove('hidden');
+    } else {
+      document.getElementById('user-name').innerHTML = 'Welcome, Rahul Sharma';
+      document.getElementById('user-type').innerHTML = 'Individual Member';
+      document.getElementById('nav-corporate-benefits').style.display = 'none';
+      document.getElementById('individual-dashboard').classList.remove('hidden');
+      document.getElementById('corporate-dashboard').classList.add('hidden');
+      document.getElementById('individual-policies').classList.remove('hidden');
+      document.getElementById('corporate-policies').classList.add('hidden');
+    }
+    showScreen('dashboard');
+  }
+  
+  function loginWithEmail() {
+    verifyOTP(); // Skip straight to login for demo
+  }
+  
+  function logout() {
+    document.getElementById('login-fullscreen').style.display = 'flex';
+    document.getElementById('main-sidebar').style.display = 'none';
+    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('login-step-0').classList.remove('hidden');
+    document.getElementById('login-step-1').classList.add('hidden');
+    document.getElementById('login-step-2').classList.add('hidden');
+  }
+
+  function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+    
+    const targetScreen = document.getElementById('screen-' + screenId);
+    if(targetScreen) {
+      targetScreen.classList.add('active');
+    }
+    const targetNav = document.getElementById('nav-' + screenId);
+    if(targetNav) {
+      targetNav.classList.add('active');
+    }
+  }
+
+  function openModal(id) { 
+      const modal = document.getElementById(id);
+      if(modal) modal.style.display = 'flex'; 
+  }
+  function closeModal(id) { 
+      const modal = document.getElementById(id);
+      if(modal) modal.style.display = 'none'; 
+  }
+  
+  function startNewClaim() {
+    showScreen('new-claim');
+    claimNext(1);
+    if(window.selectedAccountType === 'corporate') {
+        document.getElementById('corporate-fast-track').classList.remove('hidden');
+    } else {
+        document.getElementById('corporate-fast-track').classList.add('hidden');
+    }
+  }
+
+  function claimNext(step) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('[id^="claim-step-"]').forEach(s => s.classList.add('hidden'));
+    
+    const stepEl = document.getElementById('step' + step);
+    if(stepEl) stepEl.classList.add('active');
+    
+    const claimStepEl = document.getElementById('claim-step-' + step);
+    if(claimStepEl) claimStepEl.classList.remove('hidden');
+    
+    for(let i=1; i<step; i++) {
+      const prevStep = document.getElementById('step' + i);
+      if(prevStep) prevStep.classList.add('done');
+    }
+  }
+
+  function switchTab(group, tabId) {
+    const tabBtns = document.querySelectorAll(`[onclick^="switchTab('${group}'"]`);
+    tabBtns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    const contents = document.querySelectorAll(`[id^="${group}-"]`);
+    contents.forEach(c => c.classList.remove('active'));
+    document.getElementById(`${group}-${tabId}`).classList.add('active');
+  }
+</script>
+</body>
+</html>
