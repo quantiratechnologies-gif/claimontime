@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SuperClaim - Health Claims Management</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+  body { background: #f5f5f5; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+  header { background: #1a2b4a; color: #fff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-menu { display: flex; gap: 15px; }
+  .nav-menu a { color: #fff; text-decoration: none; cursor: pointer; padding: 5px 10px; border: 1px solid transparent; }
+  .nav-menu a.active { border-bottom: 2px solid #1a73e8; }
+  .container { display: flex; flex: 1; }
+  .sidebar { width: 250px; background: #fff; border-right: 1px solid #ddd; padding: 20px; }
+  .sidebar ul { list-style: none; }
+  .sidebar li { margin-bottom: 10px; }
+  .sidebar a { text-decoration: none; color: #1a2b4a; font-weight: bold; cursor: pointer; }
+  .main-content { flex: 1; padding: 20px; }
+  .card { background: #fff; border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 4px; }
+  .form-group { margin-bottom: 15px; }
+  .form-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  .btn { padding: 10px 15px; background: #1a73e8; color: #fff; border: none; cursor: pointer; border-radius: 4px; }
+  .btn-secondary { background: #6c757d; }
+  .btn-danger { background: #dc3545; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+  th { background: #f0f0f0; }
+  .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+  .modal-content { background: #fff; width: 80%; max-width: 800px; margin: 50px auto; padding: 20px; border-radius: 4px; max-height: 90vh; overflow-y: auto; }
+  .modal-header { display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+  .close-modal { cursor: pointer; font-size: 20px; font-weight: bold; }
+  .hidden { display: none !important; }
+  .badge { padding: 3px 8px; border-radius: 12px; font-size: 12px; color: #fff; }
+  .badge-warning { background: #ffc107; color: #000; }
+  .badge-success { background: #28a745; }
+  .badge-danger { background: #dc3545; }
+  .section-title { border-bottom: 2px solid #1a73e8; padding-bottom: 5px; margin-bottom: 15px; margin-top: 25px; }
+  fieldset { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; }
+  legend { font-weight: bold; padding: 0 5px; }
+  .mask-toggle { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font-size: 12px; background: #e0e0e0; padding: 5px 10px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h2>SuperClaim</h2>
+  </div>
+  <div class="nav-menu">
+    <a href="#" class="active" onclick="switchPortal('member')">Member Portal</a>
+    <a href="#" onclick="switchPortal('hospital')">Hospital Provider</a>
+    <a href="#" onclick="switchPortal('tpa')">TPA / Insurer</a>
+    <a href="#" onclick="switchPortal('crm')">CRM Support</a>
+  </div>
+  <div>
+    <button class="mask-toggle" onclick="toggleDataMasking()">🔒 Toggle Data Masking</button>
+    <span>Welcome, Rahul Sharma (Member)</span>
+  </div>
+</header>
+
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul id="sidebar-member">
+      <li><a href="#" onclick="showSection('member-dashboard')">Dashboard</a></li>
+      <li><a href="#" onclick="openModal('onboarding-modal')">Add Policy / Onboard</a></li>
+      <li><a href="#" onclick="showSection('member-claim-reimbursement')">Submit Reimbursement</a></li>
+      <li><a href="#" onclick="showSection('member-claim-preauth')">Submit Pre-Auth</a></li>
+      <li><a href="#">My Documents</a></li>
+      <li><a href="#">Track Claims</a></li>
+    </ul>
+    <ul id="sidebar-hospital" class="hidden">
+      <li><a href="#" onclick="showSection('hospital-dashboard')">Hospital Dashboard</a></li>
+      <li><a href="#" onclick="showSection('hospital-preauth')">New Pre-Auth Request</a></li>
+      <li><a href="#">Patient Records</a></li>
+    </ul>
+    <ul id="sidebar-tpa" class="hidden">
+      <li><a href="#" onclick="showSection('tpa-dashboard')">Adjudication Queue</a></li>
+      <li><a href="#" onclick="showSection('tpa-review')">Detailed Review</a></li>
+      <li><a href="#">Rules Engine</a></li>
+    </ul>
+    <ul id="sidebar-crm" class="hidden">
+      <li><a href="#" onclick="showSection('crm-dashboard')">Ticket Timeline</a></li>
+      <li><a href="#">User Lookup</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <!-- MEMBER DASHBOARD -->
+    <div id="member-dashboard" class="content-section">
+      <h2>Member Dashboard</h2>
+      <div class="card">
+        <h3>Active Policies</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Insurer</th>
+              <th>Policy No.</th>
+              <th>Member Name</th>
+              <th>Type</th>
+              <th>Coverage</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Star Health</td>
+              <td class="sensitive-data" data-full="STAR/FHO/2025/1234567">STAR/FHO/XXXXXXX</td>
+              <td>Rahul Sharma</td>
+              <td>Self</td>
+              <td>₹5,00,000</td>
+              <td><span class="badge badge-success">Active</span></td>
+            </tr>
+            <tr>
+              <td>Star Health</td>
+              <td class="sensitive-data" data-full="STAR/FHO/2025/1234567">STAR/FHO/XXXXXXX</td>
+              <td>Priya Sharma</td>
+              <td>Dependent (Spouse)</td>
+              <td>₹5,00,000</td>
+              <td><span class="badge badge-success">Active</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Recent Claims</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Claim ID</th>
+              <th>Patient</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CLM-2026-8841</td>
+              <td>Rahul Sharma</td>
+              <td>Reimbursement</td>
+              <td>₹45,000</td>
+              <td><span class="badge badge-warning">Pending Review</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MEMBER REIMBURSEMENT FLOW -->
+    <div id="member-claim-reimbursement" class="content-section hidden">
+      <h2>Submit Reimbursement Claim</h2>
+      <div class="card">
+        <form>
+          <fieldset>
+            <legend>1. Patient & Policy Details</legend>
+            <div class="grid-2">
+              <div class="form-group">
+                <label>Select Patient</label>
+                <select>
+                  <option>Rahul Sharma (Self)</option>
+                  <option>Priya Sharma (Dependent)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Select Active Policy</label>
+                <select>
+                  <option>Star Health - Family Health Optima</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label>Hospital Name</label>
+                <input type="text" placeholder="e.g. Apollo Hospital">
+              </div>
+              <div class="form-group">
+                <label>Admission Date</label>
+                <input type="date">
+              </div>
+              <div class="form-group">
+                <label>Discharge Date</label>
+                <input type="date">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>2. Upload Mandatory Documents</legend>
+            <p><small>System requires these documents separated for accurate processing.</small></p>
+            <div class="grid-2">
+              <div class="form-group">
+                <label>1. Discharge Summary (Required)</label>
+                <input type="file">
+                <small style="color: #666;">Used to check congenital/neuro exclusions.</small>
+              </div>
+              <div class="form-group">
+                <label>2. Medical Reports (Lab, MRI, X-Ray)</label>
+                <input type="file" multiple>
+              </div>
+              <div class="form-group">
+                <label>3. Hospital Bills & Receipts</label>
+                <input type="file" multiple>
+              </div>
+              <div class="form-group">
+                <label>4. Alimony / KYC / Dependent Proof</label>
+                <input type="file">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>3. Bill Categorization</legend>
+            <p><small>Categorize your bills to match policy caps (e.g., Room Rent 30% limit).</small></p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Amount (₹)</th>
+                  <th>Bill Reference / Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Room Rent / ICU</td>
+                  <td><input type="number" placeholder="0"></td>
+                  <td><input type="text" placeholder="Bill No."></td>
+                </tr>
+                <tr>
+                  <td>Surgical / OT Charges</td>
+                  <td><input type="number" placeholder="0"></td>
+                  <td><input type="text" placeholder="Bill No."></td>
+                </tr>
+                <tr>
+                  <td>Medical / Pharmacy</td>
+                  <td><input type="number" placeholder="0"></td>
+                  <td><input type="text" placeholder="Bill No."></td>
+                </tr>
+                <tr>
+                  <td>Consultation</td>
+                  <td><input type="number" placeholder="0"></td>
+                  <td><input type="text" placeholder="Bill No."></td>
+                </tr>
+              </tbody>
+            </table>
+          </fieldset>
+
+          <fieldset>
+            <legend>4. Bank & Settlement Coordinates</legend>
+            <div class="grid-3">
+              <div class="form-group">
+                <label>Account Number</label>
+                <input type="text" class="sensitive-data" data-full="1234567890123" value="XXXXXXXX90123">
+              </div>
+              <div class="form-group">
+                <label>IFSC / Routing Code</label>
+                <input type="text" value="HDFC0001234">
+              </div>
+              <div class="form-group">
+                <label>Bank Name</label>
+                <input type="text" value="HDFC Bank">
+              </div>
+            </div>
+          </fieldset>
+
+          <button type="button" class="btn">Submit Reimbursement Claim</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MEMBER PRE-AUTH FLOW -->
+    <div id="member-claim-preauth" class="content-section hidden">
+      <h2>Submit Pre-Authorization</h2>
+      <div class="card">
+        <form>
+          <fieldset>
+            <legend>Diagnosis & Proposed Treatment</legend>
+            <div class="form-group">
+              <label>Diagnosis Description</label>
+              <textarea rows="3" placeholder="Detailed description of the diagnosis..."></textarea>
+              <small style="color: #666;">Provide detailed clinical diagnosis to avoid rejection.</small>
+            </div>
+            <div class="form-group">
+              <label>Suggested Treatment Plan</label>
+              <textarea rows="3" placeholder="Planned medical/surgical procedures..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>Upload Test Results / Initial Consultations</label>
+              <input type="file" multiple>
+            </div>
+          </fieldset>
+          <button type="button" class="btn">Send for Pre-Auth</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- TPA ADJUDICATION WORKSPACE -->
+    <div id="tpa-dashboard" class="content-section hidden">
+      <h2>TPA Adjudication Queue</h2>
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Remittance/Claim ID</th>
+              <th>Provider/Hospital</th>
+              <th>Policy Type</th>
+              <th>Requested</th>
+              <th>Automated Rule Flag</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CLM-2026-8841</td>
+              <td>Apollo Hospital</td>
+              <td>Group Corp</td>
+              <td>₹45,000</td>
+              <td><span class="badge badge-warning">Room Rent Over Cap (30%)</span></td>
+              <td><button class="btn btn-secondary" onclick="showSection('tpa-review')">Review Split-Screen</button></td>
+            </tr>
+            <tr>
+              <td>PRE-2026-9922</td>
+              <td>Fortis Hospital</td>
+              <td>Individual</td>
+              <td>₹1,20,000</td>
+              <td><span class="badge badge-danger">Genetic/Neuro Exclusion Match</span></td>
+              <td><button class="btn btn-secondary" onclick="showSection('tpa-review')">Review Split-Screen</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TPA SPLIT SCREEN REVIEW -->
+    <div id="tpa-review" class="content-section hidden">
+      <h2>Detailed Claim Adjudication (Split-Screen)</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="section-title">Submitted Claim Details</h3>
+          <p><strong>Claim ID:</strong> CLM-2026-8841</p>
+          <p><strong>Patient:</strong> Rahul Sharma</p>
+          <p><strong>Diagnosis:</strong> Osteoarthritis (ICD-10: M17.11)</p>
+          <hr style="margin: 10px 0;">
+          <h4>Documents Uploaded:</h4>
+          <ul>
+            <li>📄 Discharge_Summary.pdf</li>
+            <li>📄 Itemized_Bill_Hospital.pdf</li>
+          </ul>
+          <hr style="margin: 10px 0;">
+          <h4>Billed Amounts:</h4>
+          <p>Room Rent: ₹15,000</p>
+          <p>Surgical: ₹30,000</p>
+        </div>
+        <div class="card" style="border-left: 4px solid #dc3545;">
+          <h3 class="section-title">Policy Terms & Flags</h3>
+          <p><strong>Policy Coverage:</strong> ₹5,00,000</p>
+          <p><strong>Condition:</strong> 30% Room Rent Cap</p>
+          <div class="form-group" style="margin-top: 15px; padding: 10px; background: #fff3cd; border: 1px solid #ffeeba;">
+            <strong>System Fraud / Anomaly Rule:</strong> Room rent billed (₹15k) exceeds daily cap allowance (₹5k/day for 2 days = ₹10k max).
+          </div>
+          <div class="form-group">
+            <label>Decision</label>
+            <select>
+              <option>Approve Partial Amount</option>
+              <option>Approve Full (Override)</option>
+              <option>Denial with Code</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Adjustment / Denial Reason Code</label>
+            <select>
+              <option>EX-01: Exceeds Room Rent Cap</option>
+              <option>EX-02: Pre-existing condition non-disclosure</option>
+              <option>EX-03: Congenital exclusion</option>
+            </select>
+          </div>
+          <button class="btn btn-danger">Execute Decision</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRM SUPPORT DASHBOARD -->
+    <div id="crm-dashboard" class="content-section hidden">
+      <h2>CRM Support - Patient Lookup & Timeline</h2>
+      <div class="card">
+        <div class="form-group">
+          <label>Search Patient by Policy No. or Aadhaar</label>
+          <div style="display: flex; gap: 10px;">
+            <input type="text" placeholder="Enter Policy Number...">
+            <button class="btn">Lookup Account</button>
+          </div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="section-title">Member Profile</h3>
+          <p><strong>Name:</strong> Rahul Sharma</p>
+          <p><strong>Contact:</strong> <span class="sensitive-data" data-full="+91-9876543210">+91-XXXXX43210</span></p>
+          <p><strong>Aadhaar:</strong> <span class="sensitive-data" data-full="1234-5678-9012">XXXX-XXXX-9012</span></p>
+          <p><strong>Active Policy:</strong> STAR/FHO/XXXXXXX</p>
+          <button class="btn btn-secondary" style="margin-top: 15px;">Escalate to Appeal Ticket</button>
+        </div>
+        <div class="card">
+          <h3 class="section-title">Interaction & Claim Timeline</h3>
+          <ul style="list-style: none; padding-left: 10px; border-left: 2px solid #1a73e8;">
+            <li style="margin-bottom: 15px; position: relative;">
+              <div style="position: absolute; left: -16px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #1a73e8;"></div>
+              <strong>Today, 10:00 AM</strong> - Inbound Call: Customer inquiring about CLM-2026-8841 delay.
+            </li>
+            <li style="margin-bottom: 15px; position: relative;">
+              <div style="position: absolute; left: -16px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #6c757d;"></div>
+              <strong>Yesterday, 04:30 PM</strong> - Claim CLM-2026-8841 status changed to 'Pending Review' in TPA queue.
+            </li>
+            <li style="margin-bottom: 15px; position: relative;">
+              <div style="position: absolute; left: -16px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: #28a745;"></div>
+              <strong>05 Jul 2026</strong> - Policy onboarded successfully.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ONBOARDING & ADD POLICY MODAL -->
+<div id="onboarding-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Customer Onboarding / Policy Linking</h2>
+      <span class="close-modal" onclick="closeModal('onboarding-modal')">&times;</span>
+    </div>
+    <div class="form-group">
+      <label>Onboarding Method</label>
+      <select id="onboarding-method" onchange="toggleOnboardingFields()">
+        <option value="api">Automated API Fetch (Happy Path)</option>
+        <option value="manual">Manual Entry / Upload</option>
+      </select>
+    </div>
+
+    <!-- API Fetch Section -->
+    <div id="onboarding-api">
+      <fieldset>
+        <legend>Fetch Policy Details</legend>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Phone Number / Email ID</label>
+            <input type="text" placeholder="Enter registered phone or email">
+          </div>
+          <div class="form-group">
+            <label>Aadhaar Card Number</label>
+            <input type="text" placeholder="Enter Aadhaar">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Select Insurance Company</label>
+          <select>
+            <option>LIC</option>
+            <option>ICICI Lombard</option>
+            <option>Niva Bupa</option>
+            <option>Star Health</option>
+          </select>
+        </div>
+        <button type="button" class="btn">Fetch Policies via API</button>
+      </fieldset>
+    </div>
+
+    <!-- Manual Entry Section -->
+    <div id="onboarding-manual" class="hidden">
+      <fieldset>
+        <legend>Manual Policy Details</legend>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Policy Number</label>
+            <input type="text" placeholder="Enter Policy No.">
+          </div>
+          <div class="form-group">
+            <label>Policy Holder Name</label>
+            <input type="text" placeholder="Enter Name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <textarea rows="2" placeholder="Full Address"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Upload Policy Document (PDF/Img)</label>
+          <input type="file">
+          <small>System will parse benefits, claims info, and expiry.</small>
+        </div>
+      </fieldset>
+    </div>
+    
+    <fieldset>
+      <legend>Family & Dependents Configuration</legend>
+      <div class="form-group">
+        <label>Are dependents covered under this single policy number, or do they have separate policies?</label>
+        <select>
+          <option>Single Master Policy (Family Floater)</option>
+          <option>Individual Policies per Member</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Add Dependent (Optional)</label>
+        <div class="grid-3">
+          <input type="text" placeholder="Name">
+          <input type="text" placeholder="Relation">
+          <button type="button" class="btn btn-secondary">Add</button>
+        </div>
+      </div>
+    </fieldset>
+
+    <button type="button" class="btn" style="width: 100%;">Complete Onboarding</button>
+  </div>
+</div>
+
+<script>
+  let isMasked = true;
+
+  function switchPortal(portal) {
+    // Hide all sidebars
+    document.querySelectorAll('.sidebar ul').forEach(el => el.classList.add('hidden'));
+    // Show selected sidebar
+    document.getElementById('sidebar-' + portal).classList.remove('hidden');
+    
+    // Default open first section of that portal
+    if(portal === 'member') showSection('member-dashboard');
+    if(portal === 'hospital') showSection('hospital-dashboard');
+    if(portal === 'tpa') showSection('tpa-dashboard');
+    if(portal === 'crm') showSection('crm-dashboard');
+    
+    // Update active nav link
+    document.querySelectorAll('.nav-menu a').forEach(el => el.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  function showSection(sectionId) {
+    document.querySelectorAll('.content-section').forEach(el => el.classList.add('hidden'));
+    let section = document.getElementById(sectionId);
+    if(section) {
+      section.classList.remove('hidden');
+    }
+  }
+
+  function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+  }
+
+  function toggleOnboardingFields() {
+    let method = document.getElementById('onboarding-method').value;
+    if(method === 'api') {
+      document.getElementById('onboarding-api').classList.remove('hidden');
+      document.getElementById('onboarding-manual').classList.add('hidden');
+    } else {
+      document.getElementById('onboarding-api').classList.add('hidden');
+      document.getElementById('onboarding-manual').classList.remove('hidden');
+    }
+  }
+
+  function toggleDataMasking() {
+    isMasked = !isMasked;
+    let elements = document.querySelectorAll('.sensitive-data');
+    elements.forEach(el => {
+      let fullData = el.getAttribute('data-full');
+      if(isMasked) {
+        if(el.tagName === 'INPUT') {
+          el.value = el.value.replace(/./g, 'X').slice(0, -4) + fullData.slice(-4); // simplified mask
+        } else {
+          el.innerText = fullData.replace(/./g, 'X').slice(0, -4) + fullData.slice(-4);
+        }
+      } else {
+        if(el.tagName === 'INPUT') {
+          el.value = fullData;
+        } else {
+          el.innerText = fullData;
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
