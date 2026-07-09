@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>SuperClaim - Member Portal</title>
-<link href="assets/css/style.css?v=8.0" rel="stylesheet"/>
+<link href="assets/css/style.css?v=9.0" rel="stylesheet"/>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -184,139 +184,218 @@
 </div>
 <!-- DASHBOARD -->
 <div class="screen active" id="screen-dashboard">
-<h2><i data-lucide="home" class="icon-sm"></i> Dashboard</h2>
+<h2 class="flex items-center gap-2 mb-6"><i data-lucide="home" class="icon-sm"></i> Dashboard</h2>
 <div id="individual-dashboard">
-<div class="grid-4">
-<div class="stat-card">
-<h3>Active Policies</h3>
-<div class="value">2</div>
-<div class="change positive">↑ Star Health + HDFC Ergo</div>
-</div>
-<div class="stat-card">
-<h3>Pending Claims</h3>
-<div class="value">1</div>
-<div class="change">₹45,000 under review</div>
-</div>
-<div class="stat-card">
-<h3>Total Coverage</h3>
-<div class="value">₹10L</div>
-<div class="change positive">Across all policies</div>
-</div>
-<div class="stat-card">
-<h3>Coverage Used</h3>
-<div class="value">28%</div>
-<div class="change">₹2.8L of ₹10L</div>
-</div>
-</div>
-<h3 style="margin-top:25px;"><i data-lucide="zap" class="icon-sm"></i> Quick Actions</h3>
-<div class="grid-4">
-<button class="btn" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
-<button class="btn" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Find Hospital</button>
-<button class="btn" onclick="showScreen('ai')"><i data-lucide="bot" class="icon-sm"></i> Ask AI</button>
-<button class="btn btn-secondary" onclick="showScreen('insurance-market')"><i data-lucide="shopping-cart" class="icon-sm"></i> Buy Policy</button>
-</div>
-<div class="grid-2" style="margin-top: 25px;">
-<div>
-<h3><i data-lucide="bot" class="icon-sm"></i> AI Insights</h3>
-<div class="alert alert-warning">
-            <i data-lucide="lightbulb" class="icon-sm"></i> <strong>Tip:</strong> Your Star Health policy renews in 28 days. Auto-renewal is enabled.
-          </div>
-<div class="alert alert-info">
-            <i data-lucide="alert-triangle" class="icon-sm"></i>️ <strong>Action Required:</strong> Claim #CLM-2026-0045 needs additional documents.
-          </div>
-<div class="alert alert-success">
-            ✅ <strong>Good News:</strong> You've saved ₹12,500 this year through wellness rewards!
-          </div>
-</div>
-<div>
-<h3><i data-lucide="bar-chart" class="icon-sm"></i> Coverage Utilization</h3>
-<div class="card">
-<p><strong>Star Health - Family Health Optima</strong></p>
-<div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
-<p style="font-size: 13px; color: #666;">₹1,75,000 / ₹5,00,000 used</p>
-</div>
-<div class="card">
-<p><strong>HDFC Ergo - Optima Restore</strong></p>
-<div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
-<p style="font-size: 13px; color: #666;">₹75,000 / ₹5,00,000 used</p>
-</div>
-</div>
-</div>
-<h3 style="margin-top:25px;"><i data-lucide="bar-chart" class="icon-sm"></i> Recent Activity</h3>
-<table class="table">
-<tr><th>Date</th><th>Activity</th><th>Policy</th><th>Amount</th><th>Status</th></tr>
-<tr><td>08 Jul 2026</td><td>Claim #CLM-2026-0045 submitted</td><td>Star Health</td><td>₹45,000</td><td><span class="badge badge-warning">Pending</span></td></tr>
-<tr><td>02 Jul 2026</td><td>Claim #CLM-2026-0044 approved</td><td>HDFC Ergo</td><td>₹25,000</td><td><span class="badge badge-success">Approved</span></td></tr>
-<tr><td>28 Jun 2026</td><td>Cashless at Apollo Hospital</td><td>Star Health</td><td>₹85,000</td><td><span class="badge badge-success">Approved</span></td></tr>
-<tr><td>15 Jun 2026</td><td>Policy renewal payment</td><td>Star Health</td><td>₹18,500</td><td><span class="badge badge-primary">Paid</span></td></tr>
-<tr><td>10 Jun 2026</td><td>Document uploaded</td><td>-</td><td>-</td><td><span class="badge badge-primary">Success</span></td></tr>
-</table>
-</div>
-<div class="hidden" id="corporate-dashboard">
-<div class="alert alert-success">
-        <i data-lucide="zap" class="icon-sm"></i> <strong>Corporate Fast-Track Active:</strong> Your claims are processed 3x faster with pre-verification. Average processing time: 24 hours.
+  
+  <div class="grid-4 mb-6">
+    <div class="stat-card flex flex-col justify-between">
+      <h3 class="text-muted text-sm font-semibold mb-2">Active Policies</h3>
+      <div class="value text-2xl font-bold mb-1">2</div>
+      <div class="change positive text-xs font-semibold">↑ Star Health + HDFC Ergo</div>
+    </div>
+    <div class="stat-card flex flex-col justify-between">
+      <h3 class="text-muted text-sm font-semibold mb-2">Pending Claims</h3>
+      <div class="value text-2xl font-bold mb-1">1</div>
+      <div class="change text-xs font-semibold">₹45,000 under review</div>
+    </div>
+    <div class="stat-card flex flex-col justify-between">
+      <h3 class="text-muted text-sm font-semibold mb-2">Total Coverage</h3>
+      <div class="value text-2xl font-bold mb-1">₹10L</div>
+      <div class="change positive text-xs font-semibold">Across all policies</div>
+    </div>
+    <div class="stat-card flex flex-col justify-between">
+      <h3 class="text-muted text-sm font-semibold mb-2">Coverage Used</h3>
+      <div class="value text-2xl font-bold mb-1">28%</div>
+      <div class="change text-xs font-semibold">₹2.8L of ₹10L</div>
+    </div>
+  </div>
+
+  <h3 class="flex items-center gap-2 mt-8 mb-4"><i data-lucide="zap" class="icon-sm"></i> Quick Actions</h3>
+  <div class="grid-4 mb-6">
+    <button class="btn flex items-center justify-center gap-2" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
+    <button class="btn flex items-center justify-center gap-2" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Find Hospital</button>
+    <button class="btn flex items-center justify-center gap-2" onclick="showScreen('ai')"><i data-lucide="bot" class="icon-sm"></i> Ask AI</button>
+    <button class="btn btn-secondary flex items-center justify-center gap-2" onclick="showScreen('insurance-market')"><i data-lucide="shopping-cart" class="icon-sm"></i> Buy Policy</button>
+  </div>
+
+  <div class="grid-2 mt-8">
+    <div class="flex flex-col gap-4">
+      <h3 class="flex items-center gap-2"><i data-lucide="bot" class="icon-sm"></i> AI Insights</h3>
+      <div class="alert alert-warning flex items-start gap-2">
+        <i data-lucide="lightbulb" class="icon-sm"></i> 
+        <div><strong>Tip:</strong> Your Star Health policy renews in 28 days. Auto-renewal is enabled.</div>
       </div>
-<div class="card card-highlight">
-<h3><i data-lucide="building" class="icon-sm"></i> TCS Group Health Insurance</h3>
-<p><strong>Employee ID:</strong> EMP001234 | <strong>Department:</strong> IT Services | <strong>Grade:</strong> Digital<!--        <p--><strong>Coverage:</strong> ₹5,00,000 (Base) + ₹3,00,000 (Super Top-up)</p>
-<p><strong>Employer Contribution:</strong> 100% | <strong>Your Contribution:</strong> ₹0</p>
-<p><strong>Dependents Covered:</strong> Spouse, 2 Children, Parents</p>
+      <div class="alert alert-info flex items-start gap-2">
+        <i data-lucide="alert-triangle" class="icon-sm"></i> 
+        <div><strong>Action Required:</strong> Claim #CLM-2026-0045 needs additional documents.</div>
+      </div>
+      <div class="alert alert-success flex items-start gap-2">
+        <div>✅ <strong>Good News:</strong> You've saved ₹12,500 this year through wellness rewards!</div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <h3 class="flex items-center gap-2"><i data-lucide="bar-chart" class="icon-sm"></i> Coverage Utilization</h3>
+      <div class="card flex flex-col gap-2">
+        <p class="font-semibold mb-1">Star Health - Family Health Optima</p>
+        <div class="coverage-bar w-full"><div class="coverage-fill" style="width: 35%"></div></div>
+        <p class="text-xs text-muted mt-1">₹1,75,000 / ₹5,00,000 used</p>
+      </div>
+      <div class="card flex flex-col gap-2">
+        <p class="font-semibold mb-1">HDFC Ergo - Optima Restore</p>
+        <div class="coverage-bar w-full"><div class="coverage-fill" style="width: 15%"></div></div>
+        <p class="text-xs text-muted mt-1">₹75,000 / ₹5,00,000 used</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="flex items-center gap-2 mt-8 mb-4"><i data-lucide="bar-chart" class="icon-sm"></i> Recent Activity</h3>
+  <div class="card p-0 overflow-x-auto">
+    <table class="table w-full text-left">
+      <thead>
+        <tr class="bg-surface-hover">
+          <th class="p-4 border-b">Date</th>
+          <th class="p-4 border-b">Activity</th>
+          <th class="p-4 border-b">Policy</th>
+          <th class="p-4 border-b">Amount</th>
+          <th class="p-4 border-b">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-4 border-b">08 Jul 2026</td>
+          <td class="p-4 border-b">Claim #CLM-2026-0045 submitted</td>
+          <td class="p-4 border-b">Star Health</td>
+          <td class="p-4 border-b">₹45,000</td>
+          <td class="p-4 border-b"><span class="badge badge-warning">Pending</span></td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b">02 Jul 2026</td>
+          <td class="p-4 border-b">Claim #CLM-2026-0044 approved</td>
+          <td class="p-4 border-b">HDFC Ergo</td>
+          <td class="p-4 border-b">₹25,000</td>
+          <td class="p-4 border-b"><span class="badge badge-success">Approved</span></td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b">28 Jun 2026</td>
+          <td class="p-4 border-b">Cashless at Apollo Hospital</td>
+          <td class="p-4 border-b">Star Health</td>
+          <td class="p-4 border-b">₹85,000</td>
+          <td class="p-4 border-b"><span class="badge badge-success">Approved</span></td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b">15 Jun 2026</td>
+          <td class="p-4 border-b">Policy renewal payment</td>
+          <td class="p-4 border-b">Star Health</td>
+          <td class="p-4 border-b">₹18,500</td>
+          <td class="p-4 border-b"><span class="badge badge-primary">Paid</span></td>
+        </tr>
+        <tr>
+          <td class="p-4 border-b">10 Jun 2026</td>
+          <td class="p-4 border-b">Document uploaded</td>
+          <td class="p-4 border-b">-</td>
+          <td class="p-4 border-b">-</td>
+          <td class="p-4 border-b"><span class="badge badge-primary">Success</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-<div class="grid-4">
-<div class="stat-card">
-<h3>Family Coverage</h3>
-<div class="value">₹8L</div>
-<div class="change positive">Base + Top-up</div>
-</div>
-<div class="stat-card">
-<h3>Claims This Year</h3>
-<div class="value">2</div>
-<div class="change">₹65,000 utilized</div>
-</div>
-<div class="stat-card">
-<h3>Wellness Points</h3>
-<div class="value">2,450</div>
-<div class="change positive">Redeem for rewards</div>
-</div>
-<div class="stat-card">
-<h3>Preventive Checkups</h3>
-<div class="value">4/5</div>
-<div class="change">Remaining this year</div>
-</div>
-</div>
-<h3 style="margin-top:25px;"><i data-lucide="zap" class="icon-sm"></i> Quick Actions</h3>
-<div class="grid-4">
-<button class="btn btn-corp" onclick="showScreen('claims'); startNewClaim()">+ File Claim (Fast-Track)</button>
-<button class="btn" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Cashless Hospital</button>
-<button class="btn" onclick="showScreen('corporate-benefits')"><i data-lucide="briefcase" class="icon-sm"></i> View All Benefits</button>
-<button class="btn btn-secondary" onclick="showScreen('ai')"><i data-lucide="bot" class="icon-sm"></i> Ask AI</button>
-</div>
-<div class="grid-2" style="margin-top: 25px;">
-<div>
-<h3><i data-lucide="target" class="icon-sm"></i> Corporate Benefits Summary</h3>
-<div class="card">
-<p><strong>Health Insurance</strong> <span class="badge badge-success">Active</span></p>
-<p style="font-size: 13px; color: #666;">₹8L coverage | 12% used</p>
-</div>
-<div class="card">
-<p><strong>Life Insurance</strong> <span class="badge badge-success">Active</span></p>
-<p style="font-size: 13px; color: #666;">₹20L coverage | HDFC Life</p>
-</div>
-<div class="card">
-<p><strong>Accident Cover</strong> <span class="badge badge-success">Active</span></p>
-<p style="font-size: 13px; color: #666;">₹10L coverage | Bajaj Allianz</p>
-</div>
-</div>
-<div>
-<h3><i data-lucide="bar-chart" class="icon-sm"></i> Recent Activity</h3>
-<table class="table">
-<tr><th>Date</th><th>Activity</th><th>Status</th></tr>
-<tr><td>08 Jul 2026</td><td>Claim submitted</td><td><span class="badge badge-warning">Pending</span></td></tr>
-<tr><td>02 Jul 2026</td><td>Claim approved</td><td><span class="badge badge-success">Approved</span></td></tr>
-<tr><td>28 Jun 2026</td><td>Cashless approved</td><td><span class="badge badge-success">Approved</span></td></tr>
-</table>
-</div>
-</div>
+
+<div class="hidden" id="corporate-dashboard">
+  <div class="alert alert-success flex items-start gap-2 mb-6">
+    <i data-lucide="zap" class="icon-sm"></i> 
+    <div><strong>Corporate Fast-Track Active:</strong> Your claims are processed 3x faster with pre-verification. Average processing time: 24 hours.</div>
+  </div>
+
+  <div class="card card-highlight mb-6 flex flex-col gap-2">
+    <h3 class="flex items-center gap-2 mb-2"><i data-lucide="building" class="icon-sm"></i> TCS Group Health Insurance</h3>
+    <p class="text-sm"><strong>Employee ID:</strong> EMP001234 | <strong>Department:</strong> IT Services | <strong>Grade:</strong> Digital</p>
+    <p class="text-sm"><strong>Coverage:</strong> ₹5,00,000 (Base) + ₹3,00,000 (Super Top-up)</p>
+    <p class="text-sm"><strong>Employer Contribution:</strong> 100% | <strong>Your Contribution:</strong> ₹0</p>
+    <p class="text-sm"><strong>Dependents Covered:</strong> Spouse, 2 Children, Parents</p>
+  </div>
+
+  <div class="grid-4 mb-6">
+    <div class="stat-card flex flex-col justify-between">
+      <h3 class="text-muted text-sm font-semibold mb-2">Family Coverage</h3>
+      <div class="value text-2xl font-bold mb-1">₹8L</div>
+      <div class="change positive text-xs font-semibold">Base + Top-up</div>
+    </div>
+    <div class="stat-card flex flex-col justify-between">
+      <h3 class="text-muted text-sm font-semibold mb-2">Claims This Year</h3>
+      <div class="value text-2xl font-bold mb-1">2</div>
+      <div class="change text-xs font-semibold">₹65,000 utilized</div>
+    </div>
+    <div class="stat-card flex flex-col justify-between">
+      <h3 class="text-muted text-sm font-semibold mb-2">Wellness Points</h3>
+      <div class="value text-2xl font-bold mb-1">2,450</div>
+      <div class="change positive text-xs font-semibold">Redeem for rewards</div>
+    </div>
+    <div class="stat-card flex flex-col justify-between">
+      <h3 class="text-muted text-sm font-semibold mb-2">Preventive Checkups</h3>
+      <div class="value text-2xl font-bold mb-1">4/5</div>
+      <div class="change text-xs font-semibold">Remaining this year</div>
+    </div>
+  </div>
+
+  <h3 class="flex items-center gap-2 mt-8 mb-4"><i data-lucide="zap" class="icon-sm"></i> Quick Actions</h3>
+  <div class="grid-4 mb-6">
+    <button class="btn btn-corp flex items-center justify-center gap-2" onclick="showScreen('claims'); startNewClaim()">+ File Claim (Fast-Track)</button>
+    <button class="btn flex items-center justify-center gap-2" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Cashless Hospital</button>
+    <button class="btn flex items-center justify-center gap-2" onclick="showScreen('corporate-benefits')"><i data-lucide="briefcase" class="icon-sm"></i> View All Benefits</button>
+    <button class="btn btn-secondary flex items-center justify-center gap-2" onclick="showScreen('ai')"><i data-lucide="bot" class="icon-sm"></i> Ask AI</button>
+  </div>
+
+  <div class="grid-2 mt-8">
+    <div class="flex flex-col gap-4">
+      <h3 class="flex items-center gap-2"><i data-lucide="target" class="icon-sm"></i> Corporate Benefits Summary</h3>
+      <div class="card flex flex-col gap-2 justify-between">
+        <p class="font-semibold flex items-center justify-between">Health Insurance <span class="badge badge-success">Active</span></p>
+        <p class="text-xs text-muted">₹8L coverage | 12% used</p>
+      </div>
+      <div class="card flex flex-col gap-2 justify-between">
+        <p class="font-semibold flex items-center justify-between">Life Insurance <span class="badge badge-success">Active</span></p>
+        <p class="text-xs text-muted">₹20L coverage | HDFC Life</p>
+      </div>
+      <div class="card flex flex-col gap-2 justify-between">
+        <p class="font-semibold flex items-center justify-between">Accident Cover <span class="badge badge-success">Active</span></p>
+        <p class="text-xs text-muted">₹10L coverage | Bajaj Allianz</p>
+      </div>
+    </div>
+    
+    <div class="flex flex-col gap-4">
+      <h3 class="flex items-center gap-2"><i data-lucide="bar-chart" class="icon-sm"></i> Recent Activity</h3>
+      <div class="card p-0 overflow-x-auto">
+        <table class="table w-full text-left">
+          <thead>
+            <tr class="bg-surface-hover">
+              <th class="p-4 border-b">Date</th>
+              <th class="p-4 border-b">Activity</th>
+              <th class="p-4 border-b">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-4 border-b">08 Jul 2026</td>
+              <td class="p-4 border-b">Claim submitted</td>
+              <td class="p-4 border-b"><span class="badge badge-warning">Pending</span></td>
+            </tr>
+            <tr>
+              <td class="p-4 border-b">02 Jul 2026</td>
+              <td class="p-4 border-b">Claim approved</td>
+              <td class="p-4 border-b"><span class="badge badge-success">Approved</span></td>
+            </tr>
+            <tr>
+              <td class="p-4 border-b">28 Jun 2026</td>
+              <td class="p-4 border-b">Cashless approved</td>
+              <td class="p-4 border-b"><span class="badge badge-success">Approved</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 <!-- POLICIES -->
