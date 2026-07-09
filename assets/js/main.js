@@ -87,7 +87,7 @@ function selectAccountType(type) {
 
   function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll('.app-sidebar a').forEach(a => a.classList.remove('active'));
     
     const targetScreen = document.getElementById('screen-' + screenId);
     if(targetScreen) {
