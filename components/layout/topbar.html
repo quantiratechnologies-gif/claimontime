@@ -10,11 +10,12 @@
   <button class="antd-btn antd-btn-primary" onclick="openModal('emergency-modal')" style="background-color: var(--antd-error) !important; border-color: var(--antd-error) !important; animation: pulse 2s infinite;">
     <i data-lucide="alert-circle" class="icon-sm"></i> EMERGENCY / SOS
   </button>
-  <button class="antd-btn" onclick="showScreen('notifications')">
-    <i data-lucide="bell" class="icon-sm"></i> <span class="antd-tag antd-tag-error" style="margin-left: 4px; border-radius: 10px;" id="notif-count">5</span>
+  <button class="antd-btn" onclick="showScreen('notifications')" style="padding: 0 16px; display: flex; align-items: center; justify-content: center; height: 40px; gap: 8px; border-radius: 20px;">
+    <i data-lucide="bell" class="icon-sm"></i>
+    <span class="antd-tag-error" style="border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; font-size: 12px; border: 1px solid var(--antd-error-border); color: var(--antd-error); background: var(--antd-error-bg);" id="notif-count">5</span>
   </button>
-  <div style="width: 32px; height: 32px; border-radius: 50%; background-color: var(--antd-primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="showScreen('profile')">
-    <i data-lucide="user" class="icon-sm"></i>
+  <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--antd-primary); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="showScreen('profile')">
+    <i data-lucide="user" style="width: 20px; height: 20px;"></i>
   </div>
 </div>
 </div>
