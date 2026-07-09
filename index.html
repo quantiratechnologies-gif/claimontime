@@ -2671,11 +2671,65 @@
   </div>
 </div>
 <div id="plan-details-modal" class="modal-overlay">
-  <div class="antd-modal-content">
-    <div class="antd-modal-header">
+  <div class="antd-modal-content" style="max-width: 700px;">
+    <div class="antd-modal-header antd-flex antd-justify-between antd-items-center" style="border-bottom: 1px solid var(--antd-border); padding-bottom: 16px; margin-bottom: 20px;">
+      <div class="antd-flex antd-gap-3 antd-items-center">
+        <i data-lucide="shield-check" class="icon-lg" style="color: var(--antd-primary); margin: 0; width: 32px; height: 32px;"></i>
+        <div>
+          <h2 style="margin: 0; font-size: 20px;">Family Health Optima Plus</h2>
+          <p class="antd-text-secondary" style="margin: 4px 0 0 0;">Policy No: STAR/FHO/2025/1234567</p>
+        </div>
+      </div>
       <button class="modal-close" onclick="closeModal('plan-details-modal')">&times;</button>
     </div>
-    <h2>Plan Details</h2><p>Full plan details...</p>
+    
+    <div class="antd-grid-2" style="gap: 24px; margin-bottom: 24px;">
+      <div>
+        <h4 class="antd-text-secondary" style="margin-bottom: 8px; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;">Coverage Summary</h4>
+        <div class="antd-flex antd-justify-between antd-mb-2">
+          <span>Base Sum Insured</span>
+          <strong class="antd-text-strong">₹5,00,000</strong>
+        </div>
+        <div class="antd-flex antd-justify-between antd-mb-2">
+          <span>No Claim Bonus</span>
+          <strong class="antd-text-strong" style="color: var(--antd-success);">+ ₹1,50,000</strong>
+        </div>
+        <hr style="border: 0; border-top: 1px dashed var(--antd-border); margin: 8px 0;">
+        <div class="antd-flex antd-justify-between">
+          <span>Total Available Coverage</span>
+          <strong class="antd-text-strong" style="font-size: 16px; color: var(--antd-primary);">₹6,50,000</strong>
+        </div>
+      </div>
+      
+      <div style="background: var(--bg-surface); padding: 16px; border-radius: var(--antd-radius); border: 1px solid var(--antd-border);">
+        <h4 class="antd-text-secondary" style="margin-bottom: 12px; font-size: 14px;">Policy Members</h4>
+        <div class="antd-flex antd-justify-between antd-mb-2">
+          <span>Rahul Sharma</span>
+          <span class="antd-tag antd-tag-info" style="margin: 0;">Self</span>
+        </div>
+        <div class="antd-flex antd-justify-between antd-mb-2">
+          <span>Priya Sharma</span>
+          <span class="antd-text-secondary">Spouse</span>
+        </div>
+        <div class="antd-flex antd-justify-between">
+          <span>Aarav Sharma</span>
+          <span class="antd-text-secondary">Child</span>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="antd-text-secondary" style="margin-bottom: 12px; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px;">Benefits & Inclusions</h4>
+    <ul style="padding-left: 20px; margin-bottom: 24px; color: var(--text-main);">
+      <li style="margin-bottom: 8px;"><strong>Room Rent:</strong> Single Private A/C Room without capping.</li>
+      <li style="margin-bottom: 8px;"><strong>Pre & Post Hospitalization:</strong> Covered up to 60 days before and 90 days after discharge.</li>
+      <li style="margin-bottom: 8px;"><strong>Day Care Procedures:</strong> All day care treatments are covered.</li>
+      <li style="margin-bottom: 8px;"><strong>Ambulance Charges:</strong> Covered up to ₹2,500 per hospitalization.</li>
+    </ul>
+
+    <div class="antd-flex antd-justify-end antd-gap-3" style="border-top: 1px solid var(--antd-border); padding-top: 16px;">
+      <button class="antd-btn" onclick="closeModal('plan-details-modal')">Close</button>
+      <button class="antd-btn antd-btn-primary"><i data-lucide="download" class="icon-sm"></i> Download E-Card</button>
+    </div>
   </div>
 </div>
 <div id="policy-compare-modal" class="modal-overlay">
