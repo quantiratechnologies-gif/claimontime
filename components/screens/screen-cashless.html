@@ -1,6 +1,9 @@
 <div class="screen" id="screen-cashless">
 <h2><i data-lucide="hospital" class="icon-sm"></i> Cashless / Network Hospitals</h2>
-<input class="form-control" id="hospital-search" placeholder="<i data-lucide="search" class="icon-sm"></i> Search hospital by name, city, or specialty..." style="max-width:100%;" type="text"/>
+<div class="search-container" style="position: relative; max-width: 100%;">
+  <i data-lucide="search" class="icon-sm" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);"></i>
+  <input class="form-control" id="hospital-search" placeholder="Search hospital by name, city, or specialty..." style="width: 100%; padding-left: 36px;" type="text"/>
+</div>
 <br/><br/>
 <button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
 <button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>

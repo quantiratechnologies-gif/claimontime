@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <title>SuperClaim - Member Portal</title>
-<link href="assets/css/style.css?v=4.0" rel="stylesheet"/>
+<link href="assets/css/style.css?v=5.0" rel="stylesheet"/>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -372,8 +372,11 @@
 <div class="screen" id="screen-insurance-market">
 <h2><i data-lucide="shopping-cart" class="icon-sm"></i> Health Insurance Marketplace</h2>
 <p style="color: #666; margin-bottom: 20px;">Compare and buy from India's top insurers</p>
-<div style="margin-bottom: 20px;">
-<input class="form-control" placeholder="<i data-lucide="search" class="icon-sm"></i> Search by insurer name, plan type, or city..." style="max-width: 600px;" type="text"/>
+<div style="margin-bottom: 20px; display: flex; gap: var(--space-2); align-items: center;">
+<div class="search-container" style="position: relative; max-width: 600px; flex: 1;">
+  <i data-lucide="search" class="icon-sm" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);"></i>
+  <input class="form-control" placeholder="Search by insurer name, plan type, or city..." style="width: 100%; padding-left: 36px;" type="text"/>
+</div>
 <button class="btn btn-secondary" onclick="openModal('filter-plans-modal')">Filter</button>
 <button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
 </div>
@@ -549,7 +552,10 @@
 <!-- CASHLESS -->
 <div class="screen" id="screen-cashless">
 <h2><i data-lucide="hospital" class="icon-sm"></i> Cashless / Network Hospitals</h2>
-<input class="form-control" id="hospital-search" placeholder="<i data-lucide="search" class="icon-sm"></i> Search hospital by name, city, or specialty..." style="max-width:100%;" type="text"/>
+<div class="search-container" style="position: relative; max-width: 100%;">
+  <i data-lucide="search" class="icon-sm" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);"></i>
+  <input class="form-control" id="hospital-search" placeholder="Search hospital by name, city, or specialty..." style="width: 100%; padding-left: 36px;" type="text"/>
+</div>
 <br/><br/>
 <button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
 <button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>
@@ -668,7 +674,6 @@
 
 
 
-NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.
   <!-- NOTIFICATIONS -->
 <div class="screen" id="screen-notifications">
 <h2><i data-lucide="bell" class="icon-sm"></i> Notifications</h2>

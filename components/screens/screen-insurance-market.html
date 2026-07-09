@@ -1,8 +1,11 @@
 <div class="screen" id="screen-insurance-market">
 <h2><i data-lucide="shopping-cart" class="icon-sm"></i> Health Insurance Marketplace</h2>
 <p style="color: #666; margin-bottom: 20px;">Compare and buy from India's top insurers</p>
-<div style="margin-bottom: 20px;">
-<input class="form-control" placeholder="<i data-lucide="search" class="icon-sm"></i> Search by insurer name, plan type, or city..." style="max-width: 600px;" type="text"/>
+<div style="margin-bottom: 20px; display: flex; gap: var(--space-2); align-items: center;">
+<div class="search-container" style="position: relative; max-width: 600px; flex: 1;">
+  <i data-lucide="search" class="icon-sm" style="position: absolute; left: 10px; top: 12px; color: var(--text-muted);"></i>
+  <input class="form-control" placeholder="Search by insurer name, plan type, or city..." style="width: 100%; padding-left: 36px;" type="text"/>
+</div>
 <button class="btn btn-secondary" onclick="openModal('filter-plans-modal')">Filter</button>
 <button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
 </div>
