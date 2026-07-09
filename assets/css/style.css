@@ -136,6 +136,8 @@ a:hover {
 
 /* Buttons */
 .btn {
+  background-color: var(--primary-600);
+  color: var(--text-inverse);
   display: inline-flex;
   align-items: center;
   justify-content: center;
