@@ -93,6 +93,9 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -383,6 +386,8 @@ a:hover {
   margin-left: 260px;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 .app-topbar {
   display: flex;
