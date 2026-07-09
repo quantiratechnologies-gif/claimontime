@@ -933,3 +933,21 @@ a:hover {
   border: 2px solid #000 !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
+
+/* --------------------------------------------------------------------------
+   COMPONENT INTERNAL LAYOUT & SPACING FIXES
+   -------------------------------------------------------------------------- */
+p {
+  margin-bottom: var(--space-2);
+  line-height: 1.5;
+}
+.card > *:last-child, .insurance-card > *:last-child, .stat-card > *:last-child, .claim-card > *:last-child, .modal-content > *:last-child {
+  margin-bottom: 0 !important;
+}
+h2, h3, h4 {
+  margin-bottom: var(--space-3);
+}
+.btn, .btn-secondary, .btn-danger {
+  margin-top: var(--space-2);
+  margin-right: var(--space-2);
+}
