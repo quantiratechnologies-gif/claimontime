@@ -169,6 +169,7 @@ window.submitClaim = function() {
 
 // Enforce minimum date on date inputs to prevent past date selection (Heuristic Fix)
 document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
     const today = new Date().toISOString().split('T')[0];
     document.querySelectorAll('input[type="date"]').forEach(input => {
         // Only restrict if the input doesn't already have a value set in the past for demo purposes

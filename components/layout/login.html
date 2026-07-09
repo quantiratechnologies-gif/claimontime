@@ -1,139 +1,137 @@
 <div class="login-fullscreen" id="login-fullscreen">
-<div class="login-box">
-<h1>🏥 SuperClaim</h1>
-<p class="subtitle">Your AI-Powered Health Insurance Assistant</p>
-<!-- Step 1: Choose Account Type -->
-<div id="login-step-0">
-<h3 style="margin-bottom: 15px;">Welcome! What type of account do you have?</h3>
-<p style="color: #666; margin-bottom: 20px; font-size: 14px;">This helps us customize your experience and provide faster service.</p>
-<div class="account-type-selector">
-<div class="account-type-option" id="type-individual" onclick="selectAccountType('individual')">
-<div class="icon">👤</div>
-<h3>Individual / Family</h3>
-<p>Personal health insurance policies</p>
-<p style="font-size: 12px; color: #999; margin-top: 10px;">
-<span class="benefit-tag">Self-purchased</span>
-<span class="benefit-tag">Family coverage</span>
-</p>
-</div>
-<div class="account-type-option" id="type-corporate" onclick="selectAccountType('corporate')">
-<div class="icon">🏢</div>
-<h3>Corporate Employee</h3>
-<p>Employer-sponsored group insurance</p>
-<p style="font-size: 12px; color: #999; margin-top: 10px;">
-<span class="benefit-tag benefit-tag-corp">⚡ Faster claims</span>
-<span class="benefit-tag benefit-tag-corp">✓ Pre-verified</span>
-</p>
-</div>
-</div>
-<button class="btn" disabled="" id="btn-proceed" onclick="proceedToLoginMethod()" style="width: 100%; margin-top: 20px;">Continue →</button>
-</div>
-<!-- Step 2: Choose Login Method -->
-<div class="hidden" id="login-step-1">
-<button class="btn btn-secondary" onclick="backToStep(0)" style="margin-bottom: 15px;">← Back</button>
-<h3 style="margin-bottom: 15px;">How would you like to login?</h3>
-<p id="account-type-display" style="color: #666; margin-bottom: 20px; font-size: 14px;"></p>
-<div class="login-method">
-<div class="login-method-btn active" id="method-phone" onclick="selectLoginMethod('phone')">
-<div class="icon">📱</div>
-<div><strong>Phone</strong></div>
-<div style="font-size: 12px; color: #666;">OTP via SMS</div>
-</div>
-<div class="login-method-btn" id="method-aadhaar" onclick="selectLoginMethod('aadhaar')">
-<div class="icon">🆔</div>
-<div><strong>Aadhaar</strong></div>
-<div style="font-size: 12px; color: #666;">Quick &amp; Secure</div>
-</div>
-<div class="login-method-btn" id="method-email" onclick="selectLoginMethod('email')">
-<div class="icon">📧</div>
-<div><strong>Email</strong></div>
-<div style="font-size: 12px; color: #666;">Password login</div>
-</div>
-</div>
-<!-- Corporate-specific: Employee ID option -->
-<div class="hidden" id="corporate-login-options">
-<div class="login-method" style="margin-top: 10px;">
-<div class="login-method-btn" id="method-employee-id" onclick="selectLoginMethod('employee-id')" style="flex: 1;">
-<div class="icon">🏢</div>
-<div><strong>Employee ID</strong></div>
-<div style="font-size: 12px; color: #666;">Company credentials</div>
-</div>
-</div>
-</div>
-<!-- Phone Login -->
-<div class="login-form" id="login-phone">
-<label>Mobile Number</label>
-<input class="form-control" id="phone-input" maxlength="10" placeholder="+91 98765 43210" type="tel"/>
-<br/><br/>
-<button class="btn" onclick="sendOTP('phone')" style="width: 100%;">Send OTP</button>
-</div>
-<!-- Aadhaar Login -->
-<div class="login-form hidden" id="login-aadhaar">
-<label>Aadhaar Number</label>
-<input class="form-control" id="aadhaar-input" maxlength="14" placeholder="XXXX XXXX XXXX" type="text"/>
-<p style="font-size: 12px; color: #666; margin-top: 5px;">🔒 Your Aadhaar is encrypted and secure</p>
-<br/>
-<button class="btn" onclick="sendOTP('aadhaar')" style="width: 100%;">Send OTP</button>
-</div>
-<!-- Email Login -->
-<div class="login-form hidden" id="login-email">
-<label>Email Address</label>
-<input class="form-control" id="email-input" placeholder="rahul@example.com" type="email"/>
-<label>Password</label>
-<input class="form-control" id="password-input" placeholder="••••••••" type="password"/>
-<br/>
-<button class="btn" onclick="loginWithEmail()" style="width: 100%;">Login</button>
-</div>
-<!-- Employee ID Login (Corporate only) -->
-<div class="login-form hidden" id="login-employee-id">
-<label>Company Name</label>
-<select class="form-control" id="company-select">
-<option value="">Select your company</option>
-<option value="TCS">Tata Consultancy Services (TCS)</option>
-<option value="INFY">Infosys</option>
-<option value="WIPRO">Wipro</option>
-<option value="HCL">HCL Technologies</option>
-<option value="TECHM">Tech Mahindra</option>
-<option value="OTHER">Other</option>
-</select>
-<label>Employee ID</label>
-<input class="form-control" id="employee-id-input" placeholder="e.g., EMP001234" type="text"/>
-<label>Corporate Email</label>
-<input class="form-control" id="corp-email-input" placeholder="rahul.sharma@tcs.com" type="email"/>
-<br/>
-<button class="btn" onclick="sendOTP('employee-id')" style="width: 100%;">Send OTP</button>
-</div>
-<div style="margin-top: 30px; padding: 15px; background: #f0f7ff; border-radius: 8px; font-size: 12px;">
-<strong>💡 Demo Credentials:</strong><br/>
-<strong>Individual:</strong><br/>
-        • Phone: 9876543210<br/>
-        • Aadhaar: 1234 5678 9012<br/>
-        • Email: rahul@gmail.com / password123<br/><br/>
-<strong>Corporate (TCS):</strong><br/>
-        • Phone: 9876543211<br/>
-        • Employee ID: EMP001234 (Company: TCS)<br/>
-        • Email: rahul@tcs.com / password123
+  <!-- Left Side: Unsplash Image with Overlay -->
+  <div class="login-image-side">
+    <div class="login-image-overlay">
+      <h1>The fastest way to process your health claims.</h1>
+      <p>SuperClaim uses AI to auto-verify your documents and route urgent cashless requests instantly to the hospital TPA desk, so you can focus on recovery.</p>
+    </div>
+  </div>
+
+  <!-- Right Side: Login Form -->
+  <div class="login-form-side">
+    <div class="login-box">
+      <h1><i data-lucide="hospital" class="icon-sm" style="width:32px;height:32px;color:var(--primary-600)"></i> SuperClaim</h1>
+      <p class="subtitle">Your AI-Powered Health Insurance Assistant</p>
+
+      <!-- Step 1: Choose Account Type -->
+      <div id="login-step-0">
+        <h3 style="margin-bottom: 15px;">Welcome! Select account type:</h3>
+        
+        <div class="account-type-selector">
+          <div class="account-type-option" id="type-individual" onclick="selectAccountType('individual')">
+            <i data-lucide="user" class="icon-sm"></i>
+            <h3 style="font-size: 14px; margin-bottom: 4px;">Individual</h3>
+            <p style="font-size: 12px; color: #666;">Self-purchased policy</p>
+          </div>
+          <div class="account-type-option" id="type-corporate" onclick="selectAccountType('corporate')">
+            <i data-lucide="building" class="icon-sm"></i>
+            <h3 style="font-size: 14px; margin-bottom: 4px;">Corporate</h3>
+            <p style="font-size: 12px; color: #666;">Employer-sponsored</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" disabled id="btn-proceed" onclick="proceedToLoginMethod()" style="width: 100%; margin-top: 20px;">Continue <i data-lucide="arrow-right" class="icon-sm" style="margin-left:8px"></i></button>
       </div>
-</div>
-<!-- Step 3: OTP Verification -->
-<div class="hidden" id="login-step-2">
-<button class="btn btn-secondary" onclick="backToStep(1)" style="margin-bottom: 15px;">← Back</button>
-<h3 style="margin-bottom: 15px;">Verify OTP</h3>
-<p style="color: #666; margin-bottom: 20px;">
-        Enter the 6-digit code sent to <strong id="otp-destination">+91 98765 43210</strong>
-</p>
-<div class="otp-input-group">
-<input class="otp-input" id="otp-1" maxlength="1" oninput="moveToNext(1)" type="text"/>
-<input class="otp-input" id="otp-2" maxlength="1" oninput="moveToNext(2)" type="text"/>
-<input class="otp-input" id="otp-3" maxlength="1" oninput="moveToNext(3)" type="text"/>
-<input class="otp-input" id="otp-4" maxlength="1" oninput="moveToNext(4)" type="text"/>
-<input class="otp-input" id="otp-5" maxlength="1" oninput="moveToNext(5)" type="text"/>
-<input class="otp-input" id="otp-6" maxlength="1" oninput="moveToNext(6)" type="text"/>
-</div>
-<button class="btn" onclick="verifyOTP()" style="width: 100%; margin-top: 20px;">Verify &amp; Continue</button>
-<p style="text-align: center; margin-top: 20px; font-size: 13px;">
-        Didn't receive code? <a href="#" onclick="showToast('OTP resent', 'success'); return false;">Resend OTP</a>
-</p>
-</div>
-</div>
+
+      <!-- Step 2: Choose Login Method -->
+      <div class="hidden" id="login-step-1">
+        <button class="btn btn-secondary" onclick="backToStep(0)" style="margin-bottom: 15px;"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
+        <h3 style="margin-bottom: 15px;">How would you like to login?</h3>
+        <p id="account-type-display" style="color: #666; margin-bottom: 20px; font-size: 14px;"></p>
+
+        <div class="login-method">
+          <div class="login-method-btn active" id="method-phone" onclick="selectLoginMethod('phone')">
+            <i data-lucide="smartphone" class="icon-sm"></i>
+            <div style="font-size: 14px;"><strong>Phone OTP</strong></div>
+          </div>
+          <div class="login-method-btn" id="method-email" onclick="selectLoginMethod('email')">
+            <i data-lucide="mail" class="icon-sm"></i>
+            <div style="font-size: 14px;"><strong>Email ID</strong></div>
+          </div>
+        </div>
+
+        <!-- Corporate-specific: Employee ID option -->
+        <div id="corporate-login-options" class="hidden">
+          <div class="login-method" style="margin-top: 10px; display:block;">
+            <div class="login-method-btn" id="method-employee-id" onclick="selectLoginMethod('employee-id')" style="width: 100%;">
+              <i data-lucide="briefcase" class="icon-sm"></i>
+              <div style="font-size: 14px;"><strong>Employee ID</strong> (SSO)</div>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border-top:1px solid var(--border-color); margin: 20px 0;">
+
+        <!-- Phone Login -->
+        <div id="login-phone" class="login-form">
+          <div class="form-group">
+            <label class="form-label">Mobile Number</label>
+            <input type="tel" id="phone-input" class="form-control" placeholder="+91 98765 43210" maxlength="10">
+          </div>
+          <button class="btn btn-primary" onclick="sendOTP('phone')" style="width: 100%;">Send OTP</button>
+        </div>
+
+        <!-- Email Login -->
+        <div id="login-email" class="login-form hidden">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="email-input" class="form-control" placeholder="rahul@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="password-input" class="form-control" placeholder="••••••••">
+          </div>
+          <button class="btn btn-primary" onclick="loginWithEmail()" style="width: 100%;">Secure Login</button>
+        </div>
+
+        <!-- Employee ID Login (Corporate only) -->
+        <div id="login-employee-id" class="login-form hidden">
+          <div class="form-group">
+            <label class="form-label">Company Code</label>
+            <select class="form-control" id="company-select">
+              <option value="">Select your company</option>
+              <option value="TCS">TCS</option>
+              <option value="INFY">Infosys</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Employee ID</label>
+            <input type="text" id="employee-id-input" class="form-control" placeholder="EMP001234">
+          </div>
+          <button class="btn btn-primary" onclick="sendOTP('employee-id')" style="width: 100%;">Authenticate via SSO</button>
+        </div>
+
+        <!-- Demo Help Box -->
+        <div style="margin-top: 30px; padding: 15px; background: var(--primary-50); border: 1px solid var(--primary-100); border-radius: var(--radius-md); font-size: 12px; color: var(--primary-700);">
+          <strong style="display:flex; align-items:center; margin-bottom:8px;"><i data-lucide="lightbulb" class="icon-sm"></i> Demo Access:</strong>
+          Simply click the 'Continue' or 'Login' buttons to bypass auth for this demo.
+        </div>
+      </div>
+
+      <!-- Step 3: OTP Verification -->
+      <div class="hidden" id="login-step-2">
+        <button class="btn btn-secondary" onclick="backToStep(1)" style="margin-bottom: 15px;"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
+        <h3 style="margin-bottom: 15px;">Verify Security Code</h3>
+        <p style="color: #666; margin-bottom: 20px; font-size:14px;">
+          Enter the 6-digit code sent to <strong id="otp-destination">+91 98765 43210</strong>
+        </p>
+        
+        <div class="otp-input-group" style="display:flex; gap:8px; margin-bottom:20px;">
+          <input type="text" class="form-control" id="otp-1" maxlength="1" oninput="moveToNext(1)" style="text-align:center; padding: 10px 0; font-size: 20px;">
+          <input type="text" class="form-control" id="otp-2" maxlength="1" oninput="moveToNext(2)" style="text-align:center; padding: 10px 0; font-size: 20px;">
+          <input type="text" class="form-control" id="otp-3" maxlength="1" oninput="moveToNext(3)" style="text-align:center; padding: 10px 0; font-size: 20px;">
+          <input type="text" class="form-control" id="otp-4" maxlength="1" oninput="moveToNext(4)" style="text-align:center; padding: 10px 0; font-size: 20px;">
+          <input type="text" class="form-control" id="otp-5" maxlength="1" oninput="moveToNext(5)" style="text-align:center; padding: 10px 0; font-size: 20px;">
+          <input type="text" class="form-control" id="otp-6" maxlength="1" oninput="moveToNext(6)" style="text-align:center; padding: 10px 0; font-size: 20px;">
+        </div>
+        
+        <button class="btn btn-primary" onclick="verifyOTP()" style="width: 100%;">Verify & Secure Login</button>
+        
+        <p style="text-align: center; margin-top: 20px; font-size: 13px;">
+          Didn't receive code? <a href="#" onclick="showToast('New code sent via SMS', 'success'); return false;" style="font-weight:600;">Resend OTP</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
 </div>
