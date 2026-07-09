@@ -1,137 +1,135 @@
-<div class="login-fullscreen" id="login-fullscreen">
-  <!-- Left Side: Unsplash Image with Overlay -->
-  <div class="login-image-side">
-    <div class="login-image-overlay">
-      <h1>The fastest way to process your health claims.</h1>
-      <p>SuperClaim uses AI to auto-verify your documents and route urgent cashless requests instantly to the hospital TPA desk, so you can focus on recovery.</p>
-    </div>
+<div class="login-fullscreen antd-flex" id="login-fullscreen" style="min-height: 100vh; background-color: var(--antd-bg);">
+<!-- Left Side: Modern Design with Overlay -->
+<div class="login-image-side" style="flex: 1; position: relative; background: linear-gradient(135deg, var(--antd-primary), #001529); color: white; display: flex; flex-direction: column; justify-content: center; padding: 48px;">
+  <div style="max-width: 480px;">
+    <h1 style="font-size: 48px; line-height: 1.2; margin-bottom: 24px; color: white !important;">The fastest way to process your health claims.</h1>
+    <p style="font-size: 18px; opacity: 0.85; line-height: 1.6;">SuperClaim uses AI to auto-verify your documents and route urgent cashless requests instantly to the hospital TPA desk, so you can focus on recovery.</p>
   </div>
+</div>
 
-  <!-- Right Side: Login Form -->
-  <div class="login-form-side">
-    <div class="login-box">
-      <h1><i data-lucide="hospital" class="icon-sm" style="width:32px;height:32px;color:var(--primary-600)"></i> SuperClaim</h1>
-      <p class="subtitle">Your AI-Powered Health Insurance Assistant</p>
+<!-- Right Side: Login Form -->
+<div class="login-form-side antd-flex antd-flex-col antd-justify-center" style="flex: 1; padding: 48px; max-width: 600px; background-color: var(--antd-surface);">
+  <div class="login-box" style="width: 100%; max-width: 400px; margin: 0 auto;">
+    <div class="antd-flex antd-items-center antd-gap-2 antd-mb-2">
+      <i data-lucide="hospital" class="icon-sm" style="color: var(--antd-primary); width: 32px; height: 32px;"></i>
+      <h1 class="antd-text-large" style="margin: 0; font-size: 28px;">SuperClaim</h1>
+    </div>
+    <p class="antd-text-secondary antd-mb-6" style="font-size: 16px;">Your AI-Powered Health Insurance Assistant</p>
 
-      <!-- Step 1: Choose Account Type -->
-      <div id="login-step-0">
-        <h3 style="margin-bottom: 15px;">Welcome! Select account type:</h3>
-        
-        <div class="account-type-selector">
-          <div class="account-type-option" id="type-individual" onclick="selectAccountType('individual')">
-            <i data-lucide="user" class="icon-sm"></i>
-            <h3 style="font-size: 14px; margin-bottom: 4px;">Individual</h3>
-            <p style="font-size: 12px; color: #666;">Self-purchased policy</p>
-          </div>
-          <div class="account-type-option" id="type-corporate" onclick="selectAccountType('corporate')">
-            <i data-lucide="building" class="icon-sm"></i>
-            <h3 style="font-size: 14px; margin-bottom: 4px;">Corporate</h3>
-            <p style="font-size: 12px; color: #666;">Employer-sponsored</p>
-          </div>
-        </div>
-
-        <button class="btn btn-primary" disabled id="btn-proceed" onclick="proceedToLoginMethod()" style="width: 100%; margin-top: 20px;">Continue <i data-lucide="arrow-right" class="icon-sm" style="margin-left:8px"></i></button>
-      </div>
-
-      <!-- Step 2: Choose Login Method -->
-      <div class="hidden" id="login-step-1">
-        <button class="btn btn-secondary" onclick="backToStep(0)" style="margin-bottom: 15px;"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
-        <h3 style="margin-bottom: 15px;">How would you like to login?</h3>
-        <p id="account-type-display" style="color: #666; margin-bottom: 20px; font-size: 14px;"></p>
-
-        <div class="login-method">
-          <div class="login-method-btn active" id="method-phone" onclick="selectLoginMethod('phone')">
-            <i data-lucide="smartphone" class="icon-sm"></i>
-            <div style="font-size: 14px;"><strong>Phone OTP</strong></div>
-          </div>
-          <div class="login-method-btn" id="method-email" onclick="selectLoginMethod('email')">
-            <i data-lucide="mail" class="icon-sm"></i>
-            <div style="font-size: 14px;"><strong>Email ID</strong></div>
-          </div>
-        </div>
-
-        <!-- Corporate-specific: Employee ID option -->
-        <div id="corporate-login-options" class="hidden">
-          <div class="login-method" style="margin-top: 10px; display:block;">
-            <div class="login-method-btn" id="method-employee-id" onclick="selectLoginMethod('employee-id')" style="width: 100%;">
-              <i data-lucide="briefcase" class="icon-sm"></i>
-              <div style="font-size: 14px;"><strong>Employee ID</strong> (SSO)</div>
+    <!-- Step 1: Choose Account Type -->
+    <div id="login-step-0">
+      <h3 class="antd-text-strong antd-mb-4">Welcome! Select account type:</h3>
+      
+      <div class="antd-flex antd-flex-col antd-gap-4 antd-mb-6">
+        <div class="antd-card" id="type-individual" onclick="selectAccountType('individual')" style="cursor: pointer; border: 1px solid var(--antd-primary); box-shadow: var(--antd-shadow-hover);">
+          <div class="antd-flex antd-items-center antd-gap-4">
+            <div style="width: 40px; height: 40px; background: var(--antd-info-bg); color: var(--antd-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i data-lucide="user" class="icon-sm"></i>
+            </div>
+            <div>
+              <p class="antd-text-strong" style="margin: 0;">Individual</p>
+              <p class="antd-text-secondary" style="margin: 0; font-size: 12px;">Self-purchased policy</p>
             </div>
           </div>
         </div>
-
-        <hr style="border-top:1px solid var(--border-color); margin: 20px 0;">
-
-        <!-- Phone Login -->
-        <div id="login-phone" class="login-form">
-          <div class="form-group">
-            <label class="form-label">Mobile Number</label>
-            <input type="tel" id="phone-input" class="form-control" placeholder="+91 98765 43210" maxlength="10">
+        <div class="antd-card" id="type-corporate" onclick="selectAccountType('corporate')" style="cursor: pointer; border: 1px solid var(--antd-border); transition: all 0.2s;">
+          <div class="antd-flex antd-items-center antd-gap-4">
+            <div style="width: 40px; height: 40px; background: #f5f5f5; color: var(--antd-text-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <i data-lucide="building" class="icon-sm"></i>
+            </div>
+            <div>
+              <p class="antd-text-strong" style="margin: 0;">Corporate</p>
+              <p class="antd-text-secondary" style="margin: 0; font-size: 12px;">Employer-sponsored</p>
+            </div>
           </div>
-          <button class="btn btn-primary" onclick="sendOTP('phone')" style="width: 100%;">Send OTP</button>
-        </div>
-
-        <!-- Email Login -->
-        <div id="login-email" class="login-form hidden">
-          <div class="form-group">
-            <label class="form-label">Email Address</label>
-            <input type="email" id="email-input" class="form-control" placeholder="rahul@example.com">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Password</label>
-            <input type="password" id="password-input" class="form-control" placeholder="••••••••">
-          </div>
-          <button class="btn btn-primary" onclick="loginWithEmail()" style="width: 100%;">Secure Login</button>
-        </div>
-
-        <!-- Employee ID Login (Corporate only) -->
-        <div id="login-employee-id" class="login-form hidden">
-          <div class="form-group">
-            <label class="form-label">Company Code</label>
-            <select class="form-control" id="company-select">
-              <option value="">Select your company</option>
-              <option value="TCS">TCS</option>
-              <option value="INFY">Infosys</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Employee ID</label>
-            <input type="text" id="employee-id-input" class="form-control" placeholder="EMP001234">
-          </div>
-          <button class="btn btn-primary" onclick="sendOTP('employee-id')" style="width: 100%;">Authenticate via SSO</button>
-        </div>
-
-        <!-- Demo Help Box -->
-        <div style="margin-top: 30px; padding: 15px; background: var(--primary-50); border: 1px solid var(--primary-100); border-radius: var(--radius-md); font-size: 12px; color: var(--primary-700);">
-          <strong style="display:flex; align-items:center; margin-bottom:8px;"><i data-lucide="lightbulb" class="icon-sm"></i> Demo Access:</strong>
-          Simply click the 'Continue' or 'Login' buttons to bypass auth for this demo.
         </div>
       </div>
 
-      <!-- Step 3: OTP Verification -->
-      <div class="hidden" id="login-step-2">
-        <button class="btn btn-secondary" onclick="backToStep(1)" style="margin-bottom: 15px;"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
-        <h3 style="margin-bottom: 15px;">Verify Security Code</h3>
-        <p style="color: #666; margin-bottom: 20px; font-size:14px;">
-          Enter the 6-digit code sent to <strong id="otp-destination">+91 98765 43210</strong>
-        </p>
-        
-        <div class="otp-input-group" style="display:flex; gap:8px; margin-bottom:20px;">
-          <input type="text" class="form-control" id="otp-1" maxlength="1" oninput="moveToNext(1)" style="text-align:center; padding: 10px 0; font-size: 20px;">
-          <input type="text" class="form-control" id="otp-2" maxlength="1" oninput="moveToNext(2)" style="text-align:center; padding: 10px 0; font-size: 20px;">
-          <input type="text" class="form-control" id="otp-3" maxlength="1" oninput="moveToNext(3)" style="text-align:center; padding: 10px 0; font-size: 20px;">
-          <input type="text" class="form-control" id="otp-4" maxlength="1" oninput="moveToNext(4)" style="text-align:center; padding: 10px 0; font-size: 20px;">
-          <input type="text" class="form-control" id="otp-5" maxlength="1" oninput="moveToNext(5)" style="text-align:center; padding: 10px 0; font-size: 20px;">
-          <input type="text" class="form-control" id="otp-6" maxlength="1" oninput="moveToNext(6)" style="text-align:center; padding: 10px 0; font-size: 20px;">
-        </div>
-        
-        <button class="btn btn-primary" onclick="verifyOTP()" style="width: 100%;">Verify & Secure Login</button>
-        
-        <p style="text-align: center; margin-top: 20px; font-size: 13px;">
-          Didn't receive code? <a href="#" onclick="showToast('New code sent via SMS', 'success'); return false;" style="font-weight:600;">Resend OTP</a>
-        </p>
-      </div>
-
+      <button class="antd-btn antd-btn-primary" disabled id="btn-proceed" onclick="proceedToLoginMethod()" style="width: 100%; height: 40px; font-size: 16px;">Continue <i data-lucide="arrow-right" class="icon-sm" style="margin-left:8px"></i></button>
     </div>
+
+    <!-- Step 2: Choose Login Method -->
+    <div class="hidden" id="login-step-1">
+      <button class="antd-btn antd-mb-4" onclick="backToStep(0)"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
+      <h3 class="antd-text-strong antd-mb-2">How would you like to login?</h3>
+      <p id="account-type-display" class="antd-text-secondary antd-mb-4"></p>
+
+      <div class="antd-flex antd-gap-4 antd-mb-6">
+        <button class="antd-btn antd-btn-primary" id="method-phone" onclick="selectLoginMethod('phone')" style="flex: 1;"><i data-lucide="smartphone" class="icon-sm"></i> Phone OTP</button>
+        <button class="antd-btn" id="method-email" onclick="selectLoginMethod('email')" style="flex: 1;"><i data-lucide="mail" class="icon-sm"></i> Email ID</button>
+      </div>
+
+      <!-- Corporate-specific: Employee ID option -->
+      <div id="corporate-login-options" class="hidden antd-mb-6">
+        <button class="antd-btn" id="method-employee-id" onclick="selectLoginMethod('employee-id')" style="width: 100%;"><i data-lucide="briefcase" class="icon-sm"></i> Employee ID (SSO)</button>
+      </div>
+
+      <hr style="border-top:1px solid var(--antd-border); margin: 24px 0;">
+
+      <!-- Phone Login -->
+      <div id="login-phone">
+        <label class="antd-text-strong" style="display:block; margin-bottom:8px;">Mobile Number</label>
+        <input type="tel" id="phone-input" class="antd-input" placeholder="+91 98765 43210" maxlength="10">
+        <button class="antd-btn antd-btn-primary" onclick="sendOTP('phone')" style="width: 100%; height: 40px;">Send OTP</button>
+      </div>
+
+      <!-- Email Login -->
+      <div id="login-email" class="hidden">
+        <label class="antd-text-strong" style="display:block; margin-bottom:8px;">Email Address</label>
+        <input type="email" id="email-input" class="antd-input" placeholder="rahul@example.com">
+        
+        <label class="antd-text-strong" style="display:block; margin-bottom:8px;">Password</label>
+        <input type="password" id="password-input" class="antd-input" placeholder="••••••••">
+        
+        <button class="antd-btn antd-btn-primary" onclick="loginWithEmail()" style="width: 100%; height: 40px;">Secure Login</button>
+      </div>
+
+      <!-- Employee ID Login (Corporate only) -->
+      <div id="login-employee-id" class="hidden">
+        <label class="antd-text-strong" style="display:block; margin-bottom:8px;">Company Code</label>
+        <select class="antd-input" id="company-select">
+          <option value="">Select your company</option>
+          <option value="TCS">TCS</option>
+          <option value="INFY">Infosys</option>
+        </select>
+        
+        <label class="antd-text-strong" style="display:block; margin-bottom:8px;">Employee ID</label>
+        <input type="text" id="employee-id-input" class="antd-input" placeholder="EMP001234">
+        
+        <button class="antd-btn antd-btn-primary" onclick="sendOTP('employee-id')" style="width: 100%; height: 40px;">Authenticate via SSO</button>
+      </div>
+
+      <!-- Demo Help Box -->
+      <div class="antd-card antd-mb-4" style="background: var(--antd-info-bg); border-color: var(--antd-info-border); margin-top: 24px; padding: 12px;">
+        <strong style="display:flex; align-items:center; gap: 8px; color: var(--antd-info); margin-bottom:4px;"><i data-lucide="lightbulb" class="icon-sm"></i> Demo Access</strong>
+        <p class="antd-text-secondary" style="margin: 0; font-size: 12px;">Simply click the 'Continue' or 'Login' buttons to bypass auth for this demo.</p>
+      </div>
+    </div>
+
+    <!-- Step 3: OTP Verification -->
+    <div class="hidden" id="login-step-2">
+      <button class="antd-btn antd-mb-4" onclick="backToStep(1)"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
+      <h3 class="antd-text-strong antd-mb-2">Verify Security Code</h3>
+      <p class="antd-text-secondary antd-mb-4">
+        Enter the 6-digit code sent to <strong id="otp-destination" style="color: var(--antd-text);">+91 98765 43210</strong>
+      </p>
+      
+      <div class="antd-flex antd-gap-2 antd-mb-6">
+        <input type="text" class="antd-input" id="otp-1" maxlength="1" oninput="moveToNext(1)" style="text-align:center; padding: 12px 0; font-size: 24px; margin: 0;">
+        <input type="text" class="antd-input" id="otp-2" maxlength="1" oninput="moveToNext(2)" style="text-align:center; padding: 12px 0; font-size: 24px; margin: 0;">
+        <input type="text" class="antd-input" id="otp-3" maxlength="1" oninput="moveToNext(3)" style="text-align:center; padding: 12px 0; font-size: 24px; margin: 0;">
+        <input type="text" class="antd-input" id="otp-4" maxlength="1" oninput="moveToNext(4)" style="text-align:center; padding: 12px 0; font-size: 24px; margin: 0;">
+        <input type="text" class="antd-input" id="otp-5" maxlength="1" oninput="moveToNext(5)" style="text-align:center; padding: 12px 0; font-size: 24px; margin: 0;">
+        <input type="text" class="antd-input" id="otp-6" maxlength="1" oninput="moveToNext(6)" style="text-align:center; padding: 12px 0; font-size: 24px; margin: 0;">
+      </div>
+      
+      <button class="antd-btn antd-btn-primary" onclick="verifyOTP()" style="width: 100%; height: 40px;">Verify & Secure Login</button>
+      
+      <p style="text-align: center; margin-top: 24px; font-size: 14px;" class="antd-text-secondary">
+        Didn't receive code? <a href="#" onclick="showToast('New code sent via SMS', 'success'); return false;" style="font-weight:600; color: var(--antd-primary);">Resend OTP</a>
+      </p>
+    </div>
+
   </div>
+</div>
 </div>

@@ -145,17 +145,36 @@ function selectAccountType(type) {
   }
 // Toast Notification System
 function showToast(message, type = 'success') {
-  const container = document.getElementById('toast-container');
-  if (!container) return;
+  let container = document.getElementById('antd-message-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'antd-message-container';
+    container.style.cssText = 'position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 10000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;';
+    document.body.appendChild(container);
+  }
+  
+  const icon = type === 'success' ? '<i data-lucide="check-circle" class="icon-sm" style="color: var(--antd-success);"></i>' : '<i data-lucide="alert-circle" class="icon-sm" style="color: var(--antd-error);"></i>';
   
   const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.innerHTML = `<span>${message}</span>`;
+  toast.style.cssText = 'background: white; padding: 10px 16px; border-radius: var(--antd-radius); box-shadow: 0 6px 16px 0 rgba(0,0,0,0.08); display: flex; align-items: center; gap: 8px; font-size: 14px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: rgba(0,0,0,0.88); opacity: 0; transform: translateY(-20px); transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1); pointer-events: auto;';
+  toast.innerHTML = `${icon}<span>${message}</span>`;
   
   container.appendChild(toast);
   
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons({ root: toast });
+  }
+  
+  // Animate in
   setTimeout(() => {
-    toast.classList.add('fadeOut');
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+  }, 10);
+  
+  // Animate out
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(-20px)';
     setTimeout(() => toast.remove(), 300);
   }, 3000);
 }

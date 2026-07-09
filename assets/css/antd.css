@@ -223,6 +223,10 @@ h1, h2, h3, h4, h5, h6 {
   width: 90%;
   max-width: 520px;
   margin: 0 auto;
+  max-height: 85vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 .antd-modal-header {
   display: flex;
