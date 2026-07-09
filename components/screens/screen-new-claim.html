@@ -1,0 +1,94 @@
+<div class="screen" id="screen-new-claim">
+<h2>💰 Create New Claim</h2>
+<div class="alert alert-success hidden" id="corporate-fast-track">
+      ⚡ <strong>Corporate Fast-Track:</strong> Your claim will be processed within 24 hours (vs 3-5 days for regular claims).
+    </div>
+<div class="stepper">
+<div class="step active" id="step1">1. Patient &amp; Policy</div>
+<div class="step" id="step2">2. Treatment Details</div>
+<div class="step" id="step3">3. Documents</div>
+<div class="step" id="step4">4. Review</div>
+</div>
+<div id="claim-step-1">
+<h3>Select Patient</h3>
+<select>
+<option>Rahul Sharma (Self)</option>
+<option>Priya Sharma (Spouse)</option>
+<option>Aarav Sharma (Son)</option>
+</select>
+<h3>Select Policy</h3>
+<select id="claim-policy-select">
+<option>Star Health - Family Health Optima (₹5L)</option>
+<option>HDFC Ergo - Optima Restore (₹5L)</option>
+</select>
+<h3>Claim Type</h3>
+<select>
+<option>Reimbursement</option>
+<option>Pre-authorization</option>
+</select>
+<br/><br/>
+<button class="btn" onclick="claimNext(2)">Next →</button>
+</div>
+<div class="hidden" id="claim-step-2">
+<h3>Hospital Details</h3>
+<input placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai"/>
+<button class="btn btn-secondary" onclick="openModal('search-hospital-modal')">🔍 Search Hospital</button>
+<h3>Treatment Details</h3>
+<input placeholder="Diagnosis" type="text" value="Viral Fever"/>
+<label>Admission Date</label>
+<input type="date" value="2026-07-05"/>
+<label>Discharge Date</label>
+<input type="date" value="2026-07-08"/>
+<h3>Claim Amount</h3>
+<input placeholder="₹" type="number" value="45000"/>
+<br/><br/>
+<button class="btn btn-secondary" onclick="claimNext(1)">← Back</button>
+<button class="btn" onclick="claimNext(3)">Next →</button>
+</div>
+<div class="hidden" id="claim-step-3">
+<h3>Upload Documents</h3>
+<p>🤖 AI will auto-verify these documents before submission.</p>
+<div class="file-upload-area" onclick="openModal('upload-document-modal')">
+<p style="font-size: 48px;">📁</p>
+<p><strong>Click to upload or drag and drop</strong></p>
+<p style="font-size: 12px; color: #666;">PDF, JPG, PNG (Max 10MB each)</p>
+</div>
+<div class="card">
+<strong>1. Final Hospital Bill</strong> <span class="badge badge-green">✓ Verified</span>
+<p>hospital_bill.pdf (2.3 MB)</p>
+<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+<button class="btn btn-secondary" onclick="openModal('replace-document-modal')">Replace</button>
+</div>
+<div class="card">
+<strong>2. Discharge Summary</strong> <span class="badge badge-green">✓ Verified</span>
+<p>discharge.pdf (1.1 MB)</p>
+</div>
+<div class="card">
+<strong>3. Payment Receipt</strong> <span class="badge badge-yellow">⚠ Amount mismatch</span>
+<p>receipt.pdf (0.8 MB)</p>
+<button class="btn btn-secondary" onclick="openModal('fix-document-error-modal')">Fix Error</button>
+</div>
+<br/><br/>
+<button class="btn btn-secondary" onclick="claimNext(2)">← Back</button>
+<button class="btn" onclick="claimNext(4)">Next →</button>
+</div>
+<div class="hidden" id="claim-step-4">
+<h3>Review &amp; Submit</h3>
+<div class="card">
+<p><strong>Patient:</strong> Rahul Sharma</p>
+<p><strong>Policy:</strong> Star Health - Family Health Optima</p>
+<p><strong>Hospital:</strong> Apollo Hospital, Mumbai</p>
+<p><strong>Diagnosis:</strong> Viral Fever</p>
+<p><strong>Amount:</strong> ₹45,000</p>
+<p><strong>Documents:</strong> 4 uploaded</p>
+<p><strong>Bank:</strong> HDFC ****4521</p>
+<button class="btn btn-secondary" onclick="openModal('edit-bank-details-modal')">Edit Bank Details</button>
+</div>
+<div class="card" style="background:#e8f5e9;">
+        🤖 <strong>AI Confidence Score: 92%</strong><br/>
+        All documents verified. Claim is likely to be approved.
+      </div>
+<button class="btn btn-secondary" onclick="claimNext(3)">← Back</button>
+<button class="btn" onclick="submitClaim()">✓ Submit Claim</button>
+</div>
+</div>

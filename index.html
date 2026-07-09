@@ -1,891 +1,822 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8"/>
 <title>SuperClaim - Member Portal</title>
-<link rel="stylesheet" href="assets/css/style.css">
+<link href="assets/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-
 <!-- FULLSCREEN LOGIN -->
 <div class="login-fullscreen" id="login-fullscreen">
-  <div class="login-box">
-    <h1>🏥 SuperClaim</h1>
-    <p class="subtitle">Your AI-Powered Health Insurance Assistant</p>
-
-    <!-- Step 1: Choose Account Type -->
-    <div id="login-step-0">
-      <h3 style="margin-bottom: 15px;">Welcome! What type of account do you have?</h3>
-      <p style="color: #666; margin-bottom: 20px; font-size: 14px;">This helps us customize your experience and provide faster service.</p>
-      
-      <div class="account-type-selector">
-        <div class="account-type-option" onclick="selectAccountType('individual')" id="type-individual">
-          <div class="icon">👤</div>
-          <h3>Individual / Family</h3>
-          <p>Personal health insurance policies</p>
-          <p style="font-size: 12px; color: #999; margin-top: 10px;">
-            <span class="benefit-tag">Self-purchased</span>
-            <span class="benefit-tag">Family coverage</span>
-          </p>
-        </div>
-        <div class="account-type-option" onclick="selectAccountType('corporate')" id="type-corporate">
-          <div class="icon">🏢</div>
-          <h3>Corporate Employee</h3>
-          <p>Employer-sponsored group insurance</p>
-          <p style="font-size: 12px; color: #999; margin-top: 10px;">
-            <span class="benefit-tag benefit-tag-corp">⚡ Faster claims</span>
-            <span class="benefit-tag benefit-tag-corp">✓ Pre-verified</span>
-          </p>
-        </div>
-      </div>
-
-      <button class="btn" onclick="proceedToLoginMethod()" style="width: 100%; margin-top: 20px;" id="btn-proceed" disabled>Continue →</button>
-    </div>
-
-    <!-- Step 2: Choose Login Method -->
-    <div id="login-step-1" class="hidden">
-      <button class="btn btn-secondary" onclick="backToStep(0)" style="margin-bottom: 15px;">← Back</button>
-      <h3 style="margin-bottom: 15px;">How would you like to login?</h3>
-      <p style="color: #666; margin-bottom: 20px; font-size: 14px;" id="account-type-display"></p>
-      
-      <div class="login-method">
-        <div class="login-method-btn active" onclick="selectLoginMethod('phone')" id="method-phone">
-          <div class="icon">📱</div>
-          <div><strong>Phone</strong></div>
-          <div style="font-size: 12px; color: #666;">OTP via SMS</div>
-        </div>
-        <div class="login-method-btn" onclick="selectLoginMethod('aadhaar')" id="method-aadhaar">
-          <div class="icon">🆔</div>
-          <div><strong>Aadhaar</strong></div>
-          <div style="font-size: 12px; color: #666;">Quick & Secure</div>
-        </div>
-        <div class="login-method-btn" onclick="selectLoginMethod('email')" id="method-email">
-          <div class="icon">📧</div>
-          <div><strong>Email</strong></div>
-          <div style="font-size: 12px; color: #666;">Password login</div>
-        </div>
-      </div>
-
-      <!-- Corporate-specific: Employee ID option -->
-      <div id="corporate-login-options" class="hidden">
-        <div class="login-method" style="margin-top: 10px;">
-          <div class="login-method-btn" onclick="selectLoginMethod('employee-id')" id="method-employee-id" style="flex: 1;">
-            <div class="icon">🏢</div>
-            <div><strong>Employee ID</strong></div>
-            <div style="font-size: 12px; color: #666;">Company credentials</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Phone Login -->
-      <div id="login-phone" class="login-form">
-        <label>Mobile Number</label>
-        <input type="tel" id="phone-input" placeholder="+91 98765 43210" maxlength="10">
-        <br><br>
-        <button class="btn" onclick="sendOTP('phone')" style="width: 100%;">Send OTP</button>
-      </div>
-
-      <!-- Aadhaar Login -->
-      <div id="login-aadhaar" class="login-form hidden">
-        <label>Aadhaar Number</label>
-        <input type="text" id="aadhaar-input" placeholder="XXXX XXXX XXXX" maxlength="14">
-        <p style="font-size: 12px; color: #666; margin-top: 5px;">🔒 Your Aadhaar is encrypted and secure</p>
-        <br>
-        <button class="btn" onclick="sendOTP('aadhaar')" style="width: 100%;">Send OTP</button>
-      </div>
-
-      <!-- Email Login -->
-      <div id="login-email" class="login-form hidden">
-        <label>Email Address</label>
-        <input type="email" id="email-input" placeholder="rahul@example.com">
-        <label>Password</label>
-        <input type="password" id="password-input" placeholder="••••••••">
-        <br>
-        <button class="btn" onclick="loginWithEmail()" style="width: 100%;">Login</button>
-      </div>
-
-      <!-- Employee ID Login (Corporate only) -->
-      <div id="login-employee-id" class="login-form hidden">
-        <label>Company Name</label>
-        <select id="company-select">
-          <option value="">Select your company</option>
-          <option value="TCS">Tata Consultancy Services (TCS)</option>
-          <option value="INFY">Infosys</option>
-          <option value="WIPRO">Wipro</option>
-          <option value="HCL">HCL Technologies</option>
-          <option value="TECHM">Tech Mahindra</option>
-          <option value="OTHER">Other</option>
-        </select>
-        <label>Employee ID</label>
-        <input type="text" id="employee-id-input" placeholder="e.g., EMP001234">
-        <label>Corporate Email</label>
-        <input type="email" id="corp-email-input" placeholder="rahul.sharma@tcs.com">
-        <br>
-        <button class="btn" onclick="sendOTP('employee-id')" style="width: 100%;">Send OTP</button>
-      </div>
-
-      <div style="margin-top: 30px; padding: 15px; background: #f0f7ff; border-radius: 8px; font-size: 12px;">
-        <strong>💡 Demo Credentials:</strong><br>
-        <strong>Individual:</strong><br>
-        • Phone: 9876543210<br>
-        • Aadhaar: 1234 5678 9012<br>
-        • Email: rahul@gmail.com / password123<br><br>
-        <strong>Corporate (TCS):</strong><br>
-        • Phone: 9876543211<br>
-        • Employee ID: EMP001234 (Company: TCS)<br>
+<div class="login-box">
+<h1>🏥 SuperClaim</h1>
+<p class="subtitle">Your AI-Powered Health Insurance Assistant</p>
+<!-- Step 1: Choose Account Type -->
+<div id="login-step-0">
+<h3 style="margin-bottom: 15px;">Welcome! What type of account do you have?</h3>
+<p style="color: #666; margin-bottom: 20px; font-size: 14px;">This helps us customize your experience and provide faster service.</p>
+<div class="account-type-selector">
+<div class="account-type-option" id="type-individual" onclick="selectAccountType('individual')">
+<div class="icon">👤</div>
+<h3>Individual / Family</h3>
+<p>Personal health insurance policies</p>
+<p style="font-size: 12px; color: #999; margin-top: 10px;">
+<span class="benefit-tag">Self-purchased</span>
+<span class="benefit-tag">Family coverage</span>
+</p>
+</div>
+<div class="account-type-option" id="type-corporate" onclick="selectAccountType('corporate')">
+<div class="icon">🏢</div>
+<h3>Corporate Employee</h3>
+<p>Employer-sponsored group insurance</p>
+<p style="font-size: 12px; color: #999; margin-top: 10px;">
+<span class="benefit-tag benefit-tag-corp">⚡ Faster claims</span>
+<span class="benefit-tag benefit-tag-corp">✓ Pre-verified</span>
+</p>
+</div>
+</div>
+<button class="btn" disabled="" id="btn-proceed" onclick="proceedToLoginMethod()" style="width: 100%; margin-top: 20px;">Continue →</button>
+</div>
+<!-- Step 2: Choose Login Method -->
+<div class="hidden" id="login-step-1">
+<button class="btn btn-secondary" onclick="backToStep(0)" style="margin-bottom: 15px;">← Back</button>
+<h3 style="margin-bottom: 15px;">How would you like to login?</h3>
+<p id="account-type-display" style="color: #666; margin-bottom: 20px; font-size: 14px;"></p>
+<div class="login-method">
+<div class="login-method-btn active" id="method-phone" onclick="selectLoginMethod('phone')">
+<div class="icon">📱</div>
+<div><strong>Phone</strong></div>
+<div style="font-size: 12px; color: #666;">OTP via SMS</div>
+</div>
+<div class="login-method-btn" id="method-aadhaar" onclick="selectLoginMethod('aadhaar')">
+<div class="icon">🆔</div>
+<div><strong>Aadhaar</strong></div>
+<div style="font-size: 12px; color: #666;">Quick &amp; Secure</div>
+</div>
+<div class="login-method-btn" id="method-email" onclick="selectLoginMethod('email')">
+<div class="icon">📧</div>
+<div><strong>Email</strong></div>
+<div style="font-size: 12px; color: #666;">Password login</div>
+</div>
+</div>
+<!-- Corporate-specific: Employee ID option -->
+<div class="hidden" id="corporate-login-options">
+<div class="login-method" style="margin-top: 10px;">
+<div class="login-method-btn" id="method-employee-id" onclick="selectLoginMethod('employee-id')" style="flex: 1;">
+<div class="icon">🏢</div>
+<div><strong>Employee ID</strong></div>
+<div style="font-size: 12px; color: #666;">Company credentials</div>
+</div>
+</div>
+</div>
+<!-- Phone Login -->
+<div class="login-form" id="login-phone">
+<label>Mobile Number</label>
+<input id="phone-input" maxlength="10" placeholder="+91 98765 43210" type="tel"/>
+<br/><br/>
+<button class="btn" onclick="sendOTP('phone')" style="width: 100%;">Send OTP</button>
+</div>
+<!-- Aadhaar Login -->
+<div class="login-form hidden" id="login-aadhaar">
+<label>Aadhaar Number</label>
+<input id="aadhaar-input" maxlength="14" placeholder="XXXX XXXX XXXX" type="text"/>
+<p style="font-size: 12px; color: #666; margin-top: 5px;">🔒 Your Aadhaar is encrypted and secure</p>
+<br/>
+<button class="btn" onclick="sendOTP('aadhaar')" style="width: 100%;">Send OTP</button>
+</div>
+<!-- Email Login -->
+<div class="login-form hidden" id="login-email">
+<label>Email Address</label>
+<input id="email-input" placeholder="rahul@example.com" type="email"/>
+<label>Password</label>
+<input id="password-input" placeholder="••••••••" type="password"/>
+<br/>
+<button class="btn" onclick="loginWithEmail()" style="width: 100%;">Login</button>
+</div>
+<!-- Employee ID Login (Corporate only) -->
+<div class="login-form hidden" id="login-employee-id">
+<label>Company Name</label>
+<select id="company-select">
+<option value="">Select your company</option>
+<option value="TCS">Tata Consultancy Services (TCS)</option>
+<option value="INFY">Infosys</option>
+<option value="WIPRO">Wipro</option>
+<option value="HCL">HCL Technologies</option>
+<option value="TECHM">Tech Mahindra</option>
+<option value="OTHER">Other</option>
+</select>
+<label>Employee ID</label>
+<input id="employee-id-input" placeholder="e.g., EMP001234" type="text"/>
+<label>Corporate Email</label>
+<input id="corp-email-input" placeholder="rahul.sharma@tcs.com" type="email"/>
+<br/>
+<button class="btn" onclick="sendOTP('employee-id')" style="width: 100%;">Send OTP</button>
+</div>
+<div style="margin-top: 30px; padding: 15px; background: #f0f7ff; border-radius: 8px; font-size: 12px;">
+<strong>💡 Demo Credentials:</strong><br/>
+<strong>Individual:</strong><br/>
+        • Phone: 9876543210<br/>
+        • Aadhaar: 1234 5678 9012<br/>
+        • Email: rahul@gmail.com / password123<br/><br/>
+<strong>Corporate (TCS):</strong><br/>
+        • Phone: 9876543211<br/>
+        • Employee ID: EMP001234 (Company: TCS)<br/>
         • Email: rahul@tcs.com / password123
       </div>
-    </div>
-
-    <!-- Step 3: OTP Verification -->
-    <div id="login-step-2" class="hidden">
-      <button class="btn btn-secondary" onclick="backToStep(1)" style="margin-bottom: 15px;">← Back</button>
-      <h3 style="margin-bottom: 15px;">Verify OTP</h3>
-      <p style="color: #666; margin-bottom: 20px;">
-        Enter the 6-digit code sent to <strong id="otp-destination">+91 98765 43210</strong>
-      </p>
-      
-      <div class="otp-input-group">
-        <input type="text" class="otp-input" maxlength="1" id="otp-1" oninput="moveToNext(1)">
-        <input type="text" class="otp-input" maxlength="1" id="otp-2" oninput="moveToNext(2)">
-        <input type="text" class="otp-input" maxlength="1" id="otp-3" oninput="moveToNext(3)">
-        <input type="text" class="otp-input" maxlength="1" id="otp-4" oninput="moveToNext(4)">
-        <input type="text" class="otp-input" maxlength="1" id="otp-5" oninput="moveToNext(5)">
-        <input type="text" class="otp-input" maxlength="1" id="otp-6" oninput="moveToNext(6)">
-      </div>
-
-      <button class="btn" onclick="verifyOTP()" style="width: 100%; margin-top: 20px;">Verify & Continue</button>
-      
-      <p style="text-align: center; margin-top: 20px; font-size: 13px;">
-        Didn't receive code? <a href="#" onclick="alert('OTP resent'); return false;">Resend OTP</a>
-      </p>
-    </div>
-  </div>
 </div>
-
+<!-- Step 3: OTP Verification -->
+<div class="hidden" id="login-step-2">
+<button class="btn btn-secondary" onclick="backToStep(1)" style="margin-bottom: 15px;">← Back</button>
+<h3 style="margin-bottom: 15px;">Verify OTP</h3>
+<p style="color: #666; margin-bottom: 20px;">
+        Enter the 6-digit code sent to <strong id="otp-destination">+91 98765 43210</strong>
+</p>
+<div class="otp-input-group">
+<input class="otp-input" id="otp-1" maxlength="1" oninput="moveToNext(1)" type="text"/>
+<input class="otp-input" id="otp-2" maxlength="1" oninput="moveToNext(2)" type="text"/>
+<input class="otp-input" id="otp-3" maxlength="1" oninput="moveToNext(3)" type="text"/>
+<input class="otp-input" id="otp-4" maxlength="1" oninput="moveToNext(4)" type="text"/>
+<input class="otp-input" id="otp-5" maxlength="1" oninput="moveToNext(5)" type="text"/>
+<input class="otp-input" id="otp-6" maxlength="1" oninput="moveToNext(6)" type="text"/>
+</div>
+<button class="btn" onclick="verifyOTP()" style="width: 100%; margin-top: 20px;">Verify &amp; Continue</button>
+<p style="text-align: center; margin-top: 20px; font-size: 13px;">
+        Didn't receive code? <a href="#" onclick="alert('OTP resent'); return false;">Resend OTP</a>
+</p>
+</div>
+</div>
+</div>
 <!-- SIDEBAR (Hidden initially) -->
 <div class="sidebar" id="main-sidebar" style="display: none;">
-  <h2>🏥 SuperClaim</h2>
-  <a onclick="showScreen('dashboard')" id="nav-dashboard" class="active">🏠 Dashboard</a>
-  <a onclick="showScreen('policies')" id="nav-policies">📋 My Policies</a>
-  <a onclick="showScreen('insurance-market')" id="nav-insurance-market">🛒 Insurance Marketplace</a>
-  <a onclick="showScreen('claims')" id="nav-claims">💰 Claims</a>
-  <a onclick="showScreen('cashless')" id="nav-cashless">🏥 Cashless</a>
-  <a onclick="showScreen('ai')" id="nav-ai">🤖 AI Assistant</a>
-  <a onclick="showScreen('documents')" id="nav-documents">📁 Documents</a>
-  <a onclick="showScreen('payments')" id="nav-payments">💳 Payments</a>
-  <a onclick="showScreen('corporate-benefits')" id="nav-corporate-benefits" style="display: none;">💼 Corporate Benefits <span class="badge-corp">CORP</span></a>
-  <a onclick="showScreen('notifications')" id="nav-notifications">🔔 Notifications</a>
-  <a onclick="showScreen('profile')" id="nav-profile">👤 Profile</a>
-  <a onclick="showScreen('settings')" id="nav-settings">⚙️ Settings</a>
-  <a onclick="showScreen('help')" id="nav-help">❓ Help Center</a>
-  <a onclick="showScreen('support')" id="nav-support">🎫 Support</a>
-  <a onclick="logout()" style="margin-top: 20px; border-top: 1px solid #2d3e5f; padding-top: 20px;">🚪 Logout</a>
+<h2>🏥 SuperClaim</h2>
+<a class="active" id="nav-dashboard" onclick="showScreen('dashboard')">🏠 Dashboard</a>
+<a id="nav-policies" onclick="showScreen('policies')">📋 My Policies</a>
+<a id="nav-insurance-market" onclick="showScreen('insurance-market')">🛒 Insurance Marketplace</a>
+<a id="nav-claims" onclick="showScreen('claims')">💰 Claims</a>
+<a id="nav-cashless" onclick="showScreen('cashless')">🏥 Cashless</a>
+<a id="nav-ai" onclick="showScreen('ai')">🤖 AI Assistant</a>
+<a id="nav-documents" onclick="showScreen('documents')">📁 Documents</a>
+<a id="nav-payments" onclick="showScreen('payments')">💳 Payments</a>
+<a id="nav-corporate-benefits" onclick="showScreen('corporate-benefits')" style="display: none;">💼 Corporate Benefits <span class="badge-corp">CORP</span></a>
+<a id="nav-notifications" onclick="showScreen('notifications')">🔔 Notifications</a>
+<a id="nav-profile" onclick="showScreen('profile')">👤 Profile</a>
+<a id="nav-settings" onclick="showScreen('settings')">⚙️ Settings</a>
+<a id="nav-help" onclick="showScreen('help')">❓ Help Center</a>
+<a id="nav-support" onclick="showScreen('support')">🎫 Support</a>
+<a onclick="logout()" style="margin-top: 20px; border-top: 1px solid #2d3e5f; padding-top: 20px;">🚪 Logout</a>
 </div>
-
 <!-- MAIN CONTENT (Hidden initially) -->
 <div class="main" id="main-content" style="display: none;">
-  <div class="topbar">
-    <div>
-      <strong id="user-name">Welcome, Rahul Sharma</strong> | 
+<div class="topbar">
+<div>
+<strong id="user-name">Welcome, Rahul Sharma</strong> | 
       <span id="user-type">Individual Member</span> | 
       Member ID: <span id="member-id">SC-2026-8842</span>
-    </div>
-    <div>
-      <button class="btn" style="background:#dc3545; font-weight:bold; animation: pulse 2s infinite;" onclick="openModal('emergency-modal')">🚨 EMERGENCY / SOS</button>
-      <button class="btn btn-secondary" onclick="showScreen('notifications')">🔔 <span id="notif-count">5</span></button>
-      <button class="btn btn-secondary" onclick="showScreen('profile')">👤 Profile</button>
-    </div>
-  </div>
-
-  <!-- DASHBOARD -->
-  <div class="screen active" id="screen-dashboard">
-    <h2>🏠 Dashboard</h2>
-    
-    <div id="individual-dashboard">
-      <div class="grid-4">
-        <div class="stat-card">
-          <h3>Active Policies</h3>
-          <div class="value">2</div>
-          <div class="change positive">↑ Star Health + HDFC Ergo</div>
-        </div>
-        <div class="stat-card">
-          <h3>Pending Claims</h3>
-          <div class="value">1</div>
-          <div class="change">₹45,000 under review</div>
-        </div>
-        <div class="stat-card">
-          <h3>Total Coverage</h3>
-          <div class="value">₹10L</div>
-          <div class="change positive">Across all policies</div>
-        </div>
-        <div class="stat-card">
-          <h3>Coverage Used</h3>
-          <div class="value">28%</div>
-          <div class="change">₹2.8L of ₹10L</div>
-        </div>
-      </div>
-
-      <h3 style="margin-top:25px;">⚡ Quick Actions</h3>
-      <div class="grid-4">
-        <button class="btn" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
-        <button class="btn" onclick="showScreen('cashless')">🏥 Find Hospital</button>
-        <button class="btn" onclick="showScreen('ai')">🤖 Ask AI</button>
-        <button class="btn btn-secondary" onclick="showScreen('insurance-market')">🛒 Buy Policy</button>
-      </div>
-
-      <div class="grid-2" style="margin-top: 25px;">
-        <div>
-          <h3>🤖 AI Insights</h3>
-          <div class="alert alert-warning">
+</div>
+<div>
+<button class="btn" onclick="openModal('emergency-modal')" style="background:#dc3545; font-weight:bold; animation: pulse 2s infinite;">🚨 EMERGENCY / SOS</button>
+<button class="btn btn-secondary" onclick="showScreen('notifications')">🔔 <span id="notif-count">5</span></button>
+<button class="btn btn-secondary" onclick="showScreen('profile')">👤 Profile</button>
+</div>
+</div>
+<!-- DASHBOARD -->
+<div class="screen active" id="screen-dashboard">
+<h2>🏠 Dashboard</h2>
+<div id="individual-dashboard">
+<div class="grid-4">
+<div class="stat-card">
+<h3>Active Policies</h3>
+<div class="value">2</div>
+<div class="change positive">↑ Star Health + HDFC Ergo</div>
+</div>
+<div class="stat-card">
+<h3>Pending Claims</h3>
+<div class="value">1</div>
+<div class="change">₹45,000 under review</div>
+</div>
+<div class="stat-card">
+<h3>Total Coverage</h3>
+<div class="value">₹10L</div>
+<div class="change positive">Across all policies</div>
+</div>
+<div class="stat-card">
+<h3>Coverage Used</h3>
+<div class="value">28%</div>
+<div class="change">₹2.8L of ₹10L</div>
+</div>
+</div>
+<h3 style="margin-top:25px;">⚡ Quick Actions</h3>
+<div class="grid-4">
+<button class="btn" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
+<button class="btn" onclick="showScreen('cashless')">🏥 Find Hospital</button>
+<button class="btn" onclick="showScreen('ai')">🤖 Ask AI</button>
+<button class="btn btn-secondary" onclick="showScreen('insurance-market')">🛒 Buy Policy</button>
+</div>
+<div class="grid-2" style="margin-top: 25px;">
+<div>
+<h3>🤖 AI Insights</h3>
+<div class="alert alert-warning">
             💡 <strong>Tip:</strong> Your Star Health policy renews in 28 days. Auto-renewal is enabled.
           </div>
-          <div class="alert alert-info">
+<div class="alert alert-info">
             ⚠️ <strong>Action Required:</strong> Claim #CLM-2026-0045 needs additional documents.
           </div>
-          <div class="alert alert-success">
+<div class="alert alert-success">
             ✅ <strong>Good News:</strong> You've saved ₹12,500 this year through wellness rewards!
           </div>
-        </div>
-        <div>
-          <h3>📊 Coverage Utilization</h3>
-          <div class="card">
-            <p><strong>Star Health - Family Health Optima</strong></p>
-            <div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
-            <p style="font-size: 13px; color: #666;">₹1,75,000 / ₹5,00,000 used</p>
-          </div>
-          <div class="card">
-            <p><strong>HDFC Ergo - Optima Restore</strong></p>
-            <div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
-            <p style="font-size: 13px; color: #666;">₹75,000 / ₹5,00,000 used</p>
-          </div>
-        </div>
-      </div>
-
-      <h3 style="margin-top:25px;">📊 Recent Activity</h3>
-      <table>
-        <tr><th>Date</th><th>Activity</th><th>Policy</th><th>Amount</th><th>Status</th></tr>
-        <tr><td>08 Jul 2026</td><td>Claim #CLM-2026-0045 submitted</td><td>Star Health</td><td>₹45,000</td><td><span class="badge badge-yellow">Pending</span></td></tr>
-        <tr><td>02 Jul 2026</td><td>Claim #CLM-2026-0044 approved</td><td>HDFC Ergo</td><td>₹25,000</td><td><span class="badge badge-green">Approved</span></td></tr>
-        <tr><td>28 Jun 2026</td><td>Cashless at Apollo Hospital</td><td>Star Health</td><td>₹85,000</td><td><span class="badge badge-green">Approved</span></td></tr>
-        <tr><td>15 Jun 2026</td><td>Policy renewal payment</td><td>Star Health</td><td>₹18,500</td><td><span class="badge badge-blue">Paid</span></td></tr>
-        <tr><td>10 Jun 2026</td><td>Document uploaded</td><td>-</td><td>-</td><td><span class="badge badge-blue">Success</span></td></tr>
-      </table>
-    </div>
-
-    <div id="corporate-dashboard" class="hidden">
-      <div class="alert alert-success">
+</div>
+<div>
+<h3>📊 Coverage Utilization</h3>
+<div class="card">
+<p><strong>Star Health - Family Health Optima</strong></p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
+<p style="font-size: 13px; color: #666;">₹1,75,000 / ₹5,00,000 used</p>
+</div>
+<div class="card">
+<p><strong>HDFC Ergo - Optima Restore</strong></p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
+<p style="font-size: 13px; color: #666;">₹75,000 / ₹5,00,000 used</p>
+</div>
+</div>
+</div>
+<h3 style="margin-top:25px;">📊 Recent Activity</h3>
+<table>
+<tr><th>Date</th><th>Activity</th><th>Policy</th><th>Amount</th><th>Status</th></tr>
+<tr><td>08 Jul 2026</td><td>Claim #CLM-2026-0045 submitted</td><td>Star Health</td><td>₹45,000</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+<tr><td>02 Jul 2026</td><td>Claim #CLM-2026-0044 approved</td><td>HDFC Ergo</td><td>₹25,000</td><td><span class="badge badge-green">Approved</span></td></tr>
+<tr><td>28 Jun 2026</td><td>Cashless at Apollo Hospital</td><td>Star Health</td><td>₹85,000</td><td><span class="badge badge-green">Approved</span></td></tr>
+<tr><td>15 Jun 2026</td><td>Policy renewal payment</td><td>Star Health</td><td>₹18,500</td><td><span class="badge badge-blue">Paid</span></td></tr>
+<tr><td>10 Jun 2026</td><td>Document uploaded</td><td>-</td><td>-</td><td><span class="badge badge-blue">Success</span></td></tr>
+</table>
+</div>
+<div class="hidden" id="corporate-dashboard">
+<div class="alert alert-success">
         ⚡ <strong>Corporate Fast-Track Active:</strong> Your claims are processed 3x faster with pre-verification. Average processing time: 24 hours.
       </div>
-      
-      <div class="card card-highlight">
-        <h3>🏢 TCS Group Health Insurance</h3>
-        <p><strong>Employee ID:</strong> EMP001234 | <strong>Department:</strong> IT Services | <strong>Grade:</strong> Digital</        <p><strong>Coverage:</strong> ₹5,00,000 (Base) + ₹3,00,000 (Super Top-up)</p>
-        <p><strong>Employer Contribution:</strong> 100% | <strong>Your Contribution:</strong> ₹0</p>
-        <p><strong>Dependents Covered:</strong> Spouse, 2 Children, Parents</p>
-      </div>
-
-      <div class="grid-4">
-        <div class="stat-card">
-          <h3>Family Coverage</h3>
-          <div class="value">₹8L</div>
-          <div class="change positive">Base + Top-up</div>
-        </div>
-        <div class="stat-card">
-          <h3>Claims This Year</h3>
-          <div class="value">2</div>
-          <div class="change">₹65,000 utilized</div>
-        </div>
-        <div class="stat-card">
-          <h3>Wellness Points</h3>
-          <div class="value">2,450</div>
-          <div class="change positive">Redeem for rewards</div>
-        </div>
-        <div class="stat-card">
-          <h3>Preventive Checkups</h3>
-          <div class="value">4/5</div>
-          <div class="change">Remaining this year</div>
-        </div>
-      </div>
-
-      <h3 style="margin-top:25px;">⚡ Quick Actions</h3>
-      <div class="grid-4">
-        <button class="btn btn-corp" onclick="showScreen('claims'); startNewClaim()">+ File Claim (Fast-Track)</button>
-        <button class="btn" onclick="showScreen('cashless')">🏥 Cashless Hospital</button>
-        <button class="btn" onclick="showScreen('corporate-benefits')">💼 View All Benefits</button>
-        <button class="btn btn-secondary" onclick="showScreen('ai')">🤖 Ask AI</button>
-      </div>
-
-      <div class="grid-2" style="margin-top: 25px;">
-        <div>
-          <h3>🎯 Corporate Benefits Summary</h3>
-          <div class="card">
-            <p><strong>Health Insurance</strong> <span class="badge badge-green">Active</span></p>
-            <p style="font-size: 13px; color: #666;">₹8L coverage | 12% used</p>
-          </div>
-          <div class="card">
-            <p><strong>Life Insurance</strong> <span class="badge badge-green">Active</span></p>
-            <p style="font-size: 13px; color: #666;">₹20L coverage | HDFC Life</p>
-          </div>
-          <div class="card">
-            <p><strong>Accident Cover</strong> <span class="badge badge-green">Active</span></p>
-            <p style="font-size: 13px; color: #666;">₹10L coverage | Bajaj Allianz</p>
-          </div>
-        </div>
-        <div>
-          <h3>📊 Recent Activity</h3>
-          <table>
-            <tr><th>Date</th><th>Activity</th><th>Status</th></tr>
-            <tr><td>08 Jul 2026</td><td>Claim submitted</td><td><span class="badge badge-yellow">Pending</span></td></tr>
-            <tr><td>02 Jul 2026</td><td>Claim approved</td><td><span class="badge badge-green">Approved</span></td></tr>
-            <tr><td>28 Jun 2026</td><td>Cashless approved</td><td><span class="badge badge-green">Approved</span></td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- POLICIES -->
-  <div class="screen" id="screen-policies">
-    <h2>📋 My Policies</h2>
-    <button class="btn" onclick="showScreen('insurance-market')">+ Buy New Policy</button>
-    <button class="btn btn-secondary" onclick="openModal('policy-compare-modal')">Compare Policies</button>
-    
-    <div id="individual-policies">
-      <div class="insurance-card">
-        <div class="insurance-logo star-health">⭐ Star Health</div>
-        <div class="corp-tag">Individual Policy</div>
-        <h3>Family Health Optima Plus</h3>
-        <p><strong>Policy No:</strong> STAR/FHO/2025/1234567 | <strong>Insurer:</strong> Star Health & Allied Insurance</p>
-        <p><strong>Sum Insured:</strong> ₹5,00,000 | <strong>Used:</strong> ₹1,75,000 (35%)</p>
-        <div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
-        <p><strong>Members:</strong> Rahul (Self), Priya (Spouse), Aarav (Son)</p>
-        <p><strong>Premium:</strong> ₹18,500/year | <strong>Valid Till:</strong> 15 Aug 2026</p>
-        <p><strong>Key Features:</strong> Room rent uncapped, Pre/Post hospitalization 60/90 days, No claim bonus</p>
-        <button class="btn" onclick="openPolicyDetail('STAR')">View Details</button>
-        <button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
-        <button class="btn btn-secondary" onclick="openModal('policy-renew-modal')">🔄 Renew</button>
-      </div>
-
-      <div class="insurance-card">
-        <div class="insurance-logo hdfc">HDFC ERGO</div>
-        <div class="corp-tag">Individual Policy</div>
-        <h3>Optima Restore</h3>
-        <p><strong>Policy No:</strong> HDFC/OR/2025/9876543 | <strong>Insurer:</strong> HDFC ERGO General Insurance</p>
-        <p><strong>Sum Insured:</strong> ₹5,00,000 (with restoration benefit)</p>
-        <div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
-        <p><strong>Premium:</strong> ₹12,800/year | <strong>Valid Till:</strong> 30 Nov 2026</p>
-        <p><strong>Key Features:</strong> Unlimited restoration, No claim bonus up to 100%, Global coverage</p>
-        <button class="btn" onclick="openPolicyDetail('HDFC')">View Details</button>
-        <button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
-      </div>
-    </div>
-
-    <div id="corporate-policies" class="hidden">
-      <div class="insurance-card" style="border-color: #ffd700; background: linear-gradient(135deg, #fff9e6, #ffffff);">
-        <div class="insurance-logo" style="color: #1a2b4a;">🏢 TCS Group Insurance</div>
-        <div class="corp-tag">Corporate Group Policy</div>
-        <h3>TCS Employee Group Health Cover</h3>
-        <p><strong>Policy No:</strong> TCS/GHI/2026/EMP001234 | <strong>Insurer:</strong> ICICI Lombard General Insurance</p>
-        <p><strong>Base Coverage:</strong> ₹5,00,000 | <strong>Super Top-up:</strong> ₹3,00,000 | <strong>Total:</strong> ₹8,00,000</p>
-        <div class="coverage-bar"><div class="coverage-fill" style="width: 12%"></div></div>
-        <p><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
-        <p><strong>Premium:</strong> ₹0 (100% employer paid) | <strong>Valid Till:</strong> 31 Mar 2027</p>
-        <p><strong>Key Features:</strong> Cashless at 8,500+ hospitals, Maternity cover ₹50,000, Annual health checkup</p>
-        <button class="btn btn-corp" onclick="openPolicyDetail('TCS')">View Details</button>
-        <button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- INSURANCE MARKETPLACE -->
-  <div class="screen" id="screen-insurance-market">
-    <h2>🛒 Health Insurance Marketplace</h2>
-    <p style="color: #666; margin-bottom: 20px;">Compare and buy from India's top insurers</p>
-    
-    <div style="margin-bottom: 20px;">
-      <input type="text" placeholder="🔍 Search by insurer name, plan type, or city..." style="max-width: 600px;">
-      <button class="btn btn-secondary" onclick="openModal('filter-plans-modal')">Filter</button>
-      <button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
-    </div>
-
-    <h3>🏆 Recommended For You</h3>
-    
-    <div class="insurance-card">
-      <div class="insurance-logo maxbupa">Max Bupa</div>
-      <h3>Heartbeat Plan</h3>
-      <p><strong>Insurer:</strong> Niva Bupa Health Insurance (formerly Max Bupa)</p>
-      <p><strong>Coverage:</strong> ₹5L - ₹6 Cr | <strong>Premium:</strong> From ₹8,500/year</p>
-      <p><strong>Features:</strong> ✓ No room rent cap ✓ 100% restoration ✓ Free health checkup</p>
-      <p><strong>Claim Settlement Ratio:</strong> 98.2% | <strong>Network:</strong> 11,000+ hospitals</p>
-      <button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-      <button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-      <button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare</button>
-    </div>
-
-    <div class="insurance-card">
-      <div class="insurance-logo aditya">Aditya Birla</div>
-      <h3>Activ Health Platinum</h3>
-      <p><strong>Insurer:</strong> Aditya Birla Health Insurance</p>
-      <p><strong>Coverage:</strong> ₹5L - ₹1 Cr | <strong>Premium:</strong> From ₹9,200/year</p>
-      <p><strong>Features:</strong> ✓ Wellness rewards ✓ OPD cover ✓ Cumulative bonus</p>
-      <p><strong>Claim Settlement Ratio:</strong> 97.8% | <strong>Network:</strong> 9,500+ hospitals</p>
-      <button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-      <button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-      <button class="btn btn-secondary">Compare</button>
-    </div>
-
-    <div class="insurance-card">
-      <div class="insurance-logo care">Care Health</div>
-      <h3>Care Supreme</h3>
-      <p><strong>Insurer:</strong> Care Health Insurance (formerly Religare)</p>
-      <p><strong>Coverage:</strong> ₹3L - ₹50L | <strong>Premium:</strong> From ₹7,800/year</p>
-      <p><strong>Features:</strong> ✓ Unlimited restoration ✓ Alternative treatment cover</p>
-      <p><strong>Claim Settlement Ratio:</strong> 96.5% | <strong>Network:</strong> 13,000+ hospitals</p>
-      <button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
-      <button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
-      <button class="btn btn-secondary">Compare</button>
-    </div>
-  </div>
-
-  <!-- CLAIMS -->
-  <div class="screen" id="screen-claims">
-    <h2>💰 Claims</h2>
-    <button class="btn" onclick="startNewClaim()">+ New Claim</button>
-    <button class="btn btn-secondary" onclick="openModal('filter-claims-modal')">Filter</button>
-    <button class="btn btn-secondary" onclick="openModal('export-claims-modal')">Export</button>
-    
-    <div class="tab-container">
-      <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab('claims', 'all')">All Claims</button>
-        <button class="tab-btn" onclick="switchTab('claims', 'pending')">Pending</button>
-        <button class="tab-btn" onclick="switchTab('claims', 'approved')">Approved</button>
-        <button class="tab-btn" onclick="switchTab('claims', 'rejected')">Rejected</button>
-      </div>
-
-      <div class="tab-content active" id="claims-all">
-        <div class="card">
-          <h3>Claim #CLM-2026-0045 <span class="badge badge-yellow">Pending</span></h3>
-          <p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹45,000</p>
-          <p><strong>Hospital:</strong> Apollo Hospital, Mumbai | <strong>Date:</strong> 05 Jul 2026</p>
-          <p><strong>Policy:</strong> Star Health - Family Health Optima</p>
-          <button class="btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
-          <button class="btn btn-secondary" onclick="openModal('track-claim-modal')">Track Status</button>
-        </div>
-        <div class="card">
-          <h3>Claim #CLM-2026-0044 <span class="badge badge-green">Approved</span></h3>
-          <p><strong>Patient:</strong> Priya Sharma | <strong>Amount:</strong> ₹25,000 (Paid)</p>
-          <p><strong>Hospital:</strong> Fortis Hospital | <strong>Date:</strong> 28 Jun 2026</p>
-          <button class="btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
-          <button class="btn btn-secondary" onclick="openModal('payment-details-modal')">View Payment</button>
-        </div>
-        <div class="card">
-          <h3>Claim #CLM-2026-0039 <span class="badge badge-red">Rejected</span></h3>
-          <p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹18,000</p>
-          <p><strong>Reason:</strong> Pre-existing condition not disclosed</p>
-          <button class="btn btn-danger" onclick="openModal('appeal-claim-modal')">Appeal</button>
-          <button class="btn btn-secondary" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- NEW CLAIM WIZARD -->
-  <div class="screen" id="screen-new-claim">
-    <h2>💰 Create New Claim</h2>
-    <div id="corporate-fast-track" class="alert alert-success hidden">
+<div class="card card-highlight">
+<h3>🏢 TCS Group Health Insurance</h3>
+<p><strong>Employee ID:</strong> EMP001234 | <strong>Department:</strong> IT Services | <strong>Grade:</strong> Digital<!--        <p--><strong>Coverage:</strong> ₹5,00,000 (Base) + ₹3,00,000 (Super Top-up)</p>
+<p><strong>Employer Contribution:</strong> 100% | <strong>Your Contribution:</strong> ₹0</p>
+<p><strong>Dependents Covered:</strong> Spouse, 2 Children, Parents</p>
+</div>
+<div class="grid-4">
+<div class="stat-card">
+<h3>Family Coverage</h3>
+<div class="value">₹8L</div>
+<div class="change positive">Base + Top-up</div>
+</div>
+<div class="stat-card">
+<h3>Claims This Year</h3>
+<div class="value">2</div>
+<div class="change">₹65,000 utilized</div>
+</div>
+<div class="stat-card">
+<h3>Wellness Points</h3>
+<div class="value">2,450</div>
+<div class="change positive">Redeem for rewards</div>
+</div>
+<div class="stat-card">
+<h3>Preventive Checkups</h3>
+<div class="value">4/5</div>
+<div class="change">Remaining this year</div>
+</div>
+</div>
+<h3 style="margin-top:25px;">⚡ Quick Actions</h3>
+<div class="grid-4">
+<button class="btn btn-corp" onclick="showScreen('claims'); startNewClaim()">+ File Claim (Fast-Track)</button>
+<button class="btn" onclick="showScreen('cashless')">🏥 Cashless Hospital</button>
+<button class="btn" onclick="showScreen('corporate-benefits')">💼 View All Benefits</button>
+<button class="btn btn-secondary" onclick="showScreen('ai')">🤖 Ask AI</button>
+</div>
+<div class="grid-2" style="margin-top: 25px;">
+<div>
+<h3>🎯 Corporate Benefits Summary</h3>
+<div class="card">
+<p><strong>Health Insurance</strong> <span class="badge badge-green">Active</span></p>
+<p style="font-size: 13px; color: #666;">₹8L coverage | 12% used</p>
+</div>
+<div class="card">
+<p><strong>Life Insurance</strong> <span class="badge badge-green">Active</span></p>
+<p style="font-size: 13px; color: #666;">₹20L coverage | HDFC Life</p>
+</div>
+<div class="card">
+<p><strong>Accident Cover</strong> <span class="badge badge-green">Active</span></p>
+<p style="font-size: 13px; color: #666;">₹10L coverage | Bajaj Allianz</p>
+</div>
+</div>
+<div>
+<h3>📊 Recent Activity</h3>
+<table>
+<tr><th>Date</th><th>Activity</th><th>Status</th></tr>
+<tr><td>08 Jul 2026</td><td>Claim submitted</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+<tr><td>02 Jul 2026</td><td>Claim approved</td><td><span class="badge badge-green">Approved</span></td></tr>
+<tr><td>28 Jun 2026</td><td>Cashless approved</td><td><span class="badge badge-green">Approved</span></td></tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- POLICIES -->
+<div class="screen" id="screen-policies">
+<h2>📋 My Policies</h2>
+<button class="btn" onclick="showScreen('insurance-market')">+ Buy New Policy</button>
+<button class="btn btn-secondary" onclick="openModal('policy-compare-modal')">Compare Policies</button>
+<div id="individual-policies">
+<div class="insurance-card">
+<div class="insurance-logo star-health">⭐ Star Health</div>
+<div class="corp-tag">Individual Policy</div>
+<h3>Family Health Optima Plus</h3>
+<p><strong>Policy No:</strong> STAR/FHO/2025/1234567 | <strong>Insurer:</strong> Star Health &amp; Allied Insurance</p>
+<p><strong>Sum Insured:</strong> ₹5,00,000 | <strong>Used:</strong> ₹1,75,000 (35%)</p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
+<p><strong>Members:</strong> Rahul (Self), Priya (Spouse), Aarav (Son)</p>
+<p><strong>Premium:</strong> ₹18,500/year | <strong>Valid Till:</strong> 15 Aug 2026</p>
+<p><strong>Key Features:</strong> Room rent uncapped, Pre/Post hospitalization 60/90 days, No claim bonus</p>
+<button class="btn" onclick="openPolicyDetail('STAR')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+<button class="btn btn-secondary" onclick="openModal('policy-renew-modal')">🔄 Renew</button>
+</div>
+<div class="insurance-card">
+<div class="insurance-logo hdfc">HDFC ERGO</div>
+<div class="corp-tag">Individual Policy</div>
+<h3>Optima Restore</h3>
+<p><strong>Policy No:</strong> HDFC/OR/2025/9876543 | <strong>Insurer:</strong> HDFC ERGO General Insurance</p>
+<p><strong>Sum Insured:</strong> ₹5,00,000 (with restoration benefit)</p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
+<p><strong>Premium:</strong> ₹12,800/year | <strong>Valid Till:</strong> 30 Nov 2026</p>
+<p><strong>Key Features:</strong> Unlimited restoration, No claim bonus up to 100%, Global coverage</p>
+<button class="btn" onclick="openPolicyDetail('HDFC')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+</div>
+</div>
+<div class="hidden" id="corporate-policies">
+<div class="insurance-card" style="border-color: #ffd700; background: linear-gradient(135deg, #fff9e6, #ffffff);">
+<div class="insurance-logo" style="color: #1a2b4a;">🏢 TCS Group Insurance</div>
+<div class="corp-tag">Corporate Group Policy</div>
+<h3>TCS Employee Group Health Cover</h3>
+<p><strong>Policy No:</strong> TCS/GHI/2026/EMP001234 | <strong>Insurer:</strong> ICICI Lombard General Insurance</p>
+<p><strong>Base Coverage:</strong> ₹5,00,000 | <strong>Super Top-up:</strong> ₹3,00,000 | <strong>Total:</strong> ₹8,00,000</p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 12%"></div></div>
+<p><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
+<p><strong>Premium:</strong> ₹0 (100% employer paid) | <strong>Valid Till:</strong> 31 Mar 2027</p>
+<p><strong>Key Features:</strong> Cashless at 8,500+ hospitals, Maternity cover ₹50,000, Annual health checkup</p>
+<button class="btn btn-corp" onclick="openPolicyDetail('TCS')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+</div>
+</div>
+</div>
+<!-- INSURANCE MARKETPLACE -->
+<div class="screen" id="screen-insurance-market">
+<h2>🛒 Health Insurance Marketplace</h2>
+<p style="color: #666; margin-bottom: 20px;">Compare and buy from India's top insurers</p>
+<div style="margin-bottom: 20px;">
+<input placeholder="🔍 Search by insurer name, plan type, or city..." style="max-width: 600px;" type="text"/>
+<button class="btn btn-secondary" onclick="openModal('filter-plans-modal')">Filter</button>
+<button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
+</div>
+<h3>🏆 Recommended For You</h3>
+<div class="insurance-card">
+<div class="insurance-logo maxbupa">Max Bupa</div>
+<h3>Heartbeat Plan</h3>
+<p><strong>Insurer:</strong> Niva Bupa Health Insurance (formerly Max Bupa)</p>
+<p><strong>Coverage:</strong> ₹5L - ₹6 Cr | <strong>Premium:</strong> From ₹8,500/year</p>
+<p><strong>Features:</strong> ✓ No room rent cap ✓ 100% restoration ✓ Free health checkup</p>
+<p><strong>Claim Settlement Ratio:</strong> 98.2% | <strong>Network:</strong> 11,000+ hospitals</p>
+<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
+<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+<button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare</button>
+</div>
+<div class="insurance-card">
+<div class="insurance-logo aditya">Aditya Birla</div>
+<h3>Activ Health Platinum</h3>
+<p><strong>Insurer:</strong> Aditya Birla Health Insurance</p>
+<p><strong>Coverage:</strong> ₹5L - ₹1 Cr | <strong>Premium:</strong> From ₹9,200/year</p>
+<p><strong>Features:</strong> ✓ Wellness rewards ✓ OPD cover ✓ Cumulative bonus</p>
+<p><strong>Claim Settlement Ratio:</strong> 97.8% | <strong>Network:</strong> 9,500+ hospitals</p>
+<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
+<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+<button class="btn btn-secondary">Compare</button>
+</div>
+<div class="insurance-card">
+<div class="insurance-logo care">Care Health</div>
+<h3>Care Supreme</h3>
+<p><strong>Insurer:</strong> Care Health Insurance (formerly Religare)</p>
+<p><strong>Coverage:</strong> ₹3L - ₹50L | <strong>Premium:</strong> From ₹7,800/year</p>
+<p><strong>Features:</strong> ✓ Unlimited restoration ✓ Alternative treatment cover</p>
+<p><strong>Claim Settlement Ratio:</strong> 96.5% | <strong>Network:</strong> 13,000+ hospitals</p>
+<button class="btn" onclick="openModal('plan-details-modal')">View Plan</button>
+<button class="btn btn-secondary" onclick="openModal('buy-plan-modal')">Buy Now</button>
+<button class="btn btn-secondary">Compare</button>
+</div>
+</div>
+<!-- CLAIMS -->
+<div class="screen" id="screen-claims">
+<h2>💰 Claims</h2>
+<button class="btn" onclick="startNewClaim()">+ New Claim</button>
+<button class="btn btn-secondary" onclick="openModal('filter-claims-modal')">Filter</button>
+<button class="btn btn-secondary" onclick="openModal('export-claims-modal')">Export</button>
+<div class="tab-container">
+<div class="tab-buttons">
+<button class="tab-btn active" onclick="switchTab('claims', 'all')">All Claims</button>
+<button class="tab-btn" onclick="switchTab('claims', 'pending')">Pending</button>
+<button class="tab-btn" onclick="switchTab('claims', 'approved')">Approved</button>
+<button class="tab-btn" onclick="switchTab('claims', 'rejected')">Rejected</button>
+</div>
+<div class="tab-content active" id="claims-all">
+<div class="card">
+<h3>Claim #CLM-2026-0045 <span class="badge badge-yellow">Pending</span></h3>
+<p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹45,000</p>
+<p><strong>Hospital:</strong> Apollo Hospital, Mumbai | <strong>Date:</strong> 05 Jul 2026</p>
+<p><strong>Policy:</strong> Star Health - Family Health Optima</p>
+<button class="btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('track-claim-modal')">Track Status</button>
+</div>
+<div class="card">
+<h3>Claim #CLM-2026-0044 <span class="badge badge-green">Approved</span></h3>
+<p><strong>Patient:</strong> Priya Sharma | <strong>Amount:</strong> ₹25,000 (Paid)</p>
+<p><strong>Hospital:</strong> Fortis Hospital | <strong>Date:</strong> 28 Jun 2026</p>
+<button class="btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('payment-details-modal')">View Payment</button>
+</div>
+<div class="card">
+<h3>Claim #CLM-2026-0039 <span class="badge badge-red">Rejected</span></h3>
+<p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹18,000</p>
+<p><strong>Reason:</strong> Pre-existing condition not disclosed</p>
+<button class="btn btn-danger" onclick="openModal('appeal-claim-modal')">Appeal</button>
+<button class="btn btn-secondary" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- NEW CLAIM WIZARD -->
+<div class="screen" id="screen-new-claim">
+<h2>💰 Create New Claim</h2>
+<div class="alert alert-success hidden" id="corporate-fast-track">
       ⚡ <strong>Corporate Fast-Track:</strong> Your claim will be processed within 24 hours (vs 3-5 days for regular claims).
     </div>
-    <div class="stepper">
-      <div class="step active" id="step1">1. Patient & Policy</div>
-      <div class="step" id="step2">2. Treatment Details</div>
-      <div class="step" id="step3">3. Documents</div>
-      <div class="step" id="step4">4. Review</div>
-    </div>
-
-    <div id="claim-step-1">
-      <h3>Select Patient</h3>
-      <select>
-        <option>Rahul Sharma (Self)</option>
-        <option>Priya Sharma (Spouse)</option>
-        <option>Aarav Sharma (Son)</option>
-      </select>
-      <h3>Select Policy</h3>
-      <select id="claim-policy-select">
-        <option>Star Health - Family Health Optima (₹5L)</option>
-        <option>HDFC Ergo - Optima Restore (₹5L)</option>
-      </select>
-      <h3>Claim Type</h3>
-      <select>
-        <option>Reimbursement</option>
-        <option>Pre-authorization</option>
-      </select>
-      <br><br>
-      <button class="btn" onclick="claimNext(2)">Next →</button>
-    </div>
-
-    <div id="claim-step-2" class="hidden">
-      <h3>Hospital Details</h3>
-      <input type="text" placeholder="Hospital Name" value="Apollo Hospital, Mumbai">
-      <button class="btn btn-secondary" onclick="openModal('search-hospital-modal')">🔍 Search Hospital</button>
-      <h3>Treatment Details</h3>
-      <input type="text" placeholder="Diagnosis" value="Viral Fever">
-      <label>Admission Date</label>
-      <input type="date" value="2026-07-05">
-      <label>Discharge Date</label>
-      <input type="date" value="2026-07-08">
-      <h3>Claim Amount</h3>
-      <input type="number" placeholder="₹" value="45000">
-      <br><br>
-      <button class="btn btn-secondary" onclick="claimNext(1)">← Back</button>
-      <button class="btn" onclick="claimNext(3)">Next →</button>
-    </div>
-
-    <div id="claim-step-3" class="hidden">
-      <h3>Upload Documents</h3>
-      <p>🤖 AI will auto-verify these documents before submission.</p>
-      <div class="file-upload-area" onclick="openModal('upload-document-modal')">
-        <p style="font-size: 48px;">📁</p>
-        <p><strong>Click to upload or drag and drop</strong></p>
-        <p style="font-size: 12px; color: #666;">PDF, JPG, PNG (Max 10MB each)</p>
-      </div>
-      <div class="card">
-        <strong>1. Final Hospital Bill</strong> <span class="badge badge-green">✓ Verified</span>
-        <p>hospital_bill.pdf (2.3 MB)</p>
-        <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
-        <button class="btn btn-secondary" onclick="openModal('replace-document-modal')">Replace</button>
-      </div>
-      <div class="card">
-        <strong>2. Discharge Summary</strong> <span class="badge badge-green">✓ Verified</span>
-        <p>discharge.pdf (1.1 MB)</p>
-      </div>
-      <div class="card">
-        <strong>3. Payment Receipt</strong> <span class="badge badge-yellow">⚠ Amount mismatch</span>
-        <p>receipt.pdf (0.8 MB)</p>
-        <button class="btn btn-secondary" onclick="openModal('fix-document-error-modal')">Fix Error</button>
-      </div>
-      <br><br>
-      <button class="btn btn-secondary" onclick="claimNext(2)">← Back</button>
-      <button class="btn" onclick="claimNext(4)">Next →</button>
-    </div>
-
-    <div id="claim-step-4" class="hidden">
-      <h3>Review & Submit</h3>
-      <div class="card">
-        <p><strong>Patient:</strong> Rahul Sharma</p>
-        <p><strong>Policy:</strong> Star Health - Family Health Optima</p>
-        <p><strong>Hospital:</strong> Apollo Hospital, Mumbai</p>
-        <p><strong>Diagnosis:</strong> Viral Fever</p>
-        <p><strong>Amount:</strong> ₹45,000</p>
-        <p><strong>Documents:</strong> 4 uploaded</p>
-        <p><strong>Bank:</strong> HDFC ****4521</p>
-        <button class="btn btn-secondary" onclick="openModal('edit-bank-details-modal')">Edit Bank Details</button>
-      </div>
-      <div class="card" style="background:#e8f5e9;">
-        🤖 <strong>AI Confidence Score: 92%</strong><br>
+<div class="stepper">
+<div class="step active" id="step1">1. Patient &amp; Policy</div>
+<div class="step" id="step2">2. Treatment Details</div>
+<div class="step" id="step3">3. Documents</div>
+<div class="step" id="step4">4. Review</div>
+</div>
+<div id="claim-step-1">
+<h3>Select Patient</h3>
+<select>
+<option>Rahul Sharma (Self)</option>
+<option>Priya Sharma (Spouse)</option>
+<option>Aarav Sharma (Son)</option>
+</select>
+<h3>Select Policy</h3>
+<select id="claim-policy-select">
+<option>Star Health - Family Health Optima (₹5L)</option>
+<option>HDFC Ergo - Optima Restore (₹5L)</option>
+</select>
+<h3>Claim Type</h3>
+<select>
+<option>Reimbursement</option>
+<option>Pre-authorization</option>
+</select>
+<br/><br/>
+<button class="btn" onclick="claimNext(2)">Next →</button>
+</div>
+<div class="hidden" id="claim-step-2">
+<h3>Hospital Details</h3>
+<input placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai"/>
+<button class="btn btn-secondary" onclick="openModal('search-hospital-modal')">🔍 Search Hospital</button>
+<h3>Treatment Details</h3>
+<input placeholder="Diagnosis" type="text" value="Viral Fever"/>
+<label>Admission Date</label>
+<input type="date" value="2026-07-05"/>
+<label>Discharge Date</label>
+<input type="date" value="2026-07-08"/>
+<h3>Claim Amount</h3>
+<input placeholder="₹" type="number" value="45000"/>
+<br/><br/>
+<button class="btn btn-secondary" onclick="claimNext(1)">← Back</button>
+<button class="btn" onclick="claimNext(3)">Next →</button>
+</div>
+<div class="hidden" id="claim-step-3">
+<h3>Upload Documents</h3>
+<p>🤖 AI will auto-verify these documents before submission.</p>
+<div class="file-upload-area" onclick="openModal('upload-document-modal')">
+<p style="font-size: 48px;">📁</p>
+<p><strong>Click to upload or drag and drop</strong></p>
+<p style="font-size: 12px; color: #666;">PDF, JPG, PNG (Max 10MB each)</p>
+</div>
+<div class="card">
+<strong>1. Final Hospital Bill</strong> <span class="badge badge-green">✓ Verified</span>
+<p>hospital_bill.pdf (2.3 MB)</p>
+<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+<button class="btn btn-secondary" onclick="openModal('replace-document-modal')">Replace</button>
+</div>
+<div class="card">
+<strong>2. Discharge Summary</strong> <span class="badge badge-green">✓ Verified</span>
+<p>discharge.pdf (1.1 MB)</p>
+</div>
+<div class="card">
+<strong>3. Payment Receipt</strong> <span class="badge badge-yellow">⚠ Amount mismatch</span>
+<p>receipt.pdf (0.8 MB)</p>
+<button class="btn btn-secondary" onclick="openModal('fix-document-error-modal')">Fix Error</button>
+</div>
+<br/><br/>
+<button class="btn btn-secondary" onclick="claimNext(2)">← Back</button>
+<button class="btn" onclick="claimNext(4)">Next →</button>
+</div>
+<div class="hidden" id="claim-step-4">
+<h3>Review &amp; Submit</h3>
+<div class="card">
+<p><strong>Patient:</strong> Rahul Sharma</p>
+<p><strong>Policy:</strong> Star Health - Family Health Optima</p>
+<p><strong>Hospital:</strong> Apollo Hospital, Mumbai</p>
+<p><strong>Diagnosis:</strong> Viral Fever</p>
+<p><strong>Amount:</strong> ₹45,000</p>
+<p><strong>Documents:</strong> 4 uploaded</p>
+<p><strong>Bank:</strong> HDFC ****4521</p>
+<button class="btn btn-secondary" onclick="openModal('edit-bank-details-modal')">Edit Bank Details</button>
+</div>
+<div class="card" style="background:#e8f5e9;">
+        🤖 <strong>AI Confidence Score: 92%</strong><br/>
         All documents verified. Claim is likely to be approved.
       </div>
-      <button class="btn btn-secondary" onclick="claimNext(3)">← Back</button>
-      <button class="btn" onclick="submitClaim()">✓ Submit Claim</button>
-    </div>
-  </div>
-
-  <!-- CASHLESS -->
-  <div class="screen" id="screen-cashless">
-    <h2>🏥 Cashless / Network Hospitals</h2>
-    <input type="text" placeholder="🔍 Search hospital by name, city, or specialty..." style="max-width:100%;" id="hospital-search">
-    <br><br>
-    <button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
-    <button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>
-    
-    <div class="insurance-card">
-      <h3>Apollo Hospital, Mumbai <span class="badge badge-green">Network</span></h3>
-      <p>📍 Andheri West, Mumbai | ⭐ 4.5/5 | 📞 022-12345678</p>
-      <p>Specialties: Cardiology, Orthopedics, General Medicine</p>
-      <p><strong>Distance:</strong> 2.3 km | <strong>Insurers Accepted:</strong> Star Health, HDFC Ergo, ICICI Lombard</p>
-      <button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
-      <button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
-      <button class="btn btn-secondary" onclick="openModal('directions-modal')">🧭 Directions</button>
-    </div>
-    <div class="insurance-card">
-      <h3>Fortis Hospital, Mumbai <span class="badge badge-green">Network</span></h3>
-      <p>📍 Mulund, Mumbai | ⭐ 4.3/5 | 📞 022-87654321</p>
-      <p>Specialties: Neurology, Oncology, Pediatrics</p>
-      <p><strong>Distance:</strong> 4.1 km</p>
-      <button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
-      <button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
-    </div>
-  </div>
-
-  <!-- AI ASSISTANT -->
-  <div class="screen" id="screen-ai">
-    <h2>🤖 Super AI Assistant</h2>
-    <p style="margin-bottom:10px;">Ask anything about your policy, claims, or hospitals.</p>
-    
-    <div class="card" style="background:#f5f5f5;">
-      <strong>Suggested Questions:</strong><br>
-      <button class="btn btn-secondary" onclick="askAI('Is my knee surgery covered?')">Is my knee surgery covered?</button>
-      <button class="btn btn-secondary" onclick="askAI('What is my remaining coverage?')">What is my remaining coverage?</button>
-      <button class="btn btn-secondary" onclick="askAI('Find a cardiologist near me')">Find a cardiologist near me</button>
-      <button class="btn btn-secondary" onclick="askAI('Why was my claim rejected?')">Why was my claim rejected?</button>
-      <button class="btn btn-secondary" onclick="askAI('How to file a claim?')">How to file a claim?</button>
-    </div>
-
-    <div class="chat-box">
-      <div class="chat-messages" id="chat-messages">
-        <div class="msg msg-ai">👋 Hi Rahul! I'm your SuperClaim AI. How can I help you today?</div>
-      </div>
-      <div class="chat-input">
-        <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="if(event.key==='Enter') sendChat()">
-        <button class="btn" onclick="sendChat()">Send</button>
-        <button class="btn btn-secondary" onclick="openModal('voice-input-modal')">🎤</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- DOCUMENTS -->
-  <div class="screen" id="screen-documents">
-    <h2>📁 Document Vault</h2>
-    <button class="btn" onclick="openModal('upload-document-modal')">+ Upload Document</button>
-    <button class="btn btn-secondary" onclick="openModal('scan-document-modal')">📷 Scan</button>
-    <button class="btn btn-secondary" onclick="openModal('organize-documents-modal')">📂 Organize</button>
-
-    <h3 style="margin-top:20px;">🏥 Medical Records</h3>
-    <div class="card">
-      <p>📄 discharge_summary_apollo_jul2026.pdf <span class="badge badge-blue">Auto-tagged</span></p>
-      <p><small>Uploaded: 08 Jul 2026 | Size: 1.1 MB</small></p>
-      <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
-      <button class="btn btn-secondary" onclick="openModal('share-document-modal')">Share</button>
-      <button class="btn btn-secondary" onclick="openModal('download-document-modal')">Download</button>
-    </div>
-
-    <h3 style="margin-top:20px;">💰 Bills & Receipts</h3>
-    <div class="card">
-      <p>📄 hospital_bill_apollo.pdf</p>
-      <p><small>Uploaded: 08 Jul 2026 | Size: 2.3 MB</small></p>
-      <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
-    </div>
-
-    <h3 style="margin-top:20px;">📋 Policy Documents</h3>
-    <div class="card">
-      <p>📄 policy_STAR_2025.pdf</p>
-      <p><small>Auto-synced from Star Health</small></p>
-      <button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
-    </div>
-  </div>
-
-  <!-- PAYMENTS -->
-  <div class="screen" id="screen-payments">
-    <h2>💳 Payments & Billing</h2>
-    <button class="btn" onclick="openModal('make-payment-modal')">+ Make Payment</button>
-    <button class="btn btn-secondary" onclick="openModal('payment-history-modal')">View History</button>
-    
-    <div class="card">
-      <h3>Upcoming Payments</h3>
-      <table>
-        <tr><th>Due Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Action</th></tr>
-        <tr>
-          <td>15 Aug 2026</td>
-          <td>Star Health Policy Renewal</td>
-          <td>₹18,500</td>
-          <td><span class="badge badge-yellow">Due Soon</span></td>
-          <td><button class="btn" onclick="openModal('make-payment-modal')">Pay Now</button></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="card">
-      <h3>Recent Payments</h3>
-      <table>
-        <tr><th>Date</th><th>Description</th><th>Amount</th><th>Method</th><th>Status</th></tr>
-        <tr>
-          <td>15 Jun 2026</td>
-          <td>Star Health Premium</td>
-          <td>₹18,500</td>
-          <td>HDFC ****4521</td>
-          <td><span class="badge badge-green">Paid</span></td>
-        </tr>
-        <tr>
-          <td>02 Jul 2026</td>
-          <td>Claim Reimbursement</td>
-          <td>₹25,000</td>
-          <td>HDFC ****4521</td>
-          <td><span class="badge badge-green">Received</span></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- CORPORATE BENEFITS -->
-  <div class="screen" id="screen-corporate-benefits">
-    <h2>💼 Corporate Benefits <span class="badge-corp">TCS</span></h2>
-    <div class="alert alert-info">Detailed corporate benefits will appear here.</div>
-  </div>
+<button class="btn btn-secondary" onclick="claimNext(3)">← Back</button>
+<button class="btn" onclick="submitClaim()">✓ Submit Claim</button>
+</div>
+</div>
+<!-- CASHLESS -->
+<div class="screen" id="screen-cashless">
+<h2>🏥 Cashless / Network Hospitals</h2>
+<input id="hospital-search" placeholder="🔍 Search hospital by name, city, or specialty..." style="max-width:100%;" type="text"/>
+<br/><br/>
+<button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
+<button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>
+<div class="insurance-card">
+<h3>Apollo Hospital, Mumbai <span class="badge badge-green">Network</span></h3>
+<p>📍 Andheri West, Mumbai | ⭐ 4.5/5 | 📞 022-12345678</p>
+<p>Specialties: Cardiology, Orthopedics, General Medicine</p>
+<p><strong>Distance:</strong> 2.3 km | <strong>Insurers Accepted:</strong> Star Health, HDFC Ergo, ICICI Lombard</p>
+<button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
+<button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('directions-modal')">🧭 Directions</button>
+</div>
+<div class="insurance-card">
+<h3>Fortis Hospital, Mumbai <span class="badge badge-green">Network</span></h3>
+<p>📍 Mulund, Mumbai | ⭐ 4.3/5 | 📞 022-87654321</p>
+<p>Specialties: Neurology, Oncology, Pediatrics</p>
+<p><strong>Distance:</strong> 4.1 km</p>
+<button class="btn" onclick="openModal('cashless-request-modal')">Request Cashless</button>
+<button class="btn btn-secondary" onclick="openModal('hospital-details-modal')">View Details</button>
+</div>
+</div>
+<!-- AI ASSISTANT -->
+<div class="screen" id="screen-ai">
+<h2>🤖 Super AI Assistant</h2>
+<p style="margin-bottom:10px;">Ask anything about your policy, claims, or hospitals.</p>
+<div class="card" style="background:#f5f5f5;">
+<strong>Suggested Questions:</strong><br/>
+<button class="btn btn-secondary" onclick="askAI('Is my knee surgery covered?')">Is my knee surgery covered?</button>
+<button class="btn btn-secondary" onclick="askAI('What is my remaining coverage?')">What is my remaining coverage?</button>
+<button class="btn btn-secondary" onclick="askAI('Find a cardiologist near me')">Find a cardiologist near me</button>
+<button class="btn btn-secondary" onclick="askAI('Why was my claim rejected?')">Why was my claim rejected?</button>
+<button class="btn btn-secondary" onclick="askAI('How to file a claim?')">How to file a claim?</button>
+</div>
+<div class="chat-box">
+<div class="chat-messages" id="chat-messages">
+<div class="msg msg-ai">👋 Hi Rahul! I'm your SuperClaim AI. How can I help you today?</div>
+</div>
+<div class="chat-input">
+<input id="chat-input" onkeypress="if(event.key==='Enter') sendChat()" placeholder="Type your question..." type="text"/>
+<button class="btn" onclick="sendChat()">Send</button>
+<button class="btn btn-secondary" onclick="openModal('voice-input-modal')">🎤</button>
+</div>
+</div>
+</div>
+<!-- DOCUMENTS -->
+<div class="screen" id="screen-documents">
+<h2>📁 Document Vault</h2>
+<button class="btn" onclick="openModal('upload-document-modal')">+ Upload Document</button>
+<button class="btn btn-secondary" onclick="openModal('scan-document-modal')">📷 Scan</button>
+<button class="btn btn-secondary" onclick="openModal('organize-documents-modal')">📂 Organize</button>
+<h3 style="margin-top:20px;">🏥 Medical Records</h3>
+<div class="card">
+<p>📄 discharge_summary_apollo_jul2026.pdf <span class="badge badge-blue">Auto-tagged</span></p>
+<p><small>Uploaded: 08 Jul 2026 | Size: 1.1 MB</small></p>
+<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+<button class="btn btn-secondary" onclick="openModal('share-document-modal')">Share</button>
+<button class="btn btn-secondary" onclick="openModal('download-document-modal')">Download</button>
+</div>
+<h3 style="margin-top:20px;">💰 Bills &amp; Receipts</h3>
+<div class="card">
+<p>📄 hospital_bill_apollo.pdf</p>
+<p><small>Uploaded: 08 Jul 2026 | Size: 2.3 MB</small></p>
+<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+</div>
+<h3 style="margin-top:20px;">📋 Policy Documents</h3>
+<div class="card">
+<p>📄 policy_STAR_2025.pdf</p>
+<p><small>Auto-synced from Star Health</small></p>
+<button class="btn btn-secondary" onclick="openModal('view-document-modal')">View</button>
+</div>
+</div>
+<!-- PAYMENTS -->
+<div class="screen" id="screen-payments">
+<h2>💳 Payments &amp; Billing</h2>
+<button class="btn" onclick="openModal('make-payment-modal')">+ Make Payment</button>
+<button class="btn btn-secondary" onclick="openModal('payment-history-modal')">View History</button>
+<div class="card">
+<h3>Upcoming Payments</h3>
+<table>
+<tr><th>Due Date</th><th>Description</th><th>Amount</th><th>Status</th><th>Action</th></tr>
+<tr>
+<td>15 Aug 2026</td>
+<td>Star Health Policy Renewal</td>
+<td>₹18,500</td>
+<td><span class="badge badge-yellow">Due Soon</span></td>
+<td><button class="btn" onclick="openModal('make-payment-modal')">Pay Now</button></td>
+</tr>
+</table>
+</div>
+<div class="card">
+<h3>Recent Payments</h3>
+<table>
+<tr><th>Date</th><th>Description</th><th>Amount</th><th>Method</th><th>Status</th></tr>
+<tr>
+<td>15 Jun 2026</td>
+<td>Star Health Premium</td>
+<td>₹18,500</td>
+<td>HDFC ****4521</td>
+<td><span class="badge badge-green">Paid</span></td>
+</tr>
+<tr>
+<td>02 Jul 2026</td>
+<td>Claim Reimbursement</td>
+<td>₹25,000</td>
+<td>HDFC ****4521</td>
+<td><span class="badge badge-green">Received</span></td>
+</tr>
+</table>
+</div>
+</div>
+<!-- CORPORATE BENEFITS -->
+<div class="screen" id="screen-corporate-benefits">
+<h2>💼 Corporate Benefits <span class="badge-corp">TCS</span></h2>
+<div class="alert alert-info">Detailed corporate benefits will appear here.</div>
+</div>
 
 
 
 NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.
   <!-- NOTIFICATIONS -->
-  <div class="screen" id="screen-notifications">
-    <h2>🔔 Notifications</h2>
-    <div class="notification-item urgent">
-      <strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
+<div class="screen" id="screen-notifications">
+<h2>🔔 Notifications</h2>
+<div class="notification-item urgent">
+<strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
       <button class="btn btn-secondary" onclick="openModal('upload-document-modal')">Upload Now</button>
+</div>
+<div class="notification-item unread">
+<strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
     </div>
-    <div class="notification-item unread">
-      <strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
+<div class="notification-item">
+<strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
     </div>
-    <div class="notification-item">
-      <strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
-    </div>
-  </div>
-
-  <!-- PROFILE -->
-  <div class="screen" id="screen-profile">
-    <h2>👤 User Profile</h2>
-    <div class="grid-2">
-      <div class="card">
-        <h3>Personal Details</h3>
-        <label>Full Name</label><input type="text" value="Rahul Sharma">
-        <label>Date of Birth</label><input type="date" value="1988-05-12">
-        <label>Phone</label><input type="tel" value="+91 9876543210">
-        <button class="btn">Update Details</button>
-      </div>
-      <div class="card">
-        <h3>KYC & Verification</h3>
-        <p>Aadhaar: XXXX-XXXX-1234 <span class="badge badge-green">Verified</span></p>
-        <p>PAN: ABCXXXXX1Z <span class="badge badge-green">Verified</span></p>
-        <button class="btn btn-secondary">Update KYC</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- SETTINGS -->
-  <div class="screen" id="screen-settings">
-    <h2>⚙️ Settings</h2>
-    <div class="card">
-      <div class="form-group"><input type="checkbox" checked> Receive SMS Alerts</div>
-      <div class="form-group"><input type="checkbox" checked> Receive Email Alerts</div>
-      <div class="form-group"><input type="checkbox"> Enable Auto-Pay for Renewals</div>
-      <button class="btn">Save Preferences</button>
-    </div>
-  </div>
-
-  <!-- HELP & SUPPORT -->
-  <div class="screen" id="screen-help">
-    <h2>❓ Help Center</h2>
-    <div class="accordion">
-      <div class="accordion-header">How to file a claim?</div>
-      <div class="accordion-content">Go to the Claims section and click on + New Claim.</div>
-    </div>
-    <div class="accordion">
-      <div class="accordion-header">What is Cashless network?</div>
-      <div class="accordion-content">These are hospitals where you don't need to pay out of pocket.</div>
-    </div>
-  </div>
-
-  <div class="screen" id="screen-support">
-    <h2>🎫 Support Tickets</h2>
-    <button class="btn">+ Raise New Ticket</button>
-    <table style="margin-top:20px;">
-      <tr><th>Ticket ID</th><th>Issue</th><th>Status</th></tr>
-      <tr><td>TKT-001</td><td>Name correction in policy</td><td><span class="badge badge-yellow">Open</span></td></tr>
-    </table>
-  </div>
+</div>
+<!-- PROFILE -->
+<div class="screen" id="screen-profile">
+<h2>👤 User Profile</h2>
+<div class="grid-2">
+<div class="card">
+<h3>Personal Details</h3>
+<label>Full Name</label><input type="text" value="Rahul Sharma"/>
+<label>Date of Birth</label><input type="date" value="1988-05-12"/>
+<label>Phone</label><input type="tel" value="+91 9876543210"/>
+<button class="btn">Update Details</button>
+</div>
+<div class="card">
+<h3>KYC &amp; Verification</h3>
+<p>Aadhaar: XXXX-XXXX-1234 <span class="badge badge-green">Verified</span></p>
+<p>PAN: ABCXXXXX1Z <span class="badge badge-green">Verified</span></p>
+<button class="btn btn-secondary">Update KYC</button>
+</div>
+</div>
+</div>
+<!-- SETTINGS -->
+<div class="screen" id="screen-settings">
+<h2>⚙️ Settings</h2>
+<div class="card">
+<div class="form-group"><input checked="" type="checkbox"/> Receive SMS Alerts</div>
+<div class="form-group"><input checked="" type="checkbox"/> Receive Email Alerts</div>
+<div class="form-group"><input type="checkbox"/> Enable Auto-Pay for Renewals</div>
+<button class="btn">Save Preferences</button>
+</div>
+</div>
+<!-- HELP & SUPPORT -->
+<div class="screen" id="screen-help">
+<h2>❓ Help Center</h2>
+<div class="accordion">
+<div class="accordion-header">How to file a claim?</div>
+<div class="accordion-content">Go to the Claims section and click on + New Claim.</div>
+</div>
+<div class="accordion">
+<div class="accordion-header">What is Cashless network?</div>
+<div class="accordion-content">These are hospitals where you don't need to pay out of pocket.</div>
+</div>
+</div>
+<div class="screen" id="screen-support">
+<h2>🎫 Support Tickets</h2>
+<button class="btn">+ Raise New Ticket</button>
+<table style="margin-top:20px;">
+<tr><th>Ticket ID</th><th>Issue</th><th>Status</th></tr>
+<tr><td>TKT-001</td><td>Name correction in policy</td><td><span class="badge badge-yellow">Open</span></td></tr>
+</table>
+</div>
 </div> <!-- END MAIN -->
-
 <!-- MODALS -->
-
 <!-- EMERGENCY SOS MODAL -->
-<div id="emergency-modal" class="modal">
-  <div class="modal-content" style="border-top: 5px solid #dc3545;">
-    <div class="modal-header">
-      <h2 style="color: #dc3545;">🚨 Emergency Assistance</h2>
-      <button class="modal-close" onclick="closeModal('emergency-modal')">&times;</button>
-    </div>
-    <div style="text-align: center; margin-bottom: 20px;">
-      <h3 style="margin-bottom: 10px;">Show this e-Card at Hospital Reception</h3>
-      <div style="background: #f8f9fa; padding: 15px; border: 2px dashed #1a73e8; border-radius: 8px; display: inline-block;">
-        <p><strong>Patient:</strong> Rahul Sharma</p>
-        <p><strong>Policy No:</strong> STAR/FHO/2025/1234567</p>
-        <p><strong>TPA Desk ID:</strong> TPA-4492-MH</p>
-        <p style="color: #28a745; font-weight: bold;">Status: ACTIVE (Coverage: ₹5,00,000)</p>
-      </div>
-    </div>
-    <div class="grid-2">
-      <button class="btn" style="background:#dc3545; height:60px; font-size:16px;">📞 Call 24/7 TPA Helpline</button>
-      <button class="btn btn-secondary" style="height:60px; font-size:16px;" onclick="openModal('cashless-request-modal'); closeModal('emergency-modal');">Start Emergency Admission</button>
-    </div>
-    <p style="font-size: 12px; color: #666; margin-top: 15px; text-align: center;">In case of severe medical emergency, please call 108 for ambulance services.</p>
-  </div>
+<div class="modal" id="emergency-modal">
+<div class="modal-content" style="border-top: 5px solid #dc3545;">
+<div class="modal-header">
+<h2 style="color: #dc3545;">🚨 Emergency Assistance</h2>
+<button class="modal-close" onclick="closeModal('emergency-modal')">×</button>
 </div>
-
+<div style="text-align: center; margin-bottom: 20px;">
+<h3 style="margin-bottom: 10px;">Show this e-Card at Hospital Reception</h3>
+<div style="background: #f8f9fa; padding: 15px; border: 2px dashed #1a73e8; border-radius: 8px; display: inline-block;">
+<p><strong>Patient:</strong> Rahul Sharma</p>
+<p><strong>Policy No:</strong> STAR/FHO/2025/1234567</p>
+<p><strong>TPA Desk ID:</strong> TPA-4492-MH</p>
+<p style="color: #28a745; font-weight: bold;">Status: ACTIVE (Coverage: ₹5,00,000)</p>
+</div>
+</div>
+<div class="grid-2">
+<button class="btn" style="background:#dc3545; height:60px; font-size:16px;">📞 Call 24/7 TPA Helpline</button>
+<button class="btn btn-secondary" onclick="openModal('cashless-request-modal'); closeModal('emergency-modal');" style="height:60px; font-size:16px;">Start Emergency Admission</button>
+</div>
+<p style="font-size: 12px; color: #666; margin-top: 15px; text-align: center;">In case of severe medical emergency, please call 108 for ambulance services.</p>
+</div>
+</div>
 <!-- URGENT CASHLESS REQUEST -->
-<div id="cashless-request-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>🏥 Hospital Admission Request</h2>
-      <button class="modal-close" onclick="closeModal('cashless-request-modal')">&times;</button>
-    </div>
-    <p style="font-size:13px; color:#666; margin-bottom:15px;">Fill only the mandatory details to alert the hospital and TPA immediately.</p>
-    <label>Patient Name *</label>
-    <select><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
-    <label>Admission Type *</label>
-    <select>
-      <option value="emergency">🚨 Emergency (Currently in ER)</option>
-      <option value="planned">📅 Planned Surgery (Within 48 hours)</option>
-    </select>
-    <label>Hospital Name *</label>
-    <input type="text" placeholder="e.g. Apollo Hospital, Andheri" required>
-    <label>Primary Complaint / Diagnosis (If known)</label>
-    <input type="text" placeholder="e.g. Chest Pain, Accident">
-    <button class="btn" style="width:100%; margin-top:15px; height:50px; font-size:16px;" onclick="alert('Request sent to hospital cashless desk!'); closeModal('cashless-request-modal');">Send Urgent Request</button>
-  </div>
+<div class="modal" id="cashless-request-modal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>🏥 Hospital Admission Request</h2>
+<button class="modal-close" onclick="closeModal('cashless-request-modal')">×</button>
 </div>
-
+<p style="font-size:13px; color:#666; margin-bottom:15px;">Fill only the mandatory details to alert the hospital and TPA immediately.</p>
+<label>Patient Name *</label>
+<select><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
+<label>Admission Type *</label>
+<select>
+<option value="emergency">🚨 Emergency (Currently in ER)</option>
+<option value="planned">📅 Planned Surgery (Within 48 hours)</option>
+</select>
+<label>Hospital Name *</label>
+<input placeholder="e.g. Apollo Hospital, Andheri" required="" type="text"/>
+<label>Primary Complaint / Diagnosis (If known)</label>
+<input placeholder="e.g. Chest Pain, Accident" type="text"/>
+<button class="btn" onclick="alert('Request sent to hospital cashless desk!'); closeModal('cashless-request-modal');" style="width:100%; margin-top:15px; height:50px; font-size:16px;">Send Urgent Request</button>
+</div>
+</div>
 <!-- TRACK CLAIM & ESCALATE -->
-<div id="track-claim-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Track Claim Status</h2>
-      <button class="modal-close" onclick="closeModal('track-claim-modal')">&times;</button>
-    </div>
-    <div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div>
-    <p style="font-weight:bold; margin-top:10px;">Current Step: TPA Medical Review</p>
-    <p style="font-size:13px; color:#666; margin-bottom:20px;">Estimated completion in 4-6 hours.</p>
-    <div style="background:#fff3cd; padding:15px; border-radius:6px; margin-bottom:15px; border-left:4px solid #ffc107;">
-      <strong>Is the patient waiting for discharge?</strong><br>
-      <span style="font-size:12px;">If you are stuck at the hospital waiting for final bill approval, escalate this claim.</span>
-      <button class="btn" style="background:#dc3545; display:block; margin-top:10px;" onclick="alert('Claim Escalated to Priority Queue!');">Escalate to Priority Desk</button>
-    </div>
-  </div>
+<div class="modal" id="track-claim-modal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>Track Claim Status</h2>
+<button class="modal-close" onclick="closeModal('track-claim-modal')">×</button>
 </div>
-
+<div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div>
+<p style="font-weight:bold; margin-top:10px;">Current Step: TPA Medical Review</p>
+<p style="font-size:13px; color:#666; margin-bottom:20px;">Estimated completion in 4-6 hours.</p>
+<div style="background:#fff3cd; padding:15px; border-radius:6px; margin-bottom:15px; border-left:4px solid #ffc107;">
+<strong>Is the patient waiting for discharge?</strong><br/>
+<span style="font-size:12px;">If you are stuck at the hospital waiting for final bill approval, escalate this claim.</span>
+<button class="btn" onclick="alert('Claim Escalated to Priority Queue!');" style="background:#dc3545; display:block; margin-top:10px;">Escalate to Priority Desk</button>
+</div>
+</div>
+</div>
 <!-- SIMPLIFIED DOCUMENT UPLOAD -->
-<div id="upload-document-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Upload Medical Documents</h2>
-      <button class="modal-close" onclick="closeModal('upload-document-modal')">&times;</button>
-    </div>
-    <p style="font-size:13px; color:#666; margin-bottom:15px;">To speed up your claim, please upload clear photos or PDFs.</p>
-    <label>Document Type *</label>
-    <select>
-      <option>Final Hospital Bill (Required for Discharge)</option>
-      <option>Discharge Summary (Required for Discharge)</option>
-      <option>Investigation/Lab Reports</option>
-      <option>Doctor's Prescription</option>
-    </select>
-    <div class="file-upload-area" style="padding: 20px;">
-      <p style="font-size: 32px; margin:0;">📷 / 📄</p>
-      <p style="margin:5px 0;">Tap to Take Photo or Browse</p>
-    </div>
-    <button class="btn" style="width:100%; height:45px;" onclick="closeModal('upload-document-modal')">Upload File</button>
-  </div>
+<div class="modal" id="upload-document-modal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>Upload Medical Documents</h2>
+<button class="modal-close" onclick="closeModal('upload-document-modal')">×</button>
 </div>
-
+<p style="font-size:13px; color:#666; margin-bottom:15px;">To speed up your claim, please upload clear photos or PDFs.</p>
+<label>Document Type *</label>
+<select>
+<option>Final Hospital Bill (Required for Discharge)</option>
+<option>Discharge Summary (Required for Discharge)</option>
+<option>Investigation/Lab Reports</option>
+<option>Doctor's Prescription</option>
+</select>
+<div class="file-upload-area" style="padding: 20px;">
+<p style="font-size: 32px; margin:0;">📷 / 📄</p>
+<p style="margin:5px 0;">Tap to Take Photo or Browse</p>
+</div>
+<button class="btn" onclick="closeModal('upload-document-modal')" style="width:100%; height:45px;">Upload File</button>
+</div>
+</div>
 <!-- OTHER MODALS (Preserved) -->
-
 <!-- JAVASCRIPT LOGIC -->
 <script src="assets/js/main.js"></script>
 </body>

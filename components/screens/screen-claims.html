@@ -1,0 +1,38 @@
+<div class="screen" id="screen-claims">
+<h2>💰 Claims</h2>
+<button class="btn" onclick="startNewClaim()">+ New Claim</button>
+<button class="btn btn-secondary" onclick="openModal('filter-claims-modal')">Filter</button>
+<button class="btn btn-secondary" onclick="openModal('export-claims-modal')">Export</button>
+<div class="tab-container">
+<div class="tab-buttons">
+<button class="tab-btn active" onclick="switchTab('claims', 'all')">All Claims</button>
+<button class="tab-btn" onclick="switchTab('claims', 'pending')">Pending</button>
+<button class="tab-btn" onclick="switchTab('claims', 'approved')">Approved</button>
+<button class="tab-btn" onclick="switchTab('claims', 'rejected')">Rejected</button>
+</div>
+<div class="tab-content active" id="claims-all">
+<div class="card">
+<h3>Claim #CLM-2026-0045 <span class="badge badge-yellow">Pending</span></h3>
+<p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹45,000</p>
+<p><strong>Hospital:</strong> Apollo Hospital, Mumbai | <strong>Date:</strong> 05 Jul 2026</p>
+<p><strong>Policy:</strong> Star Health - Family Health Optima</p>
+<button class="btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('track-claim-modal')">Track Status</button>
+</div>
+<div class="card">
+<h3>Claim #CLM-2026-0044 <span class="badge badge-green">Approved</span></h3>
+<p><strong>Patient:</strong> Priya Sharma | <strong>Amount:</strong> ₹25,000 (Paid)</p>
+<p><strong>Hospital:</strong> Fortis Hospital | <strong>Date:</strong> 28 Jun 2026</p>
+<button class="btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('payment-details-modal')">View Payment</button>
+</div>
+<div class="card">
+<h3>Claim #CLM-2026-0039 <span class="badge badge-red">Rejected</span></h3>
+<p><strong>Patient:</strong> Rahul Sharma | <strong>Amount:</strong> ₹18,000</p>
+<p><strong>Reason:</strong> Pre-existing condition not disclosed</p>
+<button class="btn btn-danger" onclick="openModal('appeal-claim-modal')">Appeal</button>
+<button class="btn btn-secondary" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
+</div>
+</div>
+</div>
+</div>

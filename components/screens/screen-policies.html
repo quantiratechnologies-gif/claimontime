@@ -1,0 +1,48 @@
+<div class="screen" id="screen-policies">
+<h2>📋 My Policies</h2>
+<button class="btn" onclick="showScreen('insurance-market')">+ Buy New Policy</button>
+<button class="btn btn-secondary" onclick="openModal('policy-compare-modal')">Compare Policies</button>
+<div id="individual-policies">
+<div class="insurance-card">
+<div class="insurance-logo star-health">⭐ Star Health</div>
+<div class="corp-tag">Individual Policy</div>
+<h3>Family Health Optima Plus</h3>
+<p><strong>Policy No:</strong> STAR/FHO/2025/1234567 | <strong>Insurer:</strong> Star Health &amp; Allied Insurance</p>
+<p><strong>Sum Insured:</strong> ₹5,00,000 | <strong>Used:</strong> ₹1,75,000 (35%)</p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
+<p><strong>Members:</strong> Rahul (Self), Priya (Spouse), Aarav (Son)</p>
+<p><strong>Premium:</strong> ₹18,500/year | <strong>Valid Till:</strong> 15 Aug 2026</p>
+<p><strong>Key Features:</strong> Room rent uncapped, Pre/Post hospitalization 60/90 days, No claim bonus</p>
+<button class="btn" onclick="openPolicyDetail('STAR')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+<button class="btn btn-secondary" onclick="openModal('policy-renew-modal')">🔄 Renew</button>
+</div>
+<div class="insurance-card">
+<div class="insurance-logo hdfc">HDFC ERGO</div>
+<div class="corp-tag">Individual Policy</div>
+<h3>Optima Restore</h3>
+<p><strong>Policy No:</strong> HDFC/OR/2025/9876543 | <strong>Insurer:</strong> HDFC ERGO General Insurance</p>
+<p><strong>Sum Insured:</strong> ₹5,00,000 (with restoration benefit)</p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
+<p><strong>Premium:</strong> ₹12,800/year | <strong>Valid Till:</strong> 30 Nov 2026</p>
+<p><strong>Key Features:</strong> Unlimited restoration, No claim bonus up to 100%, Global coverage</p>
+<button class="btn" onclick="openPolicyDetail('HDFC')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+</div>
+</div>
+<div class="hidden" id="corporate-policies">
+<div class="insurance-card" style="border-color: #ffd700; background: linear-gradient(135deg, #fff9e6, #ffffff);">
+<div class="insurance-logo" style="color: #1a2b4a;">🏢 TCS Group Insurance</div>
+<div class="corp-tag">Corporate Group Policy</div>
+<h3>TCS Employee Group Health Cover</h3>
+<p><strong>Policy No:</strong> TCS/GHI/2026/EMP001234 | <strong>Insurer:</strong> ICICI Lombard General Insurance</p>
+<p><strong>Base Coverage:</strong> ₹5,00,000 | <strong>Super Top-up:</strong> ₹3,00,000 | <strong>Total:</strong> ₹8,00,000</p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 12%"></div></div>
+<p><strong>Members Covered:</strong> Self, Spouse, 2 Children, Dependent Parents</p>
+<p><strong>Premium:</strong> ₹0 (100% employer paid) | <strong>Valid Till:</strong> 31 Mar 2027</p>
+<p><strong>Key Features:</strong> Cashless at 8,500+ hospitals, Maternity cover ₹50,000, Annual health checkup</p>
+<button class="btn btn-corp" onclick="openPolicyDetail('TCS')">View Details</button>
+<button class="btn btn-secondary" onclick="openModal('download-policy-modal')">📄 Download</button>
+</div>
+</div>
+</div>

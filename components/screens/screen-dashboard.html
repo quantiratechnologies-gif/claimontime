@@ -1,0 +1,136 @@
+<div class="screen active" id="screen-dashboard">
+<h2>🏠 Dashboard</h2>
+<div id="individual-dashboard">
+<div class="grid-4">
+<div class="stat-card">
+<h3>Active Policies</h3>
+<div class="value">2</div>
+<div class="change positive">↑ Star Health + HDFC Ergo</div>
+</div>
+<div class="stat-card">
+<h3>Pending Claims</h3>
+<div class="value">1</div>
+<div class="change">₹45,000 under review</div>
+</div>
+<div class="stat-card">
+<h3>Total Coverage</h3>
+<div class="value">₹10L</div>
+<div class="change positive">Across all policies</div>
+</div>
+<div class="stat-card">
+<h3>Coverage Used</h3>
+<div class="value">28%</div>
+<div class="change">₹2.8L of ₹10L</div>
+</div>
+</div>
+<h3 style="margin-top:25px;">⚡ Quick Actions</h3>
+<div class="grid-4">
+<button class="btn" onclick="showScreen('claims'); startNewClaim()">+ New Claim</button>
+<button class="btn" onclick="showScreen('cashless')">🏥 Find Hospital</button>
+<button class="btn" onclick="showScreen('ai')">🤖 Ask AI</button>
+<button class="btn btn-secondary" onclick="showScreen('insurance-market')">🛒 Buy Policy</button>
+</div>
+<div class="grid-2" style="margin-top: 25px;">
+<div>
+<h3>🤖 AI Insights</h3>
+<div class="alert alert-warning">
+            💡 <strong>Tip:</strong> Your Star Health policy renews in 28 days. Auto-renewal is enabled.
+          </div>
+<div class="alert alert-info">
+            ⚠️ <strong>Action Required:</strong> Claim #CLM-2026-0045 needs additional documents.
+          </div>
+<div class="alert alert-success">
+            ✅ <strong>Good News:</strong> You've saved ₹12,500 this year through wellness rewards!
+          </div>
+</div>
+<div>
+<h3>📊 Coverage Utilization</h3>
+<div class="card">
+<p><strong>Star Health - Family Health Optima</strong></p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 35%"></div></div>
+<p style="font-size: 13px; color: #666;">₹1,75,000 / ₹5,00,000 used</p>
+</div>
+<div class="card">
+<p><strong>HDFC Ergo - Optima Restore</strong></p>
+<div class="coverage-bar"><div class="coverage-fill" style="width: 15%"></div></div>
+<p style="font-size: 13px; color: #666;">₹75,000 / ₹5,00,000 used</p>
+</div>
+</div>
+</div>
+<h3 style="margin-top:25px;">📊 Recent Activity</h3>
+<table>
+<tr><th>Date</th><th>Activity</th><th>Policy</th><th>Amount</th><th>Status</th></tr>
+<tr><td>08 Jul 2026</td><td>Claim #CLM-2026-0045 submitted</td><td>Star Health</td><td>₹45,000</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+<tr><td>02 Jul 2026</td><td>Claim #CLM-2026-0044 approved</td><td>HDFC Ergo</td><td>₹25,000</td><td><span class="badge badge-green">Approved</span></td></tr>
+<tr><td>28 Jun 2026</td><td>Cashless at Apollo Hospital</td><td>Star Health</td><td>₹85,000</td><td><span class="badge badge-green">Approved</span></td></tr>
+<tr><td>15 Jun 2026</td><td>Policy renewal payment</td><td>Star Health</td><td>₹18,500</td><td><span class="badge badge-blue">Paid</span></td></tr>
+<tr><td>10 Jun 2026</td><td>Document uploaded</td><td>-</td><td>-</td><td><span class="badge badge-blue">Success</span></td></tr>
+</table>
+</div>
+<div class="hidden" id="corporate-dashboard">
+<div class="alert alert-success">
+        ⚡ <strong>Corporate Fast-Track Active:</strong> Your claims are processed 3x faster with pre-verification. Average processing time: 24 hours.
+      </div>
+<div class="card card-highlight">
+<h3>🏢 TCS Group Health Insurance</h3>
+<p><strong>Employee ID:</strong> EMP001234 | <strong>Department:</strong> IT Services | <strong>Grade:</strong> Digital<!--        <p--><strong>Coverage:</strong> ₹5,00,000 (Base) + ₹3,00,000 (Super Top-up)</p>
+<p><strong>Employer Contribution:</strong> 100% | <strong>Your Contribution:</strong> ₹0</p>
+<p><strong>Dependents Covered:</strong> Spouse, 2 Children, Parents</p>
+</div>
+<div class="grid-4">
+<div class="stat-card">
+<h3>Family Coverage</h3>
+<div class="value">₹8L</div>
+<div class="change positive">Base + Top-up</div>
+</div>
+<div class="stat-card">
+<h3>Claims This Year</h3>
+<div class="value">2</div>
+<div class="change">₹65,000 utilized</div>
+</div>
+<div class="stat-card">
+<h3>Wellness Points</h3>
+<div class="value">2,450</div>
+<div class="change positive">Redeem for rewards</div>
+</div>
+<div class="stat-card">
+<h3>Preventive Checkups</h3>
+<div class="value">4/5</div>
+<div class="change">Remaining this year</div>
+</div>
+</div>
+<h3 style="margin-top:25px;">⚡ Quick Actions</h3>
+<div class="grid-4">
+<button class="btn btn-corp" onclick="showScreen('claims'); startNewClaim()">+ File Claim (Fast-Track)</button>
+<button class="btn" onclick="showScreen('cashless')">🏥 Cashless Hospital</button>
+<button class="btn" onclick="showScreen('corporate-benefits')">💼 View All Benefits</button>
+<button class="btn btn-secondary" onclick="showScreen('ai')">🤖 Ask AI</button>
+</div>
+<div class="grid-2" style="margin-top: 25px;">
+<div>
+<h3>🎯 Corporate Benefits Summary</h3>
+<div class="card">
+<p><strong>Health Insurance</strong> <span class="badge badge-green">Active</span></p>
+<p style="font-size: 13px; color: #666;">₹8L coverage | 12% used</p>
+</div>
+<div class="card">
+<p><strong>Life Insurance</strong> <span class="badge badge-green">Active</span></p>
+<p style="font-size: 13px; color: #666;">₹20L coverage | HDFC Life</p>
+</div>
+<div class="card">
+<p><strong>Accident Cover</strong> <span class="badge badge-green">Active</span></p>
+<p style="font-size: 13px; color: #666;">₹10L coverage | Bajaj Allianz</p>
+</div>
+</div>
+<div>
+<h3>📊 Recent Activity</h3>
+<table>
+<tr><th>Date</th><th>Activity</th><th>Status</th></tr>
+<tr><td>08 Jul 2026</td><td>Claim submitted</td><td><span class="badge badge-yellow">Pending</span></td></tr>
+<tr><td>02 Jul 2026</td><td>Claim approved</td><td><span class="badge badge-green">Approved</span></td></tr>
+<tr><td>28 Jun 2026</td><td>Cashless approved</td><td><span class="badge badge-green">Approved</span></td></tr>
+</table>
+</div>
+</div>
+</div>
+</div>

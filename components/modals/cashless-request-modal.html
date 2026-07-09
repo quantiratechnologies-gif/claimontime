@@ -1,0 +1,21 @@
+<div class="modal" id="cashless-request-modal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>🏥 Hospital Admission Request</h2>
+<button class="modal-close" onclick="closeModal('cashless-request-modal')">×</button>
+</div>
+<p style="font-size:13px; color:#666; margin-bottom:15px;">Fill only the mandatory details to alert the hospital and TPA immediately.</p>
+<label>Patient Name *</label>
+<select><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
+<label>Admission Type *</label>
+<select>
+<option value="emergency">🚨 Emergency (Currently in ER)</option>
+<option value="planned">📅 Planned Surgery (Within 48 hours)</option>
+</select>
+<label>Hospital Name *</label>
+<input placeholder="e.g. Apollo Hospital, Andheri" required="" type="text"/>
+<label>Primary Complaint / Diagnosis (If known)</label>
+<input placeholder="e.g. Chest Pain, Accident" type="text"/>
+<button class="btn" onclick="alert('Request sent to hospital cashless desk!'); closeModal('cashless-request-modal');" style="width:100%; margin-top:15px; height:50px; font-size:16px;">Send Urgent Request</button>
+</div>
+</div>
