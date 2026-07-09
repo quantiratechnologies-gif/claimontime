@@ -1,16 +1,81 @@
 <div class="modal-overlay" id="track-claim-modal">
-<div class="antd-modal-content">
-<div class="antd-modal-header">
-<h2>Track Claim Status</h2>
-<button class="modal-close" onclick="closeModal('track-claim-modal')">×</button>
-</div>
-<div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div>
-<p style="font-weight:bold; margin-top:10px;">Current Step: TPA Medical Review</p>
-<p style="font-size:13px; color:#666; margin-bottom:20px;">Estimated completion in 4-6 hours.</p>
-<div style="background:#fff3cd; padding:15px; border-radius:6px; margin-bottom:15px; border-left:4px solid #ffc107;">
-<strong>Is the patient waiting for discharge?</strong><br/>
-<span style="font-size:12px;">If you are stuck at the hospital waiting for final bill approval, escalate this claim.</span>
-<button class="antd-btn antd-btn-primary" onclick="showToast('Claim Escalated to Priority Queue!', 'success');" style="background:#dc3545; display:block; margin-top:10px;">Escalate to Priority Desk</button>
-</div>
+<div class="antd-modal-content" style="max-width: 500px;">
+  <div class="antd-modal-header">
+    <h2 style="display: flex; align-items: center; gap: 8px;"><i data-lucide="map-pin" class="icon-sm"></i> Track Claim Status</h2>
+    <button class="modal-close" onclick="closeModal('track-claim-modal')">×</button>
+  </div>
+  
+  <div class="antd-flex antd-justify-between antd-items-center antd-mb-4" style="background: #fafafa; padding: 12px 16px; border-radius: var(--antd-radius);">
+    <div>
+      <p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Claim ID</p>
+      <p class="antd-text-strong" style="margin: 0;">CLM-2026-0045</p>
+    </div>
+    <div style="text-align: right;">
+      <p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Expected Payout</p>
+      <p style="margin: 0; font-weight: 600; color: var(--antd-success);">₹38,500</p>
+    </div>
+  </div>
+
+  <div class="antd-steps antd-steps-vertical" style="display: flex; flex-direction: column; gap: 0; margin-bottom: 24px;">
+    <!-- Step 1 Done -->
+    <div style="display: flex; gap: 16px; position: relative; padding-bottom: 32px;">
+      <div style="position: absolute; left: 11px; top: 24px; bottom: 0; width: 2px; background: var(--antd-primary);"></div>
+      <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--antd-primary); display: flex; align-items: center; justify-content: center; z-index: 1;">
+        <i data-lucide="check" style="color: white; width: 14px; height: 14px;"></i>
+      </div>
+      <div style="margin-top: 2px;">
+        <p class="antd-text-strong" style="margin: 0; font-size: 14px;">Claim Submitted</p>
+        <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">05 Jul 2026, 10:30 AM</p>
+        <p class="antd-text-secondary" style="margin: 4px 0 0; font-size: 13px;">You successfully submitted the claim application.</p>
+      </div>
+    </div>
+    
+    <!-- Step 2 Done -->
+    <div style="display: flex; gap: 16px; position: relative; padding-bottom: 32px;">
+      <div style="position: absolute; left: 11px; top: 24px; bottom: 0; width: 2px; background: var(--antd-primary);"></div>
+      <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--antd-primary); display: flex; align-items: center; justify-content: center; z-index: 1;">
+        <i data-lucide="check" style="color: white; width: 14px; height: 14px;"></i>
+      </div>
+      <div style="margin-top: 2px;">
+        <p class="antd-text-strong" style="margin: 0; font-size: 14px;">AI Document Verification</p>
+        <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">05 Jul 2026, 10:31 AM</p>
+        <p class="antd-text-secondary" style="margin: 4px 0 0; font-size: 13px;">Our AI verified all documents match policy rules.</p>
+      </div>
+    </div>
+
+    <!-- Step 3 Active -->
+    <div style="display: flex; gap: 16px; position: relative; padding-bottom: 32px;">
+      <div style="position: absolute; left: 11px; top: 24px; bottom: 0; width: 2px; background: var(--antd-border);"></div>
+      <div style="width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 2px solid var(--antd-primary); display: flex; align-items: center; justify-content: center; z-index: 1;">
+        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--antd-primary);"></div>
+      </div>
+      <div style="margin-top: 2px;">
+        <p class="antd-text-strong" style="margin: 0; font-size: 14px; color: var(--antd-primary);">TPA Medical Review</p>
+        <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">In progress (Expected completion: 06 Jul, 12:00 PM)</p>
+        <p class="antd-text-secondary" style="margin: 4px 0 0; font-size: 13px;">TPA doctor is reviewing the diagnosis and treatment line.</p>
+      </div>
+    </div>
+
+    <!-- Step 4 Pending -->
+    <div style="display: flex; gap: 16px; position: relative;">
+      <div style="width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 2px solid var(--antd-border); display: flex; align-items: center; justify-content: center; z-index: 1;">
+        <span style="color: var(--antd-border); font-size: 12px; font-weight: bold;">4</span>
+      </div>
+      <div style="margin-top: 2px;">
+        <p class="antd-text-secondary" style="margin: 0; font-size: 14px;">Insurer Final Approval &amp; Payment</p>
+        <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">Pending</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--antd-warning-bg); padding:16px; border-radius:var(--antd-radius); border-left:4px solid var(--antd-warning);">
+    <div class="antd-flex antd-justify-between antd-items-center">
+      <div>
+        <p class="antd-text-strong" style="margin: 0; font-size: 13px;">Is the patient waiting for discharge?</p>
+        <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">Escalate to skip the queue if urgent.</p>
+      </div>
+      <button class="antd-btn" onclick="showToast('Claim Escalated to Priority Queue!', 'success'); closeModal('track-claim-modal')" style="background: white; border-color: var(--antd-warning); color: var(--antd-warning); padding: 4px 12px; height: auto;">Escalate</button>
+    </div>
+  </div>
 </div>
 </div>

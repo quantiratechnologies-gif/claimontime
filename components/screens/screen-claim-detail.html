@@ -1,0 +1,174 @@
+<div class="screen" id="screen-claim-detail">
+<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+  <div class="antd-flex antd-gap-4 antd-items-center">
+    <button class="antd-btn" onclick="showScreen('claims')" style="padding: 0 8px; border: none; background: transparent;"><i data-lucide="arrow-left" class="icon-sm"></i> Back</button>
+    <div>
+      <h2 class="antd-text-large" style="margin: 0; display: flex; align-items: center; gap: 12px;">Claim #CLM-2026-0045 <span class="antd-tag antd-tag-warning" style="font-size: 14px; font-weight: normal;">Pending Review</span></h2>
+      <p class="antd-text-secondary" style="margin: 4px 0 0 0;">Filed on 05 Jul 2026</p>
+    </div>
+  </div>
+  <div class="antd-flex antd-gap-2">
+    <button class="antd-btn" onclick="openModal('track-claim-modal')"><i data-lucide="map-pin" class="icon-sm"></i> Track Status</button>
+    <button class="antd-btn"><i data-lucide="download" class="icon-sm"></i> Download PDF</button>
+  </div>
+</div>
+
+<div class="antd-grid-2" style="gap: 24px;">
+  <!-- Left Column: Claim Info -->
+  <div class="antd-flex antd-flex-col antd-gap-4">
+    <!-- Overview -->
+    <div class="antd-card" style="padding: 0; overflow: hidden;">
+      <div style="padding: 16px 20px; background: #fafafa; border-bottom: 1px solid var(--antd-border);">
+        <h3 class="antd-card-title" style="margin: 0; font-size: 15px;"><i data-lucide="info" class="icon-sm" style="color: var(--antd-primary); margin-right: 8px;"></i> Claim Overview</h3>
+      </div>
+      <div style="padding: 20px;">
+        <div class="antd-grid-2" style="gap: 16px;">
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px; text-transform: uppercase;">Claim Type</p><p class="antd-text-strong" style="margin: 4px 0 0;">Reimbursement</p></div>
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px; text-transform: uppercase;">Amount Claimed</p><p class="antd-text-strong" style="margin: 4px 0 0; font-size: 16px;">₹45,000</p></div>
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px; text-transform: uppercase;">AI Predicted Approval</p><p style="margin: 4px 0 0; font-weight: 600; color: var(--antd-success);">₹38,500</p></div>
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px; text-transform: uppercase;">Est. Processing Time</p><p class="antd-text-strong" style="margin: 4px 0 0;">3-5 working days</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Patient & Policy -->
+    <div class="antd-card" style="padding: 0; overflow: hidden;">
+      <div style="padding: 16px 20px; border-bottom: 1px solid var(--antd-border);">
+        <h3 class="antd-card-title" style="margin: 0; font-size: 15px;">Patient &amp; Policy Details</h3>
+      </div>
+      <div style="padding: 20px;">
+        <div class="antd-grid-2" style="gap: 16px;">
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Patient Name</p><p class="antd-text-strong" style="margin: 4px 0 0;">Rahul Sharma (Self)</p></div>
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Policy Name</p><p class="antd-text-strong" style="margin: 4px 0 0;">Star Health — Family Optima</p></div>
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Policy Number</p><p class="antd-text-strong" style="margin: 4px 0 0;">POL-SH-998877</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Treatment -->
+    <div class="antd-card" style="padding: 0; overflow: hidden;">
+      <div style="padding: 16px 20px; border-bottom: 1px solid var(--antd-border);">
+        <h3 class="antd-card-title" style="margin: 0; font-size: 15px;">Treatment &amp; Hospital</h3>
+      </div>
+      <div style="padding: 20px;">
+        <div class="antd-grid-2" style="gap: 16px;">
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Hospital</p><p class="antd-text-strong" style="margin: 4px 0 0;">Apollo Hospital, Mumbai</p></div>
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Diagnosis</p><p class="antd-text-strong" style="margin: 4px 0 0;">Viral Fever</p></div>
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Admission Date</p><p class="antd-text-strong" style="margin: 4px 0 0;">05 Jul 2026</p></div>
+          <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Discharge Date</p><p class="antd-text-strong" style="margin: 4px 0 0;">08 Jul 2026</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column: Timeline & Documents -->
+  <div class="antd-flex antd-flex-col antd-gap-4">
+    
+    <!-- Next Steps Info Block -->
+    <div class="antd-card" style="padding: 16px; background: var(--antd-info-bg); border-color: var(--antd-info-border) !important;">
+      <div class="antd-flex antd-gap-4">
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <i data-lucide="clock" class="icon-sm" style="color: var(--antd-primary);"></i>
+        </div>
+        <div>
+          <p style="margin: 0; font-weight: 600; color: var(--antd-text);">Under TPA Review</p>
+          <p class="antd-text-secondary" style="margin: 4px 0 0 0; font-size: 13px;">Your documents have passed AI verification and are currently being reviewed by the medical team. Expect an update within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Mini -->
+    <div class="antd-card" style="padding: 20px;">
+      <h3 class="antd-card-title" style="margin: 0 0 16px; font-size: 15px;">Claim Progress</h3>
+      
+      <div class="antd-steps antd-steps-vertical" style="display: flex; flex-direction: column; gap: 0;">
+        <!-- Step 1 Done -->
+        <div style="display: flex; gap: 16px; position: relative; padding-bottom: 24px;">
+          <div style="position: absolute; left: 11px; top: 24px; bottom: 0; width: 2px; background: var(--antd-primary);"></div>
+          <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--antd-primary); display: flex; align-items: center; justify-content: center; z-index: 1;">
+            <i data-lucide="check" style="color: white; width: 14px; height: 14px;"></i>
+          </div>
+          <div style="margin-top: 2px;">
+            <p class="antd-text-strong" style="margin: 0; font-size: 14px;">Claim Submitted</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">05 Jul 2026, 10:30 AM</p>
+          </div>
+        </div>
+        
+        <!-- Step 2 Done -->
+        <div style="display: flex; gap: 16px; position: relative; padding-bottom: 24px;">
+          <div style="position: absolute; left: 11px; top: 24px; bottom: 0; width: 2px; background: var(--antd-primary);"></div>
+          <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--antd-primary); display: flex; align-items: center; justify-content: center; z-index: 1;">
+            <i data-lucide="check" style="color: white; width: 14px; height: 14px;"></i>
+          </div>
+          <div style="margin-top: 2px;">
+            <p class="antd-text-strong" style="margin: 0; font-size: 14px;">AI Document Verification</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">05 Jul 2026, 10:31 AM</p>
+          </div>
+        </div>
+
+        <!-- Step 3 Active -->
+        <div style="display: flex; gap: 16px; position: relative; padding-bottom: 24px;">
+          <div style="position: absolute; left: 11px; top: 24px; bottom: 0; width: 2px; background: var(--antd-border);"></div>
+          <div style="width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 2px solid var(--antd-primary); display: flex; align-items: center; justify-content: center; z-index: 1;">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--antd-primary);"></div>
+          </div>
+          <div style="margin-top: 2px;">
+            <p class="antd-text-strong" style="margin: 0; font-size: 14px; color: var(--antd-primary);">TPA Medical Review</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">In progress (Expected by 06 Jul)</p>
+          </div>
+        </div>
+
+        <!-- Step 4 Pending -->
+        <div style="display: flex; gap: 16px; position: relative;">
+          <div style="width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 2px solid var(--antd-border); display: flex; align-items: center; justify-content: center; z-index: 1;">
+            <span style="color: var(--antd-border); font-size: 12px; font-weight: bold;">4</span>
+          </div>
+          <div style="margin-top: 2px;">
+            <p class="antd-text-secondary" style="margin: 0; font-size: 14px;">Insurer Final Approval &amp; Payment</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">Pending</p>
+          </div>
+        </div>
+      </div>
+      
+      <button class="antd-btn" onclick="openModal('track-claim-modal')" style="width: 100%; margin-top: 20px;">View Detailed Tracking</button>
+    </div>
+
+    <!-- Documents Uploaded -->
+    <div class="antd-card" style="padding: 0; overflow: hidden;">
+      <div style="padding: 16px 20px; border-bottom: 1px solid var(--antd-border); display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="antd-card-title" style="margin: 0; font-size: 15px;">Documents Uploaded (2)</h3>
+        <button class="antd-btn" style="padding: 4px 8px; height: auto;" onclick="openModal('upload-document-modal')"><i data-lucide="plus" class="icon-sm"></i> Add</button>
+      </div>
+      
+      <div class="antd-flex antd-flex-col">
+        <div class="antd-flex antd-justify-between antd-items-center" style="padding: 16px 20px; border-bottom: 1px solid var(--antd-border);">
+          <div class="antd-flex antd-gap-3 antd-items-center">
+            <div style="width: 32px; height: 32px; border-radius: 4px; background: var(--antd-success-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="file-text" class="icon-sm" style="color: var(--antd-success);"></i>
+            </div>
+            <div>
+              <p class="antd-text-strong" style="margin: 0; font-size: 13px;">Final Hospital Bill</p>
+              <p class="antd-text-tertiary" style="margin: 0; font-size: 11px;">hospital_bill.pdf</p>
+            </div>
+          </div>
+          <button class="antd-btn" style="padding: 4px 8px; height: auto;" onclick="openModal('view-document-modal')">View</button>
+        </div>
+        
+        <div class="antd-flex antd-justify-between antd-items-center" style="padding: 16px 20px;">
+          <div class="antd-flex antd-gap-3 antd-items-center">
+            <div style="width: 32px; height: 32px; border-radius: 4px; background: var(--antd-success-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i data-lucide="file-text" class="icon-sm" style="color: var(--antd-success);"></i>
+            </div>
+            <div>
+              <p class="antd-text-strong" style="margin: 0; font-size: 13px;">Discharge Summary</p>
+              <p class="antd-text-tertiary" style="margin: 0; font-size: 11px;">discharge.pdf</p>
+            </div>
+          </div>
+          <button class="antd-btn" style="padding: 4px 8px; height: auto;" onclick="openModal('view-document-modal')">View</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+</div>

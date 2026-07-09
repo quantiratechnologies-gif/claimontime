@@ -87,16 +87,19 @@ h1, h2, h3, h4, h5, h6 {
   border-left: none !important;
 }
 
-/* Cards */
 .antd-card {
   background-color: var(--antd-surface);
   border-radius: var(--antd-radius);
   padding: 24px;
   border: 1px solid var(--antd-border) !important;
   box-shadow: none !important;
-  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
-.antd-card:hover {
+/* Only apply hover shadow to cards that are explicitly interactive */
+.antd-card-hoverable {
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+.antd-card-hoverable:hover {
   box-shadow: var(--antd-shadow-hover) !important;
   border-color: transparent !important;
 }

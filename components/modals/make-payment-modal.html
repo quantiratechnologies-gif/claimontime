@@ -1,8 +1,115 @@
 <div id="make-payment-modal" class="modal-overlay">
-  <div class="antd-modal-content">
+  <div class="antd-modal-content" style="max-width: 560px;">
     <div class="antd-modal-header">
+      <h2><i data-lucide="credit-card" class="icon-sm"></i> Make Payment</h2>
       <button class="modal-close" onclick="closeModal('make-payment-modal')">&times;</button>
     </div>
-    <h2>Make Payment</h2><button class="antd-btn antd-btn-primary">Pay via UPI / Card</button>
+
+    <!-- Payment Summary -->
+    <div class="antd-card antd-mb-6" style="background: #fafafa; padding: 16px;">
+      <div class="antd-flex antd-justify-between antd-items-center">
+        <div>
+          <p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Payment For</p>
+          <p class="antd-text-strong" style="margin: 4px 0 0 0;">Star Health Policy Renewal</p>
+        </div>
+        <div style="text-align: right;">
+          <p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Amount Due</p>
+          <p style="margin: 4px 0 0 0; font-size: 20px; font-weight: 700; color: var(--antd-primary);">₹18,500</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Methods -->
+    <p class="antd-text-strong antd-mb-4">Select Payment Method</p>
+    
+    <div class="antd-flex antd-flex-col antd-gap-2 antd-mb-6">
+      <!-- UPI -->
+      <div class="antd-card antd-card-hoverable" style="padding: 16px; cursor: pointer; border: 2px solid var(--antd-primary) !important;" onclick="this.style.borderColor='var(--antd-primary)'">
+        <div class="antd-flex antd-gap-4 antd-items-center">
+          <div style="width: 44px; height: 44px; border-radius: 8px; background: var(--antd-info-bg); display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="smartphone" class="icon-sm" style="color: var(--antd-primary);"></i>
+          </div>
+          <div style="flex: 1;">
+            <p class="antd-text-strong" style="margin: 0;">UPI / Google Pay / PhonePe</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0 0; font-size: 12px;">Pay instantly using any UPI app</p>
+          </div>
+          <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--antd-primary); display: flex; align-items: center; justify-content: center;">
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--antd-primary);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credit/Debit Card -->
+      <div class="antd-card antd-card-hoverable" style="padding: 16px; cursor: pointer;" onclick="this.style.borderColor='var(--antd-primary)'">
+        <div class="antd-flex antd-gap-4 antd-items-center">
+          <div style="width: 44px; height: 44px; border-radius: 8px; background: var(--antd-success-bg); display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="credit-card" class="icon-sm" style="color: var(--antd-success);"></i>
+          </div>
+          <div style="flex: 1;">
+            <p class="antd-text-strong" style="margin: 0;">Credit / Debit Card</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0 0; font-size: 12px;">Visa, Mastercard, Rupay supported</p>
+          </div>
+          <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #d9d9d9;"></div>
+        </div>
+      </div>
+
+      <!-- Net Banking -->
+      <div class="antd-card antd-card-hoverable" style="padding: 16px; cursor: pointer;" onclick="this.style.borderColor='var(--antd-primary)'">
+        <div class="antd-flex antd-gap-4 antd-items-center">
+          <div style="width: 44px; height: 44px; border-radius: 8px; background: var(--antd-warning-bg); display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="landmark" class="icon-sm" style="color: var(--antd-warning);"></i>
+          </div>
+          <div style="flex: 1;">
+            <p class="antd-text-strong" style="margin: 0;">Net Banking</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0 0; font-size: 12px;">HDFC, SBI, ICICI, Axis & more</p>
+          </div>
+          <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #d9d9d9;"></div>
+        </div>
+      </div>
+
+      <!-- EMI -->
+      <div class="antd-card antd-card-hoverable" style="padding: 16px; cursor: pointer;" onclick="this.style.borderColor='var(--antd-primary)'">
+        <div class="antd-flex antd-gap-4 antd-items-center">
+          <div style="width: 44px; height: 44px; border-radius: 8px; background: var(--antd-error-bg); display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="calendar" class="icon-sm" style="color: var(--antd-error);"></i>
+          </div>
+          <div style="flex: 1;">
+            <p class="antd-text-strong" style="margin: 0;">EMI (No-Cost available)</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0 0; font-size: 12px;">Split into 3/6/12 month installments</p>
+          </div>
+          <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #d9d9d9;"></div>
+        </div>
+      </div>
+
+      <!-- Wallet -->
+      <div class="antd-card antd-card-hoverable" style="padding: 16px; cursor: pointer;" onclick="this.style.borderColor='var(--antd-primary)'">
+        <div class="antd-flex antd-gap-4 antd-items-center">
+          <div style="width: 44px; height: 44px; border-radius: 8px; background: #f0f5ff; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="wallet" class="icon-sm" style="color: #597ef7;"></i>
+          </div>
+          <div style="flex: 1;">
+            <p class="antd-text-strong" style="margin: 0;">Wallet (Paytm / Amazon Pay)</p>
+            <p class="antd-text-tertiary" style="margin: 2px 0 0 0; font-size: 12px;">Pay using mobile wallets</p>
+          </div>
+          <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #d9d9d9;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auto-pay reminder -->
+    <div class="antd-card antd-mb-6" style="padding: 12px 16px; background: var(--antd-info-bg); border-color: var(--antd-info-border) !important;">
+      <div class="antd-flex antd-gap-2 antd-items-center">
+        <i data-lucide="info" class="icon-sm" style="color: var(--antd-primary);"></i>
+        <p class="antd-text-secondary" style="margin: 0; font-size: 13px;">
+          <strong>Tip:</strong> Enable auto-pay to never miss a renewal. <a href="#" style="color: var(--antd-primary);">Set up auto-pay →</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Action Button -->
+    <button class="antd-btn antd-btn-primary" style="width: 100%; height: 44px; font-size: 15px;" onclick="showToast('Payment initiated via UPI. Check your UPI app.', 'success'); closeModal('make-payment-modal')">
+      <i data-lucide="lock" class="icon-sm"></i> Pay ₹18,500 Securely
+    </button>
+    <p class="antd-text-tertiary" style="margin: 8px 0 0 0; text-align: center; font-size: 12px;">🔒 Secured by RBI-compliant payment gateway</p>
   </div>
 </div>

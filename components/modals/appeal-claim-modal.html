@@ -1,8 +1,28 @@
 <div id="appeal-claim-modal" class="modal-overlay">
-  <div class="antd-modal-content">
+  <div class="antd-modal-content" style="max-width: 500px;">
     <div class="antd-modal-header">
+      <h2 style="display: flex; align-items: center; gap: 8px;"><i data-lucide="rotate-ccw" class="icon-sm"></i> Appeal Rejected Claim</h2>
       <button class="modal-close" onclick="closeModal('appeal-claim-modal')">&times;</button>
     </div>
-    <h2>Appeal Claim</h2><textarea class="antd-input" placeholder="Reason for appeal"></textarea><button class="antd-btn antd-btn-primary">Submit</button>
+    
+    <div style="background: var(--antd-error-bg); padding: 12px 16px; border-left: 4px solid var(--antd-error); border-radius: var(--antd-radius); margin-bottom: 20px;">
+      <p class="antd-text-strong" style="margin: 0; color: var(--antd-error);">Rejection Reason</p>
+      <p style="margin: 4px 0 0; font-size: 13px; color: var(--antd-error);">Pre-existing condition (Diabetes) not disclosed at the time of policy purchase.</p>
+    </div>
+    
+    <div class="antd-mb-4">
+      <label class="antd-text-strong" style="display: block; margin-bottom: 8px;">Why should this claim be approved? <span style="color: var(--antd-error);">*</span></label>
+      <textarea class="antd-input" placeholder="Explain your case here. E.g., 'Diabetes was diagnosed after the policy started. Attached is the first diagnosis report from 2025.'" rows="4" style="margin-bottom: 4px; resize: none;"></textarea>
+      <p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Be specific. Include dates if relevant.</p>
+    </div>
+
+    <div class="antd-mb-6">
+      <label class="antd-text-strong" style="display: block; margin-bottom: 8px;">Supporting Documents (Optional)</label>
+      <button class="antd-btn" style="width: 100%; border: 1px dashed var(--antd-border);"><i data-lucide="upload" class="icon-sm"></i> Upload Medical Reports</button>
+    </div>
+    
+    <button class="antd-btn antd-btn-primary" style="width: 100%; height: 44px; font-size: 15px;" onclick="showToast('Appeal submitted successfully', 'success'); closeModal('appeal-claim-modal')">
+      Submit Appeal
+    </button>
   </div>
 </div>

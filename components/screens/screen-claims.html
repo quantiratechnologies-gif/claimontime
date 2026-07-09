@@ -1,75 +1,203 @@
 <div class="screen" id="screen-claims">
 <div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
-  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="coins" class="icon-sm"></i> Claims</h2>
+  <div>
+    <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="coins" class="icon-sm"></i> Claims</h2>
+    <p class="antd-text-secondary" style="margin: 4px 0 0 0;">Track and manage all your insurance claims</p>
+  </div>
   <div class="antd-flex antd-gap-2">
-    <button class="antd-btn" onclick="openModal('filter-claims-modal')">Filter</button>
-    <button class="antd-btn" onclick="openModal('export-claims-modal')">Export</button>
-    <button class="antd-btn antd-btn-primary" onclick="startNewClaim()">+ New Claim</button>
+    <button class="antd-btn" onclick="openModal('export-claims-modal')"><i data-lucide="download" class="icon-sm"></i> Export</button>
+    <button class="antd-btn antd-btn-primary" onclick="startNewClaim()"><i data-lucide="plus" class="icon-sm"></i> New Claim</button>
   </div>
 </div>
 
-<div class="tab-container">
-  <div class="tab-buttons" style="border-bottom: 1px solid var(--antd-border); margin-bottom: 24px;">
-    <button class="tab-btn active" onclick="switchTab('claims', 'all')" style="padding: 12px 24px; border: none; border-bottom: 2px solid var(--antd-primary); background: none; color: var(--antd-primary); font-weight: 500; cursor: pointer;">All Claims</button>
-    <button class="tab-btn" onclick="switchTab('claims', 'pending')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Pending</button>
-    <button class="tab-btn" onclick="switchTab('claims', 'approved')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Approved</button>
-    <button class="tab-btn" onclick="switchTab('claims', 'rejected')" style="padding: 12px 24px; border: none; background: none; color: var(--antd-text); font-weight: 400; cursor: pointer;">Rejected</button>
+<!-- Summary Stats -->
+<div class="antd-grid-4 antd-mb-6">
+  <div class="antd-card" style="padding: 16px;">
+    <p class="antd-text-tertiary" style="margin: 0; font-size: 12px; text-transform: uppercase;">Total Claims</p>
+    <p style="margin: 4px 0 0; font-size: 24px; font-weight: 700;">3</p>
+  </div>
+  <div class="antd-card" style="padding: 16px;">
+    <p class="antd-text-tertiary" style="margin: 0; font-size: 12px; text-transform: uppercase;">Pending</p>
+    <p style="margin: 4px 0 0; font-size: 24px; font-weight: 700; color: var(--antd-warning);">1</p>
+  </div>
+  <div class="antd-card" style="padding: 16px;">
+    <p class="antd-text-tertiary" style="margin: 0; font-size: 12px; text-transform: uppercase;">Approved</p>
+    <p style="margin: 4px 0 0; font-size: 24px; font-weight: 700; color: var(--antd-success);">1</p>
+  </div>
+  <div class="antd-card" style="padding: 16px;">
+    <p class="antd-text-tertiary" style="margin: 0; font-size: 12px; text-transform: uppercase;">Total Claimed</p>
+    <p style="margin: 4px 0 0; font-size: 24px; font-weight: 700;">₹88,000</p>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="antd-card" style="padding: 0;">
+  <div class="tab-buttons" style="border-bottom: 1px solid var(--antd-border); padding: 0 24px;">
+    <button class="tab-btn active" onclick="switchTab('claims', 'all')" style="padding: 16px 20px; border: none; border-bottom: 2px solid var(--antd-primary); background: none; color: var(--antd-primary); font-weight: 500; cursor: pointer;">All Claims (3)</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'pending')" style="padding: 16px 20px; border: none; background: none; color: var(--antd-text-secondary); font-weight: 400; cursor: pointer;">Pending (1)</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'approved')" style="padding: 16px 20px; border: none; background: none; color: var(--antd-text-secondary); font-weight: 400; cursor: pointer;">Approved (1)</button>
+    <button class="tab-btn" onclick="switchTab('claims', 'rejected')" style="padding: 16px 20px; border: none; background: none; color: var(--antd-text-secondary); font-weight: 400; cursor: pointer;">Rejected (1)</button>
   </div>
 
-  <div class="tab-content active" id="claims-all">
-    <div class="antd-flex antd-flex-col antd-gap-4">
-      
-      <div class="antd-card">
-        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
-          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0045</h3>
-          <span class="antd-tag antd-tag-warning">Pending</span>
+  <div style="padding: 24px;">
+    <!-- ALL CLAIMS TAB -->
+    <div class="tab-content active" id="claims-all">
+      <div class="antd-flex antd-flex-col antd-gap-4">
+        
+        <!-- Claim 1: Pending -->
+        <div class="antd-card" style="padding: 20px; border-left: 4px solid var(--antd-warning) !important;">
+          <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+            <div class="antd-flex antd-gap-4 antd-items-center">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--antd-warning-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="clock" class="icon-sm" style="color: var(--antd-warning);"></i>
+              </div>
+              <div>
+                <h3 class="antd-card-title" style="margin: 0; font-size: 15px;">CLM-2026-0045</h3>
+                <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">Filed on 05 Jul 2026 · Reimbursement</p>
+              </div>
+            </div>
+            <span class="antd-tag antd-tag-warning" style="font-size: 13px; padding: 2px 12px;">Pending Review</span>
+          </div>
+          <div class="antd-grid-2 antd-mb-4" style="gap: 12px; padding-left: 60px;">
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Patient</p><p class="antd-text-strong" style="margin: 0;">Rahul Sharma (Self)</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Claim Amount</p><p class="antd-text-strong" style="margin: 0; font-size: 16px;">₹45,000</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Hospital</p><p class="antd-text-strong" style="margin: 0;">Apollo Hospital, Mumbai</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Policy</p><p class="antd-text-strong" style="margin: 0;">Star Health — Family Optima</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Diagnosis</p><p class="antd-text-strong" style="margin: 0;">Viral Fever</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">AI Predicted Payout</p><p style="margin: 0; font-weight: 600; color: var(--antd-primary);">₹38,500</p></div>
+          </div>
+          <div class="antd-flex antd-gap-2" style="padding-left: 60px;">
+            <button class="antd-btn antd-btn-primary" onclick="showScreen('claim-detail')"><i data-lucide="eye" class="icon-sm"></i> View Details</button>
+            <button class="antd-btn" onclick="openModal('track-claim-modal')"><i data-lucide="map-pin" class="icon-sm"></i> Track Status</button>
+          </div>
         </div>
-        <div class="antd-grid-2 antd-mb-4">
-          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Rahul Sharma</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹45,000</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Hospital</p><p class="antd-text-strong" style="margin: 0;">Apollo Hospital, Mumbai</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Date</p><p class="antd-text-strong" style="margin: 0;">05 Jul 2026</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Policy</p><p class="antd-text-strong" style="margin: 0;">Star Health - Family Health Optima</p></div>
+
+        <!-- Claim 2: Approved -->
+        <div class="antd-card" style="padding: 20px; border-left: 4px solid var(--antd-success) !important;">
+          <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+            <div class="antd-flex antd-gap-4 antd-items-center">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--antd-success-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="check-circle" class="icon-sm" style="color: var(--antd-success);"></i>
+              </div>
+              <div>
+                <h3 class="antd-card-title" style="margin: 0; font-size: 15px;">CLM-2026-0044</h3>
+                <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">Filed on 28 Jun 2026 · Reimbursement</p>
+              </div>
+            </div>
+            <span class="antd-tag antd-tag-success" style="font-size: 13px; padding: 2px 12px;">Approved &amp; Paid</span>
+          </div>
+          <div class="antd-grid-2 antd-mb-4" style="gap: 12px; padding-left: 60px;">
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Patient</p><p class="antd-text-strong" style="margin: 0;">Priya Sharma (Spouse)</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Claimed / Paid</p><p class="antd-text-strong" style="margin: 0; font-size: 16px;">₹25,000 <span style="color: var(--antd-success); font-size: 13px;">✓ Paid</span></p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Hospital</p><p class="antd-text-strong" style="margin: 0;">Fortis Hospital, Delhi</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Policy</p><p class="antd-text-strong" style="margin: 0;">Star Health — Family Optima</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Diagnosis</p><p class="antd-text-strong" style="margin: 0;">Routine Check-up</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Paid To</p><p class="antd-text-strong" style="margin: 0;">HDFC ****4521</p></div>
+          </div>
+          <div class="antd-flex antd-gap-2" style="padding-left: 60px;">
+            <button class="antd-btn" onclick="showScreen('claim-detail')"><i data-lucide="eye" class="icon-sm"></i> View Details</button>
+            <button class="antd-btn" onclick="openModal('payment-details-modal')"><i data-lucide="receipt" class="icon-sm"></i> View Payment</button>
+          </div>
         </div>
-        <div class="antd-flex antd-gap-2">
-          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0045')">View Details</button>
-          <button class="antd-btn" onclick="openModal('track-claim-modal')">Track Status</button>
+
+        <!-- Claim 3: Rejected -->
+        <div class="antd-card" style="padding: 20px; border-left: 4px solid var(--antd-error) !important;">
+          <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+            <div class="antd-flex antd-gap-4 antd-items-center">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--antd-error-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="x-circle" class="icon-sm" style="color: var(--antd-error);"></i>
+              </div>
+              <div>
+                <h3 class="antd-card-title" style="margin: 0; font-size: 15px;">CLM-2026-0039</h3>
+                <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">Filed on 15 Jun 2026 · Reimbursement</p>
+              </div>
+            </div>
+            <span class="antd-tag antd-tag-error" style="font-size: 13px; padding: 2px 12px;">Rejected</span>
+          </div>
+          <div class="antd-grid-2 antd-mb-4" style="gap: 12px; padding-left: 60px;">
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Patient</p><p class="antd-text-strong" style="margin: 0;">Rahul Sharma (Self)</p></div>
+            <div><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Claim Amount</p><p class="antd-text-strong" style="margin: 0; font-size: 16px; text-decoration: line-through; color: var(--antd-text-secondary);">₹18,000</p></div>
+            <div style="grid-column: 1 / -1;"><p class="antd-text-tertiary" style="margin: 0; font-size: 12px;">Rejection Reason</p><p style="margin: 0; font-weight: 600; color: var(--antd-error);">Pre-existing condition (Diabetes) not disclosed at the time of policy purchase</p></div>
+          </div>
+          <div class="antd-flex antd-gap-2" style="padding-left: 60px;">
+            <button class="antd-btn antd-btn-primary" style="background-color: var(--antd-error) !important; border-color: var(--antd-error) !important;" onclick="openModal('appeal-claim-modal')"><i data-lucide="rotate-ccw" class="icon-sm"></i> Appeal Decision</button>
+            <button class="antd-btn" onclick="showScreen('claim-detail')"><i data-lucide="eye" class="icon-sm"></i> View Details</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PENDING TAB -->
+    <div class="tab-content" id="claims-pending">
+      <div class="antd-flex antd-flex-col antd-gap-4">
+        <div class="antd-card" style="padding: 20px; border-left: 4px solid var(--antd-warning) !important;">
+          <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+            <div class="antd-flex antd-gap-4 antd-items-center">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--antd-warning-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="clock" class="icon-sm" style="color: var(--antd-warning);"></i>
+              </div>
+              <div>
+                <h3 class="antd-card-title" style="margin: 0;">CLM-2026-0045</h3>
+                <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">05 Jul 2026 · Apollo Hospital · ₹45,000</p>
+              </div>
+            </div>
+            <span class="antd-tag antd-tag-warning">Pending Review</span>
+          </div>
+          <div class="antd-flex antd-gap-2" style="padding-left: 60px;">
+            <button class="antd-btn antd-btn-primary" onclick="showScreen('claim-detail')"><i data-lucide="eye" class="icon-sm"></i> View Details</button>
+            <button class="antd-btn" onclick="openModal('track-claim-modal')"><i data-lucide="map-pin" class="icon-sm"></i> Track</button>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="antd-card">
-        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
-          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0044</h3>
-          <span class="antd-tag antd-tag-success">Approved</span>
-        </div>
-        <div class="antd-grid-2 antd-mb-4">
-          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Priya Sharma</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹25,000 (Paid)</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Hospital</p><p class="antd-text-strong" style="margin: 0;">Fortis Hospital</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Date</p><p class="antd-text-strong" style="margin: 0;">28 Jun 2026</p></div>
-        </div>
-        <div class="antd-flex antd-gap-2">
-          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0044')">View Details</button>
-          <button class="antd-btn" onclick="openModal('payment-details-modal')">View Payment</button>
+    <!-- APPROVED TAB -->
+    <div class="tab-content" id="claims-approved">
+      <div class="antd-flex antd-flex-col antd-gap-4">
+        <div class="antd-card" style="padding: 20px; border-left: 4px solid var(--antd-success) !important;">
+          <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+            <div class="antd-flex antd-gap-4 antd-items-center">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--antd-success-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="check-circle" class="icon-sm" style="color: var(--antd-success);"></i>
+              </div>
+              <div>
+                <h3 class="antd-card-title" style="margin: 0;">CLM-2026-0044</h3>
+                <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">28 Jun 2026 · Fortis Hospital · ₹25,000 Paid</p>
+              </div>
+            </div>
+            <span class="antd-tag antd-tag-success">Approved &amp; Paid</span>
+          </div>
+          <div class="antd-flex antd-gap-2" style="padding-left: 60px;">
+            <button class="antd-btn" onclick="showScreen('claim-detail')"><i data-lucide="eye" class="icon-sm"></i> View Details</button>
+            <button class="antd-btn" onclick="openModal('payment-details-modal')"><i data-lucide="receipt" class="icon-sm"></i> Payment</button>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="antd-card">
-        <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
-          <h3 class="antd-card-title" style="margin: 0;">Claim #CLM-2026-0039</h3>
-          <span class="antd-tag antd-tag-error">Rejected</span>
-        </div>
-        <div class="antd-grid-2 antd-mb-4">
-          <div><p class="antd-text-secondary" style="margin: 0;">Patient</p><p class="antd-text-strong" style="margin: 0;">Rahul Sharma</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Amount</p><p class="antd-text-strong" style="margin: 0;">₹18,000</p></div>
-          <div><p class="antd-text-secondary" style="margin: 0;">Reason</p><p class="antd-text-strong" style="margin: 0; color: var(--antd-error);">Pre-existing condition not disclosed</p></div>
-        </div>
-        <div class="antd-flex antd-gap-2">
-          <button class="antd-btn antd-btn-primary" style="background-color: var(--antd-error) !important; border-color: var(--antd-error) !important;" onclick="openModal('appeal-claim-modal')">Appeal</button>
-          <button class="antd-btn" onclick="openClaimDetail('CLM-2026-0039')">View Details</button>
+    <!-- REJECTED TAB -->
+    <div class="tab-content" id="claims-rejected">
+      <div class="antd-flex antd-flex-col antd-gap-4">
+        <div class="antd-card" style="padding: 20px; border-left: 4px solid var(--antd-error) !important;">
+          <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+            <div class="antd-flex antd-gap-4 antd-items-center">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--antd-error-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="x-circle" class="icon-sm" style="color: var(--antd-error);"></i>
+              </div>
+              <div>
+                <h3 class="antd-card-title" style="margin: 0;">CLM-2026-0039</h3>
+                <p class="antd-text-tertiary" style="margin: 2px 0 0; font-size: 12px;">15 Jun 2026 · ₹18,000 · Pre-existing condition</p>
+              </div>
+            </div>
+            <span class="antd-tag antd-tag-error">Rejected</span>
+          </div>
+          <div class="antd-flex antd-gap-2" style="padding-left: 60px;">
+            <button class="antd-btn antd-btn-primary" style="background-color: var(--antd-error) !important; border-color: var(--antd-error) !important;" onclick="openModal('appeal-claim-modal')"><i data-lucide="rotate-ccw" class="icon-sm"></i> Appeal</button>
+            <button class="antd-btn" onclick="showScreen('claim-detail')"><i data-lucide="eye" class="icon-sm"></i> Details</button>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

@@ -26,26 +26,56 @@ function selectAccountType(type) {
   }
 
   function selectLoginMethod(method) {
-    document.querySelectorAll('.login-method-btn').forEach(el => el.classList.remove('active'));
-    document.getElementById('method-' + method).classList.add('active');
+    document.querySelectorAll('.login-method-btn').forEach(el => el.classList.remove('active', 'antd-btn-primary'));
+    
+    // Add default button style back to all
+    document.querySelectorAll('.login-method-btn').forEach(el => {
+      if(!el.classList.contains('active')) el.style.background = 'transparent';
+    });
+    
+    const activeBtn = document.getElementById('method-' + method);
+    if(activeBtn) {
+      activeBtn.classList.add('active', 'antd-btn-primary');
+      activeBtn.style.background = ''; // reset inline style to let primary class work
+    }
     
     document.querySelectorAll('.login-form').forEach(el => el.classList.add('hidden'));
-    document.getElementById('login-' + method).classList.remove('hidden');
+    
+    const activeForm = document.getElementById('login-' + method);
+    if(activeForm) activeForm.classList.remove('hidden');
   }
 
   function sendOTP(method) {
     document.getElementById('login-step-1').classList.add('hidden');
     document.getElementById('login-step-2').classList.remove('hidden');
-    if(method === 'phone') document.getElementById('otp-destination').innerHTML = document.getElementById('phone-input').value || '+91 9876543210';
-    if(method === 'aadhaar') document.getElementById('otp-destination').innerHTML = 'Aadhaar linked number';
-    if(method === 'employee-id') document.getElementById('otp-destination').innerHTML = document.getElementById('corp-email-input').value || 'Corporate Email';
+    
+    let dest = '';
+    if(method === 'phone') dest = document.getElementById('phone-input').value || '+91 98765 43210';
+    if(method === 'aadhaar') {
+      const aadhaar = document.getElementById('aadhaar-input').value || 'XXXX XXXX XXXX';
+      dest = 'Aadhaar ' + aadhaar + ' linked number';
+    }
+    if(method === 'employee-id') dest = document.getElementById('employee-id-input').value || 'Corporate SSO';
+    
+    document.getElementById('otp-destination').innerHTML = dest;
+    
+    // Auto focus first OTP input
+    setTimeout(() => { document.getElementById('otp-1').focus(); }, 100);
   }
 
-  function moveToNext(current) {
-    if(document.getElementById('otp-'+current).value.length === 1 && current < 6) {
-      document.getElementById('otp-'+(current+1)).focus();
+  // Handle auto-advancing OTP
+  window.moveToNextOTP = function(currentInput, nextInputId) {
+    if (currentInput.value.length >= 1 && nextInputId) {
+      document.getElementById(nextInputId).focus();
     }
-  }
+  };
+
+  // Handle backspace in OTP
+  window.handleOTPBackspace = function(e, currentInput, prevInputId) {
+    if (e.key === 'Backspace' && currentInput.value === '' && prevInputId) {
+      document.getElementById(prevInputId).focus();
+    }
+  };
 
   function verifyOTP() {
     document.getElementById('login-fullscreen').style.display = 'none';
@@ -92,6 +122,9 @@ function selectAccountType(type) {
     const targetScreen = document.getElementById('screen-' + screenId);
     if(targetScreen) {
       targetScreen.classList.add('active');
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons({ root: targetScreen });
+      }
     }
     const targetNav = document.getElementById('nav-' + screenId);
     if(targetNav) {
@@ -152,7 +185,7 @@ function showToast(message, type = 'success') {
   if (!container) {
     container = document.createElement('div');
     container.id = 'antd-message-container';
-    container.style.cssText = 'position: fixed; top: 24px; left: 50%; transform: translateX(-50%); z-index: 10000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;';
+    container.style.cssText = 'position: fixed; top: 80px; left: 50%; transform: translateX(-50%); z-index: 10000; display: flex; flex-direction: column; gap: 8px; pointer-events: none;';
     document.body.appendChild(container);
   }
   
@@ -186,7 +219,25 @@ function showToast(message, type = 'success') {
 window.submitClaim = function() {
   showToast('Claim submitted successfully!', 'success');
   claimNext(1);
-  closeModal('screen-new-claim');
+}
+
+window.submitClaimFinal = function() {
+  // Show success step
+  document.querySelectorAll('[id^="claim-step-"]').forEach(s => s.classList.add('hidden'));
+  document.getElementById('claim-step-5').classList.remove('hidden');
+  
+  // Mark all stepper steps as done
+  document.querySelectorAll('.antd-step-item').forEach(s => {
+    s.classList.remove('active');
+    s.classList.add('done');
+  });
+  
+  showToast('Claim #CLM-2026-0046 submitted successfully!', 'success');
+  
+  // Re-init icons for the success screen
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
 }
 
 // Enforce minimum date on date inputs to prevent past date selection (Heuristic Fix)
