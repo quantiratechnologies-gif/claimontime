@@ -1,25 +1,88 @@
 <div class="screen" id="screen-support">
-<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
-  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="ticket" class="icon-sm"></i> Support Tickets</h2>
-  <button class="antd-btn antd-btn-primary">+ Raise New Ticket</button>
-</div>
+  <div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+    <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="ticket" class="icon-lg" style="margin: 0; width: 24px; height: 24px;"></i> Support Tickets</h2>
+    <button class="antd-btn antd-btn-primary"><i data-lucide="plus" class="icon-sm"></i> Raise New Ticket</button>
+  </div>
 
-<div class="antd-card antd-p-0" style="overflow-x: auto;">
-  <table class="antd-table">
-    <thead>
-      <tr>
-        <th>Ticket ID</th>
-        <th>Issue</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="antd-text-strong">TKT-001</span></td>
-        <td>Name correction in policy</td>
-        <td><span class="antd-tag antd-tag-warning">Open</span></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="antd-grid-4 antd-mb-6">
+    <div class="antd-card" style="padding: 20px;">
+      <h3 class="antd-text-secondary" style="margin: 0 0 8px 0; font-size: 14px; font-weight: 500;">Total Tickets</h3>
+      <div class="antd-flex antd-items-center antd-gap-2">
+        <span class="antd-text-strong" style="font-size: 28px;">12</span>
+        <span class="antd-tag antd-tag-info" style="border-radius: 12px;">Lifetime</span>
+      </div>
+    </div>
+    <div class="antd-card" style="padding: 20px;">
+      <h3 class="antd-text-secondary" style="margin: 0 0 8px 0; font-size: 14px; font-weight: 500;">Open</h3>
+      <div class="antd-flex antd-items-center antd-gap-2">
+        <span class="antd-text-strong" style="font-size: 28px;">1</span>
+        <span class="antd-tag antd-tag-warning" style="border-radius: 12px;">Needs Attention</span>
+      </div>
+    </div>
+    <div class="antd-card" style="padding: 20px;">
+      <h3 class="antd-text-secondary" style="margin: 0 0 8px 0; font-size: 14px; font-weight: 500;">Resolved</h3>
+      <div class="antd-flex antd-items-center antd-gap-2">
+        <span class="antd-text-strong" style="font-size: 28px;">11</span>
+        <span class="antd-tag antd-tag-success" style="border-radius: 12px;">Closed</span>
+      </div>
+    </div>
+    <div class="antd-card antd-flex antd-flex-col antd-items-center antd-justify-center" style="padding: 20px; background: linear-gradient(135deg, var(--primary-50), var(--bg-surface)); border-color: var(--primary-100); text-align: center; cursor: pointer;">
+      <i data-lucide="message-square" style="color: var(--primary-600); width: 24px; height: 24px; margin-bottom: 8px;"></i>
+      <p class="antd-text-strong" style="color: var(--primary-600); margin: 0;">Live Chat</p>
+      <p class="antd-text-tertiary" style="margin: 0;">Available 24/7</p>
+    </div>
+  </div>
+
+  <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+    <div class="antd-flex antd-gap-2">
+      <input type="text" class="antd-input" placeholder="Search tickets..." style="margin: 0; width: 250px;">
+      <select class="antd-input" style="margin: 0; width: 150px;">
+        <option value="all">All Statuses</option>
+        <option value="open">Open</option>
+        <option value="resolved">Resolved</option>
+      </select>
+    </div>
+    <button class="antd-btn"><i data-lucide="filter" class="icon-sm"></i> Filter</button>
+  </div>
+
+  <div class="antd-card antd-p-0" style="overflow-x: auto;">
+    <table class="antd-table">
+      <thead>
+        <tr>
+          <th>Ticket ID</th>
+          <th>Subject</th>
+          <th>Category</th>
+          <th>Last Updated</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="antd-text-strong">TKT-001</span></td>
+          <td>Name correction in policy</td>
+          <td>Policy Details</td>
+          <td>2 hours ago</td>
+          <td><span class="antd-tag antd-tag-warning">Open</span></td>
+          <td><button class="antd-btn">View</button></td>
+        </tr>
+        <tr>
+          <td><span class="antd-text-strong">TKT-002</span></td>
+          <td>Claim tracking issue</td>
+          <td>Claims</td>
+          <td>3 days ago</td>
+          <td><span class="antd-tag antd-tag-success">Resolved</span></td>
+          <td><button class="antd-btn">View</button></td>
+        </tr>
+        <tr>
+          <td><span class="antd-text-strong">TKT-003</span></td>
+          <td>How to add dependent?</td>
+          <td>General Inquiry</td>
+          <td>1 week ago</td>
+          <td><span class="antd-tag antd-tag-success">Resolved</span></td>
+          <td><button class="antd-btn">View</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

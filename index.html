@@ -2081,52 +2081,170 @@
 </div>
 <!-- HELP & SUPPORT -->
 <div class="screen" id="screen-help">
-<div class="antd-flex antd-items-center antd-mb-6">
-  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="help-circle" class="icon-sm"></i> Help Center</h2>
-</div>
+  <div class="antd-flex antd-items-center antd-mb-6">
+    <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="help-circle" class="icon-lg" style="margin: 0; width: 24px; height: 24px;"></i> Help Center</h2>
+  </div>
 
-<div class="antd-card" style="max-width: 800px; padding: 0;">
-  <div style="padding: 16px; border-bottom: 1px solid var(--antd-border); cursor: pointer;" class="antd-flex antd-justify-between antd-items-center">
-    <p class="antd-text-strong" style="margin: 0;">How to file a claim?</p>
-    <i data-lucide="chevron-down" class="icon-sm"></i>
+  <div class="antd-card antd-mb-6" style="background: linear-gradient(135deg, var(--primary-50), var(--bg-surface)); border-color: var(--primary-100);">
+    <h3 style="margin-top: 0; margin-bottom: 16px;">How can we help you today?</h3>
+    <div class="antd-flex antd-gap-4">
+      <input type="text" class="antd-input" placeholder="Search for articles, guides, or FAQs..." style="margin: 0; flex: 1;">
+      <button class="antd-btn antd-btn-primary"><i data-lucide="search" class="icon-sm"></i> Search</button>
+    </div>
   </div>
-  <div style="padding: 16px; background-color: #fafafa; border-bottom: 1px solid var(--antd-border);">
-    <p class="antd-text-secondary" style="margin: 0;">Go to the Claims section and click on + New Claim. You will need your hospital bills, discharge summary, and payment receipts.</p>
+
+  <h3 class="antd-mb-4" style="font-size: 18px;">Categories</h3>
+  <div class="antd-grid-4 antd-mb-6">
+    <div class="antd-card antd-card-hoverable antd-flex antd-flex-col antd-items-center" style="text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background-color: var(--primary-50); color: var(--primary-600); display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+        <i data-lucide="file-text" style="width: 24px; height: 24px;"></i>
+      </div>
+      <h4 style="margin: 0 0 8px 0; font-size: 16px;">Claims</h4>
+      <p class="antd-text-tertiary" style="margin: 0;">Everything about filing and tracking claims.</p>
+    </div>
+    <div class="antd-card antd-card-hoverable antd-flex antd-flex-col antd-items-center" style="text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background-color: var(--success-50); color: var(--success-700); display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+        <i data-lucide="shield" style="width: 24px; height: 24px;"></i>
+      </div>
+      <h4 style="margin: 0 0 8px 0; font-size: 16px;">Policies</h4>
+      <p class="antd-text-tertiary" style="margin: 0;">Coverage details, endorsements, and renewals.</p>
+    </div>
+    <div class="antd-card antd-card-hoverable antd-flex antd-flex-col antd-items-center" style="text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background-color: var(--warning-50); color: var(--warning-700); display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+        <i data-lucide="map-pin" style="width: 24px; height: 24px;"></i>
+      </div>
+      <h4 style="margin: 0 0 8px 0; font-size: 16px;">Network Hospitals</h4>
+      <p class="antd-text-tertiary" style="margin: 0;">Finding cashless facilities near you.</p>
+    </div>
+    <div class="antd-card antd-card-hoverable antd-flex antd-flex-col antd-items-center" style="text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background-color: var(--antd-error-bg); color: var(--antd-error); display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+        <i data-lucide="user" style="width: 24px; height: 24px;"></i>
+      </div>
+      <h4 style="margin: 0 0 8px 0; font-size: 16px;">Account</h4>
+      <p class="antd-text-tertiary" style="margin: 0;">Managing your profile, dependents, and settings.</p>
+    </div>
   </div>
-  
-  <div style="padding: 16px; border-bottom: 1px solid var(--antd-border); cursor: pointer;" class="antd-flex antd-justify-between antd-items-center">
-    <p class="antd-text-strong" style="margin: 0;">What is Cashless network?</p>
-    <i data-lucide="chevron-down" class="icon-sm"></i>
+
+  <h3 class="antd-mb-4" style="font-size: 18px;">Frequently Asked Questions</h3>
+  <div class="accordion">
+    <div class="accordion-item" style="border: 1px solid var(--antd-border); border-radius: var(--antd-radius); margin-bottom: 8px; background: var(--bg-surface);">
+      <div class="accordion-header antd-flex antd-justify-between antd-items-center" style="padding: 16px; cursor: pointer;" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+        <p class="antd-text-strong" style="margin: 0; font-size: 15px;">How do I file a cashless claim?</p>
+        <i data-lucide="chevron-down" class="icon-sm"></i>
+      </div>
+      <div class="accordion-content" style="display: none; padding: 0 16px 16px 16px; border-top: 1px solid var(--antd-border); padding-top: 16px;">
+        <p class="antd-text-secondary" style="margin: 0; line-height: 1.6;">To file a cashless claim, you must visit a network hospital. Present your health card at the insurance desk. They will fill a pre-authorization form and send it to us. Once approved, the hospital will proceed with your treatment without you paying cash for covered expenses.</p>
+      </div>
+    </div>
+    
+    <div class="accordion-item" style="border: 1px solid var(--antd-border); border-radius: var(--antd-radius); margin-bottom: 8px; background: var(--bg-surface);">
+      <div class="accordion-header antd-flex antd-justify-between antd-items-center" style="padding: 16px; cursor: pointer;" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+        <p class="antd-text-strong" style="margin: 0; font-size: 15px;">What documents are required for reimbursement?</p>
+        <i data-lucide="chevron-down" class="icon-sm"></i>
+      </div>
+      <div class="accordion-content" style="display: none; padding: 0 16px 16px 16px; border-top: 1px solid var(--antd-border); padding-top: 16px;">
+        <p class="antd-text-secondary" style="margin: 0; line-height: 1.6;">You will generally need: Original Hospital Bills, Payment Receipts, Discharge Summary, Doctor's Prescriptions, Pharmacy Bills, and Investigation Reports. You can upload scanned copies via our portal in the "Claims" section.</p>
+      </div>
+    </div>
+
+    <div class="accordion-item" style="border: 1px solid var(--antd-border); border-radius: var(--antd-radius); margin-bottom: 8px; background: var(--bg-surface);">
+      <div class="accordion-header antd-flex antd-justify-between antd-items-center" style="padding: 16px; cursor: pointer;" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
+        <p class="antd-text-strong" style="margin: 0; font-size: 15px;">Can I add a dependent to my active policy?</p>
+        <i data-lucide="chevron-down" class="icon-sm"></i>
+      </div>
+      <div class="accordion-content" style="display: none; padding: 0 16px 16px 16px; border-top: 1px solid var(--antd-border); padding-top: 16px;">
+        <p class="antd-text-secondary" style="margin: 0; line-height: 1.6;">Yes, for Retail policies you can add dependents at the time of renewal. For Corporate policies, you can usually add a spouse or newborn within 30 days of marriage or birth by navigating to the "Policies" section and clicking "Modify Dependents".</p>
+      </div>
+    </div>
   </div>
-  <div style="padding: 16px; background-color: #fafafa; border-bottom: 1px solid var(--antd-border);">
-    <p class="antd-text-secondary" style="margin: 0;">These are hospitals where you don't need to pay out of pocket. The insurance company settles the bill directly with the hospital.</p>
-  </div>
-</div>
 </div>
 <div class="screen" id="screen-support">
-<div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
-  <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="ticket" class="icon-sm"></i> Support Tickets</h2>
-  <button class="antd-btn antd-btn-primary">+ Raise New Ticket</button>
-</div>
+  <div class="antd-flex antd-items-center antd-justify-between antd-mb-6">
+    <h2 class="antd-text-large" style="margin: 0;"><i data-lucide="ticket" class="icon-lg" style="margin: 0; width: 24px; height: 24px;"></i> Support Tickets</h2>
+    <button class="antd-btn antd-btn-primary"><i data-lucide="plus" class="icon-sm"></i> Raise New Ticket</button>
+  </div>
 
-<div class="antd-card antd-p-0" style="overflow-x: auto;">
-  <table class="antd-table">
-    <thead>
-      <tr>
-        <th>Ticket ID</th>
-        <th>Issue</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="antd-text-strong">TKT-001</span></td>
-        <td>Name correction in policy</td>
-        <td><span class="antd-tag antd-tag-warning">Open</span></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="antd-grid-4 antd-mb-6">
+    <div class="antd-card" style="padding: 20px;">
+      <h3 class="antd-text-secondary" style="margin: 0 0 8px 0; font-size: 14px; font-weight: 500;">Total Tickets</h3>
+      <div class="antd-flex antd-items-center antd-gap-2">
+        <span class="antd-text-strong" style="font-size: 28px;">12</span>
+        <span class="antd-tag antd-tag-info" style="border-radius: 12px;">Lifetime</span>
+      </div>
+    </div>
+    <div class="antd-card" style="padding: 20px;">
+      <h3 class="antd-text-secondary" style="margin: 0 0 8px 0; font-size: 14px; font-weight: 500;">Open</h3>
+      <div class="antd-flex antd-items-center antd-gap-2">
+        <span class="antd-text-strong" style="font-size: 28px;">1</span>
+        <span class="antd-tag antd-tag-warning" style="border-radius: 12px;">Needs Attention</span>
+      </div>
+    </div>
+    <div class="antd-card" style="padding: 20px;">
+      <h3 class="antd-text-secondary" style="margin: 0 0 8px 0; font-size: 14px; font-weight: 500;">Resolved</h3>
+      <div class="antd-flex antd-items-center antd-gap-2">
+        <span class="antd-text-strong" style="font-size: 28px;">11</span>
+        <span class="antd-tag antd-tag-success" style="border-radius: 12px;">Closed</span>
+      </div>
+    </div>
+    <div class="antd-card antd-flex antd-flex-col antd-items-center antd-justify-center" style="padding: 20px; background: linear-gradient(135deg, var(--primary-50), var(--bg-surface)); border-color: var(--primary-100); text-align: center; cursor: pointer;">
+      <i data-lucide="message-square" style="color: var(--primary-600); width: 24px; height: 24px; margin-bottom: 8px;"></i>
+      <p class="antd-text-strong" style="color: var(--primary-600); margin: 0;">Live Chat</p>
+      <p class="antd-text-tertiary" style="margin: 0;">Available 24/7</p>
+    </div>
+  </div>
+
+  <div class="antd-flex antd-justify-between antd-items-center antd-mb-4">
+    <div class="antd-flex antd-gap-2">
+      <input type="text" class="antd-input" placeholder="Search tickets..." style="margin: 0; width: 250px;">
+      <select class="antd-input" style="margin: 0; width: 150px;">
+        <option value="all">All Statuses</option>
+        <option value="open">Open</option>
+        <option value="resolved">Resolved</option>
+      </select>
+    </div>
+    <button class="antd-btn"><i data-lucide="filter" class="icon-sm"></i> Filter</button>
+  </div>
+
+  <div class="antd-card antd-p-0" style="overflow-x: auto;">
+    <table class="antd-table">
+      <thead>
+        <tr>
+          <th>Ticket ID</th>
+          <th>Subject</th>
+          <th>Category</th>
+          <th>Last Updated</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="antd-text-strong">TKT-001</span></td>
+          <td>Name correction in policy</td>
+          <td>Policy Details</td>
+          <td>2 hours ago</td>
+          <td><span class="antd-tag antd-tag-warning">Open</span></td>
+          <td><button class="antd-btn">View</button></td>
+        </tr>
+        <tr>
+          <td><span class="antd-text-strong">TKT-002</span></td>
+          <td>Claim tracking issue</td>
+          <td>Claims</td>
+          <td>3 days ago</td>
+          <td><span class="antd-tag antd-tag-success">Resolved</span></td>
+          <td><button class="antd-btn">View</button></td>
+        </tr>
+        <tr>
+          <td><span class="antd-text-strong">TKT-003</span></td>
+          <td>How to add dependent?</td>
+          <td>General Inquiry</td>
+          <td>1 week ago</td>
+          <td><span class="antd-tag antd-tag-success">Resolved</span></td>
+          <td><button class="antd-btn">View</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </div> <!-- END APP CONTENT -->
 </div> <!-- END MAIN -->
