@@ -751,41 +751,7 @@ a:hover {
   border-bottom-right-radius: var(--radius-md);
 }
 
-/* Stepper / Progress (New Claim Wizard) */
-.stepper {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: var(--space-6);
-  position: relative;
-}
-.stepper::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: var(--border-color);
-  z-index: 0;
-}
-.stepper .step {
-  background-color: var(--bg-surface);
-  border: 2px solid var(--border-color);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  z-index: 1;
-  color: var(--text-muted);
-}
-.stepper .step.active {
-  border-color: var(--primary-500);
-  background-color: var(--primary-500);
-  color: var(--text-inverse);
-}
+/* Removed legacy stepper to resolve Ant Design conflict */
 .progress-fill {
   background-color: var(--success-500);
   height: 100%;

@@ -283,3 +283,70 @@ h1, h2, h3, h4, h5, h6 {
 select.antd-input {
   cursor: pointer;
 }
+
+/* --------------------------------------------------------------------------
+   ANTD STEPPER
+   -------------------------------------------------------------------------- */
+.antd-steps {
+  display: flex;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.antd-steps .antd-step-item {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.antd-steps .antd-step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 38px;
+  right: -8px;
+  height: 1px;
+  background-color: var(--antd-border);
+}
+.antd-steps .antd-step-item.active:not(:last-child)::after {
+  background-color: var(--antd-primary);
+}
+.antd-steps .antd-step-item.done:not(:last-child)::after {
+  background-color: var(--antd-primary);
+}
+.antd-steps .antd-step-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--antd-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--antd-text-secondary);
+  background: var(--antd-surface);
+  margin-right: 8px;
+  z-index: 2;
+}
+.antd-steps .antd-step-content {
+  color: var(--antd-text-secondary);
+  font-size: 14px;
+  background: var(--antd-bg);
+  padding: 0 4px;
+  z-index: 2;
+}
+.antd-steps .antd-step-item.active .antd-step-icon {
+  background: var(--antd-primary);
+  border-color: var(--antd-primary);
+  color: #fff;
+}
+.antd-steps .antd-step-item.active .antd-step-content {
+  color: var(--antd-text);
+  font-weight: 600;
+}
+.antd-steps .antd-step-item.done .antd-step-icon {
+  border-color: var(--antd-primary);
+  color: var(--antd-primary);
+}
+.antd-steps .antd-step-item.done .antd-step-content {
+  color: var(--antd-text);
+}

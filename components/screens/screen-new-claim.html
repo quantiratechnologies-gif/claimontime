@@ -9,14 +9,26 @@
   </p>
 </div>
 
-<div class="stepper antd-flex antd-mb-6" style="border-bottom: 1px solid var(--antd-border); padding-bottom: 16px;">
-  <div class="step active" id="step1" style="flex: 1; text-align: center; color: var(--antd-primary); font-weight: 600;">1. Patient &amp; Policy</div>
-  <div class="step" id="step2" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">2. Treatment</div>
-  <div class="step" id="step3" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">3. Documents</div>
-  <div class="step" id="step4" style="flex: 1; text-align: center; color: var(--antd-text-tertiary);">4. AI Validation</div>
+<div class="antd-steps">
+  <div class="antd-step-item active" id="step1">
+    <div class="antd-step-icon">1</div>
+    <div class="antd-step-content">Patient &amp; Policy</div>
+  </div>
+  <div class="antd-step-item" id="step2">
+    <div class="antd-step-icon">2</div>
+    <div class="antd-step-content">Treatment</div>
+  </div>
+  <div class="antd-step-item" id="step3">
+    <div class="antd-step-icon">3</div>
+    <div class="antd-step-content">Documents</div>
+  </div>
+  <div class="antd-step-item" id="step4">
+    <div class="antd-step-icon">4</div>
+    <div class="antd-step-content">AI Validation</div>
+  </div>
 </div>
 
-<div id="claim-step-1" class="antd-card">
+<div id="claim-step-1" class="antd-card" style="max-width: 800px; margin: 0 auto;">
   <h3 class="antd-card-title">Select Patient</h3>
   <select class="antd-input antd-mb-4" >
     <option>Rahul Sharma (Self)</option>
@@ -42,7 +54,7 @@
 </div>
 
 <div class="hidden" id="claim-step-2">
-  <div class="antd-card">
+  <div class="antd-card" style="max-width: 800px; margin: 0 auto;">
     <h3 class="antd-card-title">Hospital Details</h3>
     <input class="antd-input antd-mb-4" placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai" />
     <button class="antd-btn antd-mb-6" onclick="openModal('search-hospital-modal')">Search Hospital</button>
@@ -72,7 +84,7 @@
 </div>
 
 <div class="hidden" id="claim-step-3">
-  <div class="antd-card">
+  <div class="antd-card" style="max-width: 800px; margin: 0 auto;">
     <h3 class="antd-card-title">Upload Documents</h3>
     
     <div class="file-upload-area antd-mb-6" onclick="openModal('upload-document-modal')" style="border: 1px dashed var(--antd-border); border-radius: var(--antd-radius); padding: 32px; text-align: center; background: #fafafa; cursor: pointer;">
@@ -123,7 +135,7 @@
 </div>
 
 <div class="hidden" id="claim-step-4">
-  <div class="antd-card" style="border-top: 4px solid var(--antd-primary);">
+  <div class="antd-card" style="border-top: 4px solid var(--antd-primary); max-width: 800px; margin: 0 auto;">
     <div class="antd-flex antd-items-center antd-gap-2 antd-mb-4">
       <i data-lucide="sparkles" class="icon-sm" style="color: var(--antd-primary);"></i>
       <h3 class="antd-card-title" style="margin: 0;">AI Claim Prediction & Validation</h3>

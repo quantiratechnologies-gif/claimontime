@@ -119,7 +119,10 @@ function selectAccountType(type) {
   }
 
   function claimNext(step) {
-    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.antd-step-item').forEach(s => {
+      s.classList.remove('active');
+      s.classList.remove('done');
+    });
     document.querySelectorAll('[id^="claim-step-"]').forEach(s => s.classList.add('hidden'));
     
     const stepEl = document.getElementById('step' + step);
