@@ -896,3 +896,43 @@ a:hover {
   color: var(--danger-600);
   font-weight: bold;
 }
+
+/* --------------------------------------------------------------------------
+   EMERGENCY CRITICAL UI OVERRIDES (High Density, Low Distraction)
+   -------------------------------------------------------------------------- */
+:root {
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-full: 4px; /* Flatten pills */
+  --shadow-sm: none;
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-lg: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-xl: 0 4px 6px rgba(0,0,0,0.1);
+  --transition-fast: 0s;
+  --transition-base: 0s;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-8: 24px;
+}
+.card, .stat-card, .insurance-card, .claim-card, .market-card, .hospital-card, .doc-card, .chat-box, .file-upload-area {
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  border: 1px solid #d1d5db !important;
+  transform: none !important;
+  transition: none !important;
+}
+.btn, .btn-secondary, .btn-danger, .btn-corp, .tab-btn {
+  border-radius: 2px !important;
+  transform: none !important;
+  transition: none !important;
+  background-image: none !important; /* Kill gradients */
+}
+.btn-corp { background-color: #1a2b4a !important; }
+.login-left { background: #1a56db !important; }
+.modal-content {
+  border-radius: 4px !important;
+  border: 2px solid #000 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
