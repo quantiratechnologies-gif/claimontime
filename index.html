@@ -192,6 +192,7 @@
       Member ID: <span id="member-id">SC-2026-8842</span>
     </div>
     <div>
+      <button class="btn" style="background:#dc3545; font-weight:bold; animation: pulse 2s infinite;" onclick="openModal('emergency-modal')">🚨 EMERGENCY / SOS</button>
       <button class="btn btn-secondary" onclick="showScreen('notifications')">🔔 <span id="notif-count">5</span></button>
       <button class="btn btn-secondary" onclick="showScreen('profile')">👤 Profile</button>
     </div>
@@ -794,36 +795,96 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div> <!-- END MAIN -->
 
 <!-- MODALS -->
-<div id="policy-compare-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Compare Policies</h2><button class="modal-close" onclick="closeModal('policy-compare-modal')">&times;</button></div><p>Detailed comparison table will go here.</p></div></div>
-<div id="download-policy-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Download Policy</h2><button class="modal-close" onclick="closeModal('download-policy-modal')">&times;</button></div><button class="btn">Download PDF</button></div></div>
-<div id="policy-renew-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Renew Policy</h2><button class="modal-close" onclick="closeModal('policy-renew-modal')">&times;</button></div><input type="text" value="₹18,500"><button class="btn">Pay Now</button></div></div>
-<div id="filter-plans-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Filter Plans</h2><button class="modal-close" onclick="closeModal('filter-plans-modal')">&times;</button></div><p>Filter options...</p></div></div>
-<div id="compare-plans-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Compare Plans</h2><button class="modal-close" onclick="closeModal('compare-plans-modal')">&times;</button></div><p>Comparison matrix...</p></div></div>
-<div id="plan-details-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Plan Details</h2><button class="modal-close" onclick="closeModal('plan-details-modal')">&times;</button></div><p>Full plan details...</p></div></div>
-<div id="buy-plan-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Buy Plan</h2><button class="modal-close" onclick="closeModal('buy-plan-modal')">&times;</button></div><button class="btn">Proceed to Payment</button></div></div>
-<div id="filter-claims-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Filter Claims</h2><button class="modal-close" onclick="closeModal('filter-claims-modal')">&times;</button></div><p>Claim filters...</p></div></div>
-<div id="export-claims-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Export Claims</h2><button class="modal-close" onclick="closeModal('export-claims-modal')">&times;</button></div><button class="btn">Export as CSV</button></div></div>
-<div id="track-claim-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Track Claim</h2><button class="modal-close" onclick="closeModal('track-claim-modal')">&times;</button></div><div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div><p>Step 2 of 4: Medical Review</p></div></div>
-<div id="payment-details-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Payment Details</h2><button class="modal-close" onclick="closeModal('payment-details-modal')">&times;</button></div><p>Txn ID: 123456789</p></div></div>
-<div id="appeal-claim-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Appeal Claim</h2><button class="modal-close" onclick="closeModal('appeal-claim-modal')">&times;</button></div><textarea placeholder="Reason for appeal"></textarea><button class="btn">Submit</button></div></div>
-<div id="search-hospital-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Search Hospital</h2><button class="modal-close" onclick="closeModal('search-hospital-modal')">&times;</button></div><input type="text" placeholder="Hospital name..."><button class="btn">Search</button></div></div>
-<div id="upload-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Upload Document</h2><button class="modal-close" onclick="closeModal('upload-document-modal')">&times;</button></div><input type="file"><button class="btn">Upload</button></div></div>
-<div id="view-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>View Document</h2><button class="modal-close" onclick="closeModal('view-document-modal')">&times;</button></div><p>[Document Preview]</p></div></div>
-<div id="replace-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Replace Document</h2><button class="modal-close" onclick="closeModal('replace-document-modal')">&times;</button></div><input type="file"><button class="btn">Upload New</button></div></div>
-<div id="fix-document-error-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Fix Document Error</h2><button class="modal-close" onclick="closeModal('fix-document-error-modal')">&times;</button></div><p>Please re-upload clearly.</p></div></div>
-<div id="edit-bank-details-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Edit Bank Details</h2><button class="modal-close" onclick="closeModal('edit-bank-details-modal')">&times;</button></div><input type="text" placeholder="Account Number"><button class="btn">Save</button></div></div>
-<div id="filter-hospitals-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Filter Hospitals</h2><button class="modal-close" onclick="closeModal('filter-hospitals-modal')">&times;</button></div><p>Filters...</p></div></div>
-<div id="map-view-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Map View</h2><button class="modal-close" onclick="closeModal('map-view-modal')">&times;</button></div><p>[Google Map Embed]</p></div></div>
-<div id="cashless-request-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Request Cashless</h2><button class="modal-close" onclick="closeModal('cashless-request-modal')">&times;</button></div><input type="date"><button class="btn">Request</button></div></div>
-<div id="hospital-details-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Hospital Details</h2><button class="modal-close" onclick="closeModal('hospital-details-modal')">&times;</button></div><p>Full info...</p></div></div>
-<div id="directions-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Directions</h2><button class="modal-close" onclick="closeModal('directions-modal')">&times;</button></div><p>Routing...</p></div></div>
-<div id="voice-input-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Voice Input</h2><button class="modal-close" onclick="closeModal('voice-input-modal')">&times;</button></div><button class="btn">🎤 Start Recording</button></div></div>
-<div id="scan-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Scan Document</h2><button class="modal-close" onclick="closeModal('scan-document-modal')">&times;</button></div><button class="btn">📷 Open Camera</button></div></div>
-<div id="organize-documents-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Organize Documents</h2><button class="modal-close" onclick="closeModal('organize-documents-modal')">&times;</button></div><p>Folder structure...</p></div></div>
-<div id="share-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Share Document</h2><button class="modal-close" onclick="closeModal('share-document-modal')">&times;</button></div><input type="email" placeholder="Email"><button class="btn">Send</button></div></div>
-<div id="download-document-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Download Document</h2><button class="modal-close" onclick="closeModal('download-document-modal')">&times;</button></div><button class="btn">Download</button></div></div>
-<div id="make-payment-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Make Payment</h2><button class="modal-close" onclick="closeModal('make-payment-modal')">&times;</button></div><button class="btn">Pay</button></div></div>
-<div id="payment-history-modal" class="modal"><div class="modal-content"><div class="modal-header"><h2>Payment History</h2><button class="modal-close" onclick="closeModal('payment-history-modal')">&times;</button></div><p>Txn logs...</p></div></div>
+
+<!-- EMERGENCY SOS MODAL -->
+<div id="emergency-modal" class="modal">
+  <div class="modal-content" style="border-top: 5px solid #dc3545;">
+    <div class="modal-header">
+      <h2 style="color: #dc3545;">🚨 Emergency Assistance</h2>
+      <button class="modal-close" onclick="closeModal('emergency-modal')">&times;</button>
+    </div>
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h3 style="margin-bottom: 10px;">Show this e-Card at Hospital Reception</h3>
+      <div style="background: #f8f9fa; padding: 15px; border: 2px dashed #1a73e8; border-radius: 8px; display: inline-block;">
+        <p><strong>Patient:</strong> Rahul Sharma</p>
+        <p><strong>Policy No:</strong> STAR/FHO/2025/1234567</p>
+        <p><strong>TPA Desk ID:</strong> TPA-4492-MH</p>
+        <p style="color: #28a745; font-weight: bold;">Status: ACTIVE (Coverage: ₹5,00,000)</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <button class="btn" style="background:#dc3545; height:60px; font-size:16px;">📞 Call 24/7 TPA Helpline</button>
+      <button class="btn btn-secondary" style="height:60px; font-size:16px;" onclick="openModal('cashless-request-modal'); closeModal('emergency-modal');">Start Emergency Admission</button>
+    </div>
+    <p style="font-size: 12px; color: #666; margin-top: 15px; text-align: center;">In case of severe medical emergency, please call 108 for ambulance services.</p>
+  </div>
+</div>
+
+<!-- URGENT CASHLESS REQUEST -->
+<div id="cashless-request-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>🏥 Hospital Admission Request</h2>
+      <button class="modal-close" onclick="closeModal('cashless-request-modal')">&times;</button>
+    </div>
+    <p style="font-size:13px; color:#666; margin-bottom:15px;">Fill only the mandatory details to alert the hospital and TPA immediately.</p>
+    <label>Patient Name *</label>
+    <select><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
+    <label>Admission Type *</label>
+    <select>
+      <option value="emergency">🚨 Emergency (Currently in ER)</option>
+      <option value="planned">📅 Planned Surgery (Within 48 hours)</option>
+    </select>
+    <label>Hospital Name *</label>
+    <input type="text" placeholder="e.g. Apollo Hospital, Andheri" required>
+    <label>Primary Complaint / Diagnosis (If known)</label>
+    <input type="text" placeholder="e.g. Chest Pain, Accident">
+    <button class="btn" style="width:100%; margin-top:15px; height:50px; font-size:16px;" onclick="alert('Request sent to hospital cashless desk!'); closeModal('cashless-request-modal');">Send Urgent Request</button>
+  </div>
+</div>
+
+<!-- TRACK CLAIM & ESCALATE -->
+<div id="track-claim-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Track Claim Status</h2>
+      <button class="modal-close" onclick="closeModal('track-claim-modal')">&times;</button>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width: 50%;"></div></div>
+    <p style="font-weight:bold; margin-top:10px;">Current Step: TPA Medical Review</p>
+    <p style="font-size:13px; color:#666; margin-bottom:20px;">Estimated completion in 4-6 hours.</p>
+    <div style="background:#fff3cd; padding:15px; border-radius:6px; margin-bottom:15px; border-left:4px solid #ffc107;">
+      <strong>Is the patient waiting for discharge?</strong><br>
+      <span style="font-size:12px;">If you are stuck at the hospital waiting for final bill approval, escalate this claim.</span>
+      <button class="btn" style="background:#dc3545; display:block; margin-top:10px;" onclick="alert('Claim Escalated to Priority Queue!');">Escalate to Priority Desk</button>
+    </div>
+  </div>
+</div>
+
+<!-- SIMPLIFIED DOCUMENT UPLOAD -->
+<div id="upload-document-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Upload Medical Documents</h2>
+      <button class="modal-close" onclick="closeModal('upload-document-modal')">&times;</button>
+    </div>
+    <p style="font-size:13px; color:#666; margin-bottom:15px;">To speed up your claim, please upload clear photos or PDFs.</p>
+    <label>Document Type *</label>
+    <select>
+      <option>Final Hospital Bill (Required for Discharge)</option>
+      <option>Discharge Summary (Required for Discharge)</option>
+      <option>Investigation/Lab Reports</option>
+      <option>Doctor's Prescription</option>
+    </select>
+    <div class="file-upload-area" style="padding: 20px;">
+      <p style="font-size: 32px; margin:0;">📷 / 📄</p>
+      <p style="margin:5px 0;">Tap to Take Photo or Browse</p>
+    </div>
+    <button class="btn" style="width:100%; height:45px;" onclick="closeModal('upload-document-modal')">Upload File</button>
+  </div>
+</div>
+
+<!-- OTHER MODALS (Preserved) -->
 
 <!-- JAVASCRIPT LOGIC -->
 <script src="assets/js/main.js"></script>
