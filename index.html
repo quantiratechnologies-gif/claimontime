@@ -158,7 +158,7 @@
 <a class="app-nav-link" id="nav-claims" onclick="showScreen('claims')"><i data-lucide="coins" class="icon-sm"></i> Claims</a>
 <a class="app-nav-link" id="nav-cashless" onclick="showScreen('cashless')"><i data-lucide="hospital" class="icon-sm"></i> Cashless</a>
 <a class="app-nav-link" id="nav-ai" onclick="showScreen('ai')"><i data-lucide="bot" class="icon-sm"></i> AI Assistant</a>
-<a class="app-nav-link" id="nav-documents" onclick="showScreen('documents')"><i data-lucide="folder" class="icon-lg"></i> Documents</a>
+<a class="app-nav-link" id="nav-documents" onclick="showScreen('documents')"><i data-lucide="folder" class="icon-sm"></i> Documents</a>
 <a class="app-nav-link" id="nav-payments" onclick="showScreen('payments')"><i data-lucide="credit-card" class="icon-sm"></i> Payments</a>
 <a class="app-nav-link" id="nav-corporate-benefits" onclick="showScreen('corporate-benefits')" ><i data-lucide="briefcase" class="icon-sm"></i> Corporate Benefits <span class="badge-corp">CORP</span></a>
 <a class="app-nav-link" id="nav-notifications" onclick="showScreen('notifications')"><i data-lucide="bell" class="icon-sm"></i> Notifications</a>
@@ -677,16 +677,18 @@
   <!-- NOTIFICATIONS -->
 <div class="screen" id="screen-notifications">
 <h2><i data-lucide="bell" class="icon-sm"></i> Notifications</h2>
-<div class="notification-item urgent">
-<strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
-      <button class="btn btn-secondary" onclick="openModal('upload-document-modal')">Upload Now</button>
+<div class="notification-item urgent" style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-4); border-bottom: 1px solid var(--border-color); background-color: var(--primary-50); border-left: 4px solid var(--primary-500);">
+    <div>
+        <strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
+    </div>
+    <button class="btn btn-secondary" style="white-space: nowrap;" onclick="openModal('upload-document-modal')">Upload Now</button>
 </div>
-<div class="notification-item unread">
-<strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
-    </div>
-<div class="notification-item">
-<strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
-    </div>
+<div class="notification-item unread" style="padding: var(--space-4); border-bottom: 1px solid var(--border-color); background-color: var(--primary-50); border-left: 4px solid var(--primary-500);">
+    <strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
+</div>
+<div class="notification-item" style="padding: var(--space-4); border-bottom: 1px solid var(--border-color);">
+    <strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
+</div>
 </div>
 <!-- PROFILE -->
 <div class="screen" id="screen-profile">

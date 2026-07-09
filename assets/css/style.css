@@ -512,7 +512,7 @@ a:hover {
 }
 
 /* App-Specific Layout Mappings to Design System */
-.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); }
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); }
 .stat-card {
   background-color: var(--bg-surface);
@@ -791,9 +791,6 @@ a:hover {
 .notification-item {
   padding: var(--space-4);
   border-bottom: 1px solid var(--border-color);
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
   background-color: var(--bg-surface);
 }
 .notification-item.unread {

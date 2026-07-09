@@ -1,13 +1,15 @@
 <div class="screen" id="screen-notifications">
 <h2><i data-lucide="bell" class="icon-sm"></i> Notifications</h2>
-<div class="notification-item urgent">
-<strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
-      <button class="btn btn-secondary" onclick="openModal('upload-document-modal')">Upload Now</button>
+<div class="notification-item urgent" style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-4); border-bottom: 1px solid var(--border-color); background-color: var(--primary-50); border-left: 4px solid var(--primary-500);">
+    <div>
+        <strong>Action Required:</strong> Please upload missing documents for Claim #CLM-2026-0045.
+    </div>
+    <button class="btn btn-secondary" style="white-space: nowrap;" onclick="openModal('upload-document-modal')">Upload Now</button>
 </div>
-<div class="notification-item unread">
-<strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
-    </div>
-<div class="notification-item">
-<strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
-    </div>
+<div class="notification-item unread" style="padding: var(--space-4); border-bottom: 1px solid var(--border-color); background-color: var(--primary-50); border-left: 4px solid var(--primary-500);">
+    <strong>Policy Update:</strong> Your Star Health policy has been successfully renewed.
+</div>
+<div class="notification-item" style="padding: var(--space-4); border-bottom: 1px solid var(--border-color);">
+    <strong>Claim Settled:</strong> Claim #CLM-2026-0044 amount ₹25,000 has been credited.
+</div>
 </div>
