@@ -143,3 +143,37 @@ function selectAccountType(type) {
     contents.forEach(c => c.classList.remove('active'));
     document.getElementById(`${group}-${tabId}`).classList.add('active');
   }
+// Toast Notification System
+function showToast(message, type = 'success') {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+  
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `<span>${message}</span>`;
+  
+  container.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.classList.add('fadeOut');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+// Override alert for the scope of these forms (optional, but finding exact replaces is better)
+window.submitClaim = function() {
+  showToast('Claim submitted successfully!', 'success');
+  claimNext(1);
+  closeModal('screen-new-claim');
+}
+
+// Enforce minimum date on date inputs to prevent past date selection (Heuristic Fix)
+document.addEventListener('DOMContentLoaded', () => {
+    const today = new Date().toISOString().split('T')[0];
+    document.querySelectorAll('input[type="date"]').forEach(input => {
+        // Only restrict if the input doesn't already have a value set in the past for demo purposes
+        if (!input.value) {
+            input.setAttribute('min', today);
+        }
+    });
+});

@@ -11,18 +11,18 @@
 </div>
 <div id="claim-step-1">
 <h3>Select Patient</h3>
-<select>
+<select class="form-control">
 <option>Rahul Sharma (Self)</option>
 <option>Priya Sharma (Spouse)</option>
 <option>Aarav Sharma (Son)</option>
 </select>
 <h3>Select Policy</h3>
-<select id="claim-policy-select">
+<select class="form-control" id="claim-policy-select">
 <option>Star Health - Family Health Optima (₹5L)</option>
 <option>HDFC Ergo - Optima Restore (₹5L)</option>
 </select>
 <h3>Claim Type</h3>
-<select>
+<select class="form-control">
 <option>Reimbursement</option>
 <option>Pre-authorization</option>
 </select>
@@ -31,16 +31,16 @@
 </div>
 <div class="hidden" id="claim-step-2">
 <h3>Hospital Details</h3>
-<input placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai"/>
+<input class="form-control" placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai"/>
 <button class="btn btn-secondary" onclick="openModal('search-hospital-modal')">🔍 Search Hospital</button>
 <h3>Treatment Details</h3>
-<input placeholder="Diagnosis" type="text" value="Viral Fever"/>
+<input class="form-control" placeholder="Diagnosis" type="text" value="Viral Fever"/>
 <label>Admission Date</label>
-<input type="date" value="2026-07-05"/>
+<input class="form-control" type="date" value="2026-07-05"/>
 <label>Discharge Date</label>
-<input type="date" value="2026-07-08"/>
+<input class="form-control" type="date" value="2026-07-08"/>
 <h3>Claim Amount</h3>
-<input placeholder="₹" type="number" value="45000"/>
+<input class="form-control" placeholder="₹" type="number" value="45000"/>
 <br/><br/>
 <button class="btn btn-secondary" onclick="claimNext(1)">← Back</button>
 <button class="btn" onclick="claimNext(3)">Next →</button>

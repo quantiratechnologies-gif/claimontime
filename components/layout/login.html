@@ -63,14 +63,14 @@
 <!-- Phone Login -->
 <div class="login-form" id="login-phone">
 <label>Mobile Number</label>
-<input id="phone-input" maxlength="10" placeholder="+91 98765 43210" type="tel"/>
+<input class="form-control" id="phone-input" maxlength="10" placeholder="+91 98765 43210" type="tel"/>
 <br/><br/>
 <button class="btn" onclick="sendOTP('phone')" style="width: 100%;">Send OTP</button>
 </div>
 <!-- Aadhaar Login -->
 <div class="login-form hidden" id="login-aadhaar">
 <label>Aadhaar Number</label>
-<input id="aadhaar-input" maxlength="14" placeholder="XXXX XXXX XXXX" type="text"/>
+<input class="form-control" id="aadhaar-input" maxlength="14" placeholder="XXXX XXXX XXXX" type="text"/>
 <p style="font-size: 12px; color: #666; margin-top: 5px;">🔒 Your Aadhaar is encrypted and secure</p>
 <br/>
 <button class="btn" onclick="sendOTP('aadhaar')" style="width: 100%;">Send OTP</button>
@@ -78,16 +78,16 @@
 <!-- Email Login -->
 <div class="login-form hidden" id="login-email">
 <label>Email Address</label>
-<input id="email-input" placeholder="rahul@example.com" type="email"/>
+<input class="form-control" id="email-input" placeholder="rahul@example.com" type="email"/>
 <label>Password</label>
-<input id="password-input" placeholder="••••••••" type="password"/>
+<input class="form-control" id="password-input" placeholder="••••••••" type="password"/>
 <br/>
 <button class="btn" onclick="loginWithEmail()" style="width: 100%;">Login</button>
 </div>
 <!-- Employee ID Login (Corporate only) -->
 <div class="login-form hidden" id="login-employee-id">
 <label>Company Name</label>
-<select id="company-select">
+<select class="form-control" id="company-select">
 <option value="">Select your company</option>
 <option value="TCS">Tata Consultancy Services (TCS)</option>
 <option value="INFY">Infosys</option>
@@ -97,9 +97,9 @@
 <option value="OTHER">Other</option>
 </select>
 <label>Employee ID</label>
-<input id="employee-id-input" placeholder="e.g., EMP001234" type="text"/>
+<input class="form-control" id="employee-id-input" placeholder="e.g., EMP001234" type="text"/>
 <label>Corporate Email</label>
-<input id="corp-email-input" placeholder="rahul.sharma@tcs.com" type="email"/>
+<input class="form-control" id="corp-email-input" placeholder="rahul.sharma@tcs.com" type="email"/>
 <br/>
 <button class="btn" onclick="sendOTP('employee-id')" style="width: 100%;">Send OTP</button>
 </div>
@@ -132,7 +132,7 @@
 </div>
 <button class="btn" onclick="verifyOTP()" style="width: 100%; margin-top: 20px;">Verify &amp; Continue</button>
 <p style="text-align: center; margin-top: 20px; font-size: 13px;">
-        Didn't receive code? <a href="#" onclick="alert('OTP resent'); return false;">Resend OTP</a>
+        Didn't receive code? <a href="#" onclick="showToast('OTP resent', 'success'); return false;">Resend OTP</a>
 </p>
 </div>
 </div>

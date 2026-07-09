@@ -73,14 +73,14 @@
 <!-- Phone Login -->
 <div class="login-form" id="login-phone">
 <label>Mobile Number</label>
-<input id="phone-input" maxlength="10" placeholder="+91 98765 43210" type="tel"/>
+<input class="form-control" id="phone-input" maxlength="10" placeholder="+91 98765 43210" type="tel"/>
 <br/><br/>
 <button class="btn" onclick="sendOTP('phone')" style="width: 100%;">Send OTP</button>
 </div>
 <!-- Aadhaar Login -->
 <div class="login-form hidden" id="login-aadhaar">
 <label>Aadhaar Number</label>
-<input id="aadhaar-input" maxlength="14" placeholder="XXXX XXXX XXXX" type="text"/>
+<input class="form-control" id="aadhaar-input" maxlength="14" placeholder="XXXX XXXX XXXX" type="text"/>
 <p style="font-size: 12px; color: #666; margin-top: 5px;">🔒 Your Aadhaar is encrypted and secure</p>
 <br/>
 <button class="btn" onclick="sendOTP('aadhaar')" style="width: 100%;">Send OTP</button>
@@ -88,16 +88,16 @@
 <!-- Email Login -->
 <div class="login-form hidden" id="login-email">
 <label>Email Address</label>
-<input id="email-input" placeholder="rahul@example.com" type="email"/>
+<input class="form-control" id="email-input" placeholder="rahul@example.com" type="email"/>
 <label>Password</label>
-<input id="password-input" placeholder="••••••••" type="password"/>
+<input class="form-control" id="password-input" placeholder="••••••••" type="password"/>
 <br/>
 <button class="btn" onclick="loginWithEmail()" style="width: 100%;">Login</button>
 </div>
 <!-- Employee ID Login (Corporate only) -->
 <div class="login-form hidden" id="login-employee-id">
 <label>Company Name</label>
-<select id="company-select">
+<select class="form-control" id="company-select">
 <option value="">Select your company</option>
 <option value="TCS">Tata Consultancy Services (TCS)</option>
 <option value="INFY">Infosys</option>
@@ -107,9 +107,9 @@
 <option value="OTHER">Other</option>
 </select>
 <label>Employee ID</label>
-<input id="employee-id-input" placeholder="e.g., EMP001234" type="text"/>
+<input class="form-control" id="employee-id-input" placeholder="e.g., EMP001234" type="text"/>
 <label>Corporate Email</label>
-<input id="corp-email-input" placeholder="rahul.sharma@tcs.com" type="email"/>
+<input class="form-control" id="corp-email-input" placeholder="rahul.sharma@tcs.com" type="email"/>
 <br/>
 <button class="btn" onclick="sendOTP('employee-id')" style="width: 100%;">Send OTP</button>
 </div>
@@ -142,7 +142,7 @@
 </div>
 <button class="btn" onclick="verifyOTP()" style="width: 100%; margin-top: 20px;">Verify &amp; Continue</button>
 <p style="text-align: center; margin-top: 20px; font-size: 13px;">
-        Didn't receive code? <a href="#" onclick="alert('OTP resent'); return false;">Resend OTP</a>
+        Didn't receive code? <a href="#" onclick="showToast('OTP resent', 'success'); return false;">Resend OTP</a>
 </p>
 </div>
 </div>
@@ -371,7 +371,7 @@
 <h2>🛒 Health Insurance Marketplace</h2>
 <p style="color: #666; margin-bottom: 20px;">Compare and buy from India's top insurers</p>
 <div style="margin-bottom: 20px;">
-<input placeholder="🔍 Search by insurer name, plan type, or city..." style="max-width: 600px;" type="text"/>
+<input class="form-control" placeholder="🔍 Search by insurer name, plan type, or city..." style="max-width: 600px;" type="text"/>
 <button class="btn btn-secondary" onclick="openModal('filter-plans-modal')">Filter</button>
 <button class="btn btn-secondary" onclick="openModal('compare-plans-modal')">Compare Plans</button>
 </div>
@@ -463,18 +463,18 @@
 </div>
 <div id="claim-step-1">
 <h3>Select Patient</h3>
-<select>
+<select class="form-control">
 <option>Rahul Sharma (Self)</option>
 <option>Priya Sharma (Spouse)</option>
 <option>Aarav Sharma (Son)</option>
 </select>
 <h3>Select Policy</h3>
-<select id="claim-policy-select">
+<select class="form-control" id="claim-policy-select">
 <option>Star Health - Family Health Optima (₹5L)</option>
 <option>HDFC Ergo - Optima Restore (₹5L)</option>
 </select>
 <h3>Claim Type</h3>
-<select>
+<select class="form-control">
 <option>Reimbursement</option>
 <option>Pre-authorization</option>
 </select>
@@ -483,16 +483,16 @@
 </div>
 <div class="hidden" id="claim-step-2">
 <h3>Hospital Details</h3>
-<input placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai"/>
+<input class="form-control" placeholder="Hospital Name" type="text" value="Apollo Hospital, Mumbai"/>
 <button class="btn btn-secondary" onclick="openModal('search-hospital-modal')">🔍 Search Hospital</button>
 <h3>Treatment Details</h3>
-<input placeholder="Diagnosis" type="text" value="Viral Fever"/>
+<input class="form-control" placeholder="Diagnosis" type="text" value="Viral Fever"/>
 <label>Admission Date</label>
-<input type="date" value="2026-07-05"/>
+<input class="form-control" type="date" value="2026-07-05"/>
 <label>Discharge Date</label>
-<input type="date" value="2026-07-08"/>
+<input class="form-control" type="date" value="2026-07-08"/>
 <h3>Claim Amount</h3>
-<input placeholder="₹" type="number" value="45000"/>
+<input class="form-control" placeholder="₹" type="number" value="45000"/>
 <br/><br/>
 <button class="btn btn-secondary" onclick="claimNext(1)">← Back</button>
 <button class="btn" onclick="claimNext(3)">Next →</button>
@@ -547,7 +547,7 @@
 <!-- CASHLESS -->
 <div class="screen" id="screen-cashless">
 <h2>🏥 Cashless / Network Hospitals</h2>
-<input id="hospital-search" placeholder="🔍 Search hospital by name, city, or specialty..." style="max-width:100%;" type="text"/>
+<input class="form-control" id="hospital-search" placeholder="🔍 Search hospital by name, city, or specialty..." style="max-width:100%;" type="text"/>
 <br/><br/>
 <button class="btn btn-secondary" onclick="openModal('filter-hospitals-modal')">Filter</button>
 <button class="btn btn-secondary" onclick="openModal('map-view-modal')">🗺️ Map View</button>
@@ -586,7 +586,7 @@
 <div class="msg msg-ai">👋 Hi Rahul! I'm your SuperClaim AI. How can I help you today?</div>
 </div>
 <div class="chat-input">
-<input id="chat-input" onkeypress="if(event.key==='Enter') sendChat()" placeholder="Type your question..." type="text"/>
+<input class="form-control" id="chat-input" onkeypress="if(event.key==='Enter') sendChat()" placeholder="Type your question..." type="text"/>
 <button class="btn" onclick="sendChat()">Send</button>
 <button class="btn btn-secondary" onclick="openModal('voice-input-modal')">🎤</button>
 </div>
@@ -687,9 +687,9 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 <div class="grid-2">
 <div class="card">
 <h3>Personal Details</h3>
-<label>Full Name</label><input type="text" value="Rahul Sharma"/>
-<label>Date of Birth</label><input type="date" value="1988-05-12"/>
-<label>Phone</label><input type="tel" value="+91 9876543210"/>
+<label>Full Name</label><input class="form-control" type="text" value="Rahul Sharma"/>
+<label>Date of Birth</label><input class="form-control" type="date" value="1988-05-12"/>
+<label>Phone</label><input class="form-control" type="tel" value="+91 9876543210"/>
 <button class="btn">Update Details</button>
 </div>
 <div class="card">
@@ -704,9 +704,9 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 <div class="screen" id="screen-settings">
 <h2>⚙️ Settings</h2>
 <div class="card">
-<div class="form-group"><input checked="" type="checkbox"/> Receive SMS Alerts</div>
-<div class="form-group"><input checked="" type="checkbox"/> Receive Email Alerts</div>
-<div class="form-group"><input type="checkbox"/> Enable Auto-Pay for Renewals</div>
+<div class="form-group"><input class="form-control" checked="" type="checkbox"/> Receive SMS Alerts</div>
+<div class="form-group"><input class="form-control" checked="" type="checkbox"/> Receive Email Alerts</div>
+<div class="form-group"><input class="form-control" type="checkbox"/> Enable Auto-Pay for Renewals</div>
 <button class="btn">Save Preferences</button>
 </div>
 </div>
@@ -764,17 +764,17 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
 <p style="font-size:13px; color:#666; margin-bottom:15px;">Fill only the mandatory details to alert the hospital and TPA immediately.</p>
 <label>Patient Name *</label>
-<select><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
+<select class="form-control"><option>Rahul Sharma (Self)</option><option>Priya Sharma (Spouse)</option></select>
 <label>Admission Type *</label>
-<select>
+<select class="form-control">
 <option value="emergency">🚨 Emergency (Currently in ER)</option>
 <option value="planned">📅 Planned Surgery (Within 48 hours)</option>
 </select>
 <label>Hospital Name *</label>
-<input placeholder="e.g. Apollo Hospital, Andheri" required="" type="text"/>
+<input class="form-control" placeholder="e.g. Apollo Hospital, Andheri" required="" type="text"/>
 <label>Primary Complaint / Diagnosis (If known)</label>
-<input placeholder="e.g. Chest Pain, Accident" type="text"/>
-<button class="btn" onclick="alert('Request sent to hospital cashless desk!'); closeModal('cashless-request-modal');" style="width:100%; margin-top:15px; height:50px; font-size:16px;">Send Urgent Request</button>
+<input class="form-control" placeholder="e.g. Chest Pain, Accident" type="text"/>
+<button class="btn" onclick="showToast('Request sent to hospital cashless desk!', 'success'); closeModal('cashless-request-modal');" style="width:100%; margin-top:15px; height:50px; font-size:16px;">Send Urgent Request</button>
 </div>
 </div>
 <!-- TRACK CLAIM & ESCALATE -->
@@ -790,7 +790,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 <div style="background:#fff3cd; padding:15px; border-radius:6px; margin-bottom:15px; border-left:4px solid #ffc107;">
 <strong>Is the patient waiting for discharge?</strong><br/>
 <span style="font-size:12px;">If you are stuck at the hospital waiting for final bill approval, escalate this claim.</span>
-<button class="btn" onclick="alert('Claim Escalated to Priority Queue!');" style="background:#dc3545; display:block; margin-top:10px;">Escalate to Priority Desk</button>
+<button class="btn" onclick="showToast('Claim Escalated to Priority Queue!', 'success');" style="background:#dc3545; display:block; margin-top:10px;">Escalate to Priority Desk</button>
 </div>
 </div>
 </div>
@@ -803,7 +803,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 </div>
 <p style="font-size:13px; color:#666; margin-bottom:15px;">To speed up your claim, please upload clear photos or PDFs.</p>
 <label>Document Type *</label>
-<select>
+<select class="form-control">
 <option>Final Hospital Bill (Required for Discharge)</option>
 <option>Discharge Summary (Required for Discharge)</option>
 <option>Investigation/Lab Reports</option>
@@ -822,7 +822,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('appeal-claim-modal')">&times;</button>
     </div>
-    <h2>Appeal Claim</h2><textarea placeholder="Reason for appeal"></textarea><button class="btn">Submit</button>
+    <h2>Appeal Claim</h2><textarea class="form-control" placeholder="Reason for appeal"></textarea><button class="btn">Submit</button>
   </div>
 </div>
 <div id="buy-plan-modal" class="modal-overlay">
@@ -870,7 +870,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('edit-bank-details-modal')">&times;</button>
     </div>
-    <h2>Edit Bank Details</h2><input type="text" placeholder="Account Number"><button class="btn">Save</button>
+    <h2>Edit Bank Details</h2><input class="form-control" type="text" placeholder="Account Number"><button class="btn">Save</button>
   </div>
 </div>
 <div id="export-claims-modal" class="modal-overlay">
@@ -982,7 +982,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('policy-renew-modal')">&times;</button>
     </div>
-    <h2>Renew Policy</h2><input type="text" value="₹18,500"><button class="btn">Pay Now</button>
+    <h2>Renew Policy</h2><input class="form-control" type="text" value="₹18,500"><button class="btn">Pay Now</button>
   </div>
 </div>
 <div id="pre-auth-tracker-modal" class="modal-overlay">
@@ -997,7 +997,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 <div style="background:#fff3cd; padding:15px; border-radius:6px; margin-bottom:15px; border-left:4px solid #ffc107;">
   <strong>Patient waiting in ER?</strong><br>
   <span style="font-size:12px;">Pre-auth requests for Emergency Admissions are fast-tracked.</span>
-  <button class="btn" style="background:#dc3545; display:block; margin-top:10px;" onclick="alert('Priority alert sent to TPA Desk.');">Call TPA Desk Directly</button>
+  <button class="btn" style="background:#dc3545; display:block; margin-top:10px;" onclick="showToast('Priority alert sent to TPA Desk.', 'success');">Call TPA Desk Directly</button>
 </div>
   </div>
 </div>
@@ -1006,7 +1006,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('replace-document-modal')">&times;</button>
     </div>
-    <h2>Replace Document</h2><input type="file"><button class="btn">Upload New</button>
+    <h2>Replace Document</h2><input class="form-control" type="file"><button class="btn">Upload New</button>
   </div>
 </div>
 <div id="scan-document-modal" class="modal-overlay">
@@ -1045,7 +1045,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
     <div class="modal-header">
       <button class="modal-close" onclick="closeModal('share-document-modal')">&times;</button>
     </div>
-    <h2>Share Document</h2><input type="email" placeholder="Doctor's Email"><button class="btn">Send Securely</button>
+    <h2>Share Document</h2><input class="form-control" type="email" placeholder="Doctor's Email"><button class="btn">Send Securely</button>
   </div>
 </div>
 <div id="view-document-modal" class="modal-overlay">
@@ -1067,5 +1067,7 @@ NOTE: The output was truncated because it was too long. Use a more targeted quer
 
 <!-- JAVASCRIPT LOGIC -->
 <script src="assets/js/main.js"></script>
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" class="toast-container"></div>
 </body>
 </html>
